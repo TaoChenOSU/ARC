@@ -1,0 +1,156 @@
+\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\newcommand{\toc}{\tableofcontents}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+%\renewcommand{\lstlistlistingname}{List of \lstlistingname s} % list of lists -> list of Thread Program
+\lstset{
+    frame=single,
+    language=C,
+    columns=flexible,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    captionpos=b
+}
+
+\def\name{Put your name here}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = false,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {cs444 "operating systems" files filesystem I/O},
+  pdftitle = {CS 444 Weekly Summaries},
+  pdfsubject = {CS 444 Weekly Summary 1},
+  pdfpagemode = UseNone
+}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\begin{document}
+
+\begin{titlepage}
+\title{Operating System Feature Comparison: I/O and Provided Functionality\\CS444\\Spring 2016}
+\author{Put your name here}
+\maketitle
+\begin{abstract}
+	Abstract goes here.
+\end{abstract}
+
+\thispagestyle{empty} % gets rid of the "0" page number.
+
+\end{titlepage}
+%\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+A comparison of the I/O devices, schedulers and more of the Windows and FreeBSD operating systems to the Linux I/O implementation.\\
+This document details key elements of Windows and FreeBSD I/O implementation and compares each operating system against corresponding Linux I/O implementation.\\
+The first section of this document examines Windows I/O implementation and compares it to Linux. The second section examins FreeBSD implementation and compares it to Linux.\\
+The conclusion provides an overview of findings from examining Windows and FreeBSD and provides a synthesis of. \cite{windows}
+
+Reference to appendix \ref{appendix:program}
+\section{Windows}
+
+\subsection{Devices}
+
+\subsection{I/O Scheduling}
+
+\subsection{Comparison to Linux}
+
+\subsection{PlaceHolder}
+
+\section{FreeBSD}
+
+\subsection{Devices}
+
+\subsection{I/O Scheduling}
+
+\subsection{Comparison to Linux}
+
+\subsection{PlaceHolder}
+
+\section{Conclusion}
+My profound findings on the subject matter at hand.
+
+\nocite{linux}
+\nocite{bsd}
+%\subsection{Windows Processes}
+%
+%windows cleans up resource in any case.\cite{windows}\\ Viewed at a high-level, a windows\\ 
+%
+%\subsubsection{Win. Process Structure}
+%\begin{itemize}
+%    \item Private virtual address space.
+%    \item Executable Program
+%    \item List of open handles to various system resources that are accessible to all threads in the process.
+%    \item Access token: a security context that identifies the user, security groups, privileges and other account states associated with the process.
+%    \item Process ID
+%    \item At least one thread of execution (although and "empty" process is possible, it is not useful).
+%\end{itemize}
+%
+\newpage
+\begin{appendices}
+
+	\section{Example Appendix}
+	\label{appendix:program}
+	Basic thread program example:
+	\begin{lstlisting}[frame=single,caption={Example Caption}]
+	int main(int argc, char **argv) {
+		pthread_t thr[NUM_THREADS];
+		int i, rc;
+		/* create a thread_data_t arument array */
+		thread_data_t thr_data[NUM_THREADS];
+
+		/* initialize shared data */
+		shared_x = 0;
+
+		/* create threads */
+		for (i = 0; i < NUM_THREADS; ++i) {
+			thr_data[i].tid = i;
+			thr_data[i].stuff = (i+1) * NUM_THREADS;
+			if ((rc = pthread_create(&thr[i], NULL, thr_func, &thr_data[i]))) {
+			fprintf(stderr, "error: pthread_create, rc: %d\n", rc);
+			return EXIT_FAILURE;
+		}
+	}
+	/* block until all threads complete */
+	for (i = 0; i < NUM_THREADS; ++i) {
+		pthread_join(thr[i], NULL);
+	}
+
+	return EXIT_SUCCESS;
+}
+\end{lstlisting}
+
+\end{appendices}
+
+\bibliography{IEEEabrv,mybib}{}
+\bibliographystyle{IEEEtran}
+\end{document}
