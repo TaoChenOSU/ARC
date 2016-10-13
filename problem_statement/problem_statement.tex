@@ -1,0 +1,121 @@
+\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\newcommand{\toc}{\tableofcontents}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+%\renewcommand{\lstlistlistingname}{List of \lstlistingname s} % list of lists -> list of Thread Program
+\lstset{
+    frame=single,
+    language=C,
+    columns=flexible,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    captionpos=b
+}
+
+\def\name{Put your name here}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = false,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {Capstone Senior Design problem statement autonomous},
+  pdftitle = {Capstone Problem Statement},
+  pdfsubject = {Problem Statement},
+  pdfpagemode = UseNone
+}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\begin{document}
+
+\begin{titlepage}
+\title{Capstone Senior Design: ARC}
+\author{T. Chen, C. Shawe, D. Stoyer}
+\maketitle
+\begin{abstract}
+Currently, autonomous vehicles are built with many custom parts and assemblies
+and are very expensive. The cost of entry to autonomous vehicles is often
+prohibitive for the average consumer. The purpose of this project is to determine
+if it is possible to build an autonomous RC vehicle using commodity hardware.
+This will be accomplished using commodity hardware, including cameras, computers,
+and the RC vehicle used as the base, with minimal fabrication.
+\end{abstract}
+
+\thispagestyle{empty} % gets rid of the "0" page number.
+
+\end{titlepage}
+%\newpage
+
+%\tableofcontents
+
+\newpage
+
+\section{Problem Definition}
+Autonomous vehicles often cost thousands of dollars to build, and there are few
+options available that can be easily retrofitted. Our goal is to find out whether
+or not it is possible to take commodity hardware, retrofit it onto an RC car, and
+have it be able to navigate obstacles at speed. We also want to create a list of
+hardware components and a software solution that can be retrofitted onto at least
+one model of RC car, in order to enable autonomous navigation and operation.
+This implementation would be a small scale version of the DARPA grand challenge,
+where autonomous vehicles navigate themselves 100 miles through the Mojave desert,
+in under 10 hours. Our goal is to implement and RC car able to navigate to a given
+point as fast as possible, which is a small scale version of the challenge. The RC
+car should be able to navigate through a room or space, without prior knowledge to
+the environment, within a set amount of time and parallel park. Stretch goals for
+the project would be high-speed obstacle avoidance and drifting on a dirt track.
+As this is a research project, we do not know if it is actually possible to imple-
+ment these features. Millions, if not billions of dollars have been allocated for
+research of autonomous vehicles. A lot of the hardware is very specialized, and
+often very expensive.
+
+\section{Proposed Solution}
+Our solution will prove if it is possible, given software capable of - or nearly
+capable of - path-finding, to implement autonomous point-to-point navigation of
+an RC vehicle in low-speed and high-speed scenarios using commodity hardware.\\
+
+Successfully running an RC vehicle autonomously with commodity hardware will, by
+default, prove the feasibility of autonomous RC cars with commodity hardware.\\
+While a successful result is the desired outcome, an unsuccessful result, if accompanied by enough data and documentation, will prove that it is not yet possible to implement autonomy at the RC model scale using only commodity hardware.\\
+
+Our presentation at expo will either show successful autonomy via display graphics and video and possibly live demonstration, or will show why it is not yet possible to produce the autonomous requirements specified in the problem statement using strictly commodity, non-proprietary hardware, and available software.\\
+
+\section{Performance Metrics}
+Basic Criteria:
+\begin{itemize}
+	\item Self-navigate from point to point.
+	\item Low speed obstacle avoidance
+	\item Parallel parking
+	\item Advanced Criteria and Stretch Goals:
+	\item Obstacle avoidance at high speed.
+	\item Drifting (Dust track) 
+	\item Track current position with respect to the location of base station in order to not have the car drive away. 
+	\item At the end of Spring 2017 (before the Engineering Expo), all the basic objectives above should be accomplished on the RC vehicle provided, with no minimal specialized hardware and fabrication. Advanced Criteria and Stretch goals will be used to provide additional criteria if the basic criteria are finished early. If a final product is not delivered on time (before the Engineering Expo), we shall provide strong reasonings on why an objective was not feasible with the time and resources given. 
+	\item The outcome of this project will be measured on the completeness of the final product or the soundness of the reasonings if any of the objectives are not achieved. 
+\end{itemize}
+
+\end{document}
