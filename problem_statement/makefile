@@ -1,13 +1,13 @@
 # makefile for CS444 writing assignments in latex
 
 LATEX	= latex -shell-escape
-BIBTEX	= bibtex
+#BIBTEX	= bibtex
 DVIPS	= dvips
 DVIPDF  = dvipdft
 XDVI	= pdftex -outputformat dvi
 GH		= gv
 
-EXAMPLES = $(wildcard *.c)
+#EXAMPLES = $(wildcard *.c)
 SRC	:= $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 TRG	= $(SRC:%.tex=%.dvi)
 PSF	= $(SRC:%.tex=%.ps)
@@ -17,13 +17,14 @@ pdf: $(PDF)
 
 ps: $(PSF)
 
-$(TRG): %.dvi: %.tex *.bib $(EXAMPLES)
+#$(TRG): %.dvi: %.tex *.bib $(EXAMPLES)
+$(TRG): %.dvi: %.tex
 	#one way of including source code is to use pygments
 #	pygmentize -f latex -o __${EXAMPLES}.tex ${EXAMPLES}
 	#requires that you \include{pygments.tex} in your preamble
 
 	$(LATEX) $<
-	$(BIBTEX) $(<:%.tex=%)
+#	$(BIBTEX) $(<:%.tex=%)
 	$(LATEX) $<
 	$(LATEX) $<
 	#remove the pygmentized output to avoid cluttering up the directory
