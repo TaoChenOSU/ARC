@@ -16,62 +16,107 @@
 %Also based on the template of Karl E. Wiegers
 %http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
 %http://karlwiegers.com
-\documentclass{scrreprt}
-\usepackage{enumitem}
-\usepackage{listings}
-\usepackage{underscore}
-\usepackage[bookmarks=true]{hyperref}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\hypersetup{
-	bookmarks=false,    % show bookmarks bar?
-	pdftitle={Software Requirement Specification},    % title
-	pdfauthor={Dan Stoyer},                     % author
-	pdfsubject={Autonomous RC (ARC)},           % subject of the document
-	pdfkeywords={autonomous, RC, ARC, self-guided, car, neato}, % list of keywords
-	colorlinks=true,       % false: boxed links; true: colored links
-	linkcolor=blue,       % color of internal links
-	citecolor=black,       % color of links to bibliography
-	filecolor=black,        % color of file links
-	urlcolor=purple,        % color of external links
-	linktoc=page            % only page is linked
-}%
-\def\myversion{1.0 }
-\date{}
-%\title{%
-
+%\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
+%\usepackage{enumitem}
+%\usepackage{listings}
+%\usepackage{underscore}
+%\usepackage[bookmarks=true]{hyperref}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+%\hypersetup{
+%	bookmarks=false,    % show bookmarks bar?
+%	pdftitle={Software Requirement Specification},    % title
+%	pdfauthor={Dan Stoyer},                     % author
+%	pdfsubject={Autonomous RC (ARC)},           % subject of the document
+%	pdfkeywords={autonomous, RC, ARC, self-guided, car, neato}, % list of keywords
+%	colorlinks=true,       % false: boxed links; true: colored links
+%	linkcolor=blue,       % color of internal links
+%	citecolor=black,       % color of links to bibliography
+%	filecolor=black,        % color of file links
+%	urlcolor=purple,        % color of external links
+%	linktoc=page            % only page is linked
 %}
-\usepackage{titlesec}
+
+\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\newcommand{\toc}{\tableofcontents}
 
 \usepackage{hyperref}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+%\renewcommand{\lstlistlistingname}{List of \lstlistingname s} % list of lists -> list of Thread Program
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Put your name here}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {$<$keywords go here$>$},
+	pdftitle = {$<$pdf title$>$},
+	pdfsubject = {$<$pdf subject$>$},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
 
 \parindent = 0.0 in
 \parskip = 0.1 in
 
 \begin{document}
 
-\begin{flushleft}
-	\rule{16cm}{5pt}\vskip1cm
-	\begin{bfseries}
-		\Huge{Software Requirements\\ Specification}\\
-		\vspace{1.9cm}
-		for\\
-		\vspace{1.9cm}
-		Autonomous RC (ARC)\\
-		\vspace{1.9cm}
-		\LARGE{Version \myversion approved}\\
-		\vspace{1.9cm}
-		Prepared by $<$author$>$\\
-		\vspace{1.9cm}
-		$<$Organization$>$\\
-		\vspace{1.9cm}
-		\today\\
-	\end{bfseries}
-\end{flushleft}
+
+\begin{titlepage}
+	\title{Software Requirements\\Specification\\for\\ARC - Autonomous RC}
+	\author{Prepared by\\ $<$names here$>$}
+	\maketitle
+	\begin{center}
+	Version 0.1\\
+	\vspace{1.9cm}
+	\today
+	\end{center}
+
+	\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
 
 \tableofcontents
+\newpage
 
-\chapter{Introduction}
+\section{Introduction}
 
 The introduction of the SRS should provide an overview of the entire SRS. It
 should contain the following subsections:
@@ -84,14 +129,14 @@ should contain the following subsections:
 \end{enumerate}
 
 
-\section{Purpose}
+\subsection{Purpose}
 This subsection should
 \begin{enumerate}
 	\item Delineate the purpose of the SRS;
 	\item Specify the intended audience for the SRS.
 \end{enumerate}
 
-\section{Scope}
+\subsection{Scope}
 This subsection should
 \begin{enumerate}
 	\item Identify the software product(s) to be produced by name (e.g., Host
@@ -104,7 +149,7 @@ This subsection should
 		(e.g., the system requirements specification), if they exist.
 \end{enumerate}
 
-\section{Definitions, Acronyms, and Abbreviations}
+\subsection{Definitions, Acronyms, and Abbreviations}
 This subsection should provide the definitions of all terms, acronyms, and
 abbreviations required to properly interpret the SRS. This information may be
 provided by reference to one or more appendixes in the SRS or by reference to
@@ -115,7 +160,7 @@ other documents.
 \end{enumerate}
 
 
-\section{References}
+\subsection{References}
 This subsection should
 \begin{enumerate}
 	\item Provide a complete list of all documents referenced elsewhere in the SRS;
@@ -126,14 +171,14 @@ This subsection should
 		another document.
 \end{enumerate}
 
-\section{Overview}
+\subsection{Overview}
 This subsection should
 \begin{enumerate}
 	\item Describe what the rest of the SRS contains;
 	\item Explain how the SRS is organized.
 \end{enumerate}
 
-\chapter{Overall description}
+\section{Overall description}
 This section of the SRS should describe the general factors that affect the
 product and its requirements. This section does not state specific requirements.
 Instead, it provides a background for those requirements, which are defined in
@@ -148,7 +193,7 @@ This section usually consists of six subsections, as follows:
 	\item Apportioning of requirements.
 \end{enumerate}
 
-\section{Product perspective}
+\subsection{Product perspective}
 This subsection of the SRS should put the product into perspective with other
 related products. If the product is independent and totally self-contained, it
 should be so stated here. If the SRS defines a product that is a component of a
@@ -172,12 +217,12 @@ constraints. For example, these constraints could include
 	\item Site adaptation requirements.
 \end{enumerate}
 
-\subsection{System interfaces}
+\subsubsection{System interfaces}
 This should list each system interface and identify the functionality of the
 software to accomplish the system requirement and the interface description to
 match the system.
 
-\subsection{User interfaces}
+\subsubsection{User interfaces}
 This should specify the following:
 
 1. The logical characteristics of each interface between the software product
@@ -195,7 +240,7 @@ training” rather than “a typist can do function .” (This may also be
 specified in the Software System Attributes under a section titled Ease of
 Use.)
 
-\subsection{Hardware intefaces}
+\subsubsection{Hardware intefaces}
 This should specify the logical characteristics of each interface between the
 software product and the hardware components of the system. This includes
 configuration characteristics (number of ports, instruction sets, etc.). It also
@@ -203,7 +248,7 @@ covers such matters as what devices are to be supported, how they are to be
 supported, and protocols. For example, terminal support may specify full-screen
 support as opposed to line-by-line support.
 
-\subsection{Software interfaces}
+\subsubsection{Software interfaces}
 This should specify the use of other required software products (e.g., a data
 management system, an operating system, or a mathematical package), and
 interfaces with other application systems (e.g., the linkage between an accounts
@@ -227,15 +272,15 @@ For each interface, the following should be provided:
 		reference to the document defining the interface is required.
 \end{itemize}
 
-\subsection{Communications interfaces}
+\subsubsection{Communications interfaces}
 This should specify the various interfaces to communications such as local
 network protocols, etc.
 
-\subsection{Memory constraints}
+\subsubsection{Memory constraints}
 This should specify any applicable characteristics and limits on primary and
 secondary memory.
 
-\subsection{Operations}
+\subsubsection{Operations}
 This should specify the normal and special operations required by the user such as
 \begin{enumerate}
 	\item The various modes of operations in the user organization (e.g.,
@@ -247,7 +292,7 @@ This should specify the normal and special operations required by the user such 
 
 This is sometimes specified as part of the User Interfaces section.
 
-\subsection{Site adaptation requirements}
+\subsubsection{Site adaptation requirements}
 This should
 \begin{enumerate}
 	\item Define the requirements for any data or initialization sequences that
@@ -257,7 +302,7 @@ This should
 		to adapt the software to a particular installation.a
 \end{enumerate}
 
-\section{Product functions}
+\subsection{Product functions}
 This subsection of the SRS should provide a summary of the major functions that
 the software will perform. For example, an SRS for an accounting program may use
 this part to address customer account maintenance, customer statement, and
@@ -278,14 +323,14 @@ of clarity
 		among variables.
 \end{enumerate}
 
-\section{User characteristics}
+\subsection{User characteristics}
 This subsection of the SRS should describe those general characteristics of the
 intended users of the product including educational level, experience, and
 technical expertise. It should not be used to state specific requirements, but
 rather should provide the reasons why certain specific requirements are later
 specified in Section 3 of the SRS.
 
-\section{Constraints}
+\subsection{Constraints}
 This subsection of the SRS should provide a general description of any other
 items that will limit the developer's options. These include
 \begin{enumerate}
@@ -302,7 +347,7 @@ items that will limit the developer's options. These include
 	\item Safety and security considerations.
 \end{enumerate}
 
-\section{Assumptions and dependencies}
+\subsection{Assumptions and dependencies}
 This subsection of the SRS should list each of the factors that affect the
 requirements stated in the SRS. These factors are not design constraints on the
 software but are, rather, any changes to them that can affect the requirements
@@ -311,11 +356,11 @@ will be available on the hardware designated for the software product. If, in
 fact, the operating system is not available, the SRS would then have to change
 accordingly.
 
-\section{Apportionment of requirements}
+\subsection{Apportionment of requirements}
 This subsection of the SRS should identify requirements that may be delayed
 until future versions of the system.
 
-\chapter{Specific requirements}
+\section{Specific requirements}
 This section of the SRS should contain all of the software requirements to a
 level of detail sufficient to enable designers to design a system to satisfy
 those requirements, and testers to test that the system satisfies those
@@ -340,7 +385,7 @@ Before examining specific ways of organizing the requirements it is helpful to
 understand the various items that comprise requirements as described in 3.1
 through 3.7.
 
-\section{External interfaces}
+\subsection{External interfaces}
 
 This should be a detailed description of all inputs into and outputs from the
 software system. It should complement the interface descriptions in 5.2 and
@@ -362,7 +407,7 @@ It should include both content and format as follows:
 	\item End messages.
 \end{enumerate}
 
-\section{Functions}
+\subsection{Functions}
 Functional requirements should define the fundamental actions that must take
 place in the software in accepting and processing the inputs and in processing
 and generating the outputs. These are generally listed as "shall" statements
@@ -387,7 +432,7 @@ It may be appropriate to partition the functional requirements into subfunctions
 or subprocesses. This does not imply that the software design will also be
 partitioned that way.
 
-\section{Performance requirements}
+\subsection{Performance requirements}
 This subsection should specify both the static and the dynamic numerical
 requirements placed on the software or on human interaction with the software as
 a whole. Static numerical requirements may include the following:
@@ -418,7 +463,7 @@ rather than,
 Numerical limits applied to one specific function are normally specified as part
 of the processing subparagraph description of that function.
 
-\section{Logical database requirements}
+\subsection{Logical database requirements}
 $<$Included for reference, likely to be removed.$>$
 This should specify the logical requirements for any information that is to be
 placed into a database. This may include the following:
@@ -432,12 +477,12 @@ placed into a database. This may include the following:
 	\item Data retention requirements.
 \end{enumerate}
 
-\section{Design constraints}
+\subsection{Design constraints}
 This should specify design constraints that can be imposed by other standards,
 hardware limitations, etc.
 
 
-\subsection{Standards compliance}
+\subsubsection{Standards compliance}
 $<$Included for reference, likely to be removed.$>$
 This subsection should specify the requirements derived from existing standards
 or regulations. They may include the following:
@@ -455,22 +500,22 @@ regulatory or financial standards. An audit trace requirement may, for example,
 state that all changes to a payroll database must be recorded in a trace file
 with before and after values.
 
-\section{Software system attributes}
+\subsection{Software system attributes}
 There are a number of attributes of software that can serve as requirements. It
 is important that required attributes be specified so that their achievement can
 be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
 of examples.
 $<$We will likely need to come up with more/different attributes$>$
 
-\subsection{Reliability}
+\subsubsection{Reliability}
 This should specify the factors required to establish the required reliability
 of the software system at time of delivery.
 
-\subsection{Availability}
+\subsubsection{Availability}
 This should specify the factors required to guarantee a defined availability
 level for the entire system such as checkpoint, recovery, and restart.
 
-\subsection{Security}
+\subsubsection{Security}
 $<$Included for reference, likely to be removed.$>$
 This should specify the factors that protect the software from accidental or
 malicious access, use, modification, destruction, or disclosure. Specific
@@ -484,13 +529,13 @@ requirements in this area could include the need to
 	\item Check data integrity for critical variables.
 \end{enumerate}
 
-\subsection{Maintainability}
+\subsubsection{Maintainability}
 This should specify attributes of software that relate to the ease of
 maintenance of the software itself. There may be some requirement for certain
 modularity, interfaces, complexity, etc. Requirements should not be placed here
 just because they are thought to be good design practices.
 
-\subsection{Portability}
+\subsubsection{Portability}
 This should specify attributes of software that relate to the ease of porting
 the software to other host machines and/or operating systems. This may include
 the following:
@@ -503,7 +548,7 @@ the following:
 	\item Use of a particular operating system.
 \end{enumerate}
 
-\subsection{Organizing the specific requirements}
+\subsubsection{Organizing the specific requirements}
 $<$We need to choose our organization which may be a combination of the
 following (as opposed to simply one of).$>$\\
 For anything but trivial systems the detailed requirements tend to be extensive.
@@ -514,16 +559,16 @@ different organizations of requirements in Section 3 of the SRS. Some of these
 organizations are described in 5.3.7.1 through 5.3.7.7
 
 
-\chapter{Other Nonfunctional Requirements}
+\section{Other Nonfunctional Requirements}
 
-\section{Performance Requirements}
+\subsection{Performance Requirements}
 $<$If there are performance requirements for the product under various 
 circumstances, state them here and explain their rationale, to help the 
 developers understand the intent and make suitable design choices. Specify the 
 timing relationships for real time systems. Make such requirements as specific 
 as possible. You may need to state performance requirements for individual 
 functional requirements or features.$>$
-\section{Safety Requirements}
+\subsection{Safety Requirements}
 $<$Specify those requirements that are concerned with possible loss, damage, or 
 harm that could result from the use of the product. Define any safeguards or 
 actions that must be taken, as well as actions that must be prevented. Refer to 
@@ -531,29 +576,29 @@ any external policies or regulations that state safety issues that affect the
 product’s design or use. Define any safety certifications that must be 
 satisfied.$>$
 
-\chapter{Other Requirements}
+\section{Other Requirements}
 $<$Define any other requirements not covered elsewhere in the SRS. This might 
 include database requirements, internationalization requirements, legal 
 requirements, reuse objectives for the project, and so on. Add any new sections 
 that are pertinent to the project.$>$
 
-\chapter{Index}
+\section{Index}
 
-\chapter{Appendix}
+\section{Appendix}
 
-\section{Appendix A: Glossary}
+\subsection{Appendix A: Glossary}
 %see https://en.wikibooks.org/wiki/LaTeX/Glossary
 $<$Define all the terms necessary to properly interpret the SRS, including 
 acronyms and abbreviations. You may wish to build a separate glossary that spans 
 multiple projects or the entire organization, and just include terms specific to 
 a single project in each SRS.$>$
 
-\section{Appendix B: Analysis Models}
+\subsection{Appendix B: Analysis Models}
 $<$Optionally, include any pertinent analysis models, such as data flow 
 diagrams, class diagrams, state-transition diagrams, or entity-relationship 
 diagrams.$>$
 
-\section{Appendix C: To Be Determined List}
+\subsection{Appendix C: To Be Determined List}
 $<$Collect a numbered list of the TBD (to be determined) references that remain 
 in the SRS so they can be tracked to closure.$>$
 
