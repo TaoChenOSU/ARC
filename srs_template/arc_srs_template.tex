@@ -253,33 +253,78 @@ support as opposed to line-by-line support.
 
 
 \subsubsection{Software Interfaces} % Dan
-This should specify the use of other required software products (e.g., a data
-management system, an operating system, or a mathematical package), and
-interfaces with other application systems (e.g., the linkage between an accounts
-receivable system and a general ledger system). For each required software
-product, the following should be provided:
+%This should specify the use of other required software products (e.g., a data
+%management system, an operating system, or a mathematical package), and
+%interfaces with other application systems (e.g., the linkage between an accounts
+%receivable system and a general ledger system). For each required software
+%product, the following should be provided:
+%\begin{itemize}
+%	\item Name;
+%	\item Mnemonic;
+%	\item Specification number;
+%	\item Version number;
+%	\item Source.
+%\end{itemize}
+%
+%
+%For each interface, the following should be provided:
+%
+%\begin{itemize}
+%	\item Discussion of the purpose of the interfacing software as related to
+%		this software product.
+%	\item Definition of the interface in terms of message content and format. It
+%		is not necessary to detail any well-documented interface, but a
+%		reference to the document defining the interface is required.
+%\end{itemize}
 \begin{itemize}
-	\item Name;
-	\item Mnemonic;
-	\item Specification number;
-	\item Version number;
-	\item Source.
+	\item We require three operating systems. One for a remote PC for user input, one
+	for the primary computer for on-car data analysis, and one for the secondary
+	computer for on-car control.
+	
+	\item We require a user interface to be able to give the car destination commands. 
+	
+	\item We require software that takes input from hardware, such as video cameras,
+	and analyze the data 
+	
+	\item Sensor analysis software needs to be able to read data from sensors, such IMUs
+	and accelerometers, and generate usable information to pass on to 
+	
+	\item Path finding software needs to be able to integrate and analyze data from the
+	other software products and determine a path to follow in real time.
+	
+	\item The primary and secondary computers will need to talk with one another. The
+	primary computer will need to receive data from the secondary computer,
+	analyze the data and send corresponding commands back to the secondary
+	computer. The secondary computer will need to receive commands from the
+	primary computer, and send data to the primary computer.
+	
+	\item A software interface will required on the secondary computer to convert
+	commands received from the computational computer to instructions usable by
+	pre-existing RC car on-board controller.
+	
+	\item We will require separate interfaces between the secondary computer and the
+	visual/spacial sensors, GPS, speed and accelerometer sensors, and the IMU. 
+	
 \end{itemize}
 
-
-For each interface, the following should be provided:
-
-\begin{itemize}
-	\item Discussion of the purpose of the interfacing software as related to
-		this software product.
-	\item Definition of the interface in terms of message content and format. It
-		is not necessary to detail any well-documented interface, but a
-		reference to the document defining the interface is required.
-\end{itemize}
 
 \subsubsection{Communications Interfaces} % Dan
-This should specify the various interfaces to communications such as local
-network protocols, etc.
+%This should specify the various interfaces to communications such as local
+%network protocols, etc.
+\begin{itemize}
+	\item Radio communication will required to be able to send commands to the car and
+	to be able to receive feedback from the car. The radio frequency will be in 27
+	MHz or 49 MHz range. We need software that allows us to send and receive radio
+	signals to and from the car. 
+	
+	\item LAN communication will be used to transmit data between the on-car computers.
+	We will utilize exist network protocols to perform the transmissions.
+	
+	\item A software interface will be required to send the commands the from the
+	secondary controller computer to the pre-existing RC car on-board controller.
+	
+\end{itemize}
+
 
 \subsubsection{Memory constraints}
 This should specify any applicable characteristics and limits on primary and
