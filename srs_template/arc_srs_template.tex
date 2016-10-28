@@ -133,14 +133,16 @@ This subsection should
 		another document.
 \end{enumerate}
 
-\section{Overview}
+\subsection{Overview}
 This subsection should
 \begin{enumerate}
 	\item Describe what the rest of the SRS contains;
 	\item Explain how the SRS is organized.
 \end{enumerate}
 
-\subsection{Overall description}
+
+%%%%%%%%%%%%%%
+\section{Overall Description}
 This section of the SRS should describe the general factors that affect the
 product and its requirements. This section does not state specific requirements.
 Instead, it provides a background for those requirements, which are defined in
@@ -155,7 +157,9 @@ This section usually consists of six subsections, as follows:
 	\item Apportioning of requirements.
 \end{enumerate}
 
-\subsection{Product perspective}
+%%%%%%%%%%%%%%%%
+\subsection{Product Perspective} % Cierra
+The ARC system will be self-contained, and 
 This subsection of the SRS should put the product into perspective with other
 related products. If the product is independent and totally self-contained, it
 should be so stated here. If the SRS defines a product that is a component of a
@@ -179,12 +183,12 @@ constraints. For example, these constraints could include
 	\item Site adaptation requirements.
 \end{enumerate}
 
-\subsubsection{System interfaces}
+\subsubsection{System Interfaces} % Tao
 This should list each system interface and identify the functionality of the
 software to accomplish the system requirement and the interface description to
 match the system.
 
-\subsubsection{User interfaces}
+\subsubsection{User Interfaces} % Tao
 This should specify the following:
 
 1. The logical characteristics of each interface between the software product
@@ -202,7 +206,7 @@ training” rather than “a typist can do function .” (This may also be
 specified in the Software System Attributes under a section titled Ease of
 Use.)
 
-\subsubsection{Hardware intefaces}
+\subsubsection{Hardware Interfaces} % Cierra
 This should specify the logical characteristics of each interface between the
 software product and the hardware components of the system. This includes
 configuration characteristics (number of ports, instruction sets, etc.). It also
@@ -210,7 +214,8 @@ covers such matters as what devices are to be supported, how they are to be
 supported, and protocols. For example, terminal support may specify full-screen
 support as opposed to line-by-line support.
 
-\subsubsection{Software interfaces}
+
+\subsubsection{Software Interfaces} % Dan
 This should specify the use of other required software products (e.g., a data
 management system, an operating system, or a mathematical package), and
 interfaces with other application systems (e.g., the linkage between an accounts
@@ -234,7 +239,7 @@ For each interface, the following should be provided:
 		reference to the document defining the interface is required.
 \end{itemize}
 
-\subsubsection{Communications interfaces}
+\subsubsection{Communications Interfaces} % Dan
 This should specify the various interfaces to communications such as local
 network protocols, etc.
 
@@ -254,7 +259,7 @@ This should specify the normal and special operations required by the user such 
 
 This is sometimes specified as part of the User Interfaces section.
 
-\subsubsection{Site adaptation requirements}
+\subsubsection{Site Adaptation Requirements}
 This should
 \begin{enumerate}
 	\item Define the requirements for any data or initialization sequences that
@@ -264,7 +269,8 @@ This should
 		to adapt the software to a particular installation.a
 \end{enumerate}
 
-\subsection{Product functions}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Product Functions}
 This subsection of the SRS should provide a summary of the major functions that
 the software will perform. For example, an SRS for an accounting program may use
 this part to address customer account maintenance, customer statement, and
@@ -285,7 +291,7 @@ of clarity
 		among variables.
 \end{enumerate}
 
-\subsection{User characteristics}
+\subsection{User Characteristics}
 This subsection of the SRS should describe those general characteristics of the
 intended users of the product including educational level, experience, and
 technical expertise. It should not be used to state specific requirements, but
@@ -309,7 +315,7 @@ items that will limit the developer's options. These include
 	\item Safety and security considerations.
 \end{enumerate}
 
-\subsection{Assumptions and dependencies}
+\subsection{Assumptions and Dependencies}
 This subsection of the SRS should list each of the factors that affect the
 requirements stated in the SRS. These factors are not design constraints on the
 software but are, rather, any changes to them that can affect the requirements
@@ -318,11 +324,11 @@ will be available on the hardware designated for the software product. If, in
 fact, the operating system is not available, the SRS would then have to change
 accordingly.
 
-\subsection{Apportionment of requirements}
+\subsection{Apportionment of Requirements}
 This subsection of the SRS should identify requirements that may be delayed
 until future versions of the system.
 
-\section{Specific requirements}
+\section{Specific Requirements}
 This section of the SRS should contain all of the software requirements to a
 level of detail sufficient to enable designers to design a system to satisfy
 those requirements, and testers to test that the system satisfies those
@@ -347,7 +353,7 @@ Before examining specific ways of organizing the requirements it is helpful to
 understand the various items that comprise requirements as described in 3.1
 through 3.7.
 
-\subsection{External interfaces}
+\subsection{External Interfaces}
 
 This should be a detailed description of all inputs into and outputs from the
 software system. It should complement the interface descriptions in 5.2 and
@@ -394,7 +400,7 @@ It may be appropriate to partition the functional requirements into subfunctions
 or subprocesses. This does not imply that the software design will also be
 partitioned that way.
 
-\subsection{Performance requirements}
+\subsection{Performance Requirements}
 This subsection should specify both the static and the dynamic numerical
 requirements placed on the software or on human interaction with the software as
 a whole. Static numerical requirements may include the following:
@@ -425,26 +431,11 @@ rather than,
 Numerical limits applied to one specific function are normally specified as part
 of the processing subparagraph description of that function.
 
-\subsection{Logical database requirements}
-$<$Included for reference, likely to be removed.$>$
-This should specify the logical requirements for any information that is to be
-placed into a database. This may include the following:
-
-\begin{enumerate}
-	\item Types of information used by various functions;
-	\item Frequency of use;
-	\item Accessing capabilities;
-	\item Data entities and their relationships;
-	\item Integrity constraints;
-	\item Data retention requirements.
-\end{enumerate}
-
-\subsection{Design constraints}
+\subsection{Design Constraints}
 This should specify design constraints that can be imposed by other standards,
 hardware limitations, etc.
 
-
-\subsubsection{Standards compliance}
+\subsubsection{Standards Compliance}
 $<$Included for reference, likely to be removed.$>$
 This subsection should specify the requirements derived from existing standards
 or regulations. They may include the following:
@@ -462,7 +453,7 @@ regulatory or financial standards. An audit trace requirement may, for example,
 state that all changes to a payroll database must be recorded in a trace file
 with before and after values.
 
-\subsection{Software system attributes}
+\subsection{Software System Attributes}
 There are a number of attributes of software that can serve as requirements. It
 is important that required attributes be specified so that their achievement can
 be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
@@ -473,44 +464,7 @@ $<$We will likely need to come up with more/different attributes$>$
 This should specify the factors required to establish the required reliability
 of the software system at time of delivery.
 
-\subsubsection{Availability}
-This should specify the factors required to guarantee a defined availability
-level for the entire system such as checkpoint, recovery, and restart.
-
-\subsubsection{Security}
-$<$Included for reference, likely to be removed.$>$
-This should specify the factors that protect the software from accidental or
-malicious access, use, modification, destruction, or disclosure. Specific
-requirements in this area could include the need to
-
-\begin{enumerate}
-	\item Utilize certain cryptographical techniques;
-	\item Keep specific log or history data sets;
-	\item Assign certain functions to different modules;
-	\item Restrict communications between some areas of the program;
-	\item Check data integrity for critical variables.
-\end{enumerate}
-
-\subsubsection{Maintainability}
-% This should specify attributes of software that relate to the ease of
-% maintenance of the software itself. There may be some requirement for certain
-% modularity, interfaces, complexity, etc. Requirements should not be placed here
-% just because they are thought to be good design practices.
-
-\subsubsection{Portability}
-% This should specify attributes of software that relate to the ease of porting
-% the software to other host machines and/or operating systems. This may include
-% the following:
-
-\begin{enumerate}
-	\item Percentage of components with host-dependent code;
-	\item Percentage of code that is host dependent;
-	\item Use of a proven portable language;
-	\item Use of a particular compiler or language subset;
-	\item Use of a particular operating system.
-\end{enumerate}
-
-\subsubsection{Organizing the specific requirements}
+\subsubsection{Organizing the Specific Requirements}
 $<$We need to choose our organization which may be a combination of the
 following (as opposed to simply one of).$>$\\
 For anything but trivial systems the detailed requirements tend to be extensive.
@@ -530,6 +484,7 @@ developers understand the intent and make suitable design choices. Specify the
 timing relationships for real time systems. Make such requirements as specific 
 as possible. You may need to state performance requirements for individual 
 functional requirements or features.$>$
+
 \subsection{Safety Requirements}
 $<$Specify those requirements that are concerned with possible loss, damage, or 
 harm that could result from the use of the product. Define any safeguards or 
