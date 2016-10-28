@@ -76,28 +76,18 @@
 \end{titlepage}
 
 \tableofcontents
+
 \newpage
 
 \section{Introduction}
 
-% The introduction of the SRS should provide an overview of the entire SRS. It
-%should contain the following subsections:
-The purpose of this SRS is to describe how team ARC plans to 
-\begin{enumerate}
-	\item Purpose;
-	\item Scope;
-	\item Definitions, acronyms, and abbreviations;
-	\item References;
-	\item Overview.
-\end{enumerate}
-
-
-\subsection{Purpose}
-This subsection should
-\begin{enumerate}
-	\item Delineate the purpose of the SRS;
-	\item Specify the intended audience for the SRS.
-\end{enumerate}
+\subsection{Purpose} % Cierra, Done
+The purpose of this document is to give a detailed description of the requirements 
+for the "Autonomous RC System" or ARCS. It will illustrate the purpose and 
+complete declaration for the development of system. It will also explain system 
+constraints, interface and interactions with other external applications. This document 
+is primarily intended to be proposed to a customer for its approval and a reference for 
+developing the first version of the system for the development team.
 
 \subsection{Scope}
 This subsection should
@@ -111,6 +101,21 @@ This subsection should
 	\item Be consistent with similar statements in higher-level specifications
 		(e.g., the system requirements specification), if they exist.
 \end{enumerate}
+ARCS is a software-hardware interface designed to retrofit RC cars for autonomous 
+operation, using commodity hardware. The software and hardware specifications 
+should be available free to download and modify at the users will. \par
+Users should be able to purchase and install the specified hardware, and implement a 
+version that can autonomously navigate to a given destination, or a within a pre-
+defined space.  \par
+The software will need to be installed on specific hardware, and flashed onto the 
+main processing unit, along with control software on a computer or tablet. Hardware 
+that we expect to need is a base station that includes a transceiver, an RC retrofitted 
+with the main processing unit, a transceiver to send and receive information, a 
+controller to send signals to sensors and actuation devices (motors, servos, etc...) and
+a vision system to aide in navigation. \par
+ARCS will be expected to be able to receive input from a user base station, and react
+within the environment based on a destination that the system receives. It should also
+be able to navigate to the destination without user intervention, as fast as possible. \par
 
 \subsection{Definitions, Acronyms, and Abbreviations}
 This subsection should provide the definitions of all terms, acronyms, and
@@ -123,27 +128,25 @@ other documents.
 \end{enumerate}
 
 
-\subsection{References}
-This subsection should
-\begin{enumerate}
-	\item Provide a complete list of all documents referenced elsewhere in the SRS;
-	\item Identify each document by title, report number (if applicable), date,
-		and publishing organization;
-	\item Specify the sources from which the references can be obtained.
-	\item This information may be provided by reference to an appendix or to
-		another document.
-\end{enumerate}
+\subsection{References} % Cierra, Done (for now)
+[1] IEEE Software Engineering Standards Committee, ?IEEE Std 830-1998, IEEE 
+Recommended Practice for Software Requirements Specifications?, October 20, 1998.
 
-\subsection{Overview}
-This subsection should
-\begin{enumerate}
-	\item Describe what the rest of the SRS contains;
-	\item Explain how the SRS is organized.
-\end{enumerate}
-
+\subsection{Overview} % Cierra, Done 
+The remainder of this document includes three sections and the appendixes. \par
+Section two provides an overview of system functions and intersystem interaction. 
+System constrains and assumptions are also addressed. \par
+Section three provides the requirement specification in detailed terms and system 
+interface descriptions. Different specification techniques are used in order to specify 
+requirements for different audiences. \par
+Section four priorities requirements and includes motivation for the chose prioritization 
+and discusses why other methods were not chosen. \par
+Appendixes at the end of the document include results of the requirement prioritization 
+and a release plan based on the requirments.
 
 %%%%%%%%%%%%%%
 \section{Overall Description}
+
 This section of the SRS should describe the general factors that affect the
 product and its requirements. This section does not state specific requirements.
 Instead, it provides a background for those requirements, which are defined in
@@ -160,13 +163,24 @@ This section usually consists of six subsections, as follows:
 
 %%%%%%%%%%%%%%%%
 \subsection{Product Perspective} % Cierra
-The ARC system will be self-contained, and 
-This subsection of the SRS should put the product into perspective with other
-related products. If the product is independent and totally self-contained, it
-should be so stated here. If the SRS defines a product that is a component of a
-larger system, as frequently occurs, then this subsection should relate the
-requirements of that larger system to functionality of the software and should
-identify interfaces between that system and the software.
+
+
+The ARC system (ARCS) will be designed to integrate into an RC car using 
+commodity hardware, and open to anyone who is interested in using it. This 
+makes ARCS a component of a larger system, namely the RC car. \par
+The basic integration will be as follows:
+
+%%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%
+\vspace{10cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This allows for 
+% This subsection of the SRS should put the product into perspective with other
+% related products. If the product is independent and totally self-contained, it
+% should be so stated here. If the SRS defines a product that is a component of a
+% larger system, as frequently occurs, then this subsection should relate the
+% requirements of that larger system to functionality of the software and should
+% identify interfaces between that system and the software.
 
 A block diagram showing the major components of the larger system,
 interconnections, and external interfaces can be helpful.
