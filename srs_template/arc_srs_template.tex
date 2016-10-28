@@ -80,16 +80,16 @@
 
 \section{Introduction} % Cierra, Done
 This section provides a scope description and overview of everything included 
-in this SRS document. The purpose of this document is described and a list of 
-abbreviations and definitions is provided.
+in this SRS document. The purpose of this document and a list of 
+abbreviations and definitions are provided.
 
 \subsection{Purpose} % Cierra, Done
 The purpose of this document is to give a detailed description of the requirements 
-for the "Autonomous RC System" or ARCS. It will illustrate the purpose and 
-complete declaration for the development of system. It will also explain system 
-constraints, interface and interactions with other external applications. This document 
-is primarily intended to be proposed to a customer for its approval and a reference for 
-developing the first version of the system for the development team.
+for the "Autonomous RC System" or ARCS. The purpose and declaration for the 
+development of ARCS will be explained. This document will also explain system 
+constraints, interface decisions, and interactions with other external applications and 
+hardware. This document is primarily intended to be a customer proposal for 
+approval and a development team reference for the first version of the system.
 
 \subsection{Scope} % Cierra, Done
 ARCS is a software-hardware interface designed to retrofit RC cars for autonomous 
@@ -170,15 +170,14 @@ of receiver to the car. This will need to be done via a base-station that has so
 providing a way to communicate with the receiver, which then transmits data to the receiver on the car, which is then handled by the on-board computer. 
 The control flow is described in figure 1. \\
 
-%%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%
-
+%%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%git 
 \begin{figure}
   \centering
   \vspace{10cm}
   \caption{Block diagram of hardware flow}
 \end{figure}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % This subsection of the SRS should put the product into perspective with other
 % related products. If the product is independent and totally self-contained, it
 % should be so stated here. If the SRS defines a product that is a component of a
@@ -243,6 +242,7 @@ appear on the map with alarm to warn the user.\par
 
 
 \subsubsection{Hardware Interfaces} % Cierra
+As this is a research project, we are currently unsure of what hardware will be used.
 
 This should specify the logical characteristics of each interface between the
 software product and the hardware components of the system. This includes
