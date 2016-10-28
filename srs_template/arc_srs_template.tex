@@ -1,42 +1,3 @@
-%Copyright 2014 Jean-Philippe Eisenbarth
-%This program is free software: you can 
-%redistribute it and/or modify it under the terms of the GNU General Public 
-%License as published by the Free Software Foundation, either version 3 of the 
-%License, or (at your option) any later version.
-%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
-%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-%PARTICULAR PURPOSE. See the GNU General Public License for more details.
-%You should have received a copy of the GNU General Public License along with 
-%this program.  If not, see <http://www.gnu.org/licenses/>.
-
-%Based on the code of Yiannis Lazarides
-%http://tex.stackexchange.com/questions/42602/software-requirements-specificatio
-%n-with-latex
-%http://tex.stackexchange.com/users/963/yiannis-lazarides
-%Also based on the template of Karl E. Wiegers
-%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
-%http://karlwiegers.com
-%\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
-%\usepackage{enumitem}
-%\usepackage{listings}
-%\usepackage{underscore}
-%\usepackage[bookmarks=true]{hyperref}
-%\usepackage[utf8]{inputenc}
-%\usepackage[english]{babel}
-%\hypersetup{
-%	bookmarks=false,    % show bookmarks bar?
-%	pdftitle={Software Requirement Specification},    % title
-%	pdfauthor={Dan Stoyer},                     % author
-%	pdfsubject={Autonomous RC (ARC)},           % subject of the document
-%	pdfkeywords={autonomous, RC, ARC, self-guided, car, neato}, % list of keywords
-%	colorlinks=true,       % false: boxed links; true: colored links
-%	linkcolor=blue,       % color of internal links
-%	citecolor=black,       % color of links to bibliography
-%	filecolor=black,        % color of file links
-%	urlcolor=purple,        % color of external links
-%	linktoc=page            % only page is linked
-%}
-
 \documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
@@ -56,7 +17,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \renewcommand{\lstlistingname}{Code Example} % a listing caption title.
-%\renewcommand{\lstlistlistingname}{List of \lstlistingname s} % list of lists -> list of Thread Program
+
 \lstset{
 	frame=single,
 	language=C,
@@ -100,8 +61,9 @@
 
 
 \begin{titlepage}
-	\title{Software Requirements\\Specification\\for\\ARC - Autonomous RC}
-	\author{Prepared by\\ $<$names here$>$}
+	\title{Software Requirements Specification\\
+	ARC - Autonomous RC}
+	\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
 	\maketitle
 	\begin{center}
 	Version 0.1\\
@@ -118,8 +80,8 @@
 
 \section{Introduction}
 
-The introduction of the SRS should provide an overview of the entire SRS. It
-should contain the following subsections:
+% The introduction of the SRS should provide an overview of the entire SRS. It
+%should contain the following subsections:
 \begin{enumerate}
 	\item Purpose;
 	\item Scope;
@@ -143,7 +105,7 @@ This subsection should
 		DBMS, Report Generator, etc.);
 	\item Explain what the software product(s) will and, if necessary, will not
 		do;
-	\item Describe the application of th software being specified, including
+	\item Describe the application of the software being specified, including
 		relevant benefits, objectives, and goals;
 	\item Be consistent with similar statements in higher-level specifications
 		(e.g., the system requirements specification), if they exist.
@@ -171,14 +133,14 @@ This subsection should
 		another document.
 \end{enumerate}
 
-\subsection{Overview}
+\section{Overview}
 This subsection should
 \begin{enumerate}
 	\item Describe what the rest of the SRS contains;
 	\item Explain how the SRS is organized.
 \end{enumerate}
 
-\section{Overall description}
+\subsection{Overall description}
 This section of the SRS should describe the general factors that affect the
 product and its requirements. This section does not state specific requirements.
 Instead, it provides a background for those requirements, which are defined in
@@ -530,15 +492,15 @@ requirements in this area could include the need to
 \end{enumerate}
 
 \subsubsection{Maintainability}
-This should specify attributes of software that relate to the ease of
-maintenance of the software itself. There may be some requirement for certain
-modularity, interfaces, complexity, etc. Requirements should not be placed here
-just because they are thought to be good design practices.
+% This should specify attributes of software that relate to the ease of
+% maintenance of the software itself. There may be some requirement for certain
+% modularity, interfaces, complexity, etc. Requirements should not be placed here
+% just because they are thought to be good design practices.
 
 \subsubsection{Portability}
-This should specify attributes of software that relate to the ease of porting
-the software to other host machines and/or operating systems. This may include
-the following:
+% This should specify attributes of software that relate to the ease of porting
+% the software to other host machines and/or operating systems. This may include
+% the following:
 
 \begin{enumerate}
 	\item Percentage of components with host-dependent code;
@@ -588,15 +550,15 @@ that are pertinent to the project.$>$
 
 \subsection{Appendix A: Glossary}
 %see https://en.wikibooks.org/wiki/LaTeX/Glossary
-$<$Define all the terms necessary to properly interpret the SRS, including 
-acronyms and abbreviations. You may wish to build a separate glossary that spans 
-multiple projects or the entire organization, and just include terms specific to 
-a single project in each SRS.$>$
+% $<$Define all the terms necessary to properly interpret the SRS, including 
+% acronyms and abbreviations. You may wish to build a separate glossary that spans 
+% multiple projects or the entire organization, and just include terms specific to 
+% a single project in each SRS.$>$
 
 \subsection{Appendix B: Analysis Models}
-$<$Optionally, include any pertinent analysis models, such as data flow 
-diagrams, class diagrams, state-transition diagrams, or entity-relationship 
-diagrams.$>$
+% $<$Optionally, include any pertinent analysis models, such as data flow 
+% diagrams, class diagrams, state-transition diagrams, or entity-relationship 
+% diagrams.$>$
 
 \subsection{Appendix C: To Be Determined List}
 $<$Collect a numbered list of the TBD (to be determined) references that remain 
