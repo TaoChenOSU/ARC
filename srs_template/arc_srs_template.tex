@@ -82,6 +82,7 @@
 
 % The introduction of the SRS should provide an overview of the entire SRS. It
 %should contain the following subsections:
+The purpose of this SRS is to describe how team ARC plans to 
 \begin{enumerate}
 	\item Purpose;
 	\item Scope;
@@ -183,28 +184,45 @@ constraints. For example, these constraints could include
 	\item Site adaptation requirements.
 \end{enumerate}
 
-\subsubsection{System Interfaces} % Tao
-This should list each system interface and identify the functionality of the
-software to accomplish the system requirement and the interface description to
-match the system.
+\subsubsection{System interfaces} %Tao, finished
+There are a total of 5 system interfaces where the system can communicate with 
+the outside world.
+\begin{enumerate}
+	\item Sensors: Sensors will have a two-way communication with a secondary 
+computer unit, where filtering and smoothing will happen before reliable data will 
+be passed to the primary computer. The programs that reside in the secondary unit 
+will utilize various methods to generate reliable results based on the raw data. 
+At start-up, there will be a script executed by the system to correctly configure 
+and calibrate each sensor. Sensors may include: battery sensor, temperature sensor, 
+GPS, speed sensor, and IMUs.
+	\item Radio: This is the portal of the system where operator/user can monitor 
+the status of the vehicle. Different protocols will be implemented for telemetry data, 
+which will be displayed to the operator/user. This portal also allows operator/user to 
+take control over the computer in case of emergencies. 
+	\item Visual unit: This is the interface where the visual unit can pass streams 
+of images to the system.
+	\item Actuator: The system issues commands to the motors and servos via this 
+interface. 
+	\item User interface: This interface is a different interface than the radio 
+interface even though they both allow humans to interact with the system. The user 
+interface will be disable after the vehicle starts maneuvering. This interface allows 
+user to input operation modes and desired destinations into the system.
 
-\subsubsection{User Interfaces} % Tao
-This should specify the following:
 
-1. The logical characteristics of each interface between the software product
-and its users. This includes those configuration characteristics (e.g., required
-screen formats, page or window layouts, content of any reports or menus, or
-availability of programmable function keys) necessary to accomplish the software
-requirements.\par
+\subsubsection{User interfaces} %Tao, finished
+The user interface is a simple, concise GUI. Anyone who knows how to operate a mouse 
+will interact with the interface with no problem. A map makes it easier for users to 
+pin point destinations and view the current location of the vehicle. An error messages 
+will be generated if destination is out of range, meaning that with the onboard battery 
+the vehicle won’t be able reach the desire destination. If the direct distance between 
+the vehicle and the station exceeds the maximum radio range, an error message will be 
+generated as well.\par
+With proper training (in less than 30 minutes), one can understand all the indicators 
+of the system to know the status of the vehicle.\par
+The GUI is a single window/page arrangement. A large portion of the window is dedicated 
+to the map. A little section at the bottom is the indicators. Error messages will directly 
+appear on the map with alarm to warn the user.\par
 
-2. All the aspects of optimizing the interface with the person who must use the
-system. This may simply comprise a list of do's and don'ts on how the system
-will appear to the user. One example may be a requirement for the option of long
-or short error messages. Like all others, these requirements should be
-verifiable, e.g., “a clerk typist grade 4 can do function  in min after 1 h of
-training” rather than “a typist can do function .” (This may also be
-specified in the Software System Attributes under a section titled Ease of
-Use.)
 
 \subsubsection{Hardware Interfaces} % Cierra
 
@@ -232,6 +250,7 @@ product, the following should be provided:
 
 
 For each interface, the following should be provided:
+
 \begin{itemize}
 	\item Discussion of the purpose of the interfacing software as related to
 		this software product.

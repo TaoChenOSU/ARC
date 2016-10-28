@@ -1,5 +1,10 @@
 *.*~
+<<<<<<< HEAD
+*.Ds_Store
+=======
 *.swp
 .Ds_Store
+>>>>>>> 4ae6854eb39b5e69e04d6ca17f6ef047db25fe9c
 *.swp
 *.o
+*.orig
