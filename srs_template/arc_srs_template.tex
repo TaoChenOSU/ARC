@@ -154,19 +154,31 @@ Lastly, constraints and assumptions for the system will be presented.
 % \end{enumerate}
 
 %%%%%%%%%%%%%%%%
-\subsection{Product Perspective} % Cierra
-
-
+\subsection{Product Perspective} % Cierra, kinda done for now (gut genug)
 The ARC system (ARCS) will be designed to integrate into an RC car using 
 commodity hardware, and open to anyone who is interested in using it. This 
 makes ARCS a component of a larger system, namely the RC car. \par
-The basic integration will be as follows:
+ARCS will consist of three parts: 
+\begin{enumerate}
+	\item Base-station used for user interaction
+	\item Hardware attached to RC car to be able to connect to base-station and 
+		operate the vehicle
+	\item Software implementation for control and communication between hardware and 		software
+\end{enumerate}
+In order for the user to interact with the vehicle, commands will be sent via some form
+of receiver to the car. This will need to be done via a base-station that has software able of
+providing a way to communicate with the receiver, which then transmits data to the receiver on the car, which is then handled by the on-board computer. 
+The control flow is described in figure 1. \\
 
 %%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%
-\vspace{10cm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This allows for 
+\begin{figure}
+  \centering
+  \vspace{10cm}
+  \caption{Block diagram of hardware flow}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This subsection of the SRS should put the product into perspective with other
 % related products. If the product is independent and totally self-contained, it
 % should be so stated here. If the SRS defines a product that is a component of a
