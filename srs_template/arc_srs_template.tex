@@ -185,21 +185,21 @@ The control flow is described in figure 1. \\
 % requirements of that larger system to functionality of the software and should
 % identify interfaces between that system and the software.
 
-A block diagram showing the major components of the larger system,
-interconnections, and external interfaces can be helpful.
-
-This subsection should also describe how the software operates inside various
-constraints. For example, these constraints could include
-\begin{enumerate}
-	\item System interfaces;
-	\item User interfaces;
-	\item Hardware interfaces;
-	\item Software interfaces;
-	\item Communications interfaces;
-	\item Memory;
-	\item Operations;
-	\item Site adaptation requirements.
-\end{enumerate}
+%A block diagram showing the major components of the larger system,
+%interconnections, and external interfaces can be helpful.
+%
+%This subsection should also describe how the software operates inside various
+%constraints. For example, these constraints could include
+%\begin{enumerate}
+%	\item System interfaces;
+%	\item User interfaces;
+%	\item Hardware interfaces;
+%	\item Software interfaces;
+%	\item Communications interfaces;
+%	\item Memory;
+%	\item Operations;
+%	\item Site adaptation requirements.
+%\end{enumerate}
 
 \subsubsection{System interfaces} %Tao, finished
 There are a total of 5 system interfaces where the system can communicate with 
@@ -244,298 +244,298 @@ appear on the map with alarm to warn the user.\par
 \subsubsection{Hardware Interfaces} % Cierra
 As this is a research project, we are currently unsure of what hardware will be used.
 
-This should specify the logical characteristics of each interface between the
-software product and the hardware components of the system. This includes
-configuration characteristics (number of ports, instruction sets, etc.). It also
-covers such matters as what devices are to be supported, how they are to be
-supported, and protocols. For example, terminal support may specify full-screen
-support as opposed to line-by-line support.
+%This should specify the logical characteristics of each interface between the
+%software product and the hardware components of the system. This includes
+%configuration characteristics (number of ports, instruction sets, etc.). It also
+%covers such matters as what devices are to be supported, how they are to be
+%supported, and protocols. For example, terminal support may specify full-screen
+%support as opposed to line-by-line support.
 
 
 \subsubsection{Software Interfaces} % Dan
-This should specify the use of other required software products (e.g., a data
-management system, an operating system, or a mathematical package), and
-interfaces with other application systems (e.g., the linkage between an accounts
-receivable system and a general ledger system). For each required software
-product, the following should be provided:
-\begin{itemize}
-	\item Name;
-	\item Mnemonic;
-	\item Specification number;
-	\item Version number;
-	\item Source.
-\end{itemize}
+%This should specify the use of other required software products (e.g., a data
+%management system, an operating system, or a mathematical package), and
+%interfaces with other application systems (e.g., the linkage between an accounts
+%receivable system and a general ledger system). For each required software
+%product, the following should be provided:
+%\begin{itemize}
+%	\item Name;
+%	\item Mnemonic;
+%	\item Specification number;
+%	\item Version number;
+%	\item Source.
+%\end{itemize}
 
 
-For each interface, the following should be provided:
-
-\begin{itemize}
-	\item Discussion of the purpose of the interfacing software as related to
-		this software product.
-	\item Definition of the interface in terms of message content and format. It
-		is not necessary to detail any well-documented interface, but a
-		reference to the document defining the interface is required.
-\end{itemize}
+%For each interface, the following should be provided:
+%
+%\begin{itemize}
+%	\item Discussion of the purpose of the interfacing software as related to
+%		this software product.
+%	\item Definition of the interface in terms of message content and format. It
+%		is not necessary to detail any well-documented interface, but a
+%		reference to the document defining the interface is required.
+%\end{itemize}
 
 \subsubsection{Communications Interfaces} % Dan
-This should specify the various interfaces to communications such as local
-network protocols, etc.
+%This should specify the various interfaces to communications such as local
+%network protocols, etc.
 
 \subsubsection{Memory constraints}
-This should specify any applicable characteristics and limits on primary and
-secondary memory.
+%This should specify any applicable characteristics and limits on primary and
+%secondary memory.
 
 \subsubsection{Operations}
-This should specify the normal and special operations required by the user such as
-\begin{enumerate}
-	\item The various modes of operations in the user organization (e.g.,
-		user-initiated operations);
-	\item Periods of interactive operations and periods of unattended operations;
-	\item Data processing support functions;
-	\item Backup and recovery operations.	content...
-\end{enumerate}
-
-This is sometimes specified as part of the User Interfaces section.
+%This should specify the normal and special operations required by the user such as
+%\begin{enumerate}
+%	\item The various modes of operations in the user organization (e.g.,
+%		user-initiated operations);
+%	\item Periods of interactive operations and periods of unattended operations;
+%	\item Data processing support functions;
+%	\item Backup and recovery operations.	content...
+%\end{enumerate}
+%
+%This is sometimes specified as part of the User Interfaces section.
 
 \subsubsection{Site Adaptation Requirements}
-This should
-\begin{enumerate}
-	\item Define the requirements for any data or initialization sequences that
-		are specific to a given site, mission, or operational mode (e.g., grid
-		values, safety limits, etc.);
-	\item Specify the site or mission-related features that should be modified
-		to adapt the software to a particular installation.a
-\end{enumerate}
+%This should
+%\begin{enumerate}
+%	\item Define the requirements for any data or initialization sequences that
+%		are specific to a given site, mission, or operational mode (e.g., grid
+%		values, safety limits, etc.);
+%	\item Specify the site or mission-related features that should be modified
+%		to adapt the software to a particular installation.a
+%\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Product Functions}
-This subsection of the SRS should provide a summary of the major functions that
-the software will perform. For example, an SRS for an accounting program may use
-this part to address customer account maintenance, customer statement, and
-invoice preparation without mentioning the vast amount of detail that each of
-those functions requires.\par
-
-Sometimes the function summary that is necessary for this part can be taken
-directly from the section of the higher-level specification (if one exists) that
-allocates particular functions to the software product. Note that for the sake
-of clarity
-\begin{enumerate}
-	\item The functions should be organized in a way that makes the list of
-		functions understandable to the customer or to anyone else reading the
-		document for the first time.
-	\item Textual or graphical methods can be used to show the different
-		functions and their relationships. Such a diagram is not intended to
-		show a design of a product, but simply shows the logical relationships
-		among variables.
-\end{enumerate}
+%This subsection of the SRS should provide a summary of the major functions that
+%the software will perform. For example, an SRS for an accounting program may use
+%this part to address customer account maintenance, customer statement, and
+%invoice preparation without mentioning the vast amount of detail that each of
+%those functions requires.\par
+%
+%Sometimes the function summary that is necessary for this part can be taken
+%directly from the section of the higher-level specification (if one exists) that
+%allocates particular functions to the software product. Note that for the sake
+%of clarity
+%\begin{enumerate}
+%	\item The functions should be organized in a way that makes the list of
+%		functions understandable to the customer or to anyone else reading the
+%		document for the first time.
+%	\item Textual or graphical methods can be used to show the different
+%		functions and their relationships. Such a diagram is not intended to
+%		show a design of a product, but simply shows the logical relationships
+%		among variables.
+%\end{enumerate}
 
 \subsection{User Characteristics}
-This subsection of the SRS should describe those general characteristics of the
-intended users of the product including educational level, experience, and
-technical expertise. It should not be used to state specific requirements, but
-rather should provide the reasons why certain specific requirements are later
-specified in Section 3 of the SRS.
+%This subsection of the SRS should describe those general characteristics of the
+%intended users of the product including educational level, experience, and
+%technical expertise. It should not be used to state specific requirements, but
+%rather should provide the reasons why certain specific requirements are later
+%specified in Section 3 of the SRS.
 
 \subsection{Constraints}
-This subsection of the SRS should provide a general description of any other
-items that will limit the developer's options. These include
-\begin{enumerate}
-	\item Regulatory policies;
-	\item Hardware limitations (e.g., signal timing requirements);
-	\item Interfaces to other applications;
-	\item Parallel operation;
-	\item Audit functions;
-	\item Control functions;
-	\item Higher-order language requirements;
-	\item Signal handshake protocols (e.g., XON-XOFF, ACK-NACK);
-	\item Reliability requirements;
-	\item Criticality of the application;
-	\item Safety and security considerations.
-\end{enumerate}
+%This subsection of the SRS should provide a general description of any other
+%items that will limit the developer's options. These include
+%\begin{enumerate}
+%	\item Regulatory policies;
+%	\item Hardware limitations (e.g., signal timing requirements);
+%	\item Interfaces to other applications;
+%	\item Parallel operation;
+%	\item Audit functions;
+%	\item Control functions;
+%	\item Higher-order language requirements;
+%	\item Signal handshake protocols (e.g., XON-XOFF, ACK-NACK);
+%	\item Reliability requirements;
+%	\item Criticality of the application;
+%	\item Safety and security considerations.
+%\end{enumerate}
 
 \subsection{Assumptions and Dependencies}
-This subsection of the SRS should list each of the factors that affect the
-requirements stated in the SRS. These factors are not design constraints on the
-software but are, rather, any changes to them that can affect the requirements
-in the SRS. For example, an assumption may be that a specific operating system
-will be available on the hardware designated for the software product. If, in
-fact, the operating system is not available, the SRS would then have to change
-accordingly.
+%This subsection of the SRS should list each of the factors that affect the
+%requirements stated in the SRS. These factors are not design constraints on the
+%software but are, rather, any changes to them that can affect the requirements
+%in the SRS. For example, an assumption may be that a specific operating system
+%will be available on the hardware designated for the software product. If, in
+%fact, the operating system is not available, the SRS would then have to change
+%accordingly.
 
 \subsection{Apportionment of Requirements}
-This subsection of the SRS should identify requirements that may be delayed
-until future versions of the system.
+%This subsection of the SRS should identify requirements that may be delayed
+%until future versions of the system.
 
 \section{Specific Requirements}
-This section of the SRS should contain all of the software requirements to a
-level of detail sufficient to enable designers to design a system to satisfy
-those requirements, and testers to test that the system satisfies those
-requirements. Throughout this section, every stated requirement should be
-externally perceivable by users, operators, or other external systems. These
-requirements should include at a minimum a description of every input (stimulus)
-into the system, every output (response) from the system, and all functions
-performed by the system in response to an input or in support of an output. As
-this is often the largest and most important part of the SRS, the following
-principles apply:
-\begin{enumerate}
-	\item Specific requirements should be stated in conformance with all the
-		characteristics described in 4.3.
-	\item Specific requirements should be cross-referenced to earlier documents
-		that relate.
-	\item All requirements should be uniquely identifiable.
-	\item Careful attention should be given to organizing the requirements to
-		maximize readability.
-\end{enumerate}
-
-Before examining specific ways of organizing the requirements it is helpful to
-understand the various items that comprise requirements as described in 3.1
-through 3.7.
+%This section of the SRS should contain all of the software requirements to a
+%level of detail sufficient to enable designers to design a system to satisfy
+%those requirements, and testers to test that the system satisfies those
+%requirements. Throughout this section, every stated requirement should be
+%externally perceivable by users, operators, or other external systems. These
+%requirements should include at a minimum a description of every input (stimulus)
+%into the system, every output (response) from the system, and all functions
+%performed by the system in response to an input or in support of an output. As
+%this is often the largest and most important part of the SRS, the following
+%principles apply:
+%\begin{enumerate}
+%	\item Specific requirements should be stated in conformance with all the
+%		characteristics described in 4.3.
+%	\item Specific requirements should be cross-referenced to earlier documents
+%		that relate.
+%	\item All requirements should be uniquely identifiable.
+%	\item Careful attention should be given to organizing the requirements to
+%		maximize readability.
+%\end{enumerate}
+%
+%Before examining specific ways of organizing the requirements it is helpful to
+%understand the various items that comprise requirements as described in 3.1
+%through 3.7.
 
 \subsection{External Interfaces}
-
-This should be a detailed description of all inputs into and outputs from the
-software system. It should complement the interface descriptions in 5.2 and
-should not repeat information there.
-
-It should include both content and format as follows:
-\begin{enumerate}
-	\item Name of item;
-	\item Description of purpose;
-	\item Source of input or destination of output;
-	\item Valid range, accuracy, and/or tolerance;
-	\item Units of measure;
-	\item Timing;
-	\item Relationships to other inputs/outputs;
-	\item Screen formats/organization;
-	\item Window formats/organization;
-	\item Data formats;
-	\item Command formats;
-	\item End messages.
-\end{enumerate}
+%
+%This should be a detailed description of all inputs into and outputs from the
+%software system. It should complement the interface descriptions in 5.2 and
+%should not repeat information there.
+%
+%It should include both content and format as follows:
+%\begin{enumerate}
+%	\item Name of item;
+%	\item Description of purpose;
+%	\item Source of input or destination of output;
+%	\item Valid range, accuracy, and/or tolerance;
+%	\item Units of measure;
+%	\item Timing;
+%	\item Relationships to other inputs/outputs;
+%	\item Screen formats/organization;
+%	\item Window formats/organization;
+%	\item Data formats;
+%	\item Command formats;
+%	\item End messages.
+%\end{enumerate}
 
 \subsection{Functions}
-Functional requirements should define the fundamental actions that must take
-place in the software in accepting and processing the inputs and in processing
-and generating the outputs. These are generally listed as "shall" statements
-starting with "The system shall..."
-
-\begin{enumerate}
-	\item These include
-	\item Validity checks on the inputs
-	\item Exact sequence of operations
-	\item Responses to abnormal situations, including
-		\subitem Overflow
-		\subitem Communication facilities
-		\subitem Error handling and recovery
-	\item Effect of parameters
-	\item Relationship of outputs to inputs, including
-		\subitem Input/output sequences
-		\subitem Formulas for input to output conversion
-\end{enumerate}
-
-
-It may be appropriate to partition the functional requirements into subfunctions
-or subprocesses. This does not imply that the software design will also be
-partitioned that way.
+%Functional requirements should define the fundamental actions that must take
+%place in the software in accepting and processing the inputs and in processing
+%and generating the outputs. These are generally listed as "shall" statements
+%starting with "The system shall..."
+%
+%\begin{enumerate}
+%	\item These include
+%	\item Validity checks on the inputs
+%	\item Exact sequence of operations
+%	\item Responses to abnormal situations, including
+%		\subitem Overflow
+%		\subitem Communication facilities
+%		\subitem Error handling and recovery
+%	\item Effect of parameters
+%	\item Relationship of outputs to inputs, including
+%		\subitem Input/output sequences
+%		\subitem Formulas for input to output conversion
+%\end{enumerate}
+%
+%
+%It may be appropriate to partition the functional requirements into subfunctions
+%or subprocesses. This does not imply that the software design will also be
+%partitioned that way.
 
 \subsection{Performance Requirements}
-This subsection should specify both the static and the dynamic numerical
-requirements placed on the software or on human interaction with the software as
-a whole. Static numerical requirements may include the following:
-
-\begin{enumerate}
-	\item The number of terminals to be supported;
-	\item The number of simultaneous users to be supported;
-	\item Amount and type of information to be handled.
-\end{enumerate}
-
-Static numerical requirements are sometimes identified under a separate section
-entitled Capacity.
-
-Dynamic numerical requirements may include, for example, the numbers of
-transactions and tasks and the amount of data to be processed within certain
-time periods for both normal and peak workload conditions.
-
-All of these requirements should be stated in measurable terms.
-
-For example,
-
-\textit{95\% of the transactions shall be processed in less than 1 s.}
-
-rather than,
-
-\textit{An operator shall not have to wait for the transaction to complete.}
-
-Numerical limits applied to one specific function are normally specified as part
-of the processing subparagraph description of that function.
+%This subsection should specify both the static and the dynamic numerical
+%requirements placed on the software or on human interaction with the software as
+%a whole. Static numerical requirements may include the following:
+%
+%\begin{enumerate}
+%	\item The number of terminals to be supported;
+%	\item The number of simultaneous users to be supported;
+%	\item Amount and type of information to be handled.
+%\end{enumerate}
+%
+%Static numerical requirements are sometimes identified under a separate section
+%entitled Capacity.
+%
+%Dynamic numerical requirements may include, for example, the numbers of
+%transactions and tasks and the amount of data to be processed within certain
+%time periods for both normal and peak workload conditions.
+%
+%All of these requirements should be stated in measurable terms.
+%
+%For example,
+%
+%\textit{95\% of the transactions shall be processed in less than 1 s.}
+%
+%rather than,
+%
+%\textit{An operator shall not have to wait for the transaction to complete.}
+%
+%Numerical limits applied to one specific function are normally specified as part
+%of the processing subparagraph description of that function.
 
 \subsection{Design Constraints}
-This should specify design constraints that can be imposed by other standards,
-hardware limitations, etc.
+%This should specify design constraints that can be imposed by other standards,
+%hardware limitations, etc.
 
 \subsubsection{Standards Compliance}
-$<$Included for reference, likely to be removed.$>$
-This subsection should specify the requirements derived from existing standards
-or regulations. They may include the following:
-
-\begin{enumerate}
-	\item Report format;
-	\item Data naming;
-	\item Accounting procedures;
-	\item Audit tracing.
-\end{enumerate}
-
-For example, this could specify the requirement for software to trace processing
-activity. Such traces are needed for some applications to meet minimum
-regulatory or financial standards. An audit trace requirement may, for example,
-state that all changes to a payroll database must be recorded in a trace file
-with before and after values.
+%$<$Included for reference, likely to be removed.$>$
+%This subsection should specify the requirements derived from existing standards
+%or regulations. They may include the following:
+%
+%\begin{enumerate}
+%	\item Report format;
+%	\item Data naming;
+%	\item Accounting procedures;
+%	\item Audit tracing.
+%\end{enumerate}
+%
+%For example, this could specify the requirement for software to trace processing
+%activity. Such traces are needed for some applications to meet minimum
+%regulatory or financial standards. An audit trace requirement may, for example,
+%state that all changes to a payroll database must be recorded in a trace file
+%with before and after values.
 
 \subsection{Software System Attributes}
-There are a number of attributes of software that can serve as requirements. It
-is important that required attributes be specified so that their achievement can
-be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
-of examples.
-$<$We will likely need to come up with more/different attributes$>$
+%There are a number of attributes of software that can serve as requirements. It
+%is important that required attributes be specified so that their achievement can
+%be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
+%of examples.
+%$<$We will likely need to come up with more/different attributes$>$
 
 \subsubsection{Reliability}
-This should specify the factors required to establish the required reliability
-of the software system at time of delivery.
+%This should specify the factors required to establish the required reliability
+%of the software system at time of delivery.
 
 \subsubsection{Organizing the Specific Requirements}
-$<$We need to choose our organization which may be a combination of the
-following (as opposed to simply one of).$>$\\
-For anything but trivial systems the detailed requirements tend to be extensive.
-For this reason, it is recommended that careful consideration be given to
-organizing these in a manner optimal for understanding. There is no one optimal
-organization for all systems. Different classes of systems lend themselves to
-different organizations of requirements in Section 3 of the SRS. Some of these
-organizations are described in 5.3.7.1 through 5.3.7.7
+%$<$We need to choose our organization which may be a combination of the
+%following (as opposed to simply one of).$>$\\
+%For anything but trivial systems the detailed requirements tend to be extensive.
+%For this reason, it is recommended that careful consideration be given to
+%organizing these in a manner optimal for understanding. There is no one optimal
+%organization for all systems. Different classes of systems lend themselves to
+%different organizations of requirements in Section 3 of the SRS. Some of these
+%organizations are described in 5.3.7.1 through 5.3.7.7
 
 
 \section{Other Nonfunctional Requirements}
 
 \subsection{Performance Requirements}
-$<$If there are performance requirements for the product under various 
-circumstances, state them here and explain their rationale, to help the 
-developers understand the intent and make suitable design choices. Specify the 
-timing relationships for real time systems. Make such requirements as specific 
-as possible. You may need to state performance requirements for individual 
-functional requirements or features.$>$
+%$<$If there are performance requirements for the product under various 
+%circumstances, state them here and explain their rationale, to help the 
+%developers understand the intent and make suitable design choices. Specify the 
+%timing relationships for real time systems. Make such requirements as specific 
+%as possible. You may need to state performance requirements for individual 
+%functional requirements or features.$>$
 
 \subsection{Safety Requirements}
-$<$Specify those requirements that are concerned with possible loss, damage, or 
-harm that could result from the use of the product. Define any safeguards or 
-actions that must be taken, as well as actions that must be prevented. Refer to 
-any external policies or regulations that state safety issues that affect the 
-product’s design or use. Define any safety certifications that must be 
-satisfied.$>$
+%$<$Specify those requirements that are concerned with possible loss, damage, or 
+%harm that could result from the use of the product. Define any safeguards or 
+%actions that must be taken, as well as actions that must be prevented. Refer to 
+%any external policies or regulations that state safety issues that affect the 
+%product’s design or use. Define any safety certifications that must be 
+%satisfied.$>$
 
 \section{Other Requirements}
-$<$Define any other requirements not covered elsewhere in the SRS. This might 
-include database requirements, internationalization requirements, legal 
-requirements, reuse objectives for the project, and so on. Add any new sections 
-that are pertinent to the project.$>$
+%$<$Define any other requirements not covered elsewhere in the SRS. This might 
+%include database requirements, internationalization requirements, legal 
+%requirements, reuse objectives for the project, and so on. Add any new sections 
+%that are pertinent to the project.$>$
 
 \section{Index}
 
@@ -554,7 +554,7 @@ that are pertinent to the project.$>$
 % diagrams.$>$
 
 \subsection{Appendix C: To Be Determined List}
-$<$Collect a numbered list of the TBD (to be determined) references that remain 
-in the SRS so they can be tracked to closure.$>$
+%$<$Collect a numbered list of the TBD (to be determined) references that remain 
+%in the SRS so they can be tracked to closure.$>$
 
 \end{document}
