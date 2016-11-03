@@ -131,6 +131,8 @@ information from the images, such as road condition, obstacles, and depth.
 	process will include self-checking and sensor calibration. From the user's 
 	perspective, it contains making sure all the hardware is attached, battery is 
 	at least 80\% full, and giving the system a destination. 
+	\item \textbf{success:}The vehicle successfully navigates itself to the 
+	destination.
 \end{enumerate}
 
 \subsection{References} % Cierra, Done (for now)
@@ -573,7 +575,15 @@ system. Otherwise, it might break.
 %of examples.
 %We will likely need to come up with more/different attributes
 
-\subsubsection{Reliability}
+\subsubsection{Reliability} % Tao,in progress
+At the time of delivery, the system should be fully functional, with at least 80\%
+success rate, which means the system will navigate the vehicle to destination 
+without running into obstacles successfuly 8 out of 10 times. 
+\begin{itemize}
+	\item The environment in which the vehicle will be traversing must be static.
+	\item If operating outdoor, it must not be raining nor snowing.
+	\item  
+\end{itemize}
 %This should specify the factors required to establish the required reliability
 %of the software system at time of delivery.
 
