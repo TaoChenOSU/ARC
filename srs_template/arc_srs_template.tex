@@ -258,7 +258,16 @@ appear on the map with alarm to warn the user.\par
 
 
 \subsubsection{Hardware Interfaces} % Cierra
-As this is a research project, we are currently unsure of what hardware will be used.
+We currently have two hardware systems.
+\begin{enumerate}
+	\item Vision processing
+	\item Telemetry collection and actuator control
+\end{enumerate}
+
+Vision processing, from either a stereoscopic or depth camera, will be interfaced through an i5 or better processor from an on board computer using 
+A control board, specifically the PXSF on top of a Raspberry Pi or UP board, will be used 
+as an interface between a computer that is doing high level computations, and the servos, 
+motors, and other telemetry devices. 
 
 %This should specify the logical characteristics of each interface between the
 %software product and the hardware components of the system. This includes
@@ -335,7 +344,7 @@ As this is a research project, we are currently unsure of what hardware will be 
 	signals to and from the car. 
 	
 	\item LAN communication will be used to transmit data between the on-car computers.
-	We will utilize exist network protocols to perform the transmissions.
+	Existing network protocols will be utilized to perform the transmissions.
 	
 	\item A software interface will be required to send the commands the from the
 	secondary controller computer to the pre-existing RC car on-board controller.
@@ -368,6 +377,7 @@ excluding emergencies and initialization.
 %This is sometimes specified as part of the User Interfaces section.
 
 \subsubsection{Site Adaptation Requirements}
+For research and prototype purposes, no site adaptation requirements are relevant. 
 %This should
 %\begin{enumerate}
 %	\item Define the requirements for any data or initialization sequences that
@@ -407,6 +417,7 @@ system. Otherwise, it might break.
 %\end{enumerate}
 
 \subsection{User Characteristics}
+Our system should be able to be built and operated by a user with at least two years of university engineering coursework and one two years, a user with over five years of technical experience through work in either an electrical or software industry, and a RC hobbyist with over five years of experience. 
 %This subsection of the SRS should describe those general characteristics of the
 %intended users of the product including educational level, experience, and
 %technical expertise. It should not be used to state specific requirements, but
