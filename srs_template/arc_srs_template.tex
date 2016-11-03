@@ -106,7 +106,7 @@ ARCS will be expected to be able to receive input from a user base station, and 
 within the environment based on a destination that the system receives. It should also
 be able to navigate to the destination without user intervention, as fast as possible. \par
 
-\subsection{Definitions, Acronyms, and Abbreviations}
+\subsection{Definitions, Acronyms, and Abbreviations} % Tao, in progress
 %This subsection should provide the definitions of all terms, acronyms, and
 %abbreviations required to properly interpret the SRS. This information may be
 %provided by reference to one or more appendixes in the SRS or by reference to
@@ -127,6 +127,12 @@ components fall off.\par Etc.\par
 image streams to the primary computer. The primary computer will extract 
 information from the images, such as road condition, obstacles, and depth. 
 	\item \textbf{Actuators:} Motors and servos.
+	\item \textbf{initialization:}From the system perspective, the initialization
+	process will include self-checking and sensor calibration. From the user's 
+	perspective, it contains making sure all the hardware is attached, battery is 
+	at least 80\% full, and giving the system a destination. 
+	\item \textbf{success:}The vehicle successfully navigates itself to the 
+	destination.
 \end{enumerate}
 
 \subsection{References} % Cierra, Done (for now)
@@ -337,20 +343,28 @@ As this is a research project, we are currently unsure of what hardware will be 
 \end{itemize}
 
 
-\subsubsection{Memory constraints}
+\subsubsection{Memory constraints} %Tao 
 %This should specify any applicable characteristics and limits on primary and
 %secondary memory.
+Since we are unsure of what hardware will be used, we are not able to set any 
+constraints on the memory requirements that the system has to meet. 
 
-\subsubsection{Operations}
+\subsubsection{Operations} %Tao
+In most cases, operations of the system will be isolated from the user/operator,
+excluding emergencies and initialization.  
 %This should specify the normal and special operations required by the user such as
-%\begin{enumerate}
-%	\item The various modes of operations in the user organization (e.g.,
-%		user-initiated operations);
-%	\item Periods of interactive operations and periods of unattended operations;
-%	\item Data processing support functions;
-%	\item Backup and recovery operations.	content...
-%\end{enumerate}
-%
+\begin{enumerate}
+	\item At initailization, user/operator has to thoroughly check the body of the
+	vehicle, making usre that all components are firmly attached as well as the 
+	bettary level is > 80\%;
+	\item Destination will be given by the user at the station during initialization;
+	\item User is allowed to take over control from the system in case of emergencies
+	via the remote control;
+	\item User/operator is resposible for monitoring the status of the system, such as 
+	battery level, speed, location, distance, radio signal strength, pre-planned path, 
+	etc.
+\end{enumerate}
+%This could the extension of the user interface section.
 %This is sometimes specified as part of the User Interfaces section.
 
 \subsubsection{Site Adaptation Requirements}
@@ -364,7 +378,14 @@ As this is a research project, we are currently unsure of what hardware will be 
 %\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Product Functions}
+\subsection{Product Functions} %Tao, in progress
+This system utilizes resources from more than one computers and controls multiple
+actuators. The system is designed to minimize user interference during operations.
+However, monitoring is strictly required. 
+Maintainability of the system is not considered to be user-oriented, which means 
+user/operator should not be worried about maintaining the system. Only people who 
+work on this project or people with extreme confidence should make changes to the 
+system. Otherwise, it might break. 
 %This subsection of the SRS should provide a summary of the major functions that
 %the software will perform. For example, an SRS for an accounting program may use
 %this part to address customer account maintenance, customer statement, and
@@ -554,7 +575,15 @@ As this is a research project, we are currently unsure of what hardware will be 
 %of examples.
 %We will likely need to come up with more/different attributes
 
-\subsubsection{Reliability}
+\subsubsection{Reliability} % Tao,in progress
+At the time of delivery, the system should be fully functional, with at least 80\%
+success rate, which means the system will navigate the vehicle to destination 
+without running into obstacles successfuly 8 out of 10 times. 
+\begin{itemize}
+	\item The environment in which the vehicle will be traversing must be static.
+	\item If operating outdoor, it must not be raining nor snowing.
+	\item  
+\end{itemize}
 %This should specify the factors required to establish the required reliability
 %of the software system at time of delivery.
 
