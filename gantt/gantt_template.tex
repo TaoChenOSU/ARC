@@ -1,0 +1,330 @@
+%% Gantt chart code taken from http://ctan.mackichan.com/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf
+%%\documentclass[landscape]{article}
+%\documentclass[landscape]{article}
+%\usepackage[dvipsnames]{xcolor}
+%\usepackage{pgfgantt}
+%\usepackage{preview}
+%
+%
+%\setlength{\pdfpagewidth}{\paperwidth}
+%\setlength{\pdfpageheight}{\paperheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{groupblue}{RGB}{51,102,254}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Daniel Stoyer, Tao Chen}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {SRS requirements, Fall 2016},
+	pdftitle = {SRS requirements},
+	pdfsubject = {Requirement document for ARCt},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfgantt}
+
+\begin{document}
+%%% Working example
+%\begin{ganttchart}[
+%	y unit title=0.4cm,
+%	y unit chart=0.5cm,
+%	vgrid,
+%%	time slot format=isodate-yearmonth,
+%	time slot format=isodate,
+%	compress calendar,
+%	title/.append style={draw=none, fill=RoyalBlue!50!black},
+%	title label font=\sffamily\bfseries\color{white},
+%	title label node/.append style={below=-1.6ex},
+%	title left shift=.05,
+%	title right shift=-.05,
+%	title height=1,
+%	bar/.append style={draw=none, fill=OliveGreen!75},
+%	bar height=.6,
+%	bar label font=\normalsize\color{black!50},
+%	group right shift=0,
+%	group top shift=.6,
+%	group height=.3,
+%	group peaks height=.2,
+%	bar incomplete/.append style={fill=Maroon}
+%	]{2010-09-12}{2011-12-25}
+%	\gantttitlecalendar{year} \\
+%	\ganttset{progress label text={}, link/.style={black, -to}}
+%	\ganttgroup{Objective 1}{2011-01-24}{2011-12-06} \\
+%	\ganttbar[progress=4, name=T1A]{Task A}{2011-01-20}{2011-06-05} \\
+%	\ganttlinkedbar[progress=0]{Task B}{2011-07--29}{2011-12-17} \\
+%%	\ganttgroup{Objective 2}{2011-01}{2011-12} \\
+%%	\ganttbar[progress=15, name=T2A]{Task A}{2011-01}{2011-09} \\
+%%	\ganttlinkedbar[progress=0]{Task B}{2011-10}{2011-12} \\
+%%	\ganttgroup{Objective 3}{2011-05}{2011-08} \\
+%%	\ganttbar[progress=0]{Task A}{2011-05}{2011-08}
+%%	\ganttset{link/.style={OliveGreen}}
+%\end{ganttchart}
+
+
+%%%%% Fall Term Chart Oct 14 - Dec. 09 %%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set progress and dates for groups and tasks here.
+%%%% Term Date Range %%%%
+\newcommand{\fallstart}{2016-10-14}
+\newcommand{\fallend}{2016-12-09}
+
+%%%% SRS (Due: Oct 28) %%%%
+\newcount\taska
+\newcount\taskb
+\taska=20
+\taskb=0
+
+\newcount\srsprogress
+\srsprogress=\the\numexpr\taska + \taskb
+
+%%%% Technology Review (Due: Nov. 04) %%%%
+
+\newcount\techprogress
+
+%%%% Design Document (Due: Nov. 23) %%%%
+\newcount\designprogress
+
+%%%% Fall Progress Report (Due: Dec. 09) %%%%
+\newcount\fprogress
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{ganttchart}[
+	y unit title=0.4cm,
+	y unit chart=0.5cm,
+	x unit=0.27cm,
+	vgrid,
+	%	time slot format=isodate-yearmonth,
+	time slot format=isodate,
+	%	compress calendar,
+	title/.append style={fill=RoyalBlue!50!black},
+	title label font=\sffamily\bfseries\color{white},
+	title label node/.append style={below=-1.6ex},
+	title left shift=.05,
+	title right shift=-.05,
+	title height=1,
+	bar/.append style={draw=none, fill=OliveGreen!75},
+	bar height=.6,
+	bar label font=\normalsize\color{black!50},
+	group/.append style={draw=none, fill=MidnightBlue},
+	group incomplete/.append style={fill=Maroon},
+	group right shift=0,
+	group top shift=.6,
+	group height=.3,
+	group peaks height=.2,
+	bar incomplete/.append style={fill=Maroon}
+	]{\fallstart}{\fallend}
+
+	\ganttset{
+		calendar week text={
+			\pgfcalendarmonthshortname{\startmonth}~\startday
+		}
+	}
+	\gantttitle{Fall 2016}{57}\\
+	\gantttitlecalendar{week} \\
+	\ganttset{progress label text={}, link/.style={black!63, -to}}
+	%%%% SRS (Due: Oct 28) %%%%
+	\ganttgroup[progress={\srsprogress}]{Requirements Document}{2016-10-14}{2016-10-28} \\
+	
+%	\ganttbar[progress={\taska}, name=T1A]{Task A}{2016-10-14}{2016-10-18} \\
+	
+	%%%% Technology Review (Due: Nov. 04) %%%%
+	\ganttgroup[progress={\techprogress}]{Tech Review}{2016-10-29}{2016-11-04} \\
+	
+	%%%% Design Document (Due: Nov. 23) %%%%
+	\ganttgroup[progress={\designprogress}]{Design Doc}{2016-11-05}{2016-11-23} \\
+	
+	%%%% Fall Progress Report (Due: Dec. 09) %%%%
+	\ganttgroup[progress={\fprogress}]{Fall Report}{2016-11-24}{2016-12-09} \\
+
+	%	\ganttset{link/.style={OliveGreen}}
+\end{ganttchart}
+
+%%%%% Winter Term Chart JAN 09 - MAR 24 %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Term Date Range %%%%
+\newcommand{\winterstart}{2017-01-09}
+\newcommand{\winterend}{2017-03-24}
+
+% Set progress and dates for groups and tasks here.
+
+%%%% Alpha level release (with demo) (Due: Feb. 24, 2017) %%%%
+\newcount\alphaprogress
+
+%%%% Beta level release (with demo) (Due: Mar. 24, 2017) %%%%
+\newcount\betaprogress
+
+%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+\newcount\wprogress
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ganttchart}[
+	y unit title=0.4cm,
+	y unit chart=0.5cm,
+	x unit=0.227cm,
+	vgrid,
+	%	time slot format=isodate-yearmonth,
+	time slot format=isodate,
+	%	compress calendar,
+	title/.append style={draw=none, fill=RoyalBlue!50!black},
+	title label font=\sffamily\bfseries\color{white},
+	title label node/.append style={below=-1.6ex},
+	title left shift=.05,
+	title right shift=-.05,
+	title height=1,
+	bar/.append style={draw=none, fill=OliveGreen!75},
+	bar height=.6,
+	bar label font=\normalsize\color{black!50},
+	group incomplete/.append style={fill=Maroon},
+	group right shift=0,
+	group top shift=.6,
+	group height=.3,
+	group peaks height=.2,
+	bar incomplete/.append style={fill=Maroon}
+	]{\winterstart}{\winterend}
+	
+	\ganttset{
+		calendar week text={
+			\pgfcalendarmonthshortname{\startmonth}~\startday
+		}
+	}
+	\gantttitle{Winter 2017}{75}\\
+	\gantttitlecalendar{week} \\
+	\ganttset{progress label text={}, link/.style={black!63, -to}}
+
+	%%%% Alpha level release (with demo) (Due: Feb. 24, 2017) %%%%
+	\ganttgroup[progress={\alphaprogress}]{Alpha Release}{2017-01-09}{2017-02-24} \\
+	
+	%%%% Beta level release (with demo) (Due: Mar. 24, 2017) %%%%
+	\ganttgroup[progress={\betaprogress}]{Beta Release}{2017-02-25}{2017-03-24} \\
+	
+	%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+	\ganttgroup[progress={\wprogress}]{Winter Report}{2017-02-25}{2017-03-24} \\
+	
+	%	\ganttset{link/.style={OliveGreen}}
+\end{ganttchart}
+
+%%%%%% End Winter Term %%%%%
+
+%%%%%% Spring Term Chart APR 3 - JUN 16 %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Term Date Range %%%%
+\newcommand{\springstart}{2017-04-03}
+\newcommand{\springend}{2017-06-16}
+%	% Set progress and dates for groups and tasks here.
+%	
+%
+%	%%%% 1.0 level release (Due: May 15, 2017) %%%%
+\newcount\releaseprogress
+%
+%	%%%% Engineering Expo (Due: May 19) %%%%
+\newcount\expoprogress
+%
+%	%%%% Final Report (Due: June 16) %%%%
+\newcount\finalrepprogress
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ganttchart}[
+	y unit title=0.4cm,
+	y unit chart=0.5cm,
+	x unit=0.231cm,
+	vgrid,
+	%	time slot format=isodate-yearmonth,
+	time slot format=isodate,
+	%	compress calendar,
+	title/.append style={draw=none, fill=RoyalBlue!50!black},
+	title label font=\sffamily\bfseries\color{white},
+	title label node/.append style={below=-1.6ex},
+	title left shift=.05,
+	title right shift=-.05,
+	title height=1,
+	bar/.append style={draw=none, fill=OliveGreen!75},
+	bar height=.6,
+	bar label font=\normalsize\color{black!50},
+	group incomplete/.append style={fill=Maroon},
+	group right shift=0,
+	group top shift=.6,
+	group height=.3,
+	group peaks height=.2,
+	bar incomplete/.append style={fill=Maroon}
+	]{\springstart}{\springend}
+	
+	\ganttset{
+		calendar week text={
+			\pgfcalendarmonthshortname{\startmonth}~\startday
+		}
+	}
+	\gantttitle{Spring 2017}{75}\\
+	\gantttitlecalendar{week} \\
+	\ganttset{progress label text={}, link/.style={black!63, -to}}
+	
+	%%%% 1.0 level release (Due: May 15, 2017) %%%%
+	\ganttgroup[progress={\releaseprogress}]{1.0 Release}{2017-04-03}{2017-05-15} \\
+	
+	%%%% Engineering Expo (Due: May 19) %%%%
+	\ganttgroup[progress={\expoprogress}]{Spring Expo}{2017-05-16}{2017-05-19} \\
+	
+	%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+	\ganttgroup[progress={\finalrepprogress}]{Final Report}{2017-05-20}{2017-06-16} \\
+	
+	%	\ganttset{link/.style={OliveGreen}}
+\end{ganttchart}
+
+%%%%%% End Spring Term %%%%%
+
+\end{document}
