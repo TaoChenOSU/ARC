@@ -170,7 +170,7 @@ Lastly, constraints and assumptions for the system will be presented.
 % \end{enumerate}
 
 %%%%%%%%%%%%%%%%
-\subsection{Product Perspective} % Cierra, kinda done for now (gut genug)
+\subsection{Product Perspective} % Cierra, kinda done for now
 The ARC system (ARCS) will be designed to integrate into an RC car using 
 commodity hardware, and open to anyone who is interested in using it. This 
 makes ARCS a component of a larger system, namely the RC car. \par
@@ -179,11 +179,12 @@ ARCS will consist of three parts:
 	\item Base-station used for user interaction
 	\item Hardware attached to RC car to be able to connect to base-station and 
 		operate the vehicle
-	\item Software implementation for control and communication between hardware and 		software
+	\item Software implementation for control and communication between hardware and software
 \end{enumerate}
 In order for the user to interact with the vehicle, commands will be sent via some form
 of receiver to the car. This will need to be done via a base-station that has software able of
-providing a way to communicate with the receiver, which then transmits data to the receiver on the car, which is then handled by the on-board computer. 
+providing a way to communicate with the receiver, which then transmits data to the receiver on 
+the car, which is then handled by the on-board computer. 
 The control flow is described in figure 1. \\
 
 %%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%git 
@@ -258,7 +259,18 @@ appear on the map with alarm to warn the user.\par
 
 
 \subsubsection{Hardware Interfaces} % Cierra
-As this is a research project, we are currently unsure of what hardware will be used.
+We currently have two hardware systems.
+\begin{enumerate}
+	\item Vision processing
+	\item Telemetry collection and actuator control
+\end{enumerate}
+
+Vision processing, from either a stereoscopic or depth camera, will be interfaced through 
+an i5 or better processor from an on board computer using a control board, specifically 
+the PXSF on top of a Raspberry Pi or UP board, will be used as an interface between a 
+computer that is doing high level computations, and the servos, motors, and other telemetry 
+devices. 
+And they should be able to do these things....
 
 %This should specify the logical characteristics of each interface between the
 %software product and the hardware components of the system. This includes
@@ -335,7 +347,7 @@ As this is a research project, we are currently unsure of what hardware will be 
 	signals to and from the car. 
 	
 	\item LAN communication will be used to transmit data between the on-car computers.
-	We will utilize exist network protocols to perform the transmissions.
+	Existing network protocols will be utilized to perform the transmissions.
 	
 	\item A software interface will be required to send the commands the from the
 	secondary controller computer to the pre-existing RC car on-board controller.
@@ -343,7 +355,7 @@ As this is a research project, we are currently unsure of what hardware will be 
 \end{itemize}
 
 
-\subsubsection{Memory constraints} %Tao 
+\subsubsection{Memory constraints} %Tao, done
 %This should specify any applicable characteristics and limits on primary and
 %secondary memory.
 Since we are unsure of what hardware will be used, we are not able to set any 
@@ -368,6 +380,7 @@ excluding emergencies and initialization.
 %This is sometimes specified as part of the User Interfaces section.
 
 \subsubsection{Site Adaptation Requirements}
+For research and prototype purposes, no site adaptation requirements are relevant. 
 %This should
 %\begin{enumerate}
 %	\item Define the requirements for any data or initialization sequences that
@@ -378,7 +391,7 @@ excluding emergencies and initialization.
 %\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Product Functions} %Tao, in progress
+\subsection{Product Functions} %Tao, finished
 This system utilizes resources from more than one computers and controls multiple
 actuators. The system is designed to minimize user interference during operations.
 However, monitoring is strictly required. 
@@ -407,13 +420,35 @@ system. Otherwise, it might break.
 %\end{enumerate}
 
 \subsection{User Characteristics}
+Our system should be able to be built and operated by a user with at least two 
+years of university engineering coursework and one two years, a user with over 
+five years of technical experience through work in either an electrical or software 
+industry, and a RC hobbyist with over five years of experience. 
 %This subsection of the SRS should describe those general characteristics of the
 %intended users of the product including educational level, experience, and
 %technical expertise. It should not be used to state specific requirements, but
 %rather should provide the reasons why certain specific requirements are later
 %specified in Section 3 of the SRS.
 
-\subsection{Constraints}
+\subsection{Constraints} % Tao, finished
+Without a list of specific hardware to be used for the project, constraints are
+still fuzzy at the moment. Nonetheless, we will try our best.
+\begin{enumerate}
+	\item Real time image processing will limit the vehicle's ability to maneuver 
+	through obstacles. 
+	\item Telemetry data will be slightly delayed due to long distance. There is 
+	not solutions to this issue.
+	\item The vehicle's natural structure will inevitably cause more uncertainty
+	on predictions, which requires us to use more complicated algorithms.
+	\item Hardware may fall off during operation which will force the system to 
+	halt. Structurally more concrete design to hold the hardware is needed, which 
+	will potentially reduce battery life.  
+	\item Telemetry data transfer are limited to radio during outdoor operations.
+	\item The success rate are set to 80\% and above.
+	\item For research purpose only, the vehicle is limited to only operate in a 
+	closed area at low speed and an open area with few or no humans and animals at
+	high speed.
+\end{enumerate}
 %This subsection of the SRS should provide a general description of any other
 %items that will limit the developer's options. These include
 %\begin{enumerate}
@@ -575,14 +610,14 @@ system. Otherwise, it might break.
 %of examples.
 %We will likely need to come up with more/different attributes
 
-\subsubsection{Reliability} % Tao,in progress
+\subsubsection{Reliability} % Tao, finished
 At the time of delivery, the system should be fully functional, with at least 80\%
 success rate, which means the system will navigate the vehicle to destination 
 without running into obstacles successfuly 8 out of 10 times. 
 \begin{itemize}
 	\item The environment in which the vehicle will be traversing must be static.
 	\item If operating outdoor, it must not be raining nor snowing.
-	\item  
+	\item All the hardware components must be fully functional and connected. 
 \end{itemize}
 %This should specify the factors required to establish the required reliability
 %of the software system at time of delivery.
