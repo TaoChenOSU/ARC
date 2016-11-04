@@ -42,7 +42,7 @@
 
 % Overall Description
 \newcount\overalldescprog
-\overalldescprog=60
+\overalldescprog=75
 
 % Specific Requirements
 \newcount\specificreqprog
@@ -69,10 +69,11 @@
 % NOTE
 \newcount\srsprogress
 \srsprogress=\the\numexpr(
-\introprog 
+  \introprog 
 + \overalldescprog 
 + \specificreqprog 
 + \othernonfunreqprog 
++ \otherreqprog
 + \indexprog 
 + \appendixprog
 )/7
