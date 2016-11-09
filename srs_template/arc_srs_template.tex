@@ -96,7 +96,7 @@ approval and a development team reference for the first version of the system.
 ARCS is a software-hardware interface designed to retrofit RC cars for autonomous 
 operation, using commodity hardware. The software and hardware specifications 
 should be available free to download and modify at the users will. \par
-Users should be able to purchase and install the specified hardware, and implement a 
+Users' should be able to purchase and install the specified hardware, and implement a 
 version that can autonomously navigate to a given destination, or a within a pre-
 defined space.  \par
 The software will need to be installed on specific hardware, and flashed onto the 
@@ -119,22 +119,26 @@ be able to navigate to the destination without user intervention, as fast as pos
 acceleration, angular acceleration, and orientation of the vehicle.
 	\item \textbf{Operator/User:} The person who is giving commands 
 such as destination to the system.
-	\item \textbf{Protocol:} defines the data format to be 
+	\item \textbf{Protocol:} Defines the data format to be 
 transferred.
-	\item \textbf{Telemetry Data:} data that contains the status 
+	\item \textbf{Telemetry Data:} Data that contains the status 
 information of the vehicle, such as speed, temperature, location, battery, etc.
-	\item \textbf{emergencies:} Emergencies include: The vehicle 
-drifts off course significantly.\par Vehicle flips upside down.\par On-board 
-components fall off.\par Etc.\par
+	\item \textbf{Emergencies:} Emergencies include: 
+	\begin{itemize}
+		\item The vehicle drifts off course significantly.
+		\item Vehicle flips upside down.
+		\item On-board components fall off.
+		\item Etc.
+	\end{itemize}
 	\item \textbf{Visual Unit:} Visual components that provide 
 image streams to the primary computer. The primary computer will extract 
 information from the images, such as road condition, obstacles, and depth. 
 	\item \textbf{Actuators:} Motors and servos.
-	\item \textbf{initialization:}From the system perspective, the initialization
+	\item \textbf{Initialization:} From the system perspective, the initialization
 	process will include self-checking and sensor calibration. From the user's 
 	perspective, it contains making sure all the hardware is attached, battery is 
 	at least 80\% full, and giving the system a destination. 
-	\item \textbf{success:}The vehicle successfully navigates itself to the 
+	\item \textbf{Success:} The vehicle successfully navigates itself to the 
 	destination.
 \end{enumerate}
 
@@ -318,11 +322,9 @@ And they should be able to do these things....
 	\item We require software that takes input from hardware, such as video cameras,
 	and analyze the data 
 	
-	\item Sensor analysis software needs to be able to read data from sensors, such IMUs
-	and accelerometers, and generate usable information to pass on to 
+	\item Sensor analysis software needs to be able to read data from sensors, such IMUs, and generate usable information to pass on to 
 	
-	\item Path finding software needs to be able to integrate and analyze data from the
-	other software products and determine a path to follow in real time.
+	\item Path finding software needs to be able to integrate and analyze data from mapping and localization software products and determine a path to follow in real time.
 	
 	\item The primary and secondary computers will need to talk with one another. The
 	primary computer will need to receive data from the secondary computer,
@@ -331,11 +333,11 @@ And they should be able to do these things....
 	primary computer, and send data to the primary computer.
 	
 	\item A software interface will required on the secondary computer to convert
-	commands received from the computational computer to instructions usable by
+	commands received from the primary computer to instructions usable by
 	pre-existing RC car on-board controller.
 	
 	\item We will require separate interfaces between the secondary computer and the
-	visual/spacial sensors, GPS, speed and accelerometer sensors, and the IMU. 
+	visual/spacial sensors, GPS, speed sensor, and the IMU. 
 	
 \end{itemize}
 
@@ -352,8 +354,8 @@ And they should be able to do these things....
 	\item LAN communication will be used to transmit data between the on-car computers.
 	Existing network protocols will be utilized to perform the transmissions.
 	
-	\item A software interface will be required to send the commands the from the
-	secondary controller computer to the pre-existing RC car on-board controller.
+	\item A software interface will be required to send the commands from the
+	secondary computer to the pre-existing RC car on-board controller.
 	
 \end{itemize}
 
@@ -371,7 +373,7 @@ excluding emergencies and initialization.
 \begin{enumerate}
 	\item At initailization, user/operator has to thoroughly check the body of the
 	vehicle, making usre that all components are firmly attached as well as the 
-	bettary level is > 80\%;
+	bettary level is at least 80\%;
 	\item Destination will be given by the user at the station during initialization;
 	\item User is allowed to take over control from the system in case of emergencies
 	via the remote control;
@@ -400,7 +402,7 @@ actuators. The system is designed to minimize user interference during operation
 However, monitoring is strictly required. 
 Maintainability of the system is not considered to be user-oriented, which means 
 user/operator should not be worried about maintaining the system. Only people who 
-work on this project or people with extreme confidence should make changes to the 
+work on this project or people with extreme confidence should alter the 
 system. Otherwise, it might break. 
 %This subsection of the SRS should provide a summary of the major functions that
 %the software will perform. For example, an SRS for an accounting program may use
