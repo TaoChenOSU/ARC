@@ -83,22 +83,35 @@ Fall 2016
 \newpage
 
 \section{Vision System Options - Cierra}
-For autonomous operation, vision systems are critical. The three main options include stereoscopic cameras, IR based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
+For autonomous operation, vision systems are critical. 
+The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
+With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a ?3D image? of the surface, that can be used for telling which objects in an image are closest or farthest away. 
 
 \subsection{Stereo Vision}
 Stereo-vision uses two different cameras to create disparity maps in order to create a sense of depth. 
 This is similar to how our eyes work. 
-The biggest benefit to stereoscopic camera systems is being able to detect objects outdoors. 
+The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with vast amounts of ultraviolet (UV) light. 
+IR LEDs can also be used in order to illuminate an area at night, also allowing for nighttime navigation. 
+One of the challenges of stereo vision is the computational power required. 
+Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. \cite{acs}
+OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. 
+
 
 \subsection{IR Camera's such as Kinect and RealSense}
-Using an infrared point map, these cameras are able to tell the disparity between 
+Using an infrared point map, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
+A big advantage to IR camera?s, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
+The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. 
+IR cameras don?t meet our requirement of being able to use the vision system reliably outdoors.
+
 \subsection{Lidar}
+LiDAR works by using LAZERSSSS
 
 \subsection{Our choice}
-
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. 
 
 
 \section{Sensors - Cierra}
+\subsection{GPS units}
 \subsection{Encoders}
 
 \subsection{Depth Sensors}
