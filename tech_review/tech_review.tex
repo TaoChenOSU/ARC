@@ -1,4 +1,4 @@
-\documentclass[draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{url}
@@ -122,17 +122,143 @@ Due to the need to be able to navigate in outdoor environments, our team will st
 \subsection{Synchronizing Sensors}
 
 
+\section{Image Analysis Software - Dan}
+Image analysis, for the ARC project, is the processing of visual data received
+from cameras into deterministic information, such as pathfinding, or spacial
+awareness. This is the primary means for our autonomous vehicle to assess its
+surroundings and find its way to a given waypoint while avoiding obstacles. We
+require software that is freely available for use (via fairly liberal open
+source licensing), known to be correct (works well) with little modification
+needed, and has relatively easy to use API libraries.
+
+\subsection{DroneKit-Python}
+DroneKit-Python (http://python.dronekit.io/) is part of the DroneKit ecosystem (dronekit.io)\par
+more to follow...
+
+\subsection{ArduPilot}
+ArduPilot (http://ardupilot.org/rover/index.html)\par
+more to follow...
+
+\subsection{Image analysis choice}
+
+\section{Telemetry Radio Communication - Dan}
+Telemetry is the transmition of measurement data (velocity, angle, rotation, etc.)
+by radio to some other place. This data is important for the human user to
+know the current state of the vehicle. This is especially important for
+autonomous operation, as the vehicle may not be operating within line of
+sight. Telemetry transmission is well-established, so we will not be comparing
+vastly different transmission technologies, such as long range (MHz radio frequencies)
+versus short-range (bluetooth) where the advantages of ranges of 2-15+
+kilometers obviously outweigh ranges of 20-100 meters.
+
+The main criteria for consideration are:
+\begin{itemize}
+	\item Cost
+		\subitem One of our main goals with ARC is to keep the costs low.
+	\item Power consumption
+		\subitem We have limited power available, therefore we need power consumption to
+	be low.
+	\item Ease of use
+		\subitem The radio needs to be easily integrated into the autopilot system. This
+	means it needs to have a developed API with little no modification
+	required.
+	\item Form factor
+		\subitem The size and weight needs to be small and light. If it is too bulky, we
+	might not have space on the vehicle. If it is too heavy, more power will
+	be required to operate the drive system and will drain the battery
+	faster.
+\end{itemize}
 
 
+\subsection{3DR 915 MHz Transceiver}  ((https://store.3dr.com/products/915-mhz-telemetry-radio)\par
+
+The 3DR 915 MHz telemetry radio has a cost of \$39.99 USD for two radios. It is
+powered by the autopilot telemetry port (+5v) which means that has low power
+consumption. This radio transceiver has open source firmware, a robust API,
+and is fully compatible with PX4 Pro, DroneKit, and ArduPilot, using the
+MAVLink protocol, which will allow us to implement telemetry transmission with
+little to no modification of the API, should we use one of those autopilot
+systems.
+The form factor has dimensions of 25.5 x 53 x 11 mm (including case, but not
+antenna) at 11.5 grams (without antenna).
+The range of this transceiver is from 300 meters to several kilometers,
+depending on the antenna arrangement.
+
+Biggest advantages: inexpensive, small form factor, low power consumption.
+
+Biggest disavantages: range out of the box could be as low as 300 meters.
 
 
+\subsection{RFD900 Radio Modem}
+(http://ardupilot.org/copter/docs/common-rfd900.html)(http://store.jdrones.com/jD\_RD900Plus\_Telemetry\_Bundle\_p/rf900set02.htm)\par
+
+The RFD900 Radio Modem has a cost of \$259.99 USD for two radios. It requires
+seperate +5v power for operation which means that it has high power
+consumption. This radio has open source firmware, a robust API, and is fully
+compatible with PX4 Pro, DroneKit, and ArduPilot, using the MAVLink protocol,
+which will allow us to implement telemetry transmission with little to no
+modification of the API, should we use one of those autopilot systems.
+
+The form factor has dimensions of 70 x 40 x 23mm (including case, but not
+antenna) at 14.5 grams (without
+antenna).
+The range of this transceiver is 25+ kilometers.
+
+Biggest advantages: ultra long range.
+
+Biggest disadvantages: expensive, large size.
+
+\subsection{Openpilot OPLink Mini Ground and Air Station 433 MHz}
+(https://hobbyking.com/en\_us/openpilot-oplink-mini-ground-station-433-mhz.html)
+(http://www.banggood.com/Openpilot-OPLINK-Mini-Radio-Telemetry-AIR-And-Ground-For-MINI-CC3D-Revolution-p-1018904.html)\par
+
+The OPLink Mini Ground Station has a cost of \$26.59 USD for two radios. It
+requires input voltage of +5v and can be powered off the autopilot telemetry
+port which means that it has low power consumption. This radio has open source
+firmware but is only compatible with the LibrePilot RC control system. 
+The form factor has dimensions of 38 x 23 x mm (including case, but not
+antenna) at 4 grams (without antenna).
+The range of this radio is not known, but based on the power requirements and
+frequency it likely has less range than the 3DR 915 MHz radio.
+
+Biggest advantages: smallest form factor (only 4 grams), lowest cost (\$26.59
+USD)
+
+Biggest disavantages: Only works with the LibrePilot control system.
 
 
+\subsection{Telemetry radio choice}
+The 3DR 915 MHz Transceiver is our selection for the telemetry radio.
+While the OPLink Mini Ground Station was significantly smaller, lighter, and
+cheaper than the other two, its implementation being tied solely to LibrePilot
+was a deal breaker (more information on LibrePilot can be found in the User
+Interface evaluation).
+The RF900 Radio Modem would have been a good choice, it has fantastic range
+and all the API options we were looking for. But it had a significantly larger
+form factor, required a separate power supply, and was quite expensive at
+\$259.99. Put together, these facts eliminated the RF900 as a viable option.
+The 3DR 915 MHz Transceiver is a good balance of cost, performance, and size. The
+cost of \$39.99 for two radios, the ability to power the autopilot off the
+telemetry port, and the portability of its APIs and their ease of use, puts the
+3DR 915 MHz at the top of our list and the clear choice for the telemetry
+radio going forward.
 
+\section{User Interface - Dan}
 
+\subsection{QGroundControl}
+(http://qgroundcontrol.com/downloads/)
+more to follow...
 
+\subsection{DroneKit-Android}
+(http://android.dronekit.io/)
+more to follow...
 
+\subsection{LibrePilot}
+(https://www.librepilot.org/site/index.html)
+more to follow...
 
-
+\subsection{User interface choice}
+QgroundControl, for many very good reasons (no, this isn't the actual reasoning).
+more to follow...
 
 \end{document}
