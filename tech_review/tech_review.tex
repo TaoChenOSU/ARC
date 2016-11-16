@@ -469,10 +469,14 @@ switch between them based on real-time situation.\par
 
 \subsection{Probabilistic Analysis for Motion}
 \begin{enumerate}
-\item Bayes Filter
-\item (Extended) Kalman Filter
-\item Particle Filter
+\item Bayes Filter:\par
+Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability density function by incoperating all available measurements. Using the log-odd operation and assuming Markov property holds true in our set up, we can turn multiplication into addition, which will increase the accuracy of the prediction since computers are generally not good at doing floating point multiplications. 
+\item (Extended) Kalman Filter:\par
+Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege of state to predict the future. And then it incoperates measurements to make the predicted state more accurate. Extended Kalman filter is the extension of Kalman filter that can handle nonlinear systems, meaning that the output of a system is not propotional to its input. Our system is a good example of a nonlinear system. The results are not propotional to any of the measurements and prior states.  
+\item Particle Filter:\par
+Particle filter usea sampling method to estimate the probability of states. It can keep track of multiple assumptions. It updates the probability density function iteratively. Each time new movement and measurement arrive, it shifts the particles accordingly and uses the measurements to update the probabilities. It generates new particles at each iteration at locations where the probabilities are the highest. It can also handle nonlinear systems. 
 \end{enumerate}
+For our interests, we will be using particle filter because it is good model for localization. It is easy to implement, fast, and accurate. The only drawback is that going from an initial uniformly distribution to an acceptable prediction might take longer if the configuration of the space is complex.
 
 \subsection{Motion Model}
 In this context, the motion model states the behavior of the vehicle under different 
@@ -573,7 +577,7 @@ Minnesota, parallel parking requires the system to perform following tasks:\par
 %%\item (http://www-users.cs.umn.edu/~joel/_files/Joel_Hesch_EE4951.pdf)
 \end{enumerate}
 
-For simplicity, we don’t need to perform parking spot detection if the system 
+For simplicity, we don't need to perform parking spot detection if the system 
 is given a map. The algorithm will output a trajectory to the control system on 
 every iteration. The system will be using multiple sensors, such as IR/sonar 
 sensors, to scan surroundings, adjusting the trajectory accordingly. The control 
