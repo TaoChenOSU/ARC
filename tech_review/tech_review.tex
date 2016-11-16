@@ -124,20 +124,36 @@ Due to the need to be able to navigate in outdoor environments, our team will st
 If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \section{Sensors - Cierra}
-\subsection{GPS - External}
-\subsection{GPS - PXFmini}
+As our group has already been given a PXFmini and a UM7-LT Orientation Sensor. 
 \subsection{Internal Measurement Unit (IMU) - External}
 \subsection{IMU - PXFmini}
 
 
-\section{System Control and Synchronization - Cierra}
-IDK WHAT TO PUT IN THIS SYSTEM
+\section{System Control and Data Processing - Cierra}
+Our system will have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
+The computer will need to be able to handle many computations in parallel, which means ideally it will have at least two physical cores. 
+The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
 \subsection{Intel NUC}
 
-\subsection{Intel UPboard}
+\subsection{UP Board}
+The UP Board uses an Intel Atom Quad Core CPU, with 2M Cache, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
+It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. 
+The physical dimensions of the board are 3.37" x 2.22", which is advantageous due to it not taking up very much room within the assembly. 
+The UP Board also supports Windows 10 and various linux distributions, which is a plus in terms of flexibility. 
+The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \\
+The biggest drawback to the UP Board, is not knowing if it will have the computational power that we need to handle the flow of data. 
+Benchmark testing for vision processing would need to be done against the more powerful Intel NUC. 
+
+
 
 \subsection{Raspberry Pi 3}
+There is a possibility that we could minimize all of our computations down to the level of an Raspberry Pi 3. 
+Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. 
+\subsection{Our choice}
+Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Image Analysis Software - Dan}
 Image analysis, for the ARC project, is the processing of visual data received
