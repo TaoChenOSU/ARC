@@ -468,15 +468,35 @@ Again, in the final implementation, both schemes will be implemented and the sys
 switch between them based on real-time situation.\par
 
 \subsection{Probabilistic Analysis for Motion}
+A couple of options to represente the location of the vehicle are x, y, \theta coordinate, 
+and grid representation. Since we are dealing with a car that can go at anything directions, 
+and has a sufficient size, we will not consider grid representation as our model.  
 \begin{enumerate}
 \item Bayes Filter:\par
-Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability density function by incoperating all available measurements. Using the log-odd operation and assuming Markov property holds true in our set up, we can turn multiplication into addition, which will increase the accuracy of the prediction since computers are generally not good at doing floating point multiplications. 
+Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability 
+density function by incoperating all available measurements. Using the log-odd operation 
+and assuming Markov property holds true in our set up, we can turn multiplication into 
+addition, which will increase the accuracy of the prediction since computers are generally 
+not good at doing floating point multiplications. 
 \item (Extended) Kalman Filter:\par
-Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege of state to predict the future. And then it incoperates measurements to make the predicted state more accurate. Extended Kalman filter is the extension of Kalman filter that can handle nonlinear systems, meaning that the output of a system is not propotional to its input. Our system is a good example of a nonlinear system. The results are not propotional to any of the measurements and prior states.  
+Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
+of state to predict the future. And then it incoperates measurements to make the predicted 
+state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
+handle nonlinear systems, meaning that the output of a system is not propotional to its 
+input. Our system is a good example of a nonlinear system. The results are not propotional 
+to any of the measurements and prior states.  
 \item Particle Filter:\par
-Particle filter usea sampling method to estimate the probability of states. It can keep track of multiple assumptions. It updates the probability density function iteratively. Each time new movement and measurement arrive, it shifts the particles accordingly and uses the measurements to update the probabilities. It generates new particles at each iteration at locations where the probabilities are the highest. It can also handle nonlinear systems. 
+Particle filter usea sampling method to estimate the probability of states. It can keep 
+track of multiple assumptions. It updates the probability density function iteratively. 
+Each time new movement and measurement arrive, it shifts the particles accordingly and 
+uses the measurements to update the probabilities. It generates new particles at each 
+iteration at locations where the probabilities are the highest. It can also handle 
+nonlinear systems. 
 \end{enumerate}
-For our interests, we will be using particle filter because it is good model for localization. It is easy to implement, fast, and accurate. The only drawback is that going from an initial uniformly distribution to an acceptable prediction might take longer if the configuration of the space is complex.
+For our interests, we will be using particle filter because it is good model for 
+localization. It is easy to implement, fast, and accurate. The only drawback is that 
+going from an initial uniformly distribution to an acceptable prediction might take 
+longer if the configuration of the space is complex.
 
 \subsection{Motion Model}
 In this context, the motion model states the behavior of the vehicle under different 
@@ -512,12 +532,12 @@ Similar to breath-first search, this algorithm guarantees to find the optimal pa
 for start to destination in terms of nodes visited. In reality, the cost of going 
 from one node to another should be considered when planning, so this algorithm will 
 not be considered. 
-\item Dijkstra’s algorithm:\par
+\item Dijkstra's algorithm:\par
 This is algorithm and breath-first search are very much alike. This algorithm takes 
 into account the costs between nodes and promises to find the shortest path.
 \item A* Heuristic search:\par
 This algorithm uses an extra variable, the heuristic, to improve the performance 
-of the Dijkstra’s algorithm. 
+of the Dijkstra's algorithm. 
 \end{itemize}
 In conclusion, we will be using the A* Heuristic search algorithm as our global 
 path planning algorithm. It produces reliable results and is the fastest algorithm 
@@ -560,7 +580,7 @@ the pre-planned path as soon as possible.
 
 While re-planning may be more intelligent overall, it is infeasible in a global 
 setup due to the large amount of computation the system has to redo. Rarely the 
-construction of a path will take less than noticeable period time. Our team’s 
+construction of a path will take less than noticeable period time. Our team's 
 vision of the system is to enable the vehicle to drive itself as if a rational 
 human is driving it. New plan construction that causes suspension of movements is 
 unacceptable. Thus, we will go for the first option and will not consider 
