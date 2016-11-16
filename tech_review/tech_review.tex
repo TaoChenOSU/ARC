@@ -426,8 +426,8 @@ Available: https://play.google.com/store/apps/details?id=org.droidplanner.androi
 A good control system can improve the accuracy of the estimated current location 
 of the vehicle. If we choose unreliable control scheme and motion model, it will 
 produce a lot of overhead for our main computer and the results won't be as precise. 
-Power consumption may increase due to the excessive amount of calculation done by 
-the computer. In conclusion, motor control, servo control, and motion model are 
+Power consumption may also increase due to the excessive amount of calculation done 
+by the computer. In conclusion, motor control, servo control, and motion model are 
 methods to minimize the computation the main computer has to undergo.
 
 \subsection{Motor Control}
@@ -482,20 +482,20 @@ A couple of options for representing the location of the vehicle are x, y, $\the
 and grid representation. Since we are dealing with a car that can go at anything directions, 
 and has a sufficient size, we will not consider grid representation as our model.  
 \begin{enumerate}
-	\item Bayes Filter:\par
+	\item Bayes Filter: [1]\par
 	Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability 
 	density function by incorporating all available measurements. Using the log-odd operation 
 	and assuming Markov property holds true in our set up, we can turn multiplication into 
 	addition, which will increase the accuracy of the prediction since computers are generally 
 	not good at doing floating point multiplications. 
-	\item (Extended) Kalman Filter:\par
+	\item (Extended) Kalman Filter: [2]\par
 	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
 	of state to predict the future. And then it incoperates measurements to make the predicted 
 	state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
 	handle nonlinear systems, meaning that the output of a system is not propotional to its 
-	input. Our system is a good example of a nonlinear system. The results are not propotional 
+	input. [3] Our system is a good example of a nonlinear system. The results are not propotional 
 	to any of the measurements and prior states.  
-	\item Particle Filter:\par
+	\item Particle Filter: [4]\par
 	Particle filter uses sampling method to estimate the probability of states. It can keep 
 	track of multiple assumptions. It updates the probability density function iteratively. 
 	Each time new movement and measurement arrive, it shifts the particles accordingly and 
@@ -521,7 +521,7 @@ is fully loaded with hardware, it will also have a different configuration of mo
 model than when it is unloaded. Thus, we will have to conduct multiple experiments to 
 create the motion model of our vehicle. Alternatively, ROS provides a very nice simulation 
 environment, where we can have a script that describes the configuration of the vehicle 
-and have the simulator run the vehicle.\par
+and have the simulator run the vehicle. [5]\par
 
 Potentially, as the development progresses, we may find the motion model to be obsolete, 
 because I have a feeling that we can get around without a pre-defined motion model. But 
@@ -581,7 +581,7 @@ In the global and local path planning algorithms sections, the underlying assump
 is that the world is static (the map does not change). However, our team wants the 
 vehicle to respond properly when unexpected objects are blocking the planned path.\par 
 
-There are two ways to accomplish this. We can:\par
+There are two ways to accomplish this. We can: [6]\par
 \begin{enumerate}
 \item Diverge from the original path as little as possible and converge back to 
 the preplanned path as soon as possible.
@@ -598,13 +598,12 @@ reconstructing new paths.\par
 
 \subsection{Parallel Parking Algorithm}
 By going through a research project carried out by students at University of 
-Minnesota, parallel parking requires the system to perform following tasks:\par
+Minnesota, parallel parking requires the system to perform following tasks: [7]\par
 
 \begin{enumerate}
 \item Parking Spot Detection
 \item Parking
 \item Exiting the spot
-%%\item (http://www-users.cs.umn.edu/~joel/_files/Joel_Hesch_EE4951.pdf)
 \end{enumerate}
 
 For simplicity, we don't need to perform parking spot detection if the system 
@@ -613,5 +612,32 @@ every iteration. The system will be using multiple sensors, such as IR/sonar
 sensors, to scan surroundings, adjusting the trajectory accordingly. The control 
 system must make sure the vehicle follows the trajectory precisely.\par
 
+\subsection{References}
+[1] School of MIME, Oregon State University, 'Bayes Filter'. [Online].
+[Accessed: 16- Nov- 2016].\par
+
+[2] Michael Rubinstein, Computer Science and Artificial Intelligence Laboratory, 
+MIT, 'Introduction to recursive Bayesian filtering'. [online]. 
+Available: https://people.csail.mit.edu/mrub/talks/filtering.pdf.\\~
+[Accessed: 16- Nov- 2016].\par  
+
+[3] Larry Hardesty, MIT News, 'Explained: Linear and nonlinear systems'. [Online].
+Available: http://news.mit.edu/2010/explained-linear-0226.\\~
+[Accessed: 16- Nov- 2016].\par
+
+[4] School of MIME, Oregon State University, 'Particle Filter'. [Online].
+[Accessed: 16- Nov- 2016].\par
+
+[5] Ros.org, 'Robot Model Tutorials'. [Online].
+Available: http://wiki.ros.org/robot_model_tutorials.\\~
+[Accessed: 16- Nov- 2016].\par
+
+[6] School of MIME, Oregon State University, 'Planning'. [Online].
+[Accessed: 16- Nov- 2016].\par
+
+[7] Lisa S, Christopher W, Mun Hoe Sze Tho, Trenton P, Joel H, University 
+of Minnesota, 'Autonomous Parallel Parking of a Nonholonomic Vehicle'. [Online]. 
+Available: http://www-users.cs.umn.edu/~joel/_files/Joel_Hesch_EE4951.pdf.\\~ 
+[Accessed: 16- Nov- 2016].\par
 
 \end{document}
