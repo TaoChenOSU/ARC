@@ -96,7 +96,7 @@ Another pro to stereoscopic vision, is the cost is relatively low, as cameras ca
 One of the challenges of stereo vision is the computational power required. 
 Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. 
 \cite{acs}
-OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the the disparity map, which can then be used by another part of our system for decision making. 
+OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the disparity map, which can then be used by another part of our system for decision making. 
 
 \subsection{IR Camera's such as Kinect and RealSense}
 Using an infrared point map, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
@@ -333,16 +333,16 @@ overlays, allows mission planning including map point selection, rally points,
 and even a virtual fence to keep the drone from going beyond a specified area.
 QGC is a mature software package that has excellent libraries and support with
 very good documentation. [2]
-Additionally, QGC works with ArduPilot which is known to work with the PXFMini ,
-the autopilot we intend to use and can be configured for rovers. [3] QGC appears
-be GUI only with no CLI functionality.
+Additionally, QGC works with ArduPilot which is known to work with the PXFMini,
+the flight controller we intend to use and can be configured for rovers. [3] QGC 
+appears be GUI only with no CLI functionality.
 
 Pros: easy to use, great documentation, compatible with MAVLink, tested on the
 PXFMini. Can be used on all major pc and mobile platforms. Supports rovers.
 
 Cons: does not appear to have CLI support.
 
-\subsection{Tower/DroneKit-Android}(http://android.dronekit.io/) (https://play.google.com/store/apps/details?id=org.droidplanner.android\&hl=en)
+\subsection{Tower/DroneKit-Android}
 Tower is a Android mobile app that works with most drones that use the MAVLink
 protocol. Tower allows basic map point selection and allows drawing a flight
 path on the tablet. [4] It is based on the open source DroneKit-Android framework.
@@ -396,17 +396,26 @@ the ARC project.
 
 \subsection{References}
 
-[1] QGroundControl.com, Unknown. [Online]. Available: http://qgroundcontrol.com/. [Accessed: 15- Nov- 2016].\par
+[1] QGroundControl.com, Unknown. [Online]. Available: http://qgroundcontrol.com/.\\~
+[Accessed: 15- Nov- 2016].\par
 
-[2] QGroundControl.com, Unknown. [Online]. Available: https://donlakeflyer.gitbooks.io/qgroundcontrol-user-guide/content/. [Accessed: 15- Nov- 2016].\par
+[2] QGroundControl.com, Unknown. [Online]. 
+Available: https://donlakeflyer.gitbooks.io/qgroundcontrol-user-guide/content/.\\~
+[Accessed: 15- Nov- 2016].\par
 
-[3] ArduPilot Dev Team, 'PXFmini Wiring Quick Start', 2016. [Online]. Available: http://ardupilot.org/rover/docs/common-pxfmini-wiring-quick-start.html.  [Accessed: 15- Nov- 2016].\par
+[3] ArduPilot Dev Team, 'PXFmini Wiring Quick Start', 2016. [Online]. 
+Available: http://ardupilot.org/rover/docs/common-pxfmini-wiring-quick-start.html.\\~
+[Accessed: 15- Nov- 2016].\par
 
-[4] Fredia Huya-Kouadio, 'Tower', 2016. [Online]. Available: https://play.google.com/store/apps/details?id=org.droidplanner.android.  [Accessed: 15- Nov- 2016].\par
+[4] Fredia Huya-Kouadio, 'Tower', 2016. [Online]. 
+Available: https://play.google.com/store/apps/details?id=org.droidplanner.android.\\~
+[Accessed: 15- Nov- 2016].\par
 
-[5] 3D Robotics Inc., 'DroneKit', 2015. [Online]. Available: http://dronekit.io/. [Accessed: 15- Nov- 2016].\par
+[5] 3D Robotics Inc., 'DroneKit', 2015. [Online]. Available: http://dronekit.io/.\\~
+[Accessed: 15- Nov- 2016].\par
 
-[6] LibrePilot, 'Open-Collaborative-Free', 2016. [Online]. Available: https://www.librepilot.org/site/index.html. [Accessed: 15- Nov- 2016].\par
+[6] LibrePilot, 'Open-Collaborative-Free', 2016. [Online]. Available: https://www.librepilot.org/site/index.html.\\~
+[Accessed: 15- Nov- 2016].\par
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,7 +428,7 @@ of the vehicle. If we choose unreliable control scheme and motion model, it will
 produce a lot of overhead for our main computer and the results won't be as precise. 
 Power consumption may increase due to the excessive amount of calculation done by 
 the computer. In conclusion, motor control, servo control, and motion model are 
-methods to minimax the computation the main computer has to undergo.
+methods to minimize the computation the main computer has to undergo.
 
 \subsection{Motor Control}
 There are two types of motor control schemes that are practical for our project. 
@@ -442,7 +451,7 @@ distance.\par
 In the final implementation, we may switch between the two methods based on 
 real-time conditions. When the vehicle is operating at high speed in an open 
 environment, such as a parking lot, with GPS cooperating, time critical better 
-suits my purpose. When operating indoor without a pre-defined map, in other words, 
+suits my purpose. When operating indoor without a predefined map, in other words, 
 the vehicle is exploring the environment, distance critical works better. When the 
 system detects an approaching obstacle, whether it is operating indoor or outdoor, 
 the system should always switch to distance critical.\par
@@ -458,40 +467,41 @@ angel.
 \end{enumerate}
 Time critical makes drifting possible, which it is one of the goals of this project. 
 When the car is operating at high speed, time critical will be easier to harness because 
-oversteering will happen, and angel critical will cause unexpected maneuver when 
-oversteering happens.\par
+over-steering will happen, and angel critical will cause unexpected maneuver when 
+over steering happens.\par
 
-Angel critical may do a better job in obstacle avoidance. The angle of turning is defined 
-as the angel between the driving direction of vehicle before and after the turn.\par
+Angle critical may do a better job in obstacle avoidance. The angle of turning is defined 
+as the angle between the driving direction of vehicle before and after the turn.\par
 
 Again, in the final implementation, both schemes will be implemented and the system will 
 switch between them based on real-time situation.\par
 
 \subsection{Probabilistic Analysis for Motion}
-A couple of options to represente the location of the vehicle are x, y, \theta coordinate, 
+
+A couple of options for representing the location of the vehicle are x, y, $\theta$ coordinate,
 and grid representation. Since we are dealing with a car that can go at anything directions, 
 and has a sufficient size, we will not consider grid representation as our model.  
 \begin{enumerate}
-\item Bayes Filter:\par
-Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability 
-density function by incoperating all available measurements. Using the log-odd operation 
-and assuming Markov property holds true in our set up, we can turn multiplication into 
-addition, which will increase the accuracy of the prediction since computers are generally 
-not good at doing floating point multiplications. 
-\item (Extended) Kalman Filter:\par
-Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
-of state to predict the future. And then it incoperates measurements to make the predicted 
-state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
-handle nonlinear systems, meaning that the output of a system is not propotional to its 
-input. Our system is a good example of a nonlinear system. The results are not propotional 
-to any of the measurements and prior states.  
-\item Particle Filter:\par
-Particle filter usea sampling method to estimate the probability of states. It can keep 
-track of multiple assumptions. It updates the probability density function iteratively. 
-Each time new movement and measurement arrive, it shifts the particles accordingly and 
-uses the measurements to update the probabilities. It generates new particles at each 
-iteration at locations where the probabilities are the highest. It can also handle 
-nonlinear systems. 
+	\item Bayes Filter:\par
+	Bayes filter is based on Bayes Rule. Bayes filter constructs the posterior probability 
+	density function by incorporating all available measurements. Using the log-odd operation 
+	and assuming Markov property holds true in our set up, we can turn multiplication into 
+	addition, which will increase the accuracy of the prediction since computers are generally 
+	not good at doing floating point multiplications. 
+	\item (Extended) Kalman Filter:\par
+	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
+	of state to predict the future. And then it incoperates measurements to make the predicted 
+	state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
+	handle nonlinear systems, meaning that the output of a system is not propotional to its 
+	input. Our system is a good example of a nonlinear system. The results are not propotional 
+	to any of the measurements and prior states.  
+	\item Particle Filter:\par
+	Particle filter uses sampling method to estimate the probability of states. It can keep 
+	track of multiple assumptions. It updates the probability density function iteratively. 
+	Each time new movement and measurement arrive, it shifts the particles accordingly and 
+	uses the measurements to update the probabilities. It generates new particles at each 
+	iteration at locations where the probabilities are the highest. It can also handle 
+	nonlinear systems. 
 \end{enumerate}
 For our interests, we will be using particle filter because it is good model for 
 localization. It is easy to implement, fast, and accurate. The only drawback is that 
@@ -520,7 +530,7 @@ for now, a large part of me still believes it is necessary.\par
 \section{Path Planning - Tao}
 \subsection{Global Path Planning}
 Global in the perspective of our vehicle will be an area about the same size of a 
-basketball court. We will pre-define maps with multiple way points for the system to 
+basketball court. We will predefine maps with multiple way points for the system to 
 navigate itself through.\par
 \begin{itemize}
 \item Breath-first Search:\par
@@ -544,10 +554,10 @@ path planning algorithm. It produces reliable results and is the fastest algorit
 among all the above-mentioned algorithms. Our computer should handle the computation 
 no problem.\par  
 
-\subsection{Local Path Planing}
-local in the perspective of our vehicle will be an area about the same size of a 
+\subsection{Local Path Planning}
+Local in the perspective of our vehicle will be an area about the same size of a 
 classroom. The vehicle may have to build the map itself by exploring the space or 
-be provided with a pre-defined map.\par
+be provided with a predefined map.\par
 \begin{itemize}
 \item Rapidly-Exploring Random Trees (RRTs):\par
 This algorithm guarantees to find a path from start to goal as the number of 
@@ -574,7 +584,7 @@ vehicle to respond properly when unexpected objects are blocking the planned pat
 There are two ways to accomplish this. We can:\par
 \begin{enumerate}
 \item Diverge from the original path as little as possible and converge back to 
-the pre-planned path as soon as possible.
+the preplanned path as soon as possible.
 \item Reconstruct an entirely new path.
 \end{enumerate}
 
