@@ -278,4 +278,171 @@ more to follow...
 QgroundControl, for many very good reasons (no, this isn't the actual reasoning).
 more to follow...
 
+\section{Control System - Tao}
+A good control system can improve the accuracy of the estimated current location 
+of the vehicle. If we choose unreliable control scheme and motion model, it will 
+produce a lot of overhead for our main computer and the results won’t be as precise. 
+Power consumption may increase due to the excessive amount of calculation done by 
+the computer. In conclusion, motor control, servo control, and motion model are 
+methods to minimax the computation the main computer has to undergo.
+
+\subsection{Motor Control}
+There are two types of motor control schemes that are practical for our project. 
+I would not say that they are technologies. They are just two ways to decide 
+how the vehicle should move forward and backward:
+\begin{enumerate}
+\item Time Critical: This motor control scheme tells the motor to spin 
+forward/backward for a certain amount of time at a certain speed.
+\item Distance Critical: This motor control scheme tells the vehicle to go 
+forward/backward for a certain distance.
+\end{enumerate}
+When an iteration is finished under time critical, the system will decide whether 
+to keep the speed for another time period or slow down or accelerate. In order 
+to reduce jerkiness, the rate of acceleration and deceleration will be low.\par
+
+When an iteration is finished under distance critical, the system will decide what 
+to in the next cycle. It can either switch to time critical or move for another 
+distance.\par
+
+In the final implementation, we may switch between the two methods based on 
+real-time conditions. When the vehicle is operating at high speed in an open 
+environment, such as a parking lot, with GPS cooperating, time critical better 
+suits my purpose. When operating indoor without a pre-defined map, in other words, 
+the vehicle is exploring the environment, distance critical works better. When the 
+system detects an approaching obstacle, whether it is operating indoor or outdoor, 
+the system should always switch to distance critical.\par
+
+\subsection{Servo Control}
+Servos control the steering of the vehicle. Servo control is similar to motor control. 
+There are also two scheme under which the system operates the servo:
+\begin{enumerate}
+\item Time critical: The system tells the servo to keep a certain angel for a certain 
+amount of time.
+\item Angel critical: The system tells the vehicle to steer left/right for a certain 
+angel. 
+\end{enumerate}
+Time critical makes drifting possible, which it is one of the goals of this project. 
+When the car is operating at high speed, time critical will be easier to harness because 
+oversteering will happen, and angel critical will cause unexpected maneuver when 
+oversteering happens.\par
+
+Angel critical may do a better job in obstacle avoidance. The angle of turning is defined 
+as the angel between the driving direction of vehicle before and after the turn.\par
+
+Again, in the final implementation, both schemes will be implemented and the system will 
+switch between them based on real-time situation.\par
+
+\subsection{Probabilistic Analysis for Motion}
+\begin{enumerate}
+\item Bayes Filter
+\item (Extended) Kalman Filter
+\item Particle Filter
+\end{enumerate}
+
+\subsection{Motion Model}
+In this context, the motion model states the behavior of the vehicle under different 
+combinations of speed and steering. A concrete and precise motion model is important to 
+the control system. The control system operates the vehicle based on this pre-defined 
+motion model. For example, if the system needs to turn the vehicle 90 degrees right, it 
+will have to output a sequence of actions by applying the motion model to the status of 
+the vehicle, such as speed and center of gravity.\par
+
+Different vehicle will have different configurations of motion model. When our vehicle 
+is fully loaded with hardware, it will also have a different configuration of motion 
+model than when it is unloaded. Thus, we will have to conduct multiple experiments to 
+create the motion model of our vehicle. Alternatively, ROS provides a very nice simulation 
+environment, where we can have a script that describes the configuration of the vehicle 
+and have the simulator run the vehicle.\par
+
+Potentially, as the development progresses, we may find the motion model to be obsolete, 
+because I have a feeling that we can get around without a pre-defined motion model. But 
+for now, a large part of me still believes it is necessary.\par
+
+\section{Path Planning - Tao}
+\subsection{Global Path Planning}
+Global in the perspective of our vehicle will be an area about the same size of a 
+basketball court. We will pre-define maps with multiple way points for the system to 
+navigate itself through.\par
+\begin{itemize}
+\item Breath-first Search:\par
+This algorithm promises to output the optimal path for start to destination in terms 
+of nodes visited. In reality, the cost of going from one node to another should be 
+considered when planning, so this algorithm will not be considered. 
+\item Depth-first Search:\par
+Similar to breath-first search, this algorithm guarantees to find the optimal path 
+for start to destination in terms of nodes visited. In reality, the cost of going 
+from one node to another should be considered when planning, so this algorithm will 
+not be considered. 
+\item Dijkstra’s algorithm:\par
+This is algorithm and breath-first search are very much alike. This algorithm takes 
+into account the costs between nodes and promises to find the shortest path.
+\item A* Heuristic search:\par
+This algorithm uses an extra variable, the heuristic, to improve the performance 
+of the Dijkstra’s algorithm. 
+\end{itemize}
+In conclusion, we will be using the A* Heuristic search algorithm as our global 
+path planning algorithm. It produces reliable results and is the fastest algorithm 
+among all the above-mentioned algorithms. Our computer should handle the computation 
+no problem.\par  
+
+\subsection{Local Path Planing}
+local in the perspective of our vehicle will be an area about the same size of a 
+classroom. The vehicle may have to build the map itself by exploring the space or 
+be provided with a pre-defined map.\par
+\begin{itemize}
+\item Rapidly-Exploring Random Trees (RRTs):\par
+This algorithm guarantees to find a path from start to goal as the number of 
+sample points goes to infinity.
+\item RRT*:\par
+This algorithm is an extension of RRTs. It promises to find the optimal path from 
+start to goal as the number of sample points goes to infinity. 
+\end{itemize}
+These two algorithms are both feasible given the map is small, because they require 
+a large amount of data to be stored in memory. This is why we did not consider the 
+two to be our global path planning algorithms.\par
+
+Depending on the computer memory and time constraints, we will use any one of them 
+that suits our purpose. If the system is asked to output a valid path as fast as 
+possible, RRTs will be used. If we were to ask the system to output the shortest path 
+it can generate given all the computational resources, RRT* will be used.\par
+
+\section{Other Algorithms - Tao}
+\subsection{Obstacle Avoidance Algorithm}
+In the global and local path planning algorithms sections, the underlying assumption 
+is that the world is static (the map does not change). However, our team wants the 
+vehicle to respond properly when unexpected objects are blocking the planned path.\par 
+
+There are two ways to accomplish this. We can:\par
+\begin{enumerate}
+\item Diverge from the original path as little as possible and converge back to 
+the pre-planned path as soon as possible.
+\item Reconstruct an entirely new path.
+\end{enumerate}
+
+While re-planning may be more intelligent overall, it is infeasible in a global 
+setup due to the large amount of computation the system has to redo. Rarely the 
+construction of a path will take less than noticeable period time. Our team’s 
+vision of the system is to enable the vehicle to drive itself as if a rational 
+human is driving it. New plan construction that causes suspension of movements is 
+unacceptable. Thus, we will go for the first option and will not consider 
+reconstructing new paths.\par
+
+\subsection{Parallel Parking Algorithm}
+By going through a research project carried out by students at University of 
+Minnesota, parallel parking requires the system to perform following tasks:\par
+
+\begin{enumerate}
+\item Parking Spot Detection
+\item Parking
+\item Exiting the spot
+\item (http://www-users.cs.umn.edu/~joel/_files/Joel_Hesch_EE4951.pdf)
+\end{enumerate}
+
+For simplicity, we don’t need to perform parking spot detection if the system 
+is given a map. The algorithm will output a trajectory to the control system on 
+every iteration. The system will be using multiple sensors, such as IR/sonar 
+sensors, to scan surroundings, adjusting the trajectory accordingly. The control 
+system must make sure the vehicle follows the trajectory precisely.\par
+
+
 \end{document}
