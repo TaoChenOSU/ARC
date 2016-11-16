@@ -82,52 +82,69 @@ Fall 2016
 
 \newpage
 
-\section{Vision System Options - Cierra}
+\section{Vision System Options - Cierra} % Done
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
-With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a ?3D image? of the surface, that can be used for telling which objects in an image are closest or farthest away. 
+With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
 
 \subsection{Stereo Vision}
 Stereo-vision uses two different cameras to create disparity maps in order to create a sense of depth. 
 This is similar to how our eyes work. 
 The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with vast amounts of ultraviolet (UV) light. 
-IR LEDs can also be used in order to illuminate an area at night, also allowing for nighttime navigation. 
+IR LEDs can also be used in order to illuminate an area at night, also allowing for night-time navigation. 
+Another pro to stereoscopic vision, is the cost is relatively low, as cameras can be obtained for under \$10 a piece.  
 One of the challenges of stereo vision is the computational power required. 
-Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. \cite{acs}
-OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. 
-
+Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. 
+\cite{acs}
+OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the the disparity map, which can then be used by another part of our system for decision making. 
 
 \subsection{IR Camera's such as Kinect and RealSense}
 Using an infrared point map, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
-A big advantage to IR camera?s, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
+A big advantage to IR camera's, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
 The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. 
-IR cameras don?t meet our requirement of being able to use the vision system reliably outdoors.
+IR cameras don't meet our requirement of being able to use the vision system reliably outdoors.
 
 \subsection{Lidar}
-LiDAR works by using LAZERSSSS
+LiDAR works by using laser pulses to detect range. 
+By detecting different pulse signatures, it is able to take very precise distance measurements. 
+LiDAR is a great way to form point clouds, however, the cost makes the product unreasonable for most people. 
+A basic SICK LiDAR unite costs around \$2,000 USD for a unit with 10m accuracy. cite{sick} https://www.sick.com/us/en/product-portfolio/detection-and-ranging-solutions/2d-laser-scanners/tim3xx/c/g205751\\
+A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacture says that it will not preform well in direct sunlight, due to using IR lasers. http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html
+The RPLiDAR also only has accurate measurements up to 6 meters.\\
+A third option for LiDAR, has yet to come to market. 
+The Sweep LiDAR unit by Scanse will be released in January of 2017. 
+The Sweep unit claims to be a LiDAR unit available for all.
+Costing \$349, the unit has the ability to scan 360 degrees, create points up to 40m away, and is able to function in "noisy" environments, such as outdoors. \\
+The Sweep's distance capabilities and ability to be used almost any lighting condition, including outdoors, would make this a great candidate for our project.
+The caveat to the Sweep, is it will not be released until January. \par
+The LiDAR systems that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, or do not fall under the category of commodity hardware. 
 
 \subsection{Our choice}
-Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. 
-
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \\
+If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \section{Sensors - Cierra}
-\subsection{GPS units}
-\subsection{Encoders}
-
-\subsection{Depth Sensors}
+\subsection{GPS - External}
+\subsection{GPS - PXFmini}
+\subsection{Internal Measurement Unit (IMU) - External}
+\subsection{IMU - PXFmini}
 
 
 \section{System Control and Synchronization - Cierra}
-\subsection{PXFmini vs Other Options}
-\subsection{Synchronizing Sensors}
+IDK WHAT TO PUT IN THIS SYSTEM
+\subsection{Intel NUC}
+
+\subsection{Intel UPboard}
+
+\subsection{Raspberry Pi 3}
 
 \newpage
 
 \section{Image Analysis Software - Dan}
 Image analysis, for the ARC project, is the processing of visual data received
-from cameras into deterministic information, such as pathfinding, or spacial
+from cameras into deterministic information, such as path-finding, or spacial
 awareness. This is the primary means for our autonomous vehicle to assess its
-surroundings and find its way to a given waypoint while avoiding obstacles. We
+surroundings and find its way to a given way-point while avoiding obstacles. We
 require software that is freely available for use (via fairly liberal open
 source licensing), known to be correct (works well) with little modification
 needed, and has relatively easy to use API libraries.
@@ -146,7 +163,7 @@ ArduPilot is our choice for image analysis software. The documentation for the
 image analysis software researched was rather vague across the board when it
 comes to information on path-finding and image analysis capabilities. So, while
 we are going with ArduPilot to start with, we will not really know its effective
-capability at obstacle avoidance and pathfinding until we have tested it.
+capability at obstacle avoidance and path-finding until we have tested it.
 
 \subsection{References}
 
@@ -155,13 +172,13 @@ capability at obstacle avoidance and pathfinding until we have tested it.
 \section{Telemetry Radio Communication - Dan}
 In this section we will examine three different telemetry radios, comparing and
 contrasting them and making a choice on which radio we will use for ARC.
-Telemetry is simply the transmition of measurement data (velocity, angle,
+Telemetry is simply the transmission of measurement data (velocity, angle,
 rotation, etc.) by radio to some other place. [1] This data allows the user to know the current state of the vehicle. This is especially
 important for autonomous operation, as the vehicle may not be operating within
 line of sight. Telemetry transmission is
 well-established, so we will not be comparing vastly different transmission
 technologies, such as long range (MHz radio frequencies) versus short-range
-(bluetooth) where the advantages of ranges of 2-15+ kilometers obviously
+(blue-tooth) where the advantages of ranges of 2-15+ kilometers obviously
 outweigh ranges of 20-100 meters.
 
 The main criteria for consideration are:
@@ -209,7 +226,7 @@ Cons: range out of the box could be as low as 300 meters.
 \subsection{RFD900 Radio Modem}
 
 The RFD900 Radio Modem has a cost of \$259.99 USD for two radios. [3] It requires
-seperate +5v power for operation which means that it has high power
+separate +5v power for operation which means that it has high power
 consumption. This radio has open source firmware, a robust API, and is fully
 compatible with PX4 Pro, DroneKit, and ArduPilot, using the MAVLink protocol,
 which will allow us to implement telemetry transmission with little to no
@@ -280,7 +297,7 @@ A user interface (UI) is required to allow the user to command the vehicle. The
 UI must be open source and have easy-to-implement API libraries. We are looking
 for a UI package that will work with both the control station (the user
 computer) and the companion computer (the computer on board the vehicle). It is
-preferrable that the UI be a combination of graphical UI (GUI) and command line
+preferable that the UI be a combination of graphical UI (GUI) and command line
 UI (CLI). Note that though our project is a land vehicle (rover) the following
 software is primarily used for UAV flight control and is referenced in such a
 way. If possible, we would like to use software that can be configured to
@@ -370,6 +387,174 @@ the ARC project.
 [5] 3D Robotics Inc., 'DroneKit', 2015. [Online]. Available: http://dronekit.io/. [Accessed: 15- Nov- 2016].\par
 
 [6] LibrePilot, 'Open-Collaborative-Free', 2016. [Online]. Available: https://www.librepilot.org/site/index.html. [Accessed: 15- Nov- 2016].\par
+
 \newpage
+
+\section{Control System - Tao}
+A good control system can improve the accuracy of the estimated current location 
+of the vehicle. If we choose unreliable control scheme and motion model, it will 
+produce a lot of overhead for our main computer and the results won’t be as precise. 
+Power consumption may increase due to the excessive amount of calculation done by 
+the computer. In conclusion, motor control, servo control, and motion model are 
+methods to minimax the computation the main computer has to undergo.
+
+\subsection{Motor Control}
+There are two types of motor control schemes that are practical for our project. 
+I would not say that they are technologies. They are just two ways to decide 
+how the vehicle should move forward and backward:
+\begin{enumerate}
+\item Time Critical: This motor control scheme tells the motor to spin 
+forward/backward for a certain amount of time at a certain speed.
+\item Distance Critical: This motor control scheme tells the vehicle to go 
+forward/backward for a certain distance.
+\end{enumerate}
+When an iteration is finished under time critical, the system will decide whether 
+to keep the speed for another time period or slow down or accelerate. In order 
+to reduce jerkiness, the rate of acceleration and deceleration will be low.\par
+
+When an iteration is finished under distance critical, the system will decide what 
+to in the next cycle. It can either switch to time critical or move for another 
+distance.\par
+
+In the final implementation, we may switch between the two methods based on 
+real-time conditions. When the vehicle is operating at high speed in an open 
+environment, such as a parking lot, with GPS cooperating, time critical better 
+suits my purpose. When operating indoor without a pre-defined map, in other words, 
+the vehicle is exploring the environment, distance critical works better. When the 
+system detects an approaching obstacle, whether it is operating indoor or outdoor, 
+the system should always switch to distance critical.\par
+
+\subsection{Servo Control}
+Servos control the steering of the vehicle. Servo control is similar to motor control. 
+There are also two scheme under which the system operates the servo:
+\begin{enumerate}
+\item Time critical: The system tells the servo to keep a certain angel for a certain 
+amount of time.
+\item Angel critical: The system tells the vehicle to steer left/right for a certain 
+angel. 
+\end{enumerate}
+Time critical makes drifting possible, which it is one of the goals of this project. 
+When the car is operating at high speed, time critical will be easier to harness because 
+oversteering will happen, and angel critical will cause unexpected maneuver when 
+oversteering happens.\par
+
+Angel critical may do a better job in obstacle avoidance. The angle of turning is defined 
+as the angel between the driving direction of vehicle before and after the turn.\par
+
+Again, in the final implementation, both schemes will be implemented and the system will 
+switch between them based on real-time situation.\par
+
+\subsection{Probabilistic Analysis for Motion}
+\begin{enumerate}
+\item Bayes Filter
+\item (Extended) Kalman Filter
+\item Particle Filter
+\end{enumerate}
+
+\subsection{Motion Model}
+In this context, the motion model states the behavior of the vehicle under different 
+combinations of speed and steering. A concrete and precise motion model is important to 
+the control system. The control system operates the vehicle based on this pre-defined 
+motion model. For example, if the system needs to turn the vehicle 90 degrees right, it 
+will have to output a sequence of actions by applying the motion model to the status of 
+the vehicle, such as speed and center of gravity.\par
+
+Different vehicle will have different configurations of motion model. When our vehicle 
+is fully loaded with hardware, it will also have a different configuration of motion 
+model than when it is unloaded. Thus, we will have to conduct multiple experiments to 
+create the motion model of our vehicle. Alternatively, ROS provides a very nice simulation 
+environment, where we can have a script that describes the configuration of the vehicle 
+and have the simulator run the vehicle.\par
+
+Potentially, as the development progresses, we may find the motion model to be obsolete, 
+because I have a feeling that we can get around without a pre-defined motion model. But 
+for now, a large part of me still believes it is necessary.\par
+
+\section{Path Planning - Tao}
+\subsection{Global Path Planning}
+Global in the perspective of our vehicle will be an area about the same size of a 
+basketball court. We will pre-define maps with multiple way points for the system to 
+navigate itself through.\par
+\begin{itemize}
+\item Breath-first Search:\par
+This algorithm promises to output the optimal path for start to destination in terms 
+of nodes visited. In reality, the cost of going from one node to another should be 
+considered when planning, so this algorithm will not be considered. 
+\item Depth-first Search:\par
+Similar to breath-first search, this algorithm guarantees to find the optimal path 
+for start to destination in terms of nodes visited. In reality, the cost of going 
+from one node to another should be considered when planning, so this algorithm will 
+not be considered. 
+\item Dijkstra’s algorithm:\par
+This is algorithm and breath-first search are very much alike. This algorithm takes 
+into account the costs between nodes and promises to find the shortest path.
+\item A* Heuristic search:\par
+This algorithm uses an extra variable, the heuristic, to improve the performance 
+of the Dijkstra’s algorithm. 
+\end{itemize}
+In conclusion, we will be using the A* Heuristic search algorithm as our global 
+path planning algorithm. It produces reliable results and is the fastest algorithm 
+among all the above-mentioned algorithms. Our computer should handle the computation 
+no problem.\par  
+
+\subsection{Local Path Planing}
+local in the perspective of our vehicle will be an area about the same size of a 
+classroom. The vehicle may have to build the map itself by exploring the space or 
+be provided with a pre-defined map.\par
+\begin{itemize}
+\item Rapidly-Exploring Random Trees (RRTs):\par
+This algorithm guarantees to find a path from start to goal as the number of 
+sample points goes to infinity.
+\item RRT*:\par
+This algorithm is an extension of RRTs. It promises to find the optimal path from 
+start to goal as the number of sample points goes to infinity. 
+\end{itemize}
+These two algorithms are both feasible given the map is small, because they require 
+a large amount of data to be stored in memory. This is why we did not consider the 
+two to be our global path planning algorithms.\par
+
+Depending on the computer memory and time constraints, we will use any one of them 
+that suits our purpose. If the system is asked to output a valid path as fast as 
+possible, RRTs will be used. If we were to ask the system to output the shortest path 
+it can generate given all the computational resources, RRT* will be used.\par
+
+\section{Other Algorithms - Tao}
+\subsection{Obstacle Avoidance Algorithm}
+In the global and local path planning algorithms sections, the underlying assumption 
+is that the world is static (the map does not change). However, our team wants the 
+vehicle to respond properly when unexpected objects are blocking the planned path.\par 
+
+There are two ways to accomplish this. We can:\par
+\begin{enumerate}
+\item Diverge from the original path as little as possible and converge back to 
+the pre-planned path as soon as possible.
+\item Reconstruct an entirely new path.
+\end{enumerate}
+
+While re-planning may be more intelligent overall, it is infeasible in a global 
+setup due to the large amount of computation the system has to redo. Rarely the 
+construction of a path will take less than noticeable period time. Our team’s 
+vision of the system is to enable the vehicle to drive itself as if a rational 
+human is driving it. New plan construction that causes suspension of movements is 
+unacceptable. Thus, we will go for the first option and will not consider 
+reconstructing new paths.\par
+
+\subsection{Parallel Parking Algorithm}
+By going through a research project carried out by students at University of 
+Minnesota, parallel parking requires the system to perform following tasks:\par
+
+\begin{enumerate}
+\item Parking Spot Detection
+\item Parking
+\item Exiting the spot
+%%\item (http://www-users.cs.umn.edu/~joel/_files/Joel_Hesch_EE4951.pdf)
+\end{enumerate}
+
+For simplicity, we don’t need to perform parking spot detection if the system 
+is given a map. The algorithm will output a trajectory to the control system on 
+every iteration. The system will be using multiple sensors, such as IR/sonar 
+sensors, to scan surroundings, adjusting the trajectory accordingly. The control 
+system must make sure the vehicle follows the trajectory precisely.\par
+
 
 \end{document}
