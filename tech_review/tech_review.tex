@@ -82,44 +82,61 @@ Fall 2016
 
 \newpage
 
-\section{Vision System Options - Cierra}
+\section{Vision System Options - Cierra} % Done
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
-With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a ?3D image? of the surface, that can be used for telling which objects in an image are closest or farthest away. 
+With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
 
 \subsection{Stereo Vision}
 Stereo-vision uses two different cameras to create disparity maps in order to create a sense of depth. 
 This is similar to how our eyes work. 
 The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with vast amounts of ultraviolet (UV) light. 
-IR LEDs can also be used in order to illuminate an area at night, also allowing for nighttime navigation. 
+IR LEDs can also be used in order to illuminate an area at night, also allowing for night-time navigation. 
+Another pro to stereoscopic vision, is the cost is relatively low, as cameras can be obtained for under \$10 a piece.  
 One of the challenges of stereo vision is the computational power required. 
-Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. \cite{acs}
-OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. 
-
+Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. 
+\cite{acs}
+OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the the disparity map, which can then be used by another part of our system for decision making. 
 
 \subsection{IR Camera's such as Kinect and RealSense}
 Using an infrared point map, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
-A big advantage to IR camera?s, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
+A big advantage to IR camera's, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
 The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. 
-IR cameras don?t meet our requirement of being able to use the vision system reliably outdoors.
+IR cameras don't meet our requirement of being able to use the vision system reliably outdoors.
 
 \subsection{Lidar}
-LiDAR works by using LAZERSSSS
+LiDAR works by using laser pulses to detect range. 
+By detecting different pulse signatures, it is able to take very precise distance measurements. 
+LiDAR is a great way to form point clouds, however, the cost makes the product unreasonable for most people. 
+A basic SICK LiDAR unite costs around \$2,000 USD for a unit with 10m accuracy. cite{sick} https://www.sick.com/us/en/product-portfolio/detection-and-ranging-solutions/2d-laser-scanners/tim3xx/c/g205751\\
+A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacture says that it will not preform well in direct sunlight, due to using IR lasers. http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html
+The RPLiDAR also only has accurate measurements up to 6 meters.\\
+A third option for LiDAR, has yet to come to market. 
+The Sweep LiDAR unit by Scanse will be released in January of 2017. 
+The Sweep unit claims to be a LiDAR unit available for all.
+Costing \$349, the unit has the ability to scan 360 degrees, create points up to 40m away, and is able to function in "noisy" environments, such as outdoors. \\
+The Sweep's distance capabilities and ability to be used almost any lighting condition, including outdoors, would make this a great candidate for our project.
+The caveat to the Sweep, is it will not be released until January. \par
+The LiDAR systems that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, or do not fall under the category of commodity hardware. 
 
 \subsection{Our choice}
-Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. 
-
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \\
+If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \section{Sensors - Cierra}
-\subsection{GPS units}
-\subsection{Encoders}
-
-\subsection{Depth Sensors}
+\subsection{GPS - External}
+\subsection{GPS - PXFmini}
+\subsection{Internal Measurement Unit (IMU) - External}
+\subsection{IMU - PXFmini}
 
 
 \section{System Control and Synchronization - Cierra}
-\subsection{PXFmini vs Other Options}
-\subsection{Synchronizing Sensors}
+IDK WHAT TO PUT IN THIS SYSTEM
+\subsection{Intel NUC}
+
+\subsection{Intel UPboard}
+
+\subsection{Raspberry Pi 3}
 
 
 \section{Image Analysis Software - Dan}
