@@ -82,6 +82,21 @@ Fall 2016
 
 \newpage
 
+\section{Introduction}
+This technology review covers a subset of technologies needed for use with
+Autonomous RC (ARC). Each team member researched three technologies and provided
+three alternative solutions to those technologies along with their choice for
+which would be selected for use in ARC. This document presents the
+findings of each member with explanations of the technologies researched and
+provides clear reasoning for the selections made.\par
+Cierra Shawe researched and wrote the sections on Vision System Options,
+Sensors, and System Control and Data Processing.\par
+Tao Chen researched and wrote the sections on Control System, Path Planning, and
+Other Algorithms.\par
+Dan Stoyer researched and wrote the sections on Image Analysis Software,
+Telemetry Radio Communication, and User Interface.\par
+
+
 \section{Vision System Options - Cierra} % Done - Except references
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
@@ -189,23 +204,93 @@ require software that is freely available for use (via fairly liberal open
 source licensing), known to be correct (works well) with little modification
 needed, and has relatively easy to use API libraries.
 
-\subsection{Option 1}
-more to follow...
+\subsection{Robotics Operating System}
+The Robotics Operating System (ROS) is a general-purpose framework for writing
+robot software.[1] It contains obstacle avoidance packages and navigation
+options. [2] Based on the examples given on the ROS website, it appears that the
+obstacle avoidance included with ROS is intended for low-speed, controlled
+evironments. ROS is a mature software platform with many libraries and a strong
+online community.  There are many tutorials and examples of ROS implementation
+on rovers and UAVs.  Even if the image analysis packages in ROS are not adequate
+for our purposes, this might be a platform we could use in a broader application
+for ARC.
 
-\subsection{Option 2}
-more to follow...
+Pros: does have obstacle avoidance built in, has strong user-base, many examples
+and tutorials.
 
-\subsection{Option 3}
-more to follow...
+Cons: does not appear to be directly compatible with MAVLink or the PXFMini, the
+obstacle avoidance packages appear to be for low speed, indoor environments.
+
+\subsection{GTSAM}
+The Georgia Tech Smoothing and Mapping library is a set of C++ classes that
+implement smoothing and mapping for robotics and computer vision. [3] Georgia
+Tech AutoRally used this library, along with ROS (see above) in their autonomous RC
+project. [4] The AutoRally project is open source and freely available. GTSAM
+seems to have a fairly robust library with example code for implementation. [5]
+We would need to build the API to bridge GTSAM to our platform of choice. Since
+AutoRally used ROS with GTSAM, we might be able to modify their implementation
+to suit our purposes. This is probably a very time-consuming option.
+
+Pros: integrates GPS, IMU and computer vision for mapping, has large library of
+C++ classes and example uses, was used by Georgia Tech in an autonomous RC
+project and we have access to the code, has a Python API.
+
+Cons: Very probably time-consuming to create and API for our project.
+
+\subsection{Pushbroom Stereo}
+Pushbroom Stereo is a sotfware library for high speed (up 20 mph) navigation in
+cluttered environments. [6] It uses a stereo vision algorithm that is capable of
+obstacle detection at 120 frames per second on an ARM processor. [7] The class
+files are provided but there is no support or community base to rely on.
+Further, this implementation is for flying UAVs, so it would need to be
+reimplemented for ground applications.
+
+Pros: allows high speed obstacle avoidance
+
+Cons: no support, small library (two classes), needs to be reimplemented for
+rovers
 
 \subsection{Image analysis choice}
-ArduPilot is our choice for image analysis software. The documentation for the
-image analysis software researched was rather vague across the board when it
-comes to information on path-finding and image analysis capabilities. So, while
-we are going with ArduPilot to start with, we will not really know its effective
-capability at obstacle avoidance and path-finding until we have tested it.
+There is no clear winner for our image analysis selection. Our research has led
+us to conclude that obstacle avoidance is still in its technology infancy and is
+not widely available to the open source community. The added criteria for
+operation at high speeds further limits our options.\par
+Pushbroom Stereo has the functionality of high speed obstacle detection, but it
+not well supported, has no examples of use and would need to be reimplemented
+for ground use. We probably would not have time to get that to work this
+year.\par
+ROS might be a good option, but the built-in obstacle avoidance is not intended for
+high-speed application. All the examples of outdoor use on the ROS site did not
+use the ROS object avoidance library.\par
+At this time we will attempt to duplicate AutoRally's implementation
+of GTSAM with ROS. GTSAM has a decent library to work from and ROS is a mature
+platform with large library collections and strong user support. 
 
 \subsection{References}
+[1] ROS.org, 'About ROS', 2016. [Online]. Available: http://www.ros.org/about-ros/.\\~
+[Accessed: 15- Nov- 2016]
+
+[2] ROS.org, 'navigation', 2016. [Online]. Available: http://wiki.ros.org/navigation.\\~
+[Accessed: 15- Nov- 2016]
+
+[3] Georgia Tech Borg Lab, 'GTSAM' [Online]. Avaliable:
+https://bitbucket.org/gtborg/gtsam.\\~
+[Accessed: 15- Nov- 2016]
+
+[4] ROS.org, 'The AutoRally Platform'. [Online]. Available: http://www.ros.org/news/2016/06/the-autorally-platform.html.\\~
+[Accessed: 15- Nov- 2016]
+
+[5] GTSAM, 'examples'. [Online]. Available:
+https://bitbucket.org/gtborg/gtsam/src/a738529af9754c7a085903f90ae8559bbaa82e75/examples/?at=develop.\\~
+[Accessed: 15- Nov- 2016]
+
+[6] A. Barry, 'flight'. [Online]. Available:
+https://github.com/andybarry/flight.\\~
+[Accessed: 15- Nov- 2016]
+
+[7] A. Barry, R. Tedrake, \textit{Pushbroom Stereo for High-Speed Navigation in
+Cluttered Environments} Unknown,
+http://groups.csail.mit.edu/robotics-center/public\_papers/Barry15.pdf. p. 1
 
 \newpage
 
