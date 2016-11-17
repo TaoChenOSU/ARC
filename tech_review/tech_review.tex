@@ -97,7 +97,7 @@ Tao Chen researched and wrote the sections on Control System, Path Planning, and
 Other Algorithms.\par
 
 
-\section{Vision System Options - Cierra} % Done - Except references
+\section{Vision System Options} % Done - Except references
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
 With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
@@ -151,18 +151,16 @@ If time allows, given we are able to obtain a unit, our team could research the 
 
 [6] Scanse.io, 'Meet Sweep. An Affordable Scanning LiDAR for Everyone.',  2016. [Online]. Available: http://scanse.io. [Accessed: 14- Nov- 2016]. \par
 
-\section{Sensors - Cierra}
+\section{Sensors}
 Sensors such as encoders, global positioning systems (GPS), and inertial measurement units (IMUs), in addition to the vision system, are key to helping a robot navigate within its environment. 
 
 \subsection{Internal Measurement Unit (IMU) - External}
 \subsection{IMU - PXFmini}
 
-
 \section{System Control and Data Processing Unit - Cierra}
 The ARC system will need to have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
 The computer will need to be able to handle many computations from the different systems in parallel, which means ideally it will have at least two physical cores. 
 Being able to process data in real-time (15 frames a second) will also be a key in being able to navigate an environment. 
-The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
 
 \subsection{Intel NUC}
 The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost, Iris Pro Graphics 580, and uses 64 bit architecture. 
@@ -200,7 +198,7 @@ Our starting point will be the Intel NUC, knowing that it should have enough pro
 
 \newpage
 
-\section{Image Analysis Software - Dan}
+\section{Image Analysis Software}
 Image analysis, for the ARC project, is the processing of visual data received
 from cameras into deterministic information, such as path-finding, or spacial
 awareness. This is the primary means for our autonomous vehicle to assess its
@@ -214,7 +212,7 @@ The Robotics Operating System (ROS) is a general-purpose framework for writing
 robot software.[1] It contains obstacle avoidance packages and navigation
 options. [2] Based on the examples given on the ROS website, it appears that the
 obstacle avoidance included with ROS is intended for low-speed, controlled
-evironments. ROS is a mature software platform with many libraries and a strong
+environments. ROS is a mature software platform with many libraries and a strong
 online community.  There are many tutorials and examples of ROS implementation
 on rovers and UAVs.  Even if the image analysis packages in ROS are not adequate
 for our purposes, this might be a platform we could use in a broader application
@@ -243,7 +241,7 @@ project and we have access to the code, has a Python API.
 Cons: Very probably time-consuming to create and API for our project.
 
 \subsection{Pushbroom Stereo}
-Pushbroom Stereo is a sotfware library for high speed (up 20 mph) navigation in
+Pushbroom Stereo is a software library for high speed (up 20 mph) navigation in
 cluttered environments. [6] It uses a stereo vision algorithm that is capable of
 obstacle detection at 120 frames per second on an ARM processor. [7] The class
 files are provided but there is no support or community base to rely on.
@@ -278,7 +276,7 @@ platform with large library collections and strong user support.
 [2] ROS.org, 'navigation', 2016. [Online]. Available: http://wiki.ros.org/navigation.\\~
 [Accessed: 15- Nov- 2016]
 
-[3] Georgia Tech Borg Lab, 'GTSAM' [Online]. Avaliable:
+[3] Georgia Tech Borg Lab, 'GTSAM' [Online]. Available:
 https://bitbucket.org/gtborg/gtsam.\\~
 [Accessed: 15- Nov- 2016]
 
@@ -299,7 +297,7 @@ http://groups.csail.mit.edu/robotics-center/public\_papers/Barry15.pdf. p. 1
 
 \newpage
 
-\section{Telemetry Radio Communication - Dan}
+\section{Telemetry Radio Communication}
 In this section we will examine three different telemetry radios, comparing and
 contrasting them and making a choice on which radio we will use for ARC.
 Telemetry is simply the transmission of measurement data (velocity, angle,
@@ -421,7 +419,7 @@ Available: http://www.banggood.com/Openpilot-OPLINK-Mini-Radio-Telemetry-AIR-And
 
 \newpage
 
-\section{User Interface - Dan}
+\section{User Interface}
 In this section we will examine three user interfaces, comparing and contrasting
 them and making a decision on which one we will use with ARC.
 A user interface (UI) is required to allow the user to command the vehicle. The
@@ -533,7 +531,7 @@ Available: https://play.google.com/store/apps/details?id=org.droidplanner.androi
 
 \newpage
 
-\section{Control System - Tao}
+\section{Control System}
 A good control system can improve the accuracy of the estimated current location 
 of the vehicle. If we choose unreliable control scheme and motion model, it will 
 produce a lot of overhead for our main computer and the results won't be as precise. 
@@ -600,11 +598,11 @@ and has a sufficient size, we will not consider grid representation as our model
 	addition, which will increase the accuracy of the prediction since computers are generally 
 	not good at doing floating point multiplications. 
 	\item (Extended) Kalman Filter: [2]\par
-	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
-	of state to predict the future. And then it incoperates measurements to make the predicted 
+	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledge 
+	of state to predict the future. It then incorporates measurements to make the predicted 
 	state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
-	handle nonlinear systems, meaning that the output of a system is not propotional to its 
-	input. [3] Our system is a good example of a nonlinear system. The results are not propotional 
+	handle nonlinear systems, meaning that the output of a system is not proportional to its 
+	input. [3] Our system is a good example of a nonlinear system. The results are not proportional 
 	to any of the measurements and prior states.  
 	\item Particle Filter: [4]\par
 	Particle filter uses sampling method to estimate the probability of states. It can keep 
@@ -660,7 +658,7 @@ Available: http://wiki.ros.org/robot\_model\_tutorials.\\~
 
 \newpage
 
-\section{Path Planning - Tao}
+\section{Path Planning}
 \subsection{Global Path Planning}
 Global in the perspective of our vehicle will be an area about the same size of a 
 basketball court. We will predefine maps with multiple way points for the system to 
@@ -708,7 +706,7 @@ that suits our purpose. If the system is asked to output a valid path as fast as
 possible, RRTs will be used. If we were to ask the system to output the shortest path 
 it can generate given all the computational resources, RRT* will be used.\par
 
-\section{Other Algorithms - Tao}
+\section{Other Algorithms}
 \subsection{Obstacle Avoidance Algorithm}
 In the global and local path planning algorithms sections, the underlying assumption 
 is that the world is static (the map does not change). However, our team wants the 
