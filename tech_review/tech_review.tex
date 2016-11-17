@@ -97,7 +97,7 @@ Dan Stoyer researched and wrote the sections on Image Analysis Software,
 Telemetry Radio Communication, and User Interface.\par
 
 
-\section{Vision System Options - Cierra} % Done - Except references
+\section{Vision System Options} % Done - Except references
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
 With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
@@ -138,13 +138,13 @@ The LiDAR systems that would be available to our group, would not meet the requi
 Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \\
 If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
-\section{Sensors - Cierra}
+\section{Sensors}
 As our group has already been given a PXFmini and a UM7-LT Orientation Sensor. 
 \subsection{Internal Measurement Unit (IMU) - External}
 \subsection{IMU - PXFmini}
 
 
-\section{System Control and Data Processing - Cierra}
+\section{System Control and Data Processing}
 Our system will have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
 The computer will need to be able to handle many computations in parallel, which means ideally it will have at least two physical cores. 
 The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
@@ -175,7 +175,7 @@ Our starting point will be the Intel NUC, knowing that it should have enough pro
 
 \newpage
 
-\section{Image Analysis Software - Dan}
+\section{Image Analysis Software}
 Image analysis, for the ARC project, is the processing of visual data received
 from cameras into deterministic information, such as path-finding, or spacial
 awareness. This is the primary means for our autonomous vehicle to assess its
@@ -274,7 +274,7 @@ http://groups.csail.mit.edu/robotics-center/public\_papers/Barry15.pdf. p. 1
 
 \newpage
 
-\section{Telemetry Radio Communication - Dan}
+\section{Telemetry Radio Communication}
 In this section we will examine three different telemetry radios, comparing and
 contrasting them and making a choice on which radio we will use for ARC.
 Telemetry is simply the transmission of measurement data (velocity, angle,
@@ -395,7 +395,7 @@ Available: http://www.banggood.com/Openpilot-OPLINK-Mini-Radio-Telemetry-AIR-And
 
 \newpage
 
-\section{User Interface - Dan}
+\section{User Interface}
 In this section we will examine three user interfaces, comparing and contrasting
 them and making a decision on which one we will use with ARC.
 A user interface (UI) is required to allow the user to command the vehicle. The
@@ -507,7 +507,7 @@ Available: https://play.google.com/store/apps/details?id=org.droidplanner.androi
 
 \newpage
 
-\section{Control System - Tao}
+\section{Control System}
 A good control system can improve the accuracy of the estimated current location 
 of the vehicle. If we choose unreliable control scheme and motion model, it will 
 produce a lot of overhead for our main computer and the results won't be as precise. 
@@ -634,7 +634,7 @@ Available: http://wiki.ros.org/robot\_model\_tutorials.\\~
 
 \newpage
 
-\section{Path Planning - Tao}
+\section{Path Planning}
 \subsection{Global Path Planning}
 Global in the perspective of our vehicle will be an area about the same size of a 
 basketball court. We will predefine maps with multiple way points for the system to 
@@ -682,7 +682,7 @@ that suits our purpose. If the system is asked to output a valid path as fast as
 possible, RRTs will be used. If we were to ask the system to output the shortest path 
 it can generate given all the computational resources, RRT* will be used.\par
 
-\section{Other Algorithms - Tao}
+\section{Other Algorithms}
 \subsection{Obstacle Avoidance Algorithm}
 In the global and local path planning algorithms sections, the underlying assumption 
 is that the world is static (the map does not change). However, our team wants the 
