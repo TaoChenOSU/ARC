@@ -124,33 +124,47 @@ Due to the need to be able to navigate in outdoor environments, our team will st
 If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \section{Sensors - Cierra}
-As our group has already been given a PXFmini and a UM7-LT Orientation Sensor. 
+Sensors such as encoders, global positioning systems (GPS), and inertial measurement units (IMUs), in addition to the vision system, are key to helping a robot navigate within its environment. 
+
 \subsection{Internal Measurement Unit (IMU) - External}
 \subsection{IMU - PXFmini}
 
 
-\section{System Control and Data Processing - Cierra}
-Our system will have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
+\section{System Control and Data Processing Unit - Cierra}
+The ARC system will need to have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
 The computer will need to be able to handle many computations in parallel, which means ideally it will have at least two physical cores. 
 The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
+
 
 \subsection{Intel NUC}
 The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost and Iris Pro Graphics 580. 
 The NUC can have up to 32GB of DDR4 RAM at 2133MHz. 
-One of the biggest constraints is the form factor of 211mm x 116mm x 28mm takes up a lot of space within the vehicle, and the NUC is supposed to be running at 19W. 
+Intel's NUC has a similar processor, to Georgia Tech's "GT AutoRally" platform, which was successful in creating a high speed drifting autonomous RC truck. 
+The biggest difference, is Georgia Tech uses a dedicated EVGA 750 GTX Ti video card for rendering.
+The pro to the NUC is that is is very powerful and can theoretically preform upwards of a billion operations a second. 
+The NUC also has an option of an external graphics card, if we are unable to render the data fast enough. \par
+One of the biggest constraints is the form factor of 8.3" x 5.6" x 1.1", takes up a lot of space within the vehicle.
+The NUC is also supposed to be running at 19W, which would require a separate battery to prolong the operation time. 
+Another large constraint is the cost of the Intel NUC. 
+The base model, without RAM or a solid state drive (SSD), costs \$650, which is the most expensive of the three options. \par
+Overall, the NUC would be a good starting point to not have resource limitations, as we could always scale up. 
+
+
 
 \subsection{UP Board}
 The UP Board uses an Intel Atom Quad Core CPU, with 2M Cache, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
-It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. 
-The physical dimensions of the board are 3.37" x 2.22", which is advantageous due to it not taking up very much room within the assembly. 
+It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. \par
+The physical dimensions of the board are 3.37" x 2.22" (roughly the size of a credit card), which is advantageous due to it not taking up very much room within the assembly. 
 The UP Board also supports Windows 10 and various linux distributions, which is a plus in terms of flexibility. 
-The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \\
+The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \par
 The biggest drawback to the UP Board, is not knowing if it will have the computational power that we need to handle the flow of data. 
-Benchmark testing for vision processing would need to be done against the more powerful Intel NUC, to see if it would be feasible to navigate at speed. 
+Benchmark testing for vision processing would need to be done against the more powerful Intel NUC, to see if it would be feasible to navigate at speed, and process at least 15 images a second. 
 
 \subsection{Raspberry Pi 3}
-There is a possibility that we could minimize all of our computations down to the level of an Raspberry Pi 3. 
-Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. 
+There is a possibility that  computations could be reduced down to the level of an Raspberry Pi 3, however it would have to be a stretch as we need to be able to process at least 15 images a second. 
+Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. \par
+The pros of a Raspberry Pi are that it's inexpensive, has many available libraries, and has direct hardware access. 
+The cons of the Pi are it isn't as powerful as the other two options, which may be a major limitation. 
 
 \subsection{Our choice}
 Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need and because it has the ability for an external graphics card if the computer can't render fast enough. 
