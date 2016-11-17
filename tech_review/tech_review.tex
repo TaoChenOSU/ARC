@@ -91,10 +91,10 @@ findings of each member with explanations of the technologies researched and
 provides clear reasoning for the selections made.\par
 Cierra Shawe researched and wrote the sections on Vision System Options,
 Sensors, and System Control and Data Processing.\par
-Tao Chen researched and wrote the sections on Control System, Path Planning, and
-Other Algorithms.\par
 Dan Stoyer researched and wrote the sections on Image Analysis Software,
 Telemetry Radio Communication, and User Interface.\par
+Tao Chen researched and wrote the sections on Control System, Path Planning, and
+Other Algorithms.\par
 
 
 \section{Vision System Options} % Done - Except references
@@ -105,70 +105,93 @@ With the exception of some forms of LiDar, all of these methods require what is 
 \subsection{Stereo Vision}
 Stereo-vision uses two different cameras to create disparity maps in order to create a sense of depth. 
 This is similar to how our eyes work. 
-The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with vast amounts of ultraviolet (UV) light. 
+The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with in the visible spectrum and aren't affected by ultraviolet (UV) light. 
 IR LEDs can also be used in order to illuminate an area at night, also allowing for night-time navigation. 
 Another pro to stereoscopic vision, is the cost is relatively low, as cameras can be obtained for under \$10 a piece.  
 One of the challenges of stereo vision is the computational power required. 
-Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult. 
-\cite{acs}
-OpenCV \cite{opencv} contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the disparity map, which can then be used by another part of our system for decision making. 
+Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult[1]. 
 
-\subsection{IR Camera's such as Kinect and RealSense}
-Using an infrared point map, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
+OpenCV [3] contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the disparity map, which can then be used by another part of our system for decision making. 
+
+\subsection{IR Cameras such as Kinect and RealSense}
+Using an infrared laser point map projection, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
 A big advantage to IR camera's, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
-The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. 
+The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. [2]
 IR cameras don't meet our requirement of being able to use the vision system reliably outdoors.
 
 \subsection{Lidar}
 LiDAR works by using laser pulses to detect range. 
 By detecting different pulse signatures, it is able to take very precise distance measurements. 
 LiDAR is a great way to form point clouds, however, the cost makes the product unreasonable for most people. 
-A basic SICK LiDAR unite costs around \$2,000 USD for a unit with 10m accuracy. cite{sick} https://www.sick.com/us/en/product-portfolio/detection-and-ranging-solutions/2d-laser-scanners/tim3xx/c/g205751\\
-A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacture says that it will not preform well in direct sunlight, due to using IR lasers. http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html
-The RPLiDAR also only has accurate measurements up to 6 meters.\\
+A basic SICK LiDAR unite costs around \$2,000 USD for a unit with 10m accuracy [4].\par
+A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacture says that it will not preform well in direct sunlight, due to using IR lasers.   
+The RPLiDAR only has accurate measurements up to 6 meters [5].\par
 A third option for LiDAR, has yet to come to market. 
-The Sweep LiDAR unit by Scanse will be released in January of 2017. 
+The Sweep LiDAR unit by Scanse will be released in January of 2017 [6]. 
 The Sweep unit claims to be a LiDAR unit available for all.
-Costing \$349, the unit has the ability to scan 360 degrees, create points up to 40m away, and is able to function in "noisy" environments, such as outdoors. \\
+Costing \$349, the unit has the ability to scan 360 degrees, create points up to 40m away, and is able to function in "noisy" environments, such as outdoors. 
 The Sweep's distance capabilities and ability to be used almost any lighting condition, including outdoors, would make this a great candidate for our project.
 The caveat to the Sweep, is it will not be released until January. \par
-The LiDAR systems that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, or do not fall under the category of commodity hardware. 
+The RPLiDAR LiDAR system that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, and others do not qualify as commodity hardware. 
 
-\subsection{Our choice}
-Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \\
-If time allows, given we are able to obtain a unit, our team could investigate the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
+\subsection{Vision choice}
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \par
+If time allows, given we are able to obtain a unit, our team could research the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
+
+\subsection{References}
+[1] M. Brown, D. Burschka and G. Hager, 'Advances in computational stereo', IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 25, no. 8, pp. 993-1008, 2003. \par
+
+[2] P. Fankhauser, M. Bloesch, D. Rodriguez, R. Kaestner, M. Hutter and R. Siegwart, Kinect v2 for Mobile Robot Navigation: Evaluation and Modeling, 1st ed. Zurich, Switzerland: Technical University of Munich, Autonomous Systems Lab of ETH Zurich, 2016. [Online]. Available: http://e-collection.library.ethz.ch/eserv/eth:48073/eth-48073-01.pdf. [Accessed: 15- Nov- 2016]. \par
+
+[3] Docs.opencv.org, 'OpenCV: OpenCV modules',  2016. [Online]. Available: http://docs.opencv.org/3.1.0/. [Accessed: 13- Nov- 2016]. \par
+
+[4] Sick.com, '2D laser scanners',  2016. [Online]. Available: https://www.sick.com/. [Accessed: 15- Nov- 2016]. \par
+
+[5] Robotshop.com, 'RPLIDAR A2 360° Laser Scanner',  2016. [Online]. Available: http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html. [Accessed: 15- Nov- 2016]. \par
+
+[6] Scanse.io, 'Meet Sweep. An Affordable Scanning LiDAR for Everyone.',  2016. [Online]. Available: http://scanse.io. [Accessed: 14- Nov- 2016]. \par
 
 \section{Sensors}
-As our group has already been given a PXFmini and a UM7-LT Orientation Sensor. 
+Sensors such as encoders, global positioning systems (GPS), and inertial measurement units (IMUs), in addition to the vision system, are key to helping a robot navigate within its environment. 
+
 \subsection{Internal Measurement Unit (IMU) - External}
 \subsection{IMU - PXFmini}
 
-
-\section{System Control and Data Processing}
-Our system will have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
-The computer will need to be able to handle many computations in parallel, which means ideally it will have at least two physical cores. 
-The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
+\section{System Control and Data Processing Unit - Cierra}
+The ARC system will need to have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
+The computer will need to be able to handle many computations from the different systems in parallel, which means ideally it will have at least two physical cores. 
+Being able to process data in real-time (15 frames a second) will also be a key in being able to navigate an environment. 
 
 \subsection{Intel NUC}
-The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost and Iris Pro Graphics 580. 
+The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost, Iris Pro Graphics 580, and uses 64 bit architecture. 
 The NUC can have up to 32GB of DDR4 RAM at 2133MHz. 
-One of the biggest constraints is the form factor of 211mm x 116mm x 28mm takes up a lot of space within the vehicle, and the NUC is supposed to be running at 19W. 
+Intel's NUC has a similar processor, to Georgia Tech's "GT AutoRally" platform, which was successful in creating a high speed drifting autonomous RC truck. 
+The biggest difference, is Georgia Tech uses a dedicated EVGA 750 GTX Ti video card for rendering.
+The pro to the NUC is that is is very powerful and can theoretically preform upwards of a billion operations a second. 
+The NUC also has an option of an external graphics card, if we are unable to render the data fast enough. \par
+One of the biggest constraints is the form factor of 8.3" x 5.6" x 1.1", takes up a lot of space within the vehicle.
+The NUC is also supposed to be running at 19W, which would require a separate battery to prolong the operation time. 
+Another large constraint is the cost of the Intel NUC. 
+The base model, without RAM or a solid state drive (SSD), costs \$650, which is the most expensive of the three options. \par
+Overall, the NUC would be a good starting point to not have resource limitations, as we could always scale up. 
 
 \subsection{UP Board}
-The UP Board uses an Intel Atom Quad Core CPU, with 2M Cache, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
-It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. 
-The physical dimensions of the board are 3.37" x 2.22", which is advantageous due to it not taking up very much room within the assembly. 
+The UP Board uses an Intel Atom Quad Core CPU, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
+It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. \par
+The physical dimensions of the board are 3.37" x 2.22" (roughly the size of a credit card), which is advantageous due to it not taking up very much room within the assembly. 
 The UP Board also supports Windows 10 and various linux distributions, which is a plus in terms of flexibility. 
-The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \\
+The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \par
 The biggest drawback to the UP Board, is not knowing if it will have the computational power that we need to handle the flow of data. 
-Benchmark testing for vision processing would need to be done against the more powerful Intel NUC, to see if it would be feasible to navigate at speed. 
+Benchmark testing for vision processing would need to be done against the more powerful Intel NUC, to see if it would be feasible to navigate at speed, and process at least 15 images a second. 
 
 \subsection{Raspberry Pi 3}
-There is a possibility that we could minimize all of our computations down to the level of an Raspberry Pi 3. 
-Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. 
+There is a possibility that  computations could be reduced down to the level of an Raspberry Pi 3, however it would have to be a stretch as we need to be able to process at least 15 images a second. 
+Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. \par
+The pros of a Raspberry Pi are that it's inexpensive, has many available libraries, and has direct hardware access. \par
+The cons of the Pi are it isn't as powerful as the other two options, which may be a major limitation. 
 
-\subsection{Our choice}
-Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need and because it has the ability for an external graphics card if the computer can't render fast enough. 
+\subsection{System Control and Data Processing Unit Choice}
+Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need and because it has the ability for an external graphics card if rendering is not able to be done at the speed required. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -189,7 +212,7 @@ The Robotics Operating System (ROS) is a general-purpose framework for writing
 robot software.[1] It contains obstacle avoidance packages and navigation
 options. [2] Based on the examples given on the ROS website, it appears that the
 obstacle avoidance included with ROS is intended for low-speed, controlled
-environments ROS is a mature software platform with many libraries and a strong
+environments. ROS is a mature software platform with many libraries and a strong
 on-line community.  There are many tutorials and examples of ROS implementation
 on rovers and UAVs.  Even if the image analysis packages in ROS are not adequate
 for our purposes, this might be a platform we could use in a broader application
@@ -253,7 +276,7 @@ platform with large library collections and strong user support.
 [2] ROS.org, 'navigation', 2016. [Online]. Available: http://wiki.ros.org/navigation.\\~
 [Accessed: 15- Nov- 2016]
 
-[3] Georgia Tech Borg Lab, 'GTSAM' [Online]. Avaliable:
+[3] Georgia Tech Borg Lab, 'GTSAM' [Online]. Available:
 https://bitbucket.org/gtborg/gtsam.\\~
 [Accessed: 15- Nov- 2016]
 
@@ -386,6 +409,7 @@ radio going forward.
 [2] 3DR, '915 MHz (American) Telemetry Radio Set', 2016. [Online]. Available: https://store.3dr.com/products/915-mhz-telemetry-radio. [Accessed: 15- Nov- 2016].\par
 
 [3] jDrones.com, 'jD-RF900Plus Longrange', 2016. [Online]. Available: http://store.jdrones.com/jD\_RD900Plus\_Telemetry\_Bundle\_p/rf900set02.htm. [Accessed: 15- Nov- 2016].\par
+
 [4] ArduPilot Dev Team, 'RFD900 Radio Modem', 2016. [Online]. Available: http://ardupilot.org/copter/docs/common-rfd900.html. [Accessed: 15- Nov- 2016].\par
 
 [5] Banggood.com, 'Openpilot OPLINK Mini Radio Telemetry', 2016. [Online].
@@ -574,11 +598,11 @@ and has a sufficient size, we will not consider grid representation as our model
 	addition, which will increase the accuracy of the prediction since computers are generally 
 	not good at doing floating point multiplications. 
 	\item (Extended) Kalman Filter: [2]\par
-	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledege 
-	of state to predict the future. And then it incoperates measurements to make the predicted 
+	Kalman filter also uses Bayes rule but with Gaussian noise. It uses the prior knowledge 
+	of state to predict the future. It then incorporates measurements to make the predicted 
 	state more accurate. Extended Kalman filter is the extension of Kalman filter that can 
-	handle nonlinear systems, meaning that the output of a system is not propotional to its 
-	input. [3] Our system is a good example of a nonlinear system. The results are not propotional 
+	handle nonlinear systems, meaning that the output of a system is not proportional to its 
+	input. [3] Our system is a good example of a nonlinear system. The results are not proportional 
 	to any of the measurements and prior states.  
 	\item Particle Filter: [4]\par
 	Particle filter uses sampling method to estimate the probability of states. It can keep 
