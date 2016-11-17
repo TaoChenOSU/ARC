@@ -510,7 +510,30 @@ still fuzzy at the moment. Nonetheless, we will try our best.
 %understand the various items that comprise requirements as described in 3.1
 %through 3.7.
 
-\subsection{External Interfaces}
+\subsection{External interface requirements}
+
+	\subsubsection{User interfaces}
+	\subsubsection{Hardware interfaces}
+	\subsubsection{Software interfaces}
+	\subsubsection{Communications interfaces}
+
+\subsection{System features}
+
+\subsubsection{System Feature 1}
+
+\paragraph{Introduction/Purpose of feature}
+
+\paragraph{Stimulus/Response Sequence}
+
+\paragraph{Associated functional requirements}
+	\begin{itemize}
+		\item{3.2.1.3.1} Functional requirement 1\\
+			.\\
+			.\\
+			.\\
+		\item{3.2.1.3.n} Functional requirement n
+	\end{itemize}
+
 %
 %This should be a detailed description of all inputs into and outputs from the
 %software system. It should complement the interface descriptions in 5.2 and
@@ -532,7 +555,7 @@ still fuzzy at the moment. Nonetheless, we will try our best.
 %	\item End messages.
 %\end{enumerate}
 
-\subsection{Functions}
+%\subsection{Functions}
 %Functional requirements should define the fundamental actions that must take
 %place in the software in accepting and processing the inputs and in processing
 %and generating the outputs. These are generally listed as "shall" statements
@@ -592,24 +615,6 @@ still fuzzy at the moment. Nonetheless, we will try our best.
 %This should specify design constraints that can be imposed by other standards,
 %hardware limitations, etc.
 
-\subsubsection{Standards Compliance}
-%Included for reference, likely to be removed.
-%This subsection should specify the requirements derived from existing standards
-%or regulations. They may include the following:
-%
-%\begin{enumerate}
-%	\item Report format;
-%	\item Data naming;
-%	\item Accounting procedures;
-%	\item Audit tracing.
-%\end{enumerate}
-%
-%For example, this could specify the requirement for software to trace processing
-%activity. Such traces are needed for some applications to meet minimum
-%regulatory or financial standards. An audit trace requirement may, for example,
-%state that all changes to a payroll database must be recorded in a trace file
-%with before and after values.
-
 \subsection{Software System Attributes}
 %There are a number of attributes of software that can serve as requirements. It
 %is important that required attributes be specified so that their achievement can
@@ -617,48 +622,7 @@ still fuzzy at the moment. Nonetheless, we will try our best.
 %of examples.
 %We will likely need to come up with more/different attributes
 
-\subsubsection{Reliability} % Tao, finished
-At the time of delivery, the system should be fully functional, with at least 80\%
-success rate, which means the system will navigate the vehicle to destination 
-without running into obstacles successfuly 8 out of 10 times. 
-\begin{itemize}
-	\item The environment in which the vehicle will be traversing must be static.
-	\item If operating outdoor, it must not be raining nor snowing.
-	\item All the hardware components must be fully functional and connected. 
-\end{itemize}
-%This should specify the factors required to establish the required reliability
-%of the software system at time of delivery.
-
-\subsubsection{Organizing the Specific Requirements}
-%We need to choose our organization which may be a combination of the
-%following (as opposed to simply one of).\\
-%For anything but trivial systems the detailed requirements tend to be extensive.
-%For this reason, it is recommended that careful consideration be given to
-%organizing these in a manner optimal for understanding. There is no one optimal
-%organization for all systems. Different classes of systems lend themselves to
-%different organizations of requirements in Section 3 of the SRS. Some of these
-%organizations are described in 5.3.7.1 through 5.3.7.7
-
-
-\section{Other Nonfunctional Requirements}
-
-\subsection{Performance Requirements}
-%If there are performance requirements for the product under various 
-%circumstances, state them here and explain their rationale, to help the 
-%developers understand the intent and make suitable design choices. Specify the 
-%timing relationships for real time systems. Make such requirements as specific 
-%as possible. You may need to state performance requirements for individual 
-%functional requirements or features.
-
-\subsection{Safety Requirements}
-%Specify those requirements that are concerned with possible loss, damage, or 
-%harm that could result from the use of the product. Define any safeguards or 
-%actions that must be taken, as well as actions that must be prevented. Refer to 
-%any external policies or regulations that state safety issues that affect the 
-%product’s design or use. Define any safety certifications that must be 
-%satisfied.
-
-\section{Other Requirements}
+\subsection{Other Requirements}
 %Define any other requirements not covered elsewhere in the SRS. This might 
 %include database requirements, internationalization requirements, legal 
 %requirements, reuse objectives for the project, and so on. Add any new sections 
