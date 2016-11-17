@@ -69,9 +69,9 @@ Fall 2016
 \author{Tao Chen, Cierra Shawe, Daniel Stoyer}
 \maketitle
 
-\begin{abstract}
+%\begin{abstract}
 
-\end{abstract}
+%\end{abstract}
 
 \thispagestyle{empty} % gets rid of the "0" page number.
 
@@ -83,57 +83,59 @@ Fall 2016
 \newpage
 
 \section{Introduction}
-This technology review covers a subset of technologies needed for use with
-Autonomous RC (ARC). Each team member researched three technologies and provided
+This technology review covers a subset of technologies needed for use with the
+Autonomous RC (ARC) system. Each team member researched three technologies and provided
 three alternative solutions to those technologies along with their choice for
-which would be selected for use in ARC. This document presents the
+which would be selected for use in the ARC system. This document presents the
 findings of each member with explanations of the technologies researched and
 provides clear reasoning for the selections made.\par
 Cierra Shawe researched and wrote the sections on Vision System Options,
-Sensors, and System Control and Data Processing.\par
+Sensors, and System Control and Data Processing units.\par
 Dan Stoyer researched and wrote the sections on Image Analysis Software,
 Telemetry Radio Communication, and User Interface.\par
 Tao Chen researched and wrote the sections on Control System, Path Planning, and
 Other Algorithms.\par
 
+\newpage
+
 \section{Vision System} % Done
 For autonomous operation, vision systems are critical. 
 The three main options include stereoscopic cameras, Infrared (IR) based systems such as Microsoft's Kinect, and Light Detection And Ranging (LiDAR) vision systems. 
-With the exception of some forms of LiDar, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
+With the exception of some forms of LiDAR, all of these methods require what is called a disparity map, which creates a 3D image of the surface, that can be used for telling which objects in an image are closest or farthest away. 
 
 \subsection{Stereo Vision}
 Stereo-vision uses two different cameras to create disparity maps in order to create a sense of depth. 
 This is similar to how our eyes work. 
-The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function with in the visible spectrum and aren't affected by ultraviolet (UV) light. 
+The biggest benefit to a stereoscopic camera system is the ability to detect objects outdoors, as the cameras are able to function within the visible spectrum and aren't affected by ultraviolet (UV) light. 
 IR LEDs can also be used in order to illuminate an area at night, also allowing for night-time navigation. 
-Another pro to stereoscopic vision, is the cost is relatively low, as cameras can be obtained for under \$10 a piece.  
+Another pro to stereoscopic vision is the cost is relatively low, as cameras can be obtained for under \$10 a piece.  
 One of the challenges of stereo vision is the computational power required. 
 Another is clarity of the disparity map without post processing of images, which makes real-time operation more difficult[1]. \par
-OpenCV [2] contains many examples of how to configure and process stereoscopic images, and is one of the largest vision resources. It can be used to synchronize and create the disparity map, which can then be used by another part of our system for decision making. 
+OpenCV [2] contains many examples of how to configure and process stereoscopic images and is one of the largest vision resources. It can be used to synchronize and create the disparity map, which can then be used by another part of our system for decision making. 
 
-\subsection{IR Cameras such as Kinect and RealSense}
-Using an infrared laser point map projection, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system, is the Microsoft Kinect. 
-A big advantage to IR camera's, is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
-The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to massive amount of infrared waves from the sun. [3]
+\subsection{IR Camera Systems}
+Using an infrared laser point map projection, these cameras are able to tell the disparity between the points, which helps in creating disparity maps. The most popular example of an IR camera system is the Microsoft Kinect. 
+A big advantage to IR camera's is the ability to function in low and non-natural lighting conditions, due to using the infrared spectrum, rather than only using the visible spectrum. 
+The biggest problem with IR cameras, the functionality is greatly reduced outdoors, due to the massive amount of infrared waves from the sun. [3]
 IR cameras don't meet our requirement of being able to use the vision system reliably outdoors.
 
-\subsection{Lidar}
+\subsection{LiDAR}
 LiDAR works by using laser pulses to detect range. 
 By detecting different pulse signatures, it is able to take very precise distance measurements. 
 LiDAR is a great way to form point clouds, however, the cost makes the product unreasonable for most people. 
-A basic SICK LiDAR unite costs around \$2,000 USD for a unit with 10m accuracy [4].\par
-A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacture says that it will not preform well in direct sunlight, due to using IR lasers.   
+A basic SICK LiDAR unit costs around \$2,000 USD for a unit with 10m accuracy [4].\par
+A 2D RPLiDAR module is a lower cost alternative, at \$449, however, the manufacturer says that it will not perform well in direct sunlight, due to using IR lasers.   
 The RPLiDAR only has accurate measurements up to 6 meters [5].\par
-A third option for LiDAR, has yet to come to market. 
+A third option for LiDAR has yet to come to market. 
 The Sweep LiDAR unit by Scanse will be released in January of 2017 [6]. 
 The Sweep unit claims to be a LiDAR unit available for all.
 Costing \$349, the unit has the ability to scan 360 degrees, create points up to 40m away, and is able to function in "noisy" environments, such as outdoors. 
 The Sweep's distance capabilities and ability to be used almost any lighting condition, including outdoors, would make this a great candidate for our project.
-The caveat to the Sweep, is it will not be released until January. \par
+The caveat to the Sweep is it will not be released until January. \par
 The RPLiDAR LiDAR system that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, and others do not qualify as commodity hardware. 
 
 \subsection{Vision Choice}
-Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \par
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images and create the disparity map that can be used for other purposes, such as obstacle avoidance. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \par
 If time allows, given we are able to obtain a unit, our team could research the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \subsection{References}
@@ -145,11 +147,12 @@ If time allows, given we are able to obtain a unit, our team could research the 
 
 [4] Sick.com, '2D laser scanners',  2016. [Online]. Available: https://www.sick.com/. [Accessed: 15- Nov- 2016]. \par
 
-[5] Robotshop.com, 'RPLIDAR A2 360° Laser Scanner',  2016. [Online]. Available: http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html. [Accessed: 15- Nov- 2016]. \par
+[5] Robotshop.com, 'RPLIDAR A2 360 Laser Scanner',  2016. [Online]. Available: http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html. [Accessed: 15- Nov- 2016]. \par
 
 [6] Scanse.io, 'Meet Sweep. An Affordable Scanning LiDAR for Everyone.',  2016. [Online]. Available: http://scanse.io. [Accessed: 14- Nov- 2016]. \par
 
 % Maybe communicate what we need the sensors to do then describe how sensors like IMU and PixHawk meet those needs, pick a couple specs that are important to accomplish the task, ignore the rest. 
+\newpage
 
 \section{Sensors}
 Sensors such as encoders, global positioning systems (GPS), and inertial measurement units (IMUs), in addition to the vision system, are key to helping a robot navigate within its environment. 
@@ -158,8 +161,8 @@ A GPS and compass unit is needed to locate the vehicle on a map.
 An IMU is needed to measure acceleration, rotation, and velocity. \par
 Other sensors that we will consider, but are not covered in this review, are infrared or sonar sensors for distance and encoders to track wheel rotation. These items will be added on an "as needed" basis. 
 
-\subsection{Ublox Neo-M8N GPS with Compass}
-The Neo will be used to help the vehicle navigate to a point on a map and provides a built in compass. 
+\subsection{u-blox Neo-M8N GPS with Compass}
+The u-blox Neo-M8N GPS with Compass will be used to help the vehicle navigate to a point on a map and provides a built-in compass. [1] 
 The biggest pros of the Neo are:
 \begin{itemize}
 \item Availability - the Neo is currently in hand
@@ -167,24 +170,58 @@ The biggest pros of the Neo are:
 \item Detached module - the Neo can be placed away from our motors and other hardware to minimize electromagnetic interference
 \item Price - the Neo only costs \$23.87 (Amazon.com as of 10/16/2016)
 \end{itemize}
+The only con is that the Neo uses half of the ports on the PXFmini (a UART and I2C), leaving only one I2C port left for other usages. One solution to this problem is using an I2C multiplexer board in order to extend functionality if needed. 
+
+\subsection{PXFMini}
+Erle Robotics includes a triaxial gravity sensor, gyroscope, and digital compass, as well as a barometer, temperature sensor, and an analog to digital converter(ADC) on the PXFmini [2]. 
+The gravity sensor, gyroscope, and digital compass are contained on a chip called the MPU-9250, made by InvenSense [3]. 
+As there are no added components, due to the PXFmini already being used for handling PWM and sensor communication, there is no added monetary cost after the unit has been purchased. 
+The cons to the PXFmini is that the sensors are more likely to be affected by electromagnetic interference, which could produce unpredictable readings from the sensors. There is also minimal data on the typical accuracy of the internal sensors, which makes it difficult to determine whether the PXFmini will be precise enough for our application. 
 
 \subsection{UM7-LT Orientation Sensor}
-\subsection{PXFMini}
+The UM7-LT Orientation Sensor (UM7) IMU is produced by Red Shift Labs and "combines triaxial accelerometer, rate gyro, and magnetometer data using a sophisticated Extended Kalman Filter to produce attitude and heading estimates".
+The board is comparable in size to a US quarter. 
+The specifications for the UM7-LT are as follows [5]:
+\begin{itemize}
+\item +/- 2-degree typical static pitch/roll accuracy
+\item +/- 4-degree typical dynamic pitch/roll accuracy
+\item +/- 5-degree typical static yaw accuracy
+\item +/- 8-degree typical dynamic yaw accuracy
+\item 0.5-degree angle repeatability
+\item 0.01-degree angular resolution
+\end{itemize}
+The pros of the UM7 include the ability to take in GPS input in order to provide more accurate velocity and motion readings, more precise sensor readings that include less noise due to the Kalman Filter. The sensor can also be positioned within the car for optimal readings, versus h
+The cons for the UM7 include price, added component complexity. 
+The UM7 is priced at \$129.95 on the CH Robotics website. 
+Overall, using the UM7 would provide clearer sensor input and provide pass through GPS input. 
+
+\subsection{Sensor Choices}
+For a GPS and compass unit the u-blox Neo-M8N GPS with Compass will be used, due to the ease of use with the PXFmini and availability. \par
+Before a final decision is made on whether or not the UM7 will be added, tests will be done by comparing outputs of both pieces of hardware to gain a better understanding of real world performance. Ideally, the PXFmini internal sensors will be used to start, without the use of the UM7. The reasoning behind this decision is that the overall system complexity and number of components required will be reduced. The UM7-LT Orientation Sensor will be added if the PXFmini is unable to produce sufficiently accurate results, or there is a significant boost in clarity and performance. 
 
 \subsection{References}
+[1] u-blox, 'NEO-M8 series',  2016. [Online]. Available: https://www.u-blox.com/en/product/neo-m8-series. [Accessed: 17- Nov- 2016].
 
-\section{System Control and Data Processing Unit - Cierra}
+[2] Erlerobotics.com, 'PXFmini',  2016. [Online]. Available: http://erlerobotics.com/blog/pxfmini/. [Accessed: 15- Nov- 2016].
+
+[3] U. Board, "UM7-LT Orientation Sensor | CH Robotics", Chrobotics.com, 2016. [Online]. Available: http://www.chrobotics.com/shop/um7-lt-orientation-sensor. [Accessed: 17- Nov- 2016].
+
+[4] Invensense.com, 'MPU-9250 | InvenSense', 2016. [Online]. Available: https://www.invensense.com/products/motion-tracking/9-axis/mpu-9250/. [Accessed: 16- Nov- 2016].
+
+
+\newpage
+\section{System Control and Data Processing Unit}
 The ARC system will need to have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
 The computer will need to be able to handle many computations from the different systems in parallel, which means ideally it will have at least two physical cores. 
-Being able to process data in real-time (15 frames a second) will also be a key in being able to navigate an environment. 
+Being able to process data in real-time (15 frames a second) will also be key in being able to navigate an environment. 
 
 \subsection{Intel NUC}
-The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon[1], is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost, Iris Pro Graphics 580, and uses 64 bit architecture. 
+The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon[1]is a small form computer that has a quad-core i7 6770HQ quad-core processor, at 2.6GHz with up to 3.5GHz boost, Iris Pro Graphics 580, and uses 64-bit architecture. 
 The NUC can have up to 32GB of DDR4 RAM at 2133MHz. 
 Intel's NUC has a similar processor, to Georgia Tech's "GT AutoRally" platform[2], which was successful in creating a high speed drifting autonomous RC truck. 
-The biggest difference, is Georgia Tech uses a dedicated EVGA 750 GTX Ti video card for rendering.
-The pro to the NUC is that is is very powerful and can theoretically preform upwards of a billion operations a second. 
-The NUC also has an option of an external graphics card, if we are unable to render the data fast enough. \par
+The biggest difference is Georgia Tech uses a dedicated EVGA 750 GTX Ti video card for rendering.
+The pro to the NUC is that is is very powerful and can theoretically perform upwards of a billion operations a second. 
+The NUC also has an option of an external graphics card, if data is unable to be processed in real-time. \par
 One of the biggest constraints is the form factor of 8.3" x 5.6" x 1.1", takes up a lot of space within the vehicle.
 The NUC is also supposed to be running at 19W, which would require a separate battery to prolong the operation time. 
 Another large constraint is the cost of the Intel NUC. 
@@ -192,32 +229,32 @@ The base model, without RAM or a solid state drive (SSD), costs \$650, which is 
 Overall, the NUC would be a good starting point to not have resource limitations, as we could always scale up. 
 
 \subsection{UP Board}
-The UP Board [3] uses an Intel Atom Quad Core CPU, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
+The UP Board [3] uses an Intel Atom quad-core CPU, up to 1.44GHz CPU with a 64-bit architecture and Intel HD 400 graphics up to 500MHz. 
 It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. \par
 The physical dimensions of the board are 3.37" x 2.22" (roughly the size of a credit card), which is advantageous due to it not taking up very much room within the assembly. 
-The UP Board also supports Windows 10 and various linux distributions, which is a plus in terms of flexibility. 
+The UP Board also supports Windows 10 and various Linux distributions, which is a plus in terms of flexibility. 
 The cost of the highest specification UP Board is \$149, which is over a quarter of the cost of the bare bones Intel NUC. \par
-The biggest drawback to the UP Board, is not knowing if it will have the computational power that we need to handle the flow of data. 
+The biggest drawback to the Up Board is not knowing if it will have the computational power that we need to handle the flow of data. 
 Benchmark testing for vision processing would need to be done against the more powerful Intel NUC, to see if it would be feasible to navigate at speed, and process at least 15 images a second. 
 
 \subsection{Raspberry Pi 3}
-There is a possibility that  computations could be reduced down to the level of an Raspberry Pi 3 [4], however it would have to be a stretch as we need to be able to process at least 15 images a second. 
+There is a possibility that  computations could be reduced down to the level of a Raspberry Pi 3 [4], however, it would have to be a stretch as we need to be able to process at least 15 images a second. 
 Being able to run everything on the Raspberry Pi 3 would mean that our project would be affordable enough for even a college student to replicate our implementation. \par
 The pros of a Raspberry Pi are that it's inexpensive, has many available libraries, and has direct hardware access. \par
 The cons of the Pi are it isn't as powerful as the other two options, which may be a major limitation. 
 
 \subsection{System Control and Data Processing Unit Choice}
-Our starting point will be the Intel NUC, assuming that it should have enough processing power to handle what we need. Another reason is it has the ability for an external graphics card, if rendering is not able to be done at the speed required on the integrated graphics alone. \par
+Our starting point will be the Intel NUC, assuming that it should have enough processing power to handle what we need. Another reason is it has the ability for an external graphics card if rendering is not able to be done on the integrated graphics in a timely manner. \par
 If time allows, testing will be done to see if it is possible to scale down the system to use either an UP Board or Raspberry Pi 3.
 
 \subsection{References}
-[1] Intel, 'Intel® NUC Kit NUC6i7KYK Features and Configurations',  2015. [Online]. Available: http://www.intel.com/content/www/us/en/nuc/nuc-kit-nuc6i7kyk-features-configurations.html. [Accessed: 15- Nov- 2016].
+[1] Intel, 'Intel NUC Kit NUC6i7KYK Features and Configurations',  2015. [Online]. Available: http://www.intel.com/content/www/us/en/nuc/nuc-kit-nuc6i7kyk-features-configurations.html. [Accessed: 15- Nov- 2016].
 
 [2] Georgia Tech, 'Build your own AutoRally Platform',  2016. [Online]. Available: https://autorally.github.io/build/. [Accessed: 13- Nov- 2016].
 
 [3] Up Board | Power Up Your Ideas!, 'Specifications',  2016. [Online]. Available: http://www.up-board.org/up/specifications/. [Accessed: 15- Nov- 2016].
 
-[4] RaspberryPi.org,'Raspberry Pi 3 Model B',  2016. [Online]. Available: https://www.raspberrypi.org/products/raspberry-pi-3-model-b/. [Accessed: 16- Nov- 2016].
+[4] RaspberryPi.org, 'Raspberry Pi 3 Model B',  2016. [Online]. Available: https://www.raspberrypi.org/products/raspberry-pi-3-model-b/. [Accessed: 16- Nov- 2016].
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,7 +262,7 @@ If time allows, testing will be done to see if it is possible to scale down the 
 \newpage
 
 \section{Image Analysis Software}
-Image analysis, for the ARC project, is the processing of visual data received
+Image analysis, for the ARC project is the processing of visual data received
 from cameras into deterministic information, such as path-finding, or spacial
 awareness. This is the primary means for our autonomous vehicle to assess its
 surroundings and find its way to a given way-point while avoiding obstacles. We
@@ -244,7 +281,7 @@ on rovers and UAVs.  Even if the image analysis packages in ROS are not adequate
 for our purposes, this might be a platform we could use in a broader application
 for ARC.
 
-Pros: does have obstacle avoidance built in, has strong user-base, many examples
+Pros: does have obstacle avoidance built-in, has strong user-base, many examples
 and tutorials.
 
 Cons: does not appear to be directly compatible with MAVLink or the PXFMini, the
@@ -521,7 +558,7 @@ require extensive coding.\par
 Tower is the most modest of the user interface options. It is only available on
 Android, does not have rover support and has limited options for navigation and
 vehicle control. For these reasons we reject Tower as a viable option.\par
-QGroundControl runs on all major pc and mobile platforms, is configured to run
+QGroundControl runs on all major pc and mobile platformsis configured to run
 rovers, and uses the MAVLink protocol. It has a nice GUI and allows map point
 selection and advanced mission planning. It is known to work with the PXFMini
 flight controller, a component we want to use as part of the ARC build. These
