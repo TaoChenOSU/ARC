@@ -91,10 +91,10 @@ findings of each member with explanations of the technologies researched and
 provides clear reasoning for the selections made.\par
 Cierra Shawe researched and wrote the sections on Vision System Options,
 Sensors, and System Control and Data Processing.\par
-Tao Chen researched and wrote the sections on Control System, Path Planning, and
-Other Algorithms.\par
 Dan Stoyer researched and wrote the sections on Image Analysis Software,
 Telemetry Radio Communication, and User Interface.\par
+Tao Chen researched and wrote the sections on Control System, Path Planning, and
+Other Algorithms.\par
 
 
 \section{Vision System Options - Cierra} % Done - Except references
@@ -135,16 +135,21 @@ The caveat to the Sweep, is it will not be released until January. \par
 The RPLiDAR LiDAR system that would be available to our group, would not meet the requirement of being able to function consistently in an outdoor environment, and others do not qualify as commodity hardware. 
 
 \subsection{Vision choice}
-Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \\
+Due to the need to be able to navigate in outdoor environments, our team will start out attempting to use stereoscopic imaging as our primary vision system. We will do this using the OpenCV library to analyze the images, and create the disparity map that can be used for other purposes. If we have the computational power to post-process disparity maps in real time, we will attempt to do so. \par
 If time allows, given we are able to obtain a unit, our team could research the use of the Sweep LiDAR system for navigation in place of stereoscopic imaging. 
 
 \subsection{References}
-[1] M. Z. Brown, D. Burschka and G. D. Hager, "Advances in computational stereo," in IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 25, no. 8, pp. 993-1008, Aug. 2003. doi: 10.1109/TPAMI.2003.1217603
-[2] http://e-collection.library.ethz.ch/eserv/eth:48073/eth-48073-01.pdf
-[3] http://docs.opencv.org/3.1.0/
-[4] https://www.sick.com/us/en/product-portfolio/detection-and-ranging-solutions/2d-laser-scanners/tim3xx/c/g205751
-[5] http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html
-[6] http://scanse.io
+[1] M. Brown, D. Burschka and G. Hager, 'Advances in computational stereo', IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 25, no. 8, pp. 993-1008, 2003. \par
+
+[2] P. Fankhauser, M. Bloesch, D. Rodriguez, R. Kaestner, M. Hutter and R. Siegwart, Kinect v2 for Mobile Robot Navigation: Evaluation and Modeling, 1st ed. Zurich, Switzerland: Technical University of Munich, Autonomous Systems Lab of ETH Zurich, 2016. [Online]. Available: http://e-collection.library.ethz.ch/eserv/eth:48073/eth-48073-01.pdf. [Accessed: 15- Nov- 2016]. \par
+
+[3] Docs.opencv.org, 'OpenCV: OpenCV modules',  2016. [Online]. Available: http://docs.opencv.org/3.1.0/. [Accessed: 13- Nov- 2016]. \par
+
+[4] Sick.com, '2D laser scanners',  2016. [Online]. Available: https://www.sick.com/. [Accessed: 15- Nov- 2016]. \par
+
+[5] Robotshop.com, 'RPLIDAR A2 360° Laser Scanner',  2016. [Online]. Available: http://www.robotshop.com/en/rplidar-a2-360-laser-scanner.html. [Accessed: 15- Nov- 2016]. \par
+
+[6] Scanse.io, 'Meet Sweep. An Affordable Scanning LiDAR for Everyone.',  2016. [Online]. Available: http://scanse.io. [Accessed: 14- Nov- 2016]. \par
 
 \section{Sensors - Cierra}
 Sensors such as encoders, global positioning systems (GPS), and inertial measurement units (IMUs), in addition to the vision system, are key to helping a robot navigate within its environment. 
@@ -155,12 +160,12 @@ Sensors such as encoders, global positioning systems (GPS), and inertial measure
 
 \section{System Control and Data Processing Unit - Cierra}
 The ARC system will need to have a computer handling the transmission and computation of data between the user, vision system, and other inputs. 
-The computer will need to be able to handle many computations in parallel, which means ideally it will have at least two physical cores. 
+The computer will need to be able to handle many computations from the different systems in parallel, which means ideally it will have at least two physical cores. 
+Being able to process data in real-time (15 frames a second) will also be a key in being able to navigate an environment. 
 The three options chosen for consideration were the Intel NUC (Skull Canyon), UP Board, and the Raspberry Pi 3, in order from most powerful to least powerful. 
 
-
 \subsection{Intel NUC}
-The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost and Iris Pro Graphics 580. 
+The Intel NUC6i7KYK (pronounced 'nook'), or NUC Skull Canyon, is a small form computer that has a quad core i7 6770HQ quad core processor, at 2.6GHz with up to 3.5GHz boost, Iris Pro Graphics 580, and uses 64 bit architecture. 
 The NUC can have up to 32GB of DDR4 RAM at 2133MHz. 
 Intel's NUC has a similar processor, to Georgia Tech's "GT AutoRally" platform, which was successful in creating a high speed drifting autonomous RC truck. 
 The biggest difference, is Georgia Tech uses a dedicated EVGA 750 GTX Ti video card for rendering.
@@ -173,7 +178,7 @@ The base model, without RAM or a solid state drive (SSD), costs \$650, which is 
 Overall, the NUC would be a good starting point to not have resource limitations, as we could always scale up. 
 
 \subsection{UP Board}
-The UP Board uses an Intel Atom Quad Core CPU, with 2M Cache, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
+The UP Board uses an Intel Atom Quad Core CPU, up to 1.44GHz CPU with a 64 bit architecture and Intel HD 400 graphics up to 500MHz. 
 It also features up to 4GB DDR3L RAM and up to 64GB eMMC storage. \par
 The physical dimensions of the board are 3.37" x 2.22" (roughly the size of a credit card), which is advantageous due to it not taking up very much room within the assembly. 
 The UP Board also supports Windows 10 and various linux distributions, which is a plus in terms of flexibility. 
@@ -188,7 +193,7 @@ The pros of a Raspberry Pi are that it's inexpensive, has many available librari
 The cons of the Pi are it isn't as powerful as the other two options, which may be a major limitation. 
 
 \subsection{System Control and Data Processing Unit Choice}
-Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need and because it has the ability for an external graphics card if the computer can't render fast enough. 
+Our starting point will be the Intel NUC, knowing that it should have enough processing power to handle what we need and because it has the ability for an external graphics card if rendering is not able to be done at the speed required. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -406,6 +411,7 @@ radio going forward.
 [2] 3DR, '915 MHz (American) Telemetry Radio Set', 2016. [Online]. Available: https://store.3dr.com/products/915-mhz-telemetry-radio. [Accessed: 15- Nov- 2016].\par
 
 [3] jDrones.com, 'jD-RF900Plus Longrange', 2016. [Online]. Available: http://store.jdrones.com/jD\_RD900Plus\_Telemetry\_Bundle\_p/rf900set02.htm. [Accessed: 15- Nov- 2016].\par
+
 [4] ArduPilot Dev Team, 'RFD900 Radio Modem', 2016. [Online]. Available: http://ardupilot.org/copter/docs/common-rfd900.html. [Accessed: 15- Nov- 2016].\par
 
 [5] Banggood.com, 'Openpilot OPLINK Mini Radio Telemetry', 2016. [Online].
