@@ -3,3 +3,5 @@
 .Ds_Store
 *.swp
 *.o
+*.orig
+*.AppleDouble
