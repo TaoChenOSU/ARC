@@ -145,10 +145,12 @@ be able to navigate to the destination without user intervention, as fast as pos
 	\item \textbf{Success:} The vehicle successfully navigates itself to the destination.
 	\item \textbf{ARC:} Autonomous Remote Controlled is our team name
 	\item \textbf{ARCS:} ARC System, which refers to both hardware and software components built for the project.
-	\item \textbf{RC:} Remote Controled
+	\item \textbf{RC:} Remote Controlled
 	\item \textbf{AV:} Autonomous Vehicle
 	\item \textbf{Main Processing Unit:} The unit which handles all high level decisions and input processing. 
 	\item \textbf{Stakeholder:} Any user that will operate ARCS.
+	\item \textbf{Companion Computer:} The computer on board the RC vehicle that performs heavy computation, such as image analysis.
+	\item \textbf{Ground Station:} The remote computer that sends user commands to the vehicle and receives telemetry from the vehicle.
 \end{enumerate}
 
 %references
@@ -475,26 +477,43 @@ systems features and functional requirements for those features.
 This section describes all of the interfaces required for input to and output
 from the ARC system.
 	\subsubsection{User interfaces}
-	There should be a user interface (UI) for viewing a map of the surrounding
-	area and the vehicle progress, as well as setting waypoints.
-	There should be UI where all telemetry from the vehicle can
-	be seen.
+	There should be a remote station (commonly referred to as a ground station) where all information about the vehicle can be seen.
+	The ground station should allow user control of the vehicle including setting way-points, adjusting parameters for vehicle behavior, and direct control over vehicle movement.
+	
 	\subsubsection{Hardware interfaces}
-	There should be hardware interfaces for manual control of the vehicle. This
-	interface should be able to override software control so that users can
-	safely commandeer control of the vehicle from the autopilot. 
+	There should be hardware interfaces for manual control of the vehicle. This	interface should be able to override software control so that users can	safely commandeer control of the vehicle from the autopilot. 
+	Other hardware interfaces should be between a network interface between the autopilot and the companion computer on the vehicle.
+	There should also be a hardware interface between the autopilot and the vehicle control system.
+	We will use existing protocols for communication between the autopilot and the companion computer and the vehicle.
 
 	\subsubsection{Software interfaces}
-	There should be software interfaces between
+	There should be software interfaces between the user interfaces and the hardware interfaces. These interfaces will be handled by the operating system on both the ground station and the companion computer.
 
 	\subsubsection{Communications interfaces}
 
 
 \subsection{System features}
-Describes what can be expected for the ARC system to do in terms of its major features.
+Describes what the ARC system can be expected to do in terms of its major features.
 
 \subsubsection{System Feature: Image Analysis}
+	
+	\paragraph{Functional requirement image analysis 1}
+		\begin{enumerate}
+			\item ID: FR-IA1
+			\item Title: Fast Image Processing.
+			\item Description: Image analysis needs to be computed quickly, at a rate of around 60+ fps.
+			\item Rationale: In order for the vehicle to move fast, images will need to be acquired and processed very fast.
+			\item Dependencies: N/A
+		\end{enumerate}	
 
+	\paragraph{Functional requirement image analysis 2}
+		\begin{enumerate}
+			\item ID: FR-IA2
+			\item Title: Depth finding
+			\item Description: Image analysis needs to determine how far away objects are.
+			\item Rationale: The proximity of objects will determine timing for speed and turning. 
+			\item Dependencies: FR-IA1
+		\end{enumerate}
 
 \subsubsection{System Feature: Sensors}
 
@@ -504,7 +523,6 @@ The ARC vehicle needs to navigate a course autonomously. The following functiona
 requirements describe what is required to achieve this.\par
 
 	\paragraph{Functional requirement navigation 1}
-
 		\begin{enumerate}
 			\item ID: FR-NAV1
 			\item Title: Motor Control
@@ -514,7 +532,6 @@ requirements describe what is required to achieve this.\par
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 2}
-
 		\begin{enumerate}
 			\item ID: FR-NAV2
 			\item Title: Servo Control
@@ -523,7 +540,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies:
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.4 Functional requirement 3}~\\
+	\paragraph{Functional requirement navigation 3}
 		\begin{enumerate}
 			\item ID: FR-NAV3
 			\item Title: Probabilistic Analysis for motion
@@ -532,8 +549,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.x Functional requirement 4}~\\
-		%It should include both content and format as follows:
+	\paragraph{Functional requirement navigation 4}
 		\begin{enumerate}
 			\item ID: FR-NAV4
 			\item Title: Motion Model
@@ -542,7 +558,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.3 Functional requirement 5}~\\
+	\paragraph{Functional requirement navigation 5}
 		\begin{enumerate}
 			\item ID: FR-NAV5
 			\item Title: Global Path Planning Algorithm
@@ -551,8 +567,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.x Functional requirement 6}~\\
-		%It should include both content and format as follows:
+	\paragraph{Functional requirement navigation 6}
 		\begin{enumerate}
 			\item ID: FR-NAV6
 			\item Title: Local Path Planning Algorithm
@@ -561,8 +576,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.x Functional requirement 7}~\\
-		%It should include both content and format as follows:
+	\paragraph{Functional requirement navigation 7}
 		\begin{enumerate}
 			\item ID: FR-NAV7
 			\item Title: Obstacle Avoidance Algorithm
@@ -571,8 +585,7 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}
 
-%		\item[]{3.2.1.3.x Functional requirement 8}~\\
-		%It should include both content and format as follows:
+	\paragraph{Functional requirement navigation 8}
 		\begin{enumerate}
 			\item ID: FR-NAV8
 			\item Title: Parallel Parking Algorithm
@@ -581,7 +594,6 @@ requirements describe what is required to achieve this.\par
 			\item Dependencies: 
 		\end{enumerate}		
 
-%	\end{itemize}
 \subsubsection{System Feature: Hardware mounting}
 	\begin{itemize}
 		\item[]{3.2.1.3.x Functional requirement 1}~\\
@@ -608,27 +620,23 @@ requirements describe what is required to achieve this.\par
 
 \subsubsection{System Feature: Communications}
 
-\paragraph{Introduction/Purpose of feature}~\\
-This is a test of the introduction on a new line.
-
-\paragraph{Stimulus/Response Sequence} 
-
-	\begin{itemize}
-		\item[]{3.2.1.3.x Functional requirement 1}~\\
-		%It should include both content and format as follows:
+	\paragraph{Functional Requirement Comms 1}
 		\begin{enumerate}
-			\item ID: FR-1
-			\item Title: 
-			\item Description:
-			\item Rationale:
+			\item ID: FR-COM1
+			\item Title: Telemetry
+			\item Description: Telemetry needs to be transmitted from the vehicle to a ground station.
+			\item Rationale: Users need to see the current state of the vehicle at all times.
 			\item Dependencies:
 		\end{enumerate}
-			.\\
-			.\\
-			.\\
-		\item[]{3.2.1.3.n Functional requirement n}~\\
-	\end{itemize}
 
+	\paragraph{Functional Requirement Comms 2}
+		\begin{enumerate}
+			\item ID: FR-COM2
+			\item Title: Vehicle Control
+			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle.
+			\item Rationale: Users need to have a way to command the vehicle remotely.
+			\item Dependencies: N/A
+		\end{enumerate}
 
 \subsection{Performance Requirements}
 %This subsection should specify both the static and the dynamic numerical
@@ -664,6 +672,7 @@ This is a test of the introduction on a new line.
 \subsection{Design constraints}
 %This should specify design constraints that can be imposed by other standards,
 %hardware limitations, etc.
+The ARC RC vehicle will be guaranteed to communication with the ground station within 2km due to limitations of the telemetry radio.
 
 \subsection{Software System Attributes}
 %There are a number of attributes of software that can serve as requirements. It
