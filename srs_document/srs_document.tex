@@ -546,7 +546,7 @@ requirements describe what is required to achieve this.\par
 			\item Title: Probabilistic Analysis for motion
 			\item Description: Use probability to estimate the current location of the vehicle with less than 25\% error.
 			\item Rationale: Tires may slip and wobble, which will cause uncertainty on the location of the vehicle.
-			\item Dependencies: 
+			\item Dependencies: Motion Model
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 4}
@@ -555,43 +555,43 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motion Model
 			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
 			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
-			\item Dependencies: 
-		\end{enumerate}
+			\item Dependencies: Motor Control & Servo Control
+		\end{enumerate} 
 
 	\paragraph{Functional requirement navigation 5}
 		\begin{enumerate}
 			\item ID: FR-NAV5
-			\item Title: Global Path Planning Algorithm
+			\item Title: Global Path Planning
 			\item Description: When operating outdoor, the vehicle needs to go from one location to another following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that goes on concrete surfaces and does not run into any objects.
-			\item Dependencies: 
+			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 6}
 		\begin{enumerate}
 			\item ID: FR-NAV6
-			\item Title: Local Path Planning Algorithm
+			\item Title: Local Path Planning
 			\item Description: When operating indoor and given the map of the indoor area, the vehicle needs to go from one location to another within the area following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that does not run into any objects.
-			\item Dependencies: 
+			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 7}
 		\begin{enumerate}
 			\item ID: FR-NAV7
-			\item Title: Obstacle Avoidance Algorithm
+			\item Title: Obstacle Avoidance
 			\item Description: When approaching an object, the vehicle needs to decide whether to turn left or right and by how much. The algorithm can overwrite the path planned by the path planning algorithms.
 			\item Rationale: When operating both indoor and outdoor, crashing into objects needs to be avoided. 
-			\item Dependencies: 
+			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 8}
 		\begin{enumerate}
 			\item ID: FR-NAV8
-			\item Title: Parallel Parking Algorithm
+			\item Title: Parallel Parking
 			\item Description: Given sensor data and the estimate of the current location, the algorithm outputs the next optimal action (turning the front wheel a certain angle and go forward/backward at a certain speed).
 			\item Rationale: A dedicated algorithm for parallel parking is necessary because path planning algorithms do not promise the orientation of the vehicle. The parallel parking algorithm will make sure the vehicle is align with the curb/wall when finished.
-			\item Dependencies: 
+			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
 		\end{enumerate}		
 
 \subsubsection{System Feature: Hardware mounting}
