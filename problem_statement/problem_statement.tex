@@ -69,14 +69,12 @@ Fall 2016
 \maketitle
 
 \begin{abstract}
-Currently, autonomous vehicles are built with many custom parts and assemblies
-and are very expensive. The cost of entry to autonomous vehicles is often
-prohibitive for the average consumer. The purpose of the Autonomous RC (ARC)
-project is to determine if it is possible to build an autonomous RC vehicle
-using commodity hardware.  This will be accomplished using commodity hardware,
-including cameras, computers, and the RC vehicle used as the base, with minimal
-fabrication.\newline
-\newline\newline
+Currently, autonomous vehicles are built with many custom parts and assemblies and are very expensive. 
+The cost of entry to autonomous vehicles is often prohibitive for the average consumer. 
+The purpose of the Autonomous RC (ARC) project is to determine if it is possible to build an autonomous RC vehicle using commodity hardware.  
+This will be accomplished using commodity hardware, including cameras, computers, and an RC vehicle used as the base, with minimal fabrication. \\
+
+\vspace{2cm}
 
 \SignatureAndDate{D. Kevin McGrath} \newline\newline
 \SignatureAndDate{Tao Chen}\newline\newline
@@ -94,70 +92,42 @@ fabrication.\newline
 \newpage
 
 \section{Motivation}
-Millions, if not billions of dollars have been allocated for research of
-autonomous vehicles. A lot of the hardware is very specialized, and often very
-expensive. Our challenge is to see if it is possible to replicate a small subset
-of the expensive system's abilities, at a small-scale, using commodity hardware
-that costs hundreds of dollars instead of hundreds of thousands. Being able to
-implement even a small subset of the features at a small scale, could
-potentially mean a feature could also be scaled for larger implementations. A
-small-scale autonomous vehicle, built with commodity hardware, would provide an
-inexpensive way to test autonomous features and the viability of new research in
-the autonomous vehicle (AV) field, even for a hobbyist user.
+Millions, if not billions of dollars have been allocated for research of autonomous vehicles. 
+A lot of the hardware is very specialized, and often very expensive. 
+Our challenge is to see if it is possible  at a small-scale to replicate a subset of the expensive system's abilities.
+Our goal is to to use off-the-shelf retail/commodity hardware (i.e. something you can purchase from Best Buy, Radio Shack, Amazon, etc.) that costs hundreds of dollars instead of hundreds of thousands. 
+Being able to implement even a small subset of the features at a small-scale, such as a vision system, will potentially mean a feature can also be scaled for larger implementations. 
+A small-scale autonomous vehicle (AV), built with commodity hardware, will provide an inexpensive way to test autonomous features and the viability of new research in the autonomous vehicle field, even for a hobbyist user.
 
 \section{Problem Description}
-Due to the expense of autonomous vehicles, there are few options available that
-can be easily retrofitted by the average user. Our goal is to find out whether
-or not it is possible to take commodity hardware, retrofit it onto an RC car,
-and have it be able to navigate obstacles at speed. We also want to create a
-list of hardware components and a software solution that can be retrofitted onto
-at least one model of RC car, in order to enable autonomous navigation and
-operation. Ideally our solution could be used on any RC car, with minimal
-modification. As this is a research project, we do not know if it is actually
-possible to implement these features.\par
-Our implementation will be a small scale version of the DARPA grand challenge,
-where autonomous vehicles navigate themselves 100 miles through the mojave
-desert, in under 10 hours. Our goal is to implement and RC car able to navigate
-to a given point as fast as possible, which is a small scale version of the
-challenge. The RC car should be able to navigate through a room or space,
-without prior knowledge to the environment, within a set amount of time and
-parallel park. Stretch goals for the project would be high-speed obstacle
-avoidance and drifting on a dirt track.
+Due to the expense of autonomous vehicles, there are few options available that can be easily retrofitted by the average user. 
+Our goal is to find out whether or not it is possible to take commodity hardware, retrofit it onto a remote controlled (RC) car, and have it be able to navigate obstacles at speed. 
+We also want to create a list of hardware components and a software solution that can be retrofitted onto at least one model of RC car, in order to enable autonomous navigation and operation. 
+Ideally,  our solution can be used on any RC car, with minimal modification. 
+As this is a research project, we do not know if it is actually possible to implement these features using commodity hardware.\par
+Our implementation will be a small-scale version of the Defense Advanced Research Projects Agency (DARPA) Grand Challenge, where autonomous vehicles navigate themselves 100 miles through the Mojave Desert, in under 10 hours. 
+Our goal is to implement an RC car able to navigate to a given point as fast as possible, which is a small-scale version of the challenge. 
+The RC car should be able to navigate within a set amount of time through a room or defined map based area, without prior knowledge of the environment.
+The car should also be able to parallel park. 
+Stretch goals for the project are high-speed obstacle avoidance and the ability to drift (where the wheels break traction on a surface) on a dirt track.
 
 \section{Proposed Solution}
-Our solution will prove if it is possible to implement autonomous point-to-point
-navigation of an RC vehicle in low-speed and high-speed scenarios using
-off-the-shelf retail/commodity hardware (i.e. something you could purchase from
-Best Buy, Radio Shack, Amazon, etc.).  The software will be an implementation of
-readily available open-source distributions, such as Georgia Tech's GT
-AutoRally. For hardware, we will use a retail RC vehicle as the base with
-additional hardware for computation, such as the Intel NUC micro-PC, and
-control, such as the BeagleBone micro-PC with a PixHawk Fire Cape. The major 
-components including cameras, GPS, accelerometers, etc. will be kept as close 
-to retail as possible. Certain hardware, such as mounts, may need to be fabricated 
-to attach components, like the mini-PC, to the RC vehicle.\par
-This project will be successful if the RC vehicle is able to autonomously
-navigate point-to-point using low-speed obstacle avoidance and high-speed
-maneuvering when appropriate. Examples of low-speed scenarios are ninety-degree
-corners, tight s-turns, or multiple offset obstacles in the path. High-speed
-scenarios will include straight-line acceleration and drifting through
-large-radius corners.\par
-While a successful result is the desired outcome, an unsuccessful result, if 
-accompanied by enough data and documentation, will prove that it is not yet 
-possible to implement autonomy at the RC model scale using only off-the-shelf, 
-retail/commodity hardware (as described above).\par
-Our presentation at Engineering Expo will be a booth that will either show successful
-autonomy of an RC vehicle or show why it is not yet possible to produce the
-autonomous requirements specified in the problem definition. The presentation
-will include a large poster with the team/project name and smaller displays
-depicting elements of the project process. There will be a video comprised of the
-final capstone presentation and also footage of the project taken throughout
-the term and will have basic editing and formatting for appearance. We will have
-our final capstone report available for those interested and will display the RC
-vehicle used in the project. The project team members will accompany the Engineering Expo
-presentation and will interact with those interested.
+Our solution will prove if it is possible to implement autonomous point-to-point navigation of an RC vehicle in low-speed and high-speed scenarios using off-the-shelf retail/commodity hardware.  
+The software will be an implementation of readily available open-source distributions, such as Georgia Tech's GT AutoRally. 
+For hardware, we will use a retail RC vehicle as the base with additional hardware for computation, such as the Intel NUC micro-PC, and control, such as the Raspberry Pi with a PixHawk Fire Cape. 
+The major components including camera systems, GPS, accelerometers, etc. will be kept as close to retail as possible. 
+Certain hardware, such as mounts, may need to be fabricated to attach components, such as the mini-PC, to the RC vehicle.\par
+Our presentation at Engineering Expo will be a booth that will either show successful autonomy of an RC vehicle or show why it is not yet possible to produce the autonomous requirements specified in the problem definition. 
+The presentation will include a large poster with the team/project name and smaller displays depicting elements of the project process. 
+There will be a video comprised of the final capstone presentation and also footage of the project taken throughout the term and will have basic editing and formatting for appearance. 
+We will have our final capstone report available for those interested and will display the RC vehicle used in the project. 
+The project team members will accompany the Engineering Expo presentation and will interact with those interested.
 
 \section{Performance Metrics}
+This project will be successful if the RC vehicle is able to autonomously navigate point-to-point using low-speed obstacle avoidance and high-speed maneuvering when appropriate. 
+Examples of low-speed scenarios are ninety-degree corners, tight s-turns, or multiple offset obstacles in the path. 
+High-speed scenarios will include straight-line acceleration and drifting through large-radius corners. 
+An unsuccessful result, if accompanied by enough data and documentation, will show it is not yet possible to implement autonomy at the RC vehicle scale using only off-the-shelf/commodity hardware.\par
 Basic Criteria:
 \begin{itemize}
 	\item Self-navigate from point to point.
@@ -171,15 +141,9 @@ Basic Criteria:
 	\item Track current position with respect to the location of the base station in
 		order to not have the car drive away.
 \end{itemize}
-At the end of Spring 2017 (before the Engineering Expo), all the basic
-objectives above should be accomplished on the RC vehicle provided, with minimal
-specialized hardware and fabrication. Advanced Criteria and Stretch goals will
-be used to provide additional criteria if the basic criteria are finished early.
-If a final product is not delivered on time (before the Engineering Expo), we
-shall provide strong reasonings on why an objective was not feasible with the
-time and given resources.
+At the end of Spring 2017 (before the Engineering Expo), all the basic objectives above should be accomplished on the RC vehicle provided, with minimal specialized hardware and fabrication. 
+Advanced Criteria and Stretch goals will be used to provide additional criteria if the basic criteria are finished early.
+If a final product is not delivered on time (before the Engineering Expo), we shall provide strong reasonings on why an objective was not feasible with the time and given resources.
 
-The outcome of this project will be measured on the completeness of the final
-product or the soundness of the reasonings if any of the objectives are not
-achieved.
+The outcome of this project will be measured on the completeness of the final product or the soundness of the reasonings if any of the objectives are not achieved.
 \end{document}
