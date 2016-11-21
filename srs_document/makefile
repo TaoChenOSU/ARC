@@ -44,13 +44,13 @@ show: $(TRG)
 showps: $(PSF)
 	@for i in $(PSF) ; do $(GH) $$i & done
 
-all: pdf
+all: cleanall pdf clean
 
 clean:
 	rm -f *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg *.toc
 
 cleanall:
-	rm -f *.pdf *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg *.toc
+	rm -f *.pdf *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg *.toc *.gz
 
 .PHONY: all show clean ps pdf showps cleanall
 
