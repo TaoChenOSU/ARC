@@ -205,8 +205,7 @@ The control flow is described in figure 1. \\
 %%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%git 
 \begin{figure}
   \centering
-  \vspace{10cm}
-  \includegraphics[width=\textwidth,keepaspectratio]{Block_Diagram.eps}
+  \includegraphics[width=\textwidth]{Block_Diagram.jpg}
   \caption{Block diagram of hardware flow}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -555,7 +554,7 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motion Model
 			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
 			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
-			\item Dependencies: Motor Control & Servo Control
+			\item Dependencies: Motor Control \& Servo Control
 		\end{enumerate} 
 
 	\paragraph{Functional requirement navigation 5}
@@ -639,6 +638,16 @@ requirements describe what is required to achieve this.\par
 		\end{enumerate}
 
 \subsection{Performance Requirements}
+This section specifies numerical requirements placed on ARC system:
+\begin{itemize}
+	\item The system only supports one user at a time.
+	\item The system only provides one interface for user interaction at any single moment.
+	\item The system supports no more than 5 waypoints as inputs.
+	\item The system is capable of drving the vehicle at maximum 10 miles per hour.
+	\item The system is capable of navigating in an indoor environment of area no larger than 500 squre feet.
+	\item The system is capable of navigating outdoor without space constraints.
+	\item The system is capable of parallel parking in less than 5 maneuvers.
+\end{itemize}
 %This subsection should specify both the static and the dynamic numerical
 %requirements placed on the software or on human interaction with the software as
 %a whole. Static numerical requirements may include the following:
