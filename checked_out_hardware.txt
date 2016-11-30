@@ -1,5 +1,9 @@
-11/10/16 - 1 - raspberry pi 3
+11/10/16 - 1 - raspberry pi 2
 11/10/16 - 1 - PXFmini 
 11/10/16 - 2 - Megapixel US camera module
 11/10/16 - 1 - Ublox Neo-M8N GPS with Compass
 11/10/16 - 1 - UM7-LT Orientation Sensor
+11/10/16 - 2 - Telemetry Radios
+11/21/16 - 1 - rpLiDAR
+11/28/16 - 1 - Intel NUC
+11/28/16 - 1 - UPboard
