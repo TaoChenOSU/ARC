@@ -1,0 +1,121 @@
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfgantt}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Daniel Stoyer, Tao Chen}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {Design Document, Fall 2016},
+	pdftitle = {Design Document},
+	pdfsubject = {Design Document for ARCt},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\begin{document}
+
+\begin{titlepage}
+	\title{Design Document\\
+	ARC - Autonomous RC}
+	\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
+	\maketitle
+	\begin{center}
+	Version 1.0\\
+	\vspace{1.9cm}
+	\today
+	\end{center}
+
+	\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Overview}  
+\subsection{Scope} 
+\subsection{Purpose}
+\subsection{Intended Audience} 
+\subsection{Conformance}
+
+\section{Definitions} 
+\section{Conceptual model for software design descriptions} 
+\subsection{Software design in context}
+\subsection{Software design descriptions within the life cycle}
+\section{Design description information content} 
+\subsection{Introduction}
+\subsection{SDD identification}
+\subsection{Design stakeholders and their concerns} 
+\subsection{Design views}
+\subsection{Design viewpoints} 
+\subsection{Design elements} 
+\subsection{Design overlays}
+\subsection{Design rationale}
+\subsection{Design languages}
+\section{Design viewpoints}
+\subsection{Introduction} 
+\subsection{Context viewpoint} 
+\subsection{Composition viewpoint} 
+\subsection{Logical viewpoint} 
+\subsection{Dependency viewpoint} 
+\subsection{Information viewpoint} 
+\subsection{Patterns use viewpoint} 
+\subsection{Interface viewpoint} 
+\subsection{Structure viewpoint} 
+\subsection{Interaction viewpoint} 
+\subsection{State dynamics viewpoint} 
+\subsection{Algorithm viewpoint} 
+\subsection{Resource viewpoint}
+
+\section{Appendix}\subsection{Annex A (informative) Bibliography} 
+\subsection{Annex B (informative) Conforming design language description} 
+\subsection{Annex C (informative) Templates for an SDD}
+
+\end{document}
