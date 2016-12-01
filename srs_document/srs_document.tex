@@ -269,46 +269,14 @@ Two main hardware interfaces currently exist within ARCS.
 	\item Telemetry collection and actuator control
 \end{enumerate}
 
-Vision 
 Vision processing, from either a stereoscopic or depth camera, will be interfaced through 
-an i5 or better processor from an on board computer using a control board, specifically 
-the PXSF on top of a Raspberry Pi or UP board, will be used as an interface between a 
-computer that is doing high level computations, and the servos, motors, and other telemetry 
+an i5 or better processor from an on board computer using a control board, which will be used as an interface between a 
+computer that is doing high level computations, the servos, motors, and other telemetry 
 devices. 
-And they should be able to do these things....
 
-%This should specify the logical characteristics of each interface between the
-%software product and the hardware components of the system. This includes
-%configuration characteristics (number of ports, instruction sets, etc.). It also
-%covers such matters as what devices are to be supported, how they are to be
-%supported, and protocols. For example, terminal support may specify full-screen
-%support as opposed to line-by-line support.
-
+Telemetry collection and actuator control will be handled by a PXFmini and interfaced through a board with a 40pin connector, such as the Raspberry Pi. This abstracts a lot of control onto the PXFmini. 
 
 \subsubsection{Software Interfaces} % Dan
-%This should specify the use of other required software products (e.g., a data
-%management system, an operating system, or a mathematical package), and
-%interfaces with other application systems (e.g., the linkage between an accounts
-%receivable system and a general ledger system). For each required software
-%product, the following should be provided:
-%\begin{itemize}
-%	\item Name;
-%	\item Mnemonic;
-%	\item Specification number;
-%	\item Version number;
-%	\item Source.
-%\end{itemize}
-%
-%
-%For each interface, the following should be provided:
-%
-%\begin{itemize}
-%	\item Discussion of the purpose of the interfacing software as related to
-%		this software product.
-%	\item Definition of the interface in terms of message content and format. It
-%		is not necessary to detail any well-documented interface, but a
-%		reference to the document defining the interface is required.
-%\end{itemize}
 \begin{itemize}
 	
 	\item We require three operating systems. One for a remote PC for user input, one
@@ -392,28 +360,6 @@ Maintainability of the system is not considered to be user-oriented, which means
 The system will be made available publicly (open source), however, only users with extensive robotics experience should attempt at modifying the system outside of the given parameters.
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-%This subsection of the SRS should provide a summary of the major functions that
-%the software will perform. For example, an SRS for an accounting program may use
-%this part to address customer account maintenance, customer statement, and
-%invoice preparation without mentioning the vast amount of detail that each of
-%those functions requires.\par
-%
-%Sometimes the function summary that is necessary for this part can be taken
-%directly from the section of the higher-level specification (if one exists) that
-%allocates particular functions to the software product. Note that for the sake
-%of clarity
-%\begin{enumerate}
-%	\item The functions should be organized in a way that makes the list of
-%		functions understandable to the customer or to anyone else reading the
-%		document for the first time.
-%	\item Textual or graphical methods can be used to show the different
-%		functions and their relationships. Such a diagram is not intended to
-%		show a design of a product, but simply shows the logical relationships
-%		among variables.
-%\end{enumerate}
-
 \subsection{User Characteristics} % Cierra
 Our system should be able to be built and operated by a user with at least two 
 years of university engineering coursework and one two years, a user with over 
@@ -435,30 +381,9 @@ Current constraints for the project include:
 	\item For research purpose only, the vehicle will only be required to navigate around static objects in an environment. 
 	This is to reduce the complexity of the initial system. 
 \end{enumerate}
-%This subsection of the SRS should provide a general description of any other
-%items that will limit the developer's options. These include
-%\begin{enumerate}
-%	\item Regulatory policies;
-%	\item Hardware limitations (e.g., signal timing requirements);
-%	\item Interfaces to other applications;
-%	\item Parallel operation;
-%	\item Audit functions;
-%	\item Control functions;
-%	\item Higher-order language requirements;
-%	\item Signal handshake protocols (e.g., XON-XOFF, ACK-NACK);
-%	\item Reliability requirements;
-%	\item Criticality of the application;
-%	\item Safety and security considerations.
-%\end{enumerate}
 
 \subsection{Assumptions and Dependencies}
-%This subsection of the SRS should list each of the factors that affect the
-%requirements stated in the SRS. These factors are not design constraints on the
-%software but are, rather, any changes to them that can affect the requirements
-%in the SRS. For example, an assumption may be that a specific operating system
-%will be available on the hardware designated for the software product. If, in
-%fact, the operating system is not available, the SRS would then have to change
-%accordingly.
+As a research project, the main assumption is currently this is possible. 
 
 \subsection{Apportionment of Requirements} % Dan, in progress
 %This subsection of the SRS should identify requirements that may be delayed
@@ -500,7 +425,7 @@ Describes what the ARC system can be expected to do in terms of its major featur
 		\begin{enumerate}
 			\item ID: FR-IA1
 			\item Title: Fast Image Processing.
-			\item Description: Image analysis needs to be computed quickly, at a rate of around 60+ fps.
+			\item Description: Image analysis needs to be at a rate of around 15 or more frames per second.
 			\item Rationale: In order for the vehicle to move fast, images will need to be acquired and processed very fast.
 			\item Dependencies: N/A
 		\end{enumerate}	
@@ -513,9 +438,35 @@ Describes what the ARC system can be expected to do in terms of its major featur
 			\item Rationale: The proximity of objects will determine timing for speed and turning. 
 			\item Dependencies: FR-IA1
 		\end{enumerate}
+	
+	\paragraph{Functional requirement image analysis 3}
+		\begin{enumerate}
+			\item ID: FR-IA3
+			\item Title: Object height
+			\item Description: Objects that are required to be detected, must be at least 12" tall. 
+			\item Rationale: The car should be able to avoid obstacles that are taller than the car itself. 
+			\item Dependencies: FR-IA2
+		\end{enumerate}
 
 \subsubsection{System Feature: Sensors}
 
+	\paragraph{Functional requirement sensor 1}
+    		\begin{enumerate}
+    			\item ID: FR-SN1
+    			\item Title: GPS Data Collection
+    			\item Description: When outside, GPS coordinates should be able to be obtained from a GPS unit and be accurate up to 10 meters, in an open space with no trees within 50 meters. 
+    			\item Rationale: Within an open field, this accuracy should be able to be obtained in order to provide reasonable locational accuracy to be used in navigation.
+    			\item Dependencies: FR-HW1, FR-HW2
+    		\end{enumerate}
+		
+	\paragraph{Functional requirement sensor 2}
+    		\begin{enumerate}
+    			\item ID: FR-SN2
+    			\item Title: GPS Data Processing
+    			\item Description: Data collected from the GPS unit will need to be relayed to the user through the main computational effort. 
+    			\item Rationale: A user needs to be able to view the location of the car at any time. 
+    			\item Dependencies: FR-HW1, FR-HW2, FR-SN1
+    		\end{enumerate}
 
 \subsubsection{System Feature: Navigation}
 The ARC vehicle needs to navigate a course autonomously. The following functional
@@ -621,21 +572,30 @@ requirements describe what is required to achieve this.\par
 
 	\paragraph{Functional Requirement Comms 1}
 		\begin{enumerate}
-			\item ID: FR-COM1
+			\item ID: FR-CM1
 			\item Title: Telemetry
 			\item Description: Telemetry needs to be transmitted from the vehicle to a ground station.
 			\item Rationale: Users need to see the current state of the vehicle at all times.
-			\item Dependencies:
+			\item Dependencies: N/A
 		\end{enumerate}
 
 	\paragraph{Functional Requirement Comms 2}
 		\begin{enumerate}
-			\item ID: FR-COM2
+			\item ID: FR-CM2
 			\item Title: Vehicle Control
-			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle.
+			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle. Signals should be received and processed in under 2 seconds.
 			\item Rationale: Users need to have a way to command the vehicle remotely.
 			\item Dependencies: N/A
 		\end{enumerate}
+		
+        \paragraph{Functional Requirement Comms 3}
+        		\begin{enumerate}
+        			\item ID: FR-CM3
+        			\item Title: Emergency Stop
+        			\item Description: When sent a signal to stop, the car needs to stop within 2 seconds from when the command is sent.
+        			\item Rationale: A failsafe must be in place if the car is "going rogue".
+        			\item Dependencies: FR-CM2
+        		\end{enumerate}
 
 \subsection{Performance Requirements}
 This section specifies numerical requirements placed on ARC system:
@@ -643,48 +603,20 @@ This section specifies numerical requirements placed on ARC system:
 	\item The system only supports one user at a time.
 	\item The system only provides one interface for user interaction at any single moment.
 	\item The system supports no more than 5 waypoints as inputs.
-	\item The system is capable of drving the vehicle at maximum 10 miles per hour.
-	\item The system is capable of navigating in an indoor environment of area no larger than 500 squre feet.
+	\item The system is capable of driving the vehicle at maximum 10 miles per hour.
+	\item The system is capable of navigating in an indoor environment of area no larger than 500 square feet.
 	\item The system is capable of navigating outdoor without space constraints.
 	\item The system is capable of parallel parking in less than 5 maneuvers.
 \end{itemize}
-%This subsection should specify both the static and the dynamic numerical
-%requirements placed on the software or on human interaction with the software as
-%a whole. Static numerical requirements may include the following:
-%
-%\begin{enumerate}
-%	\item The number of terminals to be supported;
-%	\item The number of simultaneous users to be supported;
-%	\item Amount and type of information to be handled.
-%\end{enumerate}
-%
-%Static numerical requirements are sometimes identified under a separate section
-%entitled Capacity.
-%
-%Dynamic numerical requirements may include, for example, the numbers of
-%transactions and tasks and the amount of data to be processed within certain
-%time periods for both normal and peak workload conditions.
-%
-%All of these requirements should be stated in measurable terms.
-%
-%For example,
-%
-%\textit{95\% of the transactions shall be processed in less than 1 s.}
-%
-%rather than,
-%
-%\textit{An operator shall not have to wait for the transaction to complete.}
-%
-%Numerical limits applied to one specific function are normally specified as part
-%of the processing subparagraph description of that function.
+
 
 \subsection{Design constraints}
 %This should specify design constraints that can be imposed by other standards,
-
 %hardware limitations, etc.
 The ARC RC vehicle will be guaranteed to communication with the ground station within 2km due to limitations of the telemetry radio.
 
 \subsection{Software System Attributes}
+As this is a research project, requirements found along the way will be appended onto this section. 
 %There are a number of attributes of software that can serve as requirements. It
 %is important that required attributes be specified so that their achievement can
 %be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
@@ -696,24 +628,25 @@ The ARC RC vehicle will be guaranteed to communication with the ground station w
 %include database requirements, internationalization requirements, legal 
 %requirements, reuse objectives for the project, and so on. Add any new sections 
 %that are pertinent to the project.
+As this is a research project, requirements found along the way will be appended onto this section. 
 
-\section{Index}
+%\section{Index}
 
-\section{Appendix}
+%\section{Appendix}
 
-\subsection{Appendix A: Glossary}
+%\subsection{Appendix A: Glossary}
 %see https://en.wikibooks.org/wiki/LaTeX/Glossary
 % Define all the terms necessary to properly interpret the SRS, including 
 % acronyms and abbreviations. You may wish to build a separate glossary that spans 
 % multiple projects or the entire organization, and just include terms specific to 
 % a single project in each SRS.
 
-\subsection{Appendix B: Analysis Models}
+%\subsection{Appendix B: Analysis Models}
 % Optionally, include any pertinent analysis models, such as data flow 
 % diagrams, class diagrams, state-transition diagrams, or entity-relationship 
 % diagrams.
 
-\subsection{Appendix C: To Be Determined List}
+%\subsection{Appendix C: To Be Determined List}
 %Collect a numbered list of the TBD (to be determined) references that remain 
 %in the SRS so they can be tracked to closure.
 
