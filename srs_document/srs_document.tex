@@ -425,7 +425,8 @@ from the ARC system.
 	The ground station should allow user control of the vehicle including setting way-points, adjusting parameters for vehicle behavior, and direct control over vehicle movement.
 	
 	\subsubsection{Hardware interfaces}
-	There should be hardware interfaces for manual control of the vehicle. This	interface should be able to override software control so that users can	safely commandeer control of the vehicle from the autopilot. 
+	There should be hardware interfaces for manual control of the vehicle. 
+	This interface should be able to override software control so that users can safely commandeer control of the vehicle from the autopilot. 
 	Other hardware interfaces should be between a network interface between the autopilot and the companion computer on the vehicle.
 	There should also be a hardware interface between the autopilot and the vehicle control system.
 	We will use existing protocols for communication between the autopilot and the companion computer and the vehicle.
@@ -480,6 +481,7 @@ Describes what the ARC system can be expected to do in terms of its major featur
     			\item Description: When outside, GPS coordinates should be able to be obtained from a GPS unit and be accurate up to 10 meters, in an open space with no trees within 50 meters. 
     			\item Rationale: Within an open field, this accuracy should be able to be obtained in order to provide reasonable locational accuracy to be used in navigation.
     			\item Dependencies: FR-HW1, FR-HW2
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface after FR-SN2 has been met. 
     		\end{enumerate}
 		
 	\paragraph{Functional requirement sensor 2}
@@ -489,6 +491,17 @@ Describes what the ARC system can be expected to do in terms of its major featur
     			\item Description: Data collected from the GPS unit will need to be relayed to the user through the main computational effort. 
     			\item Rationale: A user needs to be able to view the location of the car at any time. 
     			\item Dependencies: FR-HW1, FR-HW2, FR-SN1
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface or the car will be placed on a map that is displayed. 
+    		\end{enumerate}
+		
+	\paragraph{Functional requirement sensor 3}
+    		\begin{enumerate}
+    			\item ID: FR-SN3
+    			\item Title: IMU data collection and processing
+    			\item Description: Data from IMU sensors will be sent to the main computational unit at an update rate of at least 20 measurements a second. 
+    			\item Rationale: Quickly updated data is a must in order to navigate at speed.
+    			\item Dependencies: N/A
+			\item Completion Metric: Data will be displayed along with the updates per second to the user through some form of interface.
     		\end{enumerate}
 
 \subsubsection{System Feature: Navigation}
@@ -501,7 +514,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motor Control
 			\item Description: To limit the uncertainty caused by the motor under 25\% when going forward and backward.
 			\item Rationale: Maximize the accuracy of motor control to make prediction easier.
-			\item Dependencies: Probabilistic Analysis for motion
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The RPS at which and direction in which the motor spins will be within 25\% of error with 
+			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 2}
@@ -510,7 +525,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Servo Control
 			\item Description: To limit the uncertainty caused by the servo under 25\% when turning.
 			\item Rationale: Maximize the accuracy of servo control to make prediction easier.
-			\item Dependencies:
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The speed at which and direction in which the servo turns will be within 25\% of error with 
+			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 3}
@@ -519,7 +536,10 @@ requirements describe what is required to achieve this.\par
 			\item Title: Probabilistic Analysis for motion
 			\item Description: Use probability to estimate the current location of the vehicle with less than 25\% error.
 			\item Rationale: Tires may slip and wobble, which will cause uncertainty on the location of the vehicle.
-			\item Dependencies: Motion Model
+			\item Dependencies: FR-NAV4
+			\item Completion Metrics: The instant location of the vehicle will be filtered by the system and reults of the estimated 
+			location will have higher accuracy than the pre-filtered result. This metrics will be confirmed visually on
+			a computer display. . 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 4}
@@ -528,7 +548,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motion Model
 			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
 			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
-			\item Dependencies: Motor Control \& Servo Control
+			\item Dependencies: FR-NAV1 \& FR-NAV2
+			\item Completion Metrics: The commands sent by the main computer will be adapted to the vehicle's configurations, which are enterred to the 
+			system by humans at the set up precedure. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate} 
 
 	\paragraph{Functional requirement navigation 5}
@@ -537,7 +559,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Global Path Planning
 			\item Description: When operating outdoor, the vehicle needs to go from one location to another following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that goes on concrete surfaces and does not run into any objects.
-			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
+			a computer display. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 6}
@@ -546,7 +570,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Local Path Planning
 			\item Description: When operating indoor and given the map of the indoor area, the vehicle needs to go from one location to another within the area following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that does not run into any objects.
-			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
+			a computer display. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 7}
@@ -555,7 +581,8 @@ requirements describe what is required to achieve this.\par
 			\item Title: Obstacle Avoidance
 			\item Description: When approaching an object, the vehicle needs to decide whether to turn left or right and by how much. The algorithm can overwrite the path planned by the path planning algorithms.
 			\item Rationale: When operating both indoor and outdoor, crashing into objects needs to be avoided. 
-			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to avoid obstacles that the image analysis system can detect. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 8}
@@ -564,7 +591,8 @@ requirements describe what is required to achieve this.\par
 			\item Title: Parallel Parking
 			\item Description: Given sensor data and the estimate of the current location, the algorithm outputs the next optimal action (turning the front wheel a certain angle and go forward/backward at a certain speed).
 			\item Rationale: A dedicated algorithm for parallel parking is necessary because path planning algorithms do not promise the orientation of the vehicle. The parallel parking algorithm will make sure the vehicle is align with the curb/wall when finished.
-			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to parallel park itself when given a open spot. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate}		
 		
 \subsubsection{System Feature: Hardware mounting}
@@ -575,6 +603,7 @@ requirements describe what is required to achieve this.\par
 			\item Description: Seal any unused ports, encase electronic components to minimize environmental exposure.
 			\item Rationale: Minimizing dust and other elements to electronic components to reduce wear and tear.
 			\item Dependencies: N/A
+			\item Completion Metric: The car can be visually inspected to see if this requirement has been met. 
 		\end{enumerate}
 
 	\paragraph{ Functional requirement 2}
@@ -584,6 +613,7 @@ requirements describe what is required to achieve this.\par
 			\item Description: Hardware should be mounted in such a way, that in the event that the vehicle rolls over or high-speed impact, hardware remains in place and moves no more than 1 cm from its original location.
 			\item Rationale: In the event of an impact or rollover, the hardware should remain in place, and not detach from the vehicle.
 			\item Dependencies: FR-HW1
+			\item Completion Metric: The car will be picked up and turned over. No components should move out of the range specified. 
 		\end{enumerate}
 
 
@@ -668,9 +698,10 @@ This section specifies numerical requirements placed on ARC system:
 	\item The system only supports one user at a time.
 	\item The system only provides one interface for user interaction at any single moment.
 	\item The system supports no more than 5 waypoints as inputs.
-	\item The system is capable of driving the vehicle at maximum 10 miles per hour.
+	\item The system is capable of driving the vehicle at maximum 10 miles per hour in a straight line.
 	\item The system is capable of navigating in an indoor environment of area no larger than 500 square feet.
 	\item The system is capable of navigating outdoor without space constraints.
+	\item The system is capable of parallel parking in under a minute. 
 \end{itemize}
 
 
