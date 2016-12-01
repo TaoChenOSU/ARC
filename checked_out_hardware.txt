@@ -7,3 +7,4 @@
 11/21/16 - 1 - rpLiDAR
 11/28/16 - 1 - Intel NUC
 11/28/16 - 1 - UPboard
+12/01/16 - 4 - Servos (2 big ones, 2 small ones)
