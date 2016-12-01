@@ -495,7 +495,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motor Control
 			\item Description: To limit the uncertainty caused by the motor under 25\% when going forward and backward.
 			\item Rationale: Maximize the accuracy of motor control to make prediction easier.
-			\item Dependencies: Probabilistic Analysis for motion
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The RPS at which and direction in which the motor spins will be within 25\% of error with 
+			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 2}
@@ -504,7 +506,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Servo Control
 			\item Description: To limit the uncertainty caused by the servo under 25\% when turning.
 			\item Rationale: Maximize the accuracy of servo control to make prediction easier.
-			\item Dependencies:
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The speed at which and direction in which the servo turns will be within 25\% of error with 
+			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 3}
@@ -513,7 +517,10 @@ requirements describe what is required to achieve this.\par
 			\item Title: Probabilistic Analysis for motion
 			\item Description: Use probability to estimate the current location of the vehicle with less than 25\% error.
 			\item Rationale: Tires may slip and wobble, which will cause uncertainty on the location of the vehicle.
-			\item Dependencies: Motion Model
+			\item Dependencies: FR-NAV4
+			\item Completion Metrics: The instant location of the vehicle will be filtered by the system and reults of the estimated 
+			location will have higher accuracy than the pre-filtered result. This metrics will be confirmed visually on
+			a computer display. . 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 4}
@@ -522,7 +529,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Motion Model
 			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
 			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
-			\item Dependencies: Motor Control \& Servo Control
+			\item Dependencies: FR-NAV1 \& FR-NAV2
+			\item Completion Metrics: The commands sent by the main computer will be adapted to the vehicle's configurations, which are enterred to the 
+			system by humans at the set up precedure. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate} 
 
 	\paragraph{Functional requirement navigation 5}
@@ -531,7 +540,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Global Path Planning
 			\item Description: When operating outdoor, the vehicle needs to go from one location to another following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that goes on concrete surfaces and does not run into any objects.
-			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
+			a computer display. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 6}
@@ -540,7 +551,9 @@ requirements describe what is required to achieve this.\par
 			\item Title: Local Path Planning
 			\item Description: When operating indoor and given the map of the indoor area, the vehicle needs to go from one location to another within the area following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that does not run into any objects.
-			\item Dependencies: Obstacle Avoidance, Sensors, Probabilistic Analysis for Motion
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
+			a computer display. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 7}
@@ -549,7 +562,8 @@ requirements describe what is required to achieve this.\par
 			\item Title: Obstacle Avoidance
 			\item Description: When approaching an object, the vehicle needs to decide whether to turn left or right and by how much. The algorithm can overwrite the path planned by the path planning algorithms.
 			\item Rationale: When operating both indoor and outdoor, crashing into objects needs to be avoided. 
-			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to avoid obstacles that the image analysis system can detect. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 8}
@@ -558,7 +572,8 @@ requirements describe what is required to achieve this.\par
 			\item Title: Parallel Parking
 			\item Description: Given sensor data and the estimate of the current location, the algorithm outputs the next optimal action (turning the front wheel a certain angle and go forward/backward at a certain speed).
 			\item Rationale: A dedicated algorithm for parallel parking is necessary because path planning algorithms do not promise the orientation of the vehicle. The parallel parking algorithm will make sure the vehicle is align with the curb/wall when finished.
-			\item Dependencies: Sensors, Control System, Probabilistic Analysis for Motion
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to parallel park itself when given a open spot. This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate}		
 		
 \subsubsection{System Feature: Hardware mounting}
