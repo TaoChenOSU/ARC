@@ -167,6 +167,9 @@ be able to navigate to the destination without user intervention, as fast as pos
 	\item \textbf{Stakeholder:} Any user that will operate ARCS.
 	\item \textbf{Companion Computer:} The computer on board the RC vehicle that performs heavy computation, such as image analysis.
 	\item \textbf{Ground Station:} The remote computer that sends user commands to the vehicle and receives telemetry from the vehicle.
+	\item \textbf{Graphical User Interface (GUI):} a way to visually interact with the ARC environment using mouse and keyboard.
+	\item \textbf{Command Line Interface (CLI):} a text-based interface that allows entering commands from a prompt, usually executed from within a terminal or shell.
+	\item \textbf{Mission:} The total operations of the vehicle, as commanded by the user. For example, a user tells the vehicle to go to a point at a certain speed, that is the mission for the vehicle.
 \end{enumerate}
 
 %references
@@ -221,7 +224,7 @@ The control flow is described in figure 1. \\
 %%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%git 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{Block_Diagram.jpg}
+  \includegraphics[width=\textwidth]{Block_Diagram_1_.eps}
   \caption{Block diagram of hardware flow}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,24 +448,27 @@ Describes what the ARC system can be expected to do in terms of its major featur
 			\item Description: Image analysis needs to be at a rate of around 15 or more frames per second.
 			\item Rationale: In order for the vehicle to move fast, images will need to be acquired and processed very fast.
 			\item Dependencies: N/A
+			\item Completion Metric: Frames per second being processed will be displayed to the user. 
 		\end{enumerate}	
 
 	\paragraph{Functional requirement image analysis 2}
 		\begin{enumerate}
 			\item ID: FR-IA2
 			\item Title: Depth finding
-			\item Description: Image analysis needs to determine how far away objects are.
+			\item Description: Depth finding image analysis will determine how far away objects are out to a distance of at least 6 feet.
 			\item Rationale: The proximity of objects will determine timing for speed and turning. 
 			\item Dependencies: FR-IA1
+			\item Completion Metric: Detected objects will be displayed through a GUI.
 		\end{enumerate}
 	
 	\paragraph{Functional requirement image analysis 3}
 		\begin{enumerate}
 			\item ID: FR-IA3
-			\item Title: Object height
-			\item Description: Objects that are required to be detected, must be at least 12" tall. 
-			\item Rationale: The car should be able to avoid obstacles that are taller than the car itself. 
+			\item Title: Object height detection
+			\item Description: Objects 8 inches or taller will be detected.
+			\item Rationale: The car should be able to avoid obstacles that cannot be driven over.
 			\item Dependencies: FR-IA2
+			\item Completion Metric: The car will avoid obstacles 8 inches or taller.
 		\end{enumerate}
 
 \subsubsection{System Feature: Sensors}
@@ -588,28 +594,73 @@ requirements describe what is required to achieve this.\par
 		\begin{enumerate}
 			\item ID: FR-CM1
 			\item Title: Telemetry
-			\item Description: Telemetry needs to be transmitted from the vehicle to a ground station.
-			\item Rationale: Users need to see the current state of the vehicle at all times.
+			\item Description: Telemetry will be transmitted from the vehicle to a ground station.
+			\item Rationale: Users need to see the current state of the vehicle at all times to know if it is operating normally.
 			\item Dependencies: N/A
+			\item Completion Metric: Telemetry will be visually confirmed on the ground station.
 		\end{enumerate}
 
 	\paragraph{Functional Requirement Comms 2}
 		\begin{enumerate}
 			\item ID: FR-CM2
 			\item Title: Vehicle Control
-			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle. Signals should be received and processed in under 2 seconds.
-			\item Rationale: Users need to have a way to command the vehicle remotely.
+			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle. Signals should be received and processed in under 1 second.
+			\item Rationale: Users need to have a way to command the vehicle remotely to start, or chnage, an operation.
 			\item Dependencies: N/A
+			\item Completion Metric: The vehicle will respond to control signals within 1 second.
 		\end{enumerate}
 		
         \paragraph{Functional Requirement Comms 3}
-        		\begin{enumerate}
-        			\item ID: FR-CM3
-        			\item Title: Emergency Stop
-        			\item Description: When sent a signal to stop, the car needs to stop within 2 seconds from when the command is sent.
-        			\item Rationale: A failsafe must be in place if the car is "going rogue".
-        			\item Dependencies: FR-CM2
-        		\end{enumerate}
+			\begin{enumerate}
+				\item ID: FR-CM3
+				\item Title: Emergency Stop
+				\item Description: When sent a signal to stop, the car needs to stop within 1 second from when the command is sent.
+				\item Rationale: A failsafe must be in place if the car is "going rogue".
+				\item Dependencies: FR-CM2
+				\item Completion Metric: The car will stop within 1 second of command execution on the ground station.
+			\end{enumerate}
+
+\subsubsection{System Feature: User Interface}
+
+	\paragraph{Functional Reqirement User Interface 1}
+		\begin{enumerate}
+			\item ID: FR-UI2
+			\item Title: Graphical User Interface
+			\item Description: There will be a GUI to see real-time sensor and vehicle data.
+			\item Rationale: Seeing real-time sensor and vehicle data allows the user to determine if the sensors and vehicle are behaving as expected at the time of execution.
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: Sensor and vehicle data are displayed through a GUI on the ground station.
+		\end{enumerate}
+
+	\paragraph{Functional Reqirement User Interface 3}
+		\begin{enumerate}
+			\item ID: FR-UI3
+			\item Title: Command Line Interface
+			\item Description: There will be a CLI to enter text commands for controlling the vehicle.
+			\item Rationale: 
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: A user is able to enter a destination, start, and stop through a CLI on the ground station.
+		\end{enumerate}
+
+	\paragraph{Functional Reqirement User Interface 4}
+		\begin{enumerate}
+			\item ID: FR-UI4
+			\item Title: Waypoint Selection
+			\item Description: There will be an interface to enter a destination for the vehicle.
+			\item Rationale: There needs to be a way to tell the vehicle where to go.
+			\item Dependencies: FR-CM2
+			\item Completion Metric: Either CLI or GUI, or both, will be provided for entering waypoint information.
+		\end{enumerate}
+
+	\paragraph{Functional Reqirement User Interface 5}
+		\begin{enumerate}
+			\item ID: FR-UI5
+			\item Title: Vehicle Information
+			\item Description: There will be a GUI to see real-time sensor and vehicle data.
+			\item Rationale: Seeing real-time sensor and vehicle data allows the user to determine if the sensors and vehicle are behaving as expected at the time of execution.
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: Sensor and vehicle data are displayed through a GUI.
+		\end{enumerate}
 
 \subsection{Performance Requirements}
 This section specifies numerical requirements placed on ARC system:
@@ -626,7 +677,12 @@ This section specifies numerical requirements placed on ARC system:
 \subsection{Design constraints}
 %This should specify design constraints that can be imposed by other standards,
 %hardware limitations, etc.
-The ARC RC vehicle will be guaranteed to communication with the ground station within 2km due to limitations of the telemetry radio.
+
+\begin{itemize}
+	\item The ARC RC vehicle is guaranteed to communication with the ground station within 2km due to limitations of the telemetry radio.
+	\item Autonomous navigation is guaranteed at 3 mph.
+	\item The hardware fits, with minimal custom fabrication, onto a pre-existing RC vehicle.
+\end{itemize}
 
 \subsection{Software System Attributes}
 As this is a research project, requirements found along the way will be appended onto this section. 
@@ -635,6 +691,13 @@ As this is a research project, requirements found along the way will be appended
 %be objectively verified. Subclauses 3.6.1 through 3.6.5 provide a partial list
 %of examples.
 %We will likely need to come up with more/different attributes
+
+\subsubsection{Reliability}
+There will be no redundant software systems. Any unrecoverable system errors will put the vehicle  direct user/manual control.
+The system must operate to completion of mission.
+
+\subsubsection{Security}
+Security is not a consideration for this project. 
 
 \subsection{Other Requirements}
 %Define any other requirements not covered elsewhere in the SRS. This might 
