@@ -422,7 +422,8 @@ from the ARC system.
 	The ground station should allow user control of the vehicle including setting way-points, adjusting parameters for vehicle behavior, and direct control over vehicle movement.
 	
 	\subsubsection{Hardware interfaces}
-	There should be hardware interfaces for manual control of the vehicle. This	interface should be able to override software control so that users can	safely commandeer control of the vehicle from the autopilot. 
+	There should be hardware interfaces for manual control of the vehicle. 
+	This interface should be able to override software control so that users can safely commandeer control of the vehicle from the autopilot. 
 	Other hardware interfaces should be between a network interface between the autopilot and the companion computer on the vehicle.
 	There should also be a hardware interface between the autopilot and the vehicle control system.
 	We will use existing protocols for communication between the autopilot and the companion computer and the vehicle.
@@ -463,6 +464,7 @@ Describes what the ARC system can be expected to do in terms of its major featur
 			\item Description: Objects that are required to be detected, must be at least 12" tall. 
 			\item Rationale: The car should be able to avoid obstacles that are taller than the car itself. 
 			\item Dependencies: FR-IA2
+			\item Completion Metric: When an object 12" or taller is placed in front of the car three feet away, the user will be able to see the object displayed the object on a screen. 
 		\end{enumerate}
 
 \subsubsection{System Feature: Sensors}
@@ -474,6 +476,7 @@ Describes what the ARC system can be expected to do in terms of its major featur
     			\item Description: When outside, GPS coordinates should be able to be obtained from a GPS unit and be accurate up to 10 meters, in an open space with no trees within 50 meters. 
     			\item Rationale: Within an open field, this accuracy should be able to be obtained in order to provide reasonable locational accuracy to be used in navigation.
     			\item Dependencies: FR-HW1, FR-HW2
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface after FR-SN2 has been met. 
     		\end{enumerate}
 		
 	\paragraph{Functional requirement sensor 2}
@@ -483,6 +486,17 @@ Describes what the ARC system can be expected to do in terms of its major featur
     			\item Description: Data collected from the GPS unit will need to be relayed to the user through the main computational effort. 
     			\item Rationale: A user needs to be able to view the location of the car at any time. 
     			\item Dependencies: FR-HW1, FR-HW2, FR-SN1
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface or the car will be placed on a map that is displayed. 
+    		\end{enumerate}
+		
+	\paragraph{Functional requirement sensor 3}
+    		\begin{enumerate}
+    			\item ID: FR-SN3
+    			\item Title: IMU data collection and processing
+    			\item Description: Data from IMU sensors will be sent to the main computational unit at an update rate of at least 20 measurements a second. 
+    			\item Rationale: Quickly updated data is a must in order to navigate at speed.
+    			\item Dependencies: N/A
+			\item Completion Metric: Data will be displayed along with the updates per second to the user through some form of interface.
     		\end{enumerate}
 
 \subsubsection{System Feature: Navigation}
@@ -584,6 +598,7 @@ requirements describe what is required to achieve this.\par
 			\item Description: Seal any unused ports, encase electronic components to minimize environmental exposure.
 			\item Rationale: Minimizing dust and other elements to electronic components to reduce wear and tear.
 			\item Dependencies: N/A
+			\item Completion Metric: The car can be visually inspected to see if this requirement has been met. 
 		\end{enumerate}
 
 	\paragraph{ Functional requirement 2}
@@ -593,6 +608,7 @@ requirements describe what is required to achieve this.\par
 			\item Description: Hardware should be mounted in such a way, that in the event that the vehicle rolls over or high-speed impact, hardware remains in place and moves no more than 1 cm from its original location.
 			\item Rationale: In the event of an impact or rollover, the hardware should remain in place, and not detach from the vehicle.
 			\item Dependencies: FR-HW1
+			\item Completion Metric: The car will be picked up and turned over. No components should move out of the range specified. 
 		\end{enumerate}
 
 
@@ -624,6 +640,7 @@ requirements describe what is required to achieve this.\par
         			\item Description: When sent a signal to stop, the car needs to stop within 2 seconds from when the command is sent.
         			\item Rationale: A failsafe must be in place if the car is "going rogue".
         			\item Dependencies: FR-CM2
+			\item Completion Metric: When the stop button is called, the user should be able to see the car stopping within two seconds.
         		\end{enumerate}
 
 \subsection{Performance Requirements}
@@ -632,9 +649,10 @@ This section specifies numerical requirements placed on ARC system:
 	\item The system only supports one user at a time.
 	\item The system only provides one interface for user interaction at any single moment.
 	\item The system supports no more than 5 waypoints as inputs.
-	\item The system is capable of driving the vehicle at maximum 10 miles per hour.
+	\item The system is capable of driving the vehicle at maximum 10 miles per hour in a straight line.
 	\item The system is capable of navigating in an indoor environment of area no larger than 500 square feet.
 	\item The system is capable of navigating outdoor without space constraints.
+	\item The system is capable of parallel parking in under a minute. 
 \end{itemize}
 
 
