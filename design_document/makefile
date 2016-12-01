@@ -43,7 +43,7 @@ show: $(TRG)
 showps: $(PSF)
 	@for i in $(PSF) ; do $(GH) $$i & done
 
-all: pdf
+all: pdf clean
 
 clean:
 	rm -f *.ps *.dvi *.out *.log *.aux *.bbl *.blg *.pyg *.toc
