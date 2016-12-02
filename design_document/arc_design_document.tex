@@ -79,34 +79,14 @@
 
 \newpage
 
-% What
-Vision systems are used to det
-% Design
-% How it's implemented 
-
 \section{Overview}  
+This document will provide an overview of current design and milestones for the ARC system (ARCS). 
 \subsection{Scope} 
+This document is issued on \today. At this time, system design is not final, due to the nature of a research project, and shall be modified as necessary. 
 \subsection{Purpose}
+Each section of the document will provide an overview of the different systems contained within ARCS.
 \subsection{Intended Audience} 
-\subsection{Conformance}
-
-\section{Definitions} 
-
-\section{Vision System - Cierra}
-ARCS uses a stereoscopic vision system to aid in navigation and obstacle avoidance. 
-Vision systems are the "eyes" of the vehicle and are what allow the vehicle to operate autonomously. 
-The vision system relates to requirement FR-IA1 and is a precursor to requirements FR-IA2 and FR-IA3. 
-FR-IA1 is relevant because images must be captured and processed at a rate of 15 frames per second or higher to allow the vehicle to navigate quickly without colliding with objects.
-The vision system uses input from two USB cameras to create a depth map to detect objects at least 8" high to avoid collisions with objects that the vehicle is unable to drive over. 
-OpenCV and ROS are used to process images from two different USB cameras, plugged into the MCU.  
-ROS handles depth maps using a SLAM library in either a point cloud or occupancy grid map format, and the output is required for FR-NAV6. \par
-The first step to testing whether the vision system works is ensuring input is received from both cameras simultaneously through visual observation on a display. Then after input is successfully received, the cameras must be calibrated using OpenCV. The calibration process involves using a checkerboard and taking images from various locations. The MCU plugged into a display, must then display a depth map based on the disparity between the left and right images. 
-Once a depth map is created, frame rate must be compared to find the optimal resolution to process images successfully at 15 frames a second, with 60 frames being an ideal number. Frames per second are outputted onto a display for the user to see in order to ensure the frame-rate is above the target. \par
-Currently, the optimal distance between cameras is not known, so testing needs to be done to see how far apart the cameras must be placed to view objects between two and 20 feet away. The optimal range would be 6 inches to 100 feet of range. However, this goal is unlikely due to the restraints in image quality and the ability of the MCU to process the disparity maps in real-time. Using lower quality images provides fewer data points for OpenCV to compare, with a tendency towards unclear pixels on the edges of the images, unclear images when objects are very close to the cameras, and poor depth calculation when pixels are too far apart. \par
-Other sensors, such as sonar or LiDAR, can be used alongside the stereo-vision cameras if the stereo cameras are unable to process objects within three feet of the vehicle. Other vision sensors are only used when it is determined stereo-vision alone is not enough to detect obstacles at close range. \par
-Testing for the optimal distance for the two USB cameras is done by calibrating the cameras and holding a white piece of paper in front of the cameras from different distances, and then determining when the cameras can no longer detect the depth. 
-After the camera distance have been calculated, the two cameras are mounted either via a 3d printed case or integrated near the car's headlights. 
-
+The intended audience for this design document is the development team. As the design is not final, technical users are currently not taken into account. 
 
 \section{System Interfaces - Cierra}
 The main computational unit (MCU), an Intel NUC SkullCanyon, is used as a starting point to test the feasibility of stereo-vision for a vision system as per FR-IA1. The NUC runs Ubuntu 14.04 to provide a graphical user interface for observing inputs such as the vision system and sensor input. Ubuntu 14.04 is also a standard used to run ROS and handle input from other nodes. 
@@ -133,6 +113,21 @@ The first step is to establish a connection between the MCU and the Raspberry Pi
 With a working connection, the first goal is to control the direction of a motor from a command sent from ROS to the PXFmini. The motor should be able to spin one way when told to go forward, and reverse when a  reverse command is sent. Then servo control will be tested. \par
 After motor and servo control is established, sensor data will be collected and sent to the MCU. Two servos should be able to run synchronously to simulate steering. Data should be able to be displayed on to the user through the ROS interface. 
 At this point, the system can be interfaced into the car with extreme caution. Once the servos and speed controller from the car has been connected to the PXFmini, all functions should be tested on minimum speed for the case of motors or the using least amount of travel for servos, to ensure all actions are as expected. \par
+
+\section{Vision System - Cierra}
+ARCS uses a stereoscopic vision system to aid in navigation and obstacle avoidance. 
+Vision systems are the "eyes" of the vehicle and are what allow the vehicle to operate autonomously. 
+The vision system relates to requirement FR-IA1 and is a precursor to requirements FR-IA2 and FR-IA3. 
+FR-IA1 is relevant because images must be captured and processed at a rate of 15 frames per second or higher to allow the vehicle to navigate quickly without colliding with objects.
+The vision system uses input from two USB cameras to create a depth map to detect objects at least 8" high to avoid collisions with objects that the vehicle is unable to drive over. 
+OpenCV and ROS are used to process images from two different USB cameras, plugged into the MCU.  
+ROS handles depth maps using a SLAM library in either a point cloud or occupancy grid map format, and the output is required for FR-NAV6. \par
+The first step to testing whether the vision system works is ensuring input is received from both cameras simultaneously through visual observation on a display. Then after input is successfully received, the cameras must be calibrated using OpenCV. The calibration process involves using a checkerboard and taking images from various locations. The MCU plugged into a display, must then display a depth map based on the disparity between the left and right images. 
+Once a depth map is created, frame rate must be compared to find the optimal resolution to process images successfully at 15 frames a second, with 60 frames being an ideal number. Frames per second are outputted onto a display for the user to see in order to ensure the frame-rate is above the target. \par
+Currently, the optimal distance between cameras is not known, so testing needs to be done to see how far apart the cameras must be placed to view objects between two and 20 feet away. The optimal range would be 6 inches to 100 feet of range. However, this goal is unlikely due to the restraints in image quality and the ability of the MCU to process the disparity maps in real-time. Using lower quality images provides fewer data points for OpenCV to compare, with a tendency towards unclear pixels on the edges of the images, unclear images when objects are very close to the cameras, and poor depth calculation when pixels are too far apart. \par
+Other sensors, such as sonar or LiDAR, can be used alongside the stereo-vision cameras if the stereo cameras are unable to process objects within three feet of the vehicle. Other vision sensors are only used when it is determined stereo-vision alone is not enough to detect obstacles at close range. \par
+Testing for the optimal distance for the two USB cameras is done by calibrating the cameras and holding a white piece of paper in front of the cameras from different distances, and then determining when the cameras can no longer detect the depth. 
+After the camera distance have been calculated, the two cameras are mounted either via a 3d printed case or integrated near the car's headlights. 
 
 \section{Sensors - Cierra}
 Sensors provide critical information that is used to provide feedback for where the vehicle is within a space. Sensors are a pre-requisite for all navigation criteria. FR-SN1, FR-SN2, FR-SN3 are the requirements for all sensor input. 
