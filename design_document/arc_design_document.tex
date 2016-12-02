@@ -134,35 +134,72 @@ With a working connection, the first goal is to control the direction of a motor
 After motor and servo control is established, sensor data will be collected and sent to the MCU. Two servos should be able to run synchronously to simulate steering. Data should be able to be displayed on to the user through the ROS interface. 
 At this point, the system can be interfaced into the car with extreme caution. Once the servos and speed controller from the car has been connected to the PXFmini, all functions should be tested on minimum speed for the case of motors or the using least amount of travel for servos, to ensure all actions are as expected. \par
 
-\section{Conceptual model for software design descriptions} 
-\subsection{Software design in context}
-\subsection{Software design descriptions within the life cycle}
+\section{Image Analysis}
+Author: Dan Stoyer\par
+The ROS image\_transport (http://wiki.ros.org/image\_transport) library should
+be used to pass images from the sensors into rtabmap\_ros i. rtabmap\_ros. The
+rtabmap\_ros library handles depth-finding and environment mapping. 
 
-\section{Design description information content} 
-\subsection{Introduction}
-\subsection{SDD identification}
-\subsection{Design stakeholders and their concerns} 
-\subsection{Design views}
-\subsection{Design viewpoints} 
-\subsection{Design elements} 
-\subsection{Design overlays}
-\subsection{Design rationale}
-\subsection{Design languages}
+Milestone #1: Detect an object
+Use ROS image\_transport (http://wiki.ros.org/image\_transport) to pass images
+into rtabmap\_ros (http://wiki.ros.org/rtabmap\_ros). rtabmap\_ros analyzes
+the images to detect objects. ~proj\_min\_cluster\_size (int, default: 20) is
+used to control the size of object detected.
 
-\section{Design viewpoints}
-\subsection{Introduction} 
-\subsection{Context viewpoint} 
-\subsection{Composition viewpoint} 
-\subsection{Logical viewpoint} 
-\subsection{Dependency viewpoint} 
-\subsection{Information viewpoint} 
-\subsection{Patterns use viewpoint} 
-\subsection{Interface viewpoint} 
-\subsection{Structure viewpoint} 
-\subsection{Interaction viewpoint} 
-\subsection{State dynamics viewpoint} 
-\subsection{Algorithm viewpoint} 
-\subsection{Resource viewpoint}
+Milestone #2: Detect an object while moving
+After determining that rtabmap\_ros is detecting an object while the vehicle is
+stationary, object detection should be tested while moving.
+
+Milestone #4: Depth finding
+Once objects are detected, the distance to the object should be found by
+passing the images to rtabmap\_ros's left/image\_rect (sensor\_msgs/Image) and
+right/image\_rect (sensor\_msgs/Image). The depth analyzed from the images
+should be tracked using ~subscribe\_depth (bool, default: "false").
+
+Milestone #5: Hand off analysis
+The object detection and depth information should be handed over to the
+path-finding algorithm.
+
+\section{User Interface}
+Author: Dan Stoyer\par
+The user interface (UI) allows the user to issue commands and see the state of
+the vehicle. There are two UI platforms at play: the ground station and the companion computer.
+The companion computer UI is the most important to get working right away.
+
+Milestone #1: CLI for companion computer.
+The robotics operating system (ROS) provides CLI for vehicle control. This
+interface is on the companion computer only.
+
+Milestone #2: See vehicle status on remote terminal.
+The companion computer's UI should be transmitted over wifi through screen-share
+software. This approach allows immediate viewing of what is happening on the
+companion computer which allows time to work on more advanced remote UI solutions.
+
+Milestone #3: Enter CLI commands on the ground station.
+The simplest place to start with remote commands is from the command line.
+The ground station will be running either Linux or Windows. In the case of
+Windows, a third-party terminal (such as MinGW or Cygwin) should be used.
+
+Milestone #4: See vehicle status via ground station GUI.
+To see the vehicle status, a GUI is needed on the ground station. The ground
+station will run either a Linux distribution or Windows 7,8,10. ArduPilot runs
+on both and should be the first GUI tested. If ArduPilot does not 
+Telemetry data should be sent with MAVLink protocol. Image data should be sent
+to rtabmap\_ros using image\_transport (http://wiki.ros.org/image\_transport).
+
+\section{Radio Communication}
+Author: Dan Stoyer\par
+
+Milestone #1: Send/Receive telemetry data
+The companion computer should send telemetry data by radio using the MAVLink
+protocol. The ground station should receive the telemetry data by radio using
+the MAVLink protocol.
+
+Milesone #2: Send commands
+The ground station should send commands. Testing for seding commands should
+start with simple "start" and "stop" commands and gradually increase in
+complexity up to enter waypoints for autonomous navigation.
+
 
 \section{Appendix}
 \subsection{Annex A  Bibliography} 
@@ -170,7 +207,5 @@ At this point, the system can be interfaced into the car with extreme caution. O
 \bibliographystyle{IEEEtran}
 \bibliography{design}
 
-\subsection{Annex B  Conforming design language description} 
-\subsection{Annex C Templates for an SDD}
 
 \end{document}
