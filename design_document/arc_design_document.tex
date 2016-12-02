@@ -159,7 +159,7 @@ After the layout is determined, cases for objects will be modeled and printed, t
 
 %%Tao
 \section{Motion Model}
-Each iteration, the system issues a series of commands to the actuators, which are the motor and the servos in this project. Actuators then actuate the commands for the duration of one iteration. The time taken by each iteration may vary due to the different amount of information the system has to process. A control scheme/method must be needed to avoid the inconsistency in the actuators’ behaviors caused by the inconsistent duration.
+Each iteration, the system issues a series of commands to the actuators, which are the motor and the servos in this project. Actuators then actuate the commands for the duration of one iteration. The time taken by each iteration may vary due to the different amount of information the system has to process. A control scheme/method must be needed to avoid the inconsistency in the actuators’ behaviors caused by the inconsistent duration.\par
 The speed control package from the AutoRally project is used to satisfy the speed consistency requirement. The system controls the speed by publishing a speed message to the listener, same as the steering.\par
 \subsection{Milestones:}
 \begin{enumerate}
@@ -169,7 +169,7 @@ The speed control package from the AutoRally project is used to satisfy the spee
 	\item The speed of the vehicle is consistent with the speed issued by the system regardless of the road condition.
 \end{enumerate} 
 
-Motion model determines the correct commands to be issued by the system. A person has to adapt to the acceleration and steering of a particular car. The ARC system also has to adapt to the vehicle’s configuration, such as weight, steering ratio, etc.
+Motion model determines the correct commands to be issued by the system. A person has to adapt to the acceleration and steering of a particular car. The ARC system also has to adapt to the vehicle’s configuration, such as weight, steering ratio, etc.\par
 Besides, to follow a given path produced by the path planning algorithms, the system requires another control scheme, to ensure the vehicle strictly follow the path. When operating on a rough surface, drifting/slip off path happens. Converging back to the path also requires the same control scheme.
 The adaptation of the system to the vehicle is done by entering a set of parameters that include:\par
 \begin{itemize}
