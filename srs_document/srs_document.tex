@@ -362,7 +362,7 @@ excluding emergencies and initialization.
 	\item Destination will be given by the user at the station during initialization;
 	\item User is allowed to take over control from the system in case of emergencies
 	via the remote control;
-	\item User/operator is resposible for monitoring the status of the system, such as 
+	\item User/operator is responsible for monitoring the status of the system, such as 
 	battery level, speed, location, distance, radio signal strength, pre-planned path, 
 	etc.
 \end{enumerate}
@@ -515,8 +515,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: To limit the uncertainty caused by the motor under 25\% when going forward and backward.
 			\item Rationale: Maximize the accuracy of motor control to make prediction easier.
 			\item Dependencies: FR-NAV3
-			\item Completion Metrics: The RPS at which and direction in which the motor spins will be within 25\% of error with 
-			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
+			\item Completion Metrics: The RPS at which and direction in which the motor spins will be within 25\% of error with respect to the commands sent by the main computer at any instance. 
+			This metric will be confirmed visually or by output from an encoder to a display.
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 2}
@@ -526,8 +526,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: To limit the uncertainty caused by the servo under 25\% when turning.
 			\item Rationale: Maximize the accuracy of servo control to make prediction easier.
 			\item Dependencies: FR-NAV3
-			\item Completion Metrics: The speed at which and direction in which the servo turns will be within 25\% of error with 
-			respect to the commands sent by the main computer at any instance. This metrics will be confirmed visually. 
+			\item Completion Metrics: The speed at which and direction in which the servo turns will be within 25\% of error with respect to the commands sent by the main computer at any instance. 
+			This metric will be confirmed visually or by output from an encoder to a display.
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 3}
@@ -537,9 +537,7 @@ requirements describe what is required to achieve this.\par
 			\item Description: Use probability to estimate the current location of the vehicle with less than 25\% error.
 			\item Rationale: Tires may slip and wobble, which will cause uncertainty on the location of the vehicle.
 			\item Dependencies: FR-NAV4
-			\item Completion Metrics: The instant location of the vehicle will be filtered by the system and reults of the estimated 
-			location will have higher accuracy than the pre-filtered result. This metrics will be confirmed visually on
-			a computer display. . 
+			\item Completion Metrics: The instant location of the vehicle will be filtered by the system and results of the estimated location will have higher accuracy than the pre-filtered result. Output will be confirmed visually on a display. 
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 4}
@@ -549,8 +547,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
 			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
 			\item Dependencies: FR-NAV1 \& FR-NAV2
-			\item Completion Metrics: The commands sent by the main computer will be adapted to the vehicle's configurations, which are enterred to the 
-			system by humans at the set up precedure. This metrics will be confirmed visually when the vehicle is in operation.  
+			\item Completion Metrics: The commands sent by the main computer will be adapted to the vehicle's configurations, which are entered to the system by humans during the set up procedure. 
+			This metric will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate} 
 
 	\paragraph{Functional requirement navigation 5}
@@ -560,8 +558,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: When operating outdoor, the vehicle needs to go from one location to another following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that goes on concrete surfaces and does not run into any objects.
 			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
-			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
-			a computer display. 
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. 
+			Output will be confirmed visually on a display or by navigating to the objective point.  
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 6}
@@ -571,8 +569,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: When operating indoor and given the map of the indoor area, the vehicle needs to go from one location to another within the area following a legal path that is determined by algorithms using sensor data.
 			\item Rationale: A legal path is a path that does not run into any objects.
 			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
-			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. This metrics will be confirmed visually on
-			a computer display. 
+			\item Completion Metrics: A path with waypoints will be output the the next layer of the system. 
+			Output will be confirmed visually on a display or by navigating to the objective point.  
 		\end{enumerate}
 
 	\paragraph{Functional requirement navigation 7}
@@ -592,7 +590,8 @@ requirements describe what is required to achieve this.\par
 			\item Description: Given sensor data and the estimate of the current location, the algorithm outputs the next optimal action (turning the front wheel a certain angle and go forward/backward at a certain speed).
 			\item Rationale: A dedicated algorithm for parallel parking is necessary because path planning algorithms do not promise the orientation of the vehicle. The parallel parking algorithm will make sure the vehicle is align with the curb/wall when finished.
 			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
-			\item Completion Metrics: The vehicle will be able to parallel park itself when given a open spot. This metrics will be confirmed visually when the vehicle is in operation.  
+			\item Completion Metrics: The vehicle will be able to parallel park itself when given a open spot. 
+			This metrics will be confirmed visually when the vehicle is in operation.  
 		\end{enumerate}		
 		
 \subsubsection{System Feature: Hardware mounting}
@@ -652,17 +651,17 @@ requirements describe what is required to achieve this.\par
 
 \subsubsection{System Feature: User Interface}
 
-	\paragraph{Functional Reqirement User Interface 1}
+	\paragraph{Functional Requirement User Interface 1}
 		\begin{enumerate}
 			\item ID: FR-UI2
 			\item Title: Graphical User Interface
 			\item Description: There will be a GUI to see real-time sensor and vehicle data.
 			\item Rationale: Seeing real-time sensor and vehicle data allows the user to determine if the sensors and vehicle are behaving as expected at the time of execution.
 			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
-			\item Completion Metric: Sensor and vehicle data are displayed through a GUI on the ground station.
+			\item Completion Metric: Sensor and vehicle data are displayed through to the user on the ground station.
 		\end{enumerate}
 
-	\paragraph{Functional Reqirement User Interface 3}
+	\paragraph{Functional Requirement User Interface 3}
 		\begin{enumerate}
 			\item ID: FR-UI3
 			\item Title: Command Line Interface
@@ -672,7 +671,7 @@ requirements describe what is required to achieve this.\par
 			\item Completion Metric: A user is able to enter a destination, start, and stop through a CLI on the ground station.
 		\end{enumerate}
 
-	\paragraph{Functional Reqirement User Interface 4}
+	\paragraph{Functional Requirement User Interface 4}
 		\begin{enumerate}
 			\item ID: FR-UI4
 			\item Title: Waypoint Selection
@@ -682,7 +681,7 @@ requirements describe what is required to achieve this.\par
 			\item Completion Metric: Either CLI or GUI, or both, will be provided for entering waypoint information.
 		\end{enumerate}
 
-	\paragraph{Functional Reqirement User Interface 5}
+	\paragraph{Functional Requirement User Interface 5}
 		\begin{enumerate}
 			\item ID: FR-UI5
 			\item Title: Vehicle Information
@@ -704,6 +703,12 @@ This section specifies numerical requirements placed on ARC system:
 	\item The system is capable of parallel parking in under a minute. 
 \end{itemize}
 
+void foo::bar(akjdfa;ldfj)
+
+using foo::bar; 
+using namespace std;
+
+
 
 \subsection{Design constraints}
 %This should specify design constraints that can be imposed by other standards,
@@ -724,7 +729,8 @@ As this is a research project, requirements found along the way will be appended
 %We will likely need to come up with more/different attributes
 
 \subsubsection{Reliability}
-There will be no redundant software systems. Any unrecoverable system errors will put the vehicle  direct user/manual control.
+There will be no redundant software systems. 
+Any unrecoverable system errors will either stop or put the vehicle direct user/manual control.
 The system must operate to completion of mission.
 
 \subsubsection{Security}
