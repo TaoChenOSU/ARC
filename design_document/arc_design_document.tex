@@ -92,7 +92,7 @@ Vision systems are used to det
 
 \section{Definitions} 
 
-\section{Vision System}
+\section{Vision System - Cierra}
 ARCS uses a stereoscopic vision system to aid in navigation and obstacle avoidance. 
 Vision systems are the "eyes" of the vehicle and are what allow the vehicle to operate autonomously. 
 The vision system relates to requirement FR-IA1 and is a precursor to requirements FR-IA2 and FR-IA3. 
@@ -108,7 +108,7 @@ Testing for the optimal distance for the two USB cameras is done by calibrating 
 After the camera distance have been calculated, the two cameras are mounted either via a 3d printed case or integrated near the car's headlights. 
 
 
-\section{System Interfaces}
+\section{System Interfaces - Cierra}
 The main computational unit (MCU), an Intel NUC SkullCanyon, is used as a starting point to test the feasibility of stereo-vision for a vision system as per FR-IA1. The NUC runs Ubuntu 14.04 to provide a graphical user interface for observing inputs such as the vision system and sensor input. Ubuntu 14.04 is also a standard used to run ROS and handle input from other nodes. 
 All of the data processing will be done on the MCU. \par
 The MCU interfaces in the following ways:
@@ -121,7 +121,7 @@ The MCU interfaces in the following ways:
 The NUC should be able to process at least 15 frames a second without powering off while using 12V power. 
 If the NUC is unable to run on 12V power, a new method for powering the NUC is needed, or a less powerful board, such as the UPBoard or a NVIDIA Jetson must be used. Using a less powerful board limits the speed in which vision is processed.  \par
 
-The Raspberry Pi interfaces with the PXFmini autopilot through a 40pin connection. Power is supplied via a micro USB port, or through the PXFmini, which has the option to be powered through a pass-through connection to main LiPo battery. The Raspberry Pi runs Debian Jessie ("cyan"), which is provided by Erle Robotics and is designed to process input from the PXFmini. The Raspberry Pi and PXFmini control motors and sensors, and collect sensor data. \par
+The Raspberry Pi interfaces with the PXFmini autopilot through a 40pin connection. Power is supplied via a micro USB port, or through the PXFmini, which has the option to be powered through a pass-through connection to main LiPo battery. The Raspberry Pi runs Debian Jessie ("cyan"), which is provided by Erl Robotics and is designed to process input from the PXFmini. The Raspberry Pi and PXFmini control motors and sensors, and collect sensor data. \par
 
 Data is passed via a client-server model to the MCU using a TCP connection over an Ethernet connection. Packets are sent as JSON if the Raspberry Pi cannot be configured as a node within ROS. \par
 
@@ -133,6 +133,35 @@ The first step is to establish a connection between the MCU and the Raspberry Pi
 With a working connection, the first goal is to control the direction of a motor from a command sent from ROS to the PXFmini. The motor should be able to spin one way when told to go forward, and reverse when a  reverse command is sent. Then servo control will be tested. \par
 After motor and servo control is established, sensor data will be collected and sent to the MCU. Two servos should be able to run synchronously to simulate steering. Data should be able to be displayed on to the user through the ROS interface. 
 At this point, the system can be interfaced into the car with extreme caution. Once the servos and speed controller from the car has been connected to the PXFmini, all functions should be tested on minimum speed for the case of motors or the using least amount of travel for servos, to ensure all actions are as expected. \par
+
+\section{Sensors - Cierra}
+Sensors provide critical information that is used to provide feedback for where the vehicle is within a space. Sensors are a pre-requisite for all navigation criteria. FR-SN1, FR-SN2, FR-SN3 are the requirements for all sensor input. 
+Sensors required for the vehicle are the following:
+\begin{itemize}
+\item Accelerometer to calculate acceleration and deceleration 
+\item Gyroscope for orientation
+\item GPS with a compass for location
+\item Barometer for altitude 
+\item Ultrasonic sensors for parallel parking and forward collision avoidance
+\item Encoders to measure wheel rotations (as needed)
+\end{itemize}
+
+The accelerometer and gyroscope are included on the PXFmini as a 9-axis sensor, or the data can be pulled from the external IMU.  
+The GPS unit can be plugged directly into the PXFmini using one of the UART and I2C ports. 
+Barometer data is not strictly required. However, the PXFmini has a built-in sensor, so it can be used as needed.\par
+
+Sensor data is sent through the Raspberry Pi to the MCU, where it is processed by path planning and control algorithms. Obtaining sensor data is required before these algorithms are able to be implemented. \par
+
+An I2C port will be multiplexed to support additional sensors if needed. 
+Each sensor will be assigned a UID to be accessed through the multiplexed port. \par
+
+Testing sensor output will be done by displaying values to the user to ensure the sensors are sending information to the MCU. The 9-axis sensor will be placed on a level sensor to ensure that it is properly calibrated. \par
+
+\section{Hardware - Cierra}
+All hardware components will be tied down and encased with the minimal amount of port access required for the car to function as per FR-HW1. 3D printing and laser cut cases will be used, and venting will be used as necessary. This is to protect the hardware from rollovers as per FR-HW2. \par
+Hardware layout will first be done on cardboard to ensure components are in the correct placement on the board. 
+After the layout is determined, cases for objects will be modeled and printed, then secured onto an acrylic or polycarbonate laser-cut plate. \par
+
 
 \section{Conceptual model for software design descriptions} 
 \subsection{Software design in context}
