@@ -157,6 +157,110 @@ All hardware components will be tied down and encased with the minimal amount of
 Hardware layout will first be done on cardboard to ensure components are in the correct placement on the board. 
 After the layout is determined, cases for objects will be modeled and printed, then secured onto an acrylic or polycarbonate laser-cut plate. \par
 
+%%Tao
+\section{Motion Model}
+Each iteration, the system issues a series of commands to the actuators, which are the motor and the servos in this project. Actuators then actuate the commands for the duration of one iteration. The time taken by each iteration may vary due to the different amount of information the system has to process. A control scheme/method must be needed to avoid the inconsistency in the actuators’ behaviors caused by the inconsistent duration.
+The speed control package from the AutoRally project is used to satisfy the speed consistency requirement. The system controls the speed by publishing a speed message to the listener, same as the steering.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Complete all simulations in ROS.
+	\item The motor can physically spin forward and backward according to instructions given by the system.
+	\item Servos can physically turn clockwise and counterclockwise according to instructions given by the system.
+	\item The speed of the vehicle is consistent with the speed issued by the system regardless of the road condition.
+\end{enumerate} 
+
+Motion model determines the correct commands to be issued by the system. A person has to adapt to the acceleration and steering of a particular car. The ARC system also has to adapt to the vehicle’s configuration, such as weight, steering ratio, etc.
+Besides, to follow a given path produced by the path planning algorithms, the system requires another control scheme, to ensure the vehicle strictly follow the path. When operating on a rough surface, drifting/slip off path happens. Converging back to the path also requires the same control scheme.
+The adaptation of the system to the vehicle is done by entering a set of parameters that include:\par
+\begin{itemize}
+	\item Center of gravity.
+	\item Weight.
+	\item Turning radius to steering ratio.
+	\item Maximum speed.
+	\item Minimum turning radius
+	\item Note: We need to keep it simple given that we have not even started any testing. These 5 parameters will satisfy the basic operation of the vehicle. The system will change the control strategies based on the parameters set.
+\end{itemize}
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Test the vehicle and record all necessary data.
+	\item Analyze the collected data by hand and simulate different configurations in ROS.
+	\item Derive equations from the results returned by simulations.
+	\item Polish the equations by doing more simulations in ROS.
+	\item Test the results on the actual vehicle with the minimum amount of hardware mounted on it.
+	\item Test the results on the actual vehicle with fully loaded hardware.
+\end{enumerate}
+The PID (proportional–integral–derivative) control model is used to make sure that the vehicle is always on track. The PID model makes sure that, when the vehicle runs over bumps and drift off paths, it converges back to the desired path without overshoot or undershoot. When operating on a bumpy surface, the PID model is extremely critical to keep the vehicle on the paths.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Fully understand the PID control model.
+	\item Customize the model to adapt to our vehicle.
+	\item Simulate the model in ROS.
+	\item Test the model on a smooth surface and regularly changing the paths. The vehicle should converge to the new path every time.
+	\item Test the model on a rough surface. The vehicle should converge back to the planned path every time it drifts off paths.
+\end{enumerate}
+
+The system has to know the location of the vehicle at any given moment. After each iteration when a series of actions are taken, the uncertainty of the vehicle location increases. Thus, the system has to utilize probabilistic methods with sensor measurements to minimize the uncertainty. The inputs to this modules are the previous location of the vehicle, actions taken in the previous iteration, and the sensors measurements, such as GPS, wheel encoders, vision system. With Bayes filter, the module produces reliable results.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Fully understand Bayes filter so that we can modify the library according to our need.
+	\item Being able to gather sensor measurements and feed them to the module.
+	\item Simulate the module on ROS.
+	\item Optimize the module so that the computation can be completed within a normal iteration.
+	\item Test the module on the actual vehicle.
+\end{enumerate}
+
+%%Tao
+\section{Path Planning}
+\subsection{Global path planning:}
+When operating outdoor in an open area with a pre-downloaded satellite map, a global path planning module is required for the vehicle to travel from start to destination as desired. Dijkstra's based A* algorithm is used. The inputs to the module are the start and end locations (GPS coordinates), and a satellite map. The pre-processing unit generates valid waypoints, edges and edge costs by analyzing the map. Those waypoints and edges then get passed to the algorithm, which makes sure the shortest path is found. Since the implementation of Dijkstra’s algorithm is not complicated, it is fully customized to accommodate the inputs/data types specified above. The heuristic for the algorithm is defined to be the straight-line distance from the waypoints to the destination, calculated using the GPS data.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Being able to pull data from the GPS unit.
+	\item Being able to generate waypoints on map images provided by OpenStreetMap.
+	\item Implement the algorithm
+	\item Test the algorithm
+	\item Test the algorithm with customized data structs.
+	\item Test the algorithm on the vehicle outdoor.
+\end{enumerate}
+
+\subsection{Local path planning:}
+When operating indoor within a closed area (with pre-defined map and boundaries), local path planning is required for the vehicle to travel from start to destination. Rapidly-exploring random tree is the algorithm used by the system. The inputs to the algorithm are start location (known), destination, the map with boundaries but without marked features/obstacles. The start location is either the very start location where the vehicle initializes and that is input by humans, or the subsequence locations estimated by the motion analysis. The vehicle also maps the space while it is traversing within it. It detects obstacles as it goes.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Customize the algorithm so that it does not generate samples within the vehicle size.
+	\item Test the algorithm by giving it a starting point, a destination point, and a map with marked features.
+	\item Integrate the algorithm into the system.  
+	\item Simulate the algorithm in ROS.
+	\item Optimize the algorithm so that it plans out a path within the shortest amount of time. It needs to be short enough that human can not notice any delay when it needs to reconstruct a new path.
+	\item Test the algorithm on the vehicle.
+\end{enumerate}
+
+%%Tao
+\section{Other Algorithms}
+\subsection{Obstacle avoidance:}
+Obstacle avoidance is required for both local and global operations. Obstacle avoidance module grabs data packages from the vision system and tries to generate new paths on the go. Data included in the packages is defined by the vision system. There are two situations where the module may act differently. The first situation is when the vehicle has to come to a complete stop, due to high speed and path generation delay. The second situation is when the new path generation process is completed before the system decides to come to a complete stop.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Decide the data structs contained in the packages used to transfer data to the module.
+	\item Implement the module. There are existing packages that can be used. However, modifications must be required.
+	\item Integrate the path planning modules into the obstacle avoidance module.
+	\item Test the module in Simulation on ROS.
+	\item Optimize the algorithm.
+	\item Test the module on the vehicle.
+\end{enumerate}
+
+\subsection{Parallel Parking:}
+Parallel parking requires two special path planning algorithms. The first algorithm detects valid parking spots. This algorithm relies on images analysis results produced by the vision system. The second algorithm is a path planning algorithm specifically designed for parallel parking maneuvers. A similar approach to the Autonomous Parallel Parking RC Car project done at Cornell University is used. The software package provided by Cornell University is modified to use image information instead of readings from ultrasonic sensors.\par
+\subsection{Milestones:}
+\begin{enumerate}
+	\item Modified the software package so that in can be integrated into the system.
+	\item Test the algorithm by doing simulations on ROS.
+	\item Find out any optimizations that can be made to the algorithm. For example, minimize the number of turns it takes to complete the tasks.
+	\item Optimize the algorithm.
+	\item Set up an environment for testing.
+	\item Test the algorithms on the vehicle in the pre-set environment.
+\end{enumerate}
+
 
 \section{Conceptual model for software design descriptions} 
 \subsection{Software design in context}
