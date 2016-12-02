@@ -92,11 +92,20 @@ Vision systems are used to det
 
 \section{Definitions} 
 
-ARCS will be using a stereoscopic vision system to aid in navigation and obstacle avoidance. 
+\section{Vision System}
+ARCS uses a stereoscopic vision system to aid in navigation and obstacle avoidance. 
 Vision systems are the "eyes" of the vehicle and are what allow the vehicle to operate autonomously. 
-The vision system relates to requirements 
-Using OpenCV, images will be taken in from two different USB cameras, hooked into the main computational unit, which will then match images based on time stamps. 
-
+The vision system relates to requirement FR-IA1 and is a precursor to requirements FR-IA2 and FR-IA3. 
+FR-IA1 is relevant because images must be captured and processed at a rate of 15 frames per second or higher to allow the vehicle to navigate quickly without colliding with objects.
+The vision system uses input from two USB cameras to create a depth map to detect objects at least 8" high to avoid collisions with objects that the vehicle is unable to drive over. 
+OpenCV and ROS are used to process images from two different USB cameras, plugged into the MCU.  
+ROS handles depth maps using a SLAM library in either a point cloud or occupancy grid map format, and the output is required for FR-NAV6. \par
+The first step to testing whether the vision system works is ensuring input is received from both cameras simultaneously through visual observation on a display. Then after input is successfully received, the cameras must be calibrated using OpenCV. The calibration process involves using a checkerboard and taking images from various locations. The MCU plugged into a display, must then display a depth map based on the disparity between the left and right images. 
+Once a depth map is created, frame rate must be compared to find the optimal resolution to process images successfully at 15 frames a second, with 60 frames being an ideal number. Frames per second are outputted onto a display for the user to see in order to ensure the frame-rate is above the target. \par
+Currently, the optimal distance between cameras is not known, so testing needs to be done to see how far apart the cameras must be placed to view objects between two and 20 feet away. The optimal range would be 6 inches to 100 feet of range. However, this goal is unlikely due to the restraints in image quality and the ability of the MCU to process the disparity maps in real-time. Using lower quality images provides fewer data points for OpenCV to compare, with a tendency towards unclear pixels on the edges of the images, unclear images when objects are very close to the cameras, and poor depth calculation when pixels are too far apart. 
+Other sensors, such as sonar or LiDAR, can be used alongside the stereo-vision cameras if the stereo cameras are unable to process objects within three feet of the vehicle. Other vision sensors are only used when it is determined stereo-vision alone is not enough to detect obstacles at close range. 
+Testing for the optimal distance for the two USB cameras is done by calibrating the cameras and holding a white piece of paper in front of the cameras from different distances, and then determining when the cameras can no longer detect the depth. 
+After the camera distance have been calculated, the two cameras are mounted either via a 3d printed case or integrated near the car's headlights. 
 
 
 \section{Conceptual model for software design descriptions} 
