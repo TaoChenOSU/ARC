@@ -6,7 +6,6 @@
 \usepackage{enumitem}
 
 \usepackage[letterpaper, margin=.75in]{geometry}
-\usepackage{epstopdf}
 \usepackage{hyperref}
 \usepackage{listings}
 
@@ -168,6 +167,10 @@ be able to navigate to the destination without user intervention, as fast as pos
 	\item \textbf{Mission:} The total operations of the vehicle, as commanded by the user. For example, a user tells the vehicle to go to a point at a certain speed, that is the mission for the vehicle.
 \end{enumerate}
 
+% References
+\bibliographystyle{IEEEtran}
+\bibliography{srs}
+
 \subsection{Overview} % Cierra, Done 
 The remainder of this document includes three sections and the appendixes. \par
 Section two provides an overview of system functions and intersystem interaction. 
@@ -204,7 +207,7 @@ The control flow is described in figure 1. \\
 %%% THIS IS FOR DRAWING THE BLOCK DIAGRAM %%%git 
 \begin{figure}
   \centering
- \includegraphics[width=\textwidth]{Block_Diagram_1.jpg}
+ \includegraphics[width=\textwidth]{Block_Diagram_1_.eps}
   \caption{Block diagram of hardware flow}
 \end{figure}
 
@@ -390,9 +393,6 @@ from the ARC system.
 
 	\subsubsection{Software interfaces}
 	There should be software interfaces between the user interfaces and the hardware interfaces. These interfaces will be handled by the operating system on both the ground station and the companion computer.
-
-	\subsubsection{Communications interfaces}
-	Communications are 
 
 \subsection{System features}
 Describes what the ARC system can be expected to do in terms of its major features.
