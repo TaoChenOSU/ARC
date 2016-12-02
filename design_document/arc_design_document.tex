@@ -121,7 +121,7 @@ The MCU interfaces in the following ways:
 The NUC should be able to process at least 15 frames a second without powering off while using 12V power. 
 If the NUC is unable to run on 12V power, a new method for powering the NUC is needed, or a less powerful board, such as the UPBoard or a NVIDIA Jetson must be used. Using a less powerful board limits the speed in which vision is processed.  \par
 
-The Raspberry Pi interfaces with the PXFmini autopilot through a 40pin connection. Power is supplied via a micro USB port, or through the PXFmini, which has the option to be powered through a pass-through connection to main LiPo battery. The Raspberry Pi runs Debian Jessie ("cyan"), which is provided by Erl Robotics and is designed to process input from the PXFmini. The Raspberry Pi and PXFmini control motors and sensors, and collect sensor data. \par
+The Raspberry Pi interfaces with the PXFmini autopilot through a 40pin connection. Power is supplied via a micro USB port, or through the PXFmini, which has the option to be powered through a pass-through connection to main LiPo battery. The Raspberry Pi runs Debian Jessie ("cyan"), which is provided by Erle Robotics and is designed to process input from the PXFmini. The Raspberry Pi and PXFmini control motors and sensors, and collect sensor data. \par
 
 Data is passed via a client-server model to the MCU using a TCP connection over an Ethernet connection. Packets are sent as JSON if the Raspberry Pi cannot be configured as a node within ROS. \par
 
