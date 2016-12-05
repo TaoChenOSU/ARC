@@ -1,0 +1,199 @@
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfgantt}
+\newcommand*{\SignatureAndDate}[1]{
+    \par\noindent\makebox[2.5in]{\hrulefill} \hfill\makebox[2.0in]{\hrulefill}
+    \newline\noindent\makebox[2.5in][l]{#1}  \hfill\makebox[2.0in][l]{Date}
+}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\subsection}{}{}
+\patchcmd{\thebibliography}{\addcontentsline{toc}{section}{\refname}}{}{}{}
+
+\usepackage{graphicx}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Daniel Stoyer, Tao Chen}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {SRS requirements, Fall 2016},
+	pdftitle = {SRS requirements},
+	pdfsubject = {Requirement document for ARCt},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\setcounter{secnumdepth}{5}
+
+\begin{document}
+
+\begin{titlepage}
+\title{
+Progress Report\\
+\LARGE
+ARC - Autonomous RC\\
+Senior Capstone Project\\
+Oregon State University\\
+Fall 2016
+}
+\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
+\maketitle
+\begin{center}
+	Version 1.0\\
+	\today
+\end{center}
+
+\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Project purpose and goals} 
+% Breifly recaps project purpose and goals
+
+\section{Current Status}
+% Describes where we currently are on the project.
+
+\section{Week-by-week summary of activities}
+
+\subsection{Weeks 1 - 3}
+Weeks one through three were general introduction and orientation weeks. It was
+not until week 4 that projects started in earnest.
+
+\subsection{Week 4}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+\subsection{Week 5}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+\subsection{Week 6}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+\subsection{Week 7}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+\subsection{Week 8}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+   
+\subsection{Week 9}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+   
+\subsection{Week 10}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+        Fill me in!
+        \item \textit{Problems}:\\
+        Fill me in!
+        \item \textit{Solutions}:\\
+        Fill me in!
+	\end{itemize}
+   
+   
+\section{Retrospective}
+	\begin{center}
+		\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+			\hline
+			\textbf{Positives:} & \textbf{Deltas:} & \textbf{Actions:}\\
+			
+            Anything good that happened. & Changes that need to be implemented. & Specific actions to counter deltas.\\
+			\hline
+
+			dummy positives & dummy negatives & dummy actions\\
+			\hline
+			more dummy positives & moredummy negatives & more dummy actions\\
+			\hline
+			
+		\end{tabular}
+	\end{center}
+
+\end{document}
