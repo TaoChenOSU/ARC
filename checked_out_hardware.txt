@@ -8,3 +8,4 @@
 11/28/16 - 1 - Intel NUC
 11/28/16 - 1 - UPboard
 12/01/16 - 4 - Servos (2 big ones, 2 small ones)
+02/08/16 - 1 - Xbox One Controller
