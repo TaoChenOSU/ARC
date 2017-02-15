@@ -46,8 +46,8 @@
   colorlinks = false,
   urlcolor = black,
   pdfauthor = {\name},
-  pdfkeywords = {Capstone Tech Review},
-  pdftitle = {Capstone Tech Review},
+  pdfkeywords = {ARC Tech Review},
+  pdftitle = {ARC Tech Review},
   pdfsubject = {Tech Review},
   pdfpagemode = UseNone
 }
@@ -271,6 +271,24 @@ require software that is freely available for use (via fairly liberal open
 source licensing), known to be correct (works well) with little modification
 needed, and has relatively easy to use API libraries.
 
+The main criteria for consideration are:
+\begin{itemize}
+	
+	\item Open Source
+		\subitem 
+		 The software must be available under an open source license
+		 (LGPL, GPL, Apache, etc.). This gives us access to the source code and allows
+		 us to modify the code as necessary
+	\item Completeness
+		\subitem 
+		 We require image analysis software that requires little to
+		 no modification. Part of our goal is to use what is currently available and
+		 we do not have time to write the software from scratch. Some required API 
+		 modification is acceptable, but we should not have to write a heavy amount
+		 of analysis code.	
+	  
+\end{itemize}
+
 \subsection{Robotics Operating System}
 The Robotics Operating System (ROS) is a general-purpose framework for writing
 robot software.[1] It contains obstacle avoidance packages and navigation
@@ -280,12 +298,14 @@ environments. ROS is a mature software platform with many libraries and a strong
 on-line community.  There are many tutorials and examples of ROS implementation
 on rovers and UAVs.  Even if the image analysis packages in ROS are not adequate
 for our purposes, this might be a platform we could use in a broader application
-for ARC.
+for ARC.\par
 
-Pros: does have obstacle avoidance built-in, has strong user-base, many examples
-and tutorials.
+Pros: Does have obstacle avoidance built-in, has strong user-base, many examples
+and tutorials.\par
 
-Cons: does not appear to be directly compatible with MAVLink or the PXFMini, the
+ROS is open source and its libraries are quite mature and complete.
+
+Cons: Does not appear to be directly compatible with MAVLink or the PXFMini, the
 obstacle avoidance packages appear to be for low speed, indoor environments.
 
 \subsection{GTSAM}
@@ -298,40 +318,53 @@ We would need to build the API to bridge GTSAM to our platform of choice. Since
 AutoRally used ROS with GTSAM, we might be able to modify their implementation
 to suit our purposes. This is probably a very time-consuming option.
 
-Pros: integrates GPS, IMU and computer vision for mapping, has large library of
-C++ classes and example uses, was used by Georgia Tech in an autonomous RC
-project and we have access to the code, has a Python API.
+GTSAM does not do obstacle avoidance. It corrects for over-steer at high speeds.
+The GTSAM IMU/GPS integration is used to correct the attitude of the vehicle and
+put it back on course.
 
-Cons: Very probably time-consuming to create and API for our project.
+
+Pros: GTSAM is open source and has large library ofC++ classes and example uses,
+was used by Georgia Tech in an autonomous RC project and we have access to the code,
+and has a Python API. It meets our definition of completeness.\par
+It integrates GPS, IMU and computer vision for high speed vehicle attitude control, \par
+It has potential as a \textit{companion} to obstacle detection.
+
+Cons: Does not meet the requirement of obstacle detection and avoidance.
+Very probably time-consuming to create an API to obstacle avoidance for our project.
 
 \subsection{Pushbroom Stereo}
-Pushbroom Stereo is a software library for high speed (up 20 mph) navigation in
+Pushbroom Stereo is an open source software library for high speed (up 20 mph) navigation in
 cluttered environments. [6] It uses a stereo vision algorithm that is capable of
 obstacle detection at 120 frames per second on an ARM processor. [7] The class
 files are provided but there is no support or community base to rely on.
 Further, this implementation is for flying UAVs, so it would need to be
 reimplemented for ground applications.
 
-Pros: allows high speed obstacle avoidance
+Pros: Is open source. Allows high speed obstacle avoidance.
 
-Cons: no support, small library (two classes), needs to be reimplemented for
-rovers
+Cons: Not sure how complete this library is. There is no support and is a small 
+library (two classes). It was written for air drones, so it needs to be reimplemented for
+rovers. The demonstrated "cluttered environment" was a large field with trees around
+20-50 feet apart.
 
 \subsection{Image analysis choice}
-There is no clear winner for our image analysis selection. Our research has led
-us to conclude that obstacle avoidance is still in its technology infancy and is
-not widely available to the open source community. The added criteria for
-operation at high speeds further limits our options.\par
+ROS is the clear choice here. It is open source and is the only package that has
+obstacle avoidance for ground rovers out of the box. The challenge with using ROS
+is going to be finding a way to integrate high speed with its current obstacle
+avoidance software library.\par
+Our research has led us to conclude that obstacle avoidance is still in its
+technology infancy and is not widely available to the open source community. The
+added criteria foroperation at high speeds further limits our options.\par
 Pushbroom Stereo has the functionality of high speed obstacle detection, but it
 not well supported, has no examples of use and would need to be reimplemented
 for ground use. We probably would not have time to get that to work this
 year.\par
-ROS might be a good option, but the built-in obstacle avoidance is not intended for
-high-speed application. All the examples of outdoor use on the ROS site did not
-use the ROS object avoidance library.\par
-At this time we will attempt to duplicate AutoRally's implementation
-of GTSAM with ROS. GTSAM has a decent library to work from and ROS is a mature
-platform with large library collections and strong user support. 
+ROS is a good option, while the built-in obstacle avoidance is not intended for
+high-speed application and all the examples of outdoor use on the ROS site did not
+use the ROS object avoidance library, we think this is still a good place to start.\par
+We will attempt to implement the ROS obstacle avoidance package and add GTSAM as a
+companion for high-speed attitude correction, if time allows.
+
 
 \subsection{References}
 [1] ROS.org, 'About ROS', 2016. [Online]. Available: http://www.ros.org/about-ros/.\\~
@@ -485,16 +518,41 @@ Available: http://www.banggood.com/Openpilot-OPLINK-Mini-Radio-Telemetry-AIR-And
 
 \section{User Interface}
 In this section we will examine three user interfaces, comparing and contrasting
-them and making a decision on which one we will use with ARC.
-A user interface (UI) is required to allow the user to command the vehicle. The
-UI must be open source and have easy-to-implement API libraries. We are looking
-for a UI package that will work with both the control station (the user
-computer) and the companion computer (the computer on board the vehicle). It is
-preferable that the UI be a combination of graphical UI (GUI) and command line
-UI (CLI). Note that though our project is a land vehicle (rover) the following
+them and making a decision on which one we will use with ARC. 
+A user interface (UI) is required to allow the user to command the vehicle. 
+Note that though our project is a land vehicle (rover) the following
 software is primarily used for UAV flight control and is referenced in such a
 way. If possible, we would like to use software that can be configured to
 control a rover, or easily modified to do so.
+
+The main criteria for consideration are:
+\begin{itemize}
+	
+	\item Open Source
+		\subitem
+		The software must be available under an open source license
+		(LGPL, GPL, Apache, etc.). This gives us access to the source code and allows
+		us to modify the code as necessary
+		
+	\item Completeness
+		\subitem
+		 We require UI software that requires little to
+		 no modification. Part of our goal is to use what is currently available and
+		 we do not have time to write the software from scratch. Some required API 
+		 modification is acceptable, but we should not have to write a heavy amount
+		 of UI code.	
+		
+	\item Ease of use
+		\subitem
+		The software must be fairly intuitive and easy to use. Users will not continue
+		to use something that is difficult to understand or control. It must have 
+		easy-to-implement API libraries. We are looking	for a UI package that will work
+		 with both the control station (the user computer) and the companion computer 
+		 (the computer on board the vehicle). It is	preferable that the UI be a combination
+		  of graphical UI (GUI) and command line UI (CLI).
+	
+\end{itemize}
+ 
 
 \subsection{QGroundControl}
 
