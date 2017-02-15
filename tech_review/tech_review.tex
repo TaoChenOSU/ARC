@@ -2,10 +2,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{url}
-
 \usepackage{enumitem}
-
 \usepackage[letterpaper, margin=.75in]{geometry}
+\usepackage{graphicx} % needed for the revision table
+\usepackage{array} % needed for the revision table
+\setlength{\tabcolsep}{.5pt}
 
 \newcommand{\toc}{\tableofcontents}
 \newcommand*{\SignatureAndDate}[1]{
@@ -68,10 +69,10 @@ Fall 2016
 
 \author{Tao Chen, Cierra Shawe, Daniel Stoyer}
 \maketitle
-
-%\begin{abstract}
-
-%\end{abstract}
+\begin{center}
+	Version 1.1\\
+	\today
+\end{center}
 
 \thispagestyle{empty} % gets rid of the "0" page number.
 
@@ -814,5 +815,7 @@ system must make sure the vehicle follows the trajectory precisely.\par
 of Minnesota, 'Autonomous Parallel Parking of a Nonholonomic Vehicle'. [Online]. 
 Available: http://www-users.cs.umn.edu/~joel/\_files/Joel\_Hesch\_EE4951.pdf.\\~ 
 [Accessed: 16- Nov- 2016].\par
+
+\input{revisions}
 
 \end{document}
