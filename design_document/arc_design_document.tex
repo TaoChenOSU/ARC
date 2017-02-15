@@ -48,7 +48,7 @@
 	pdfpagemode = UseNone
 }
 
-\def\myversion{1.0 }
+\def\myversion{1.1}
 \date{}
 %
 %\usepackage{titlesec}
@@ -212,7 +212,7 @@ The system has to know the location of the vehicle at any given moment. After ea
 \section{Path Planning}
 \subsection{Global path planning:}
 When operating outdoor in an open area with a pre-downloaded satellite map, a global path planning module is required for the vehicle to travel from start to destination as desired. Dijkstra's based A* algorithm is used. The inputs to the module are the start and end locations (GPS coordinates), and a satellite map. The pre-processing unit generates valid waypoints, edges and edge costs by analyzing the map. Those waypoints and edges then get passed to the algorithm, which makes sure the shortest path is found. Since the implementation of Dijkstra’s algorithm is not complicated, it is fully customized to accommodate the inputs/data types specified above. The heuristic for the algorithm is defined to be the straight-line distance from the waypoints to the destination, calculated using the GPS data.\par
-\subsection{Milestones:}
+\subsubsection{Milestones:}
 \begin{enumerate}
 	\item Being able to pull data from the GPS unit.
 	\item Being able to generate waypoints on map images provided by OpenStreetMap.
@@ -266,25 +266,30 @@ The ROS image\_transport (http://wiki.ros.org/image\_transport) library should
 be used to pass images from the sensors into rtabmap\_ros i. rtabmap\_ros. The
 rtabmap\_ros library handles depth-finding and environment mapping. 
 
-Milestone \#1: Detect an object
-Use ROS image\_transport (http://wiki.ros.org/image\_transport) to pass images
-into rtabmap\_ros (http://wiki.ros.org/rtabmap\_ros). rtabmap\_ros analyzes
-the images to detect objects. ~proj\_min\_cluster\_size (int, default: 20) is
-used to control the size of object detected.
-
-Milestone \#2: Detect an object while moving
-After determining that rtabmap\_ros is detecting an object while the vehicle is
-stationary, object detection should be tested while moving.
-
-Milestone \#4: Depth finding
-Once objects are detected, the distance to the object should be found by
-passing the images to rtabmap\_ros's left/image\_rect (sensor\_msgs/Image) and
-right/image\_rect (sensor\_msgs/Image). The depth analyzed from the images
-should be tracked using ~subscribe\_depth (bool, default: "false").
-
-Milestone \#5: Hand off analysis
-The object detection and depth information should be handed over to the
-path-finding algorithm.
+\subsection{Milestones}
+\begin{enumerate}
+	
+	\item \textbf{Detect an object:}\\
+	Use ROS image\_transport (http://wiki.ros.org/image\_transport) to pass images
+	into rtabmap\_ros (http://wiki.ros.org/rtabmap\_ros). rtabmap\_ros analyzes
+	the images to detect objects. ~proj\_min\_cluster\_size (int, default: 20) is
+	used to control the size of object detected.
+	
+	\item \textbf{Detect an object while moving:}\\
+	After determining that rtabmap\_ros is detecting an object while the vehicle is
+	stationary, object detection should be tested while moving.
+	
+	\item \textbf{Depth finding:}\\
+	Once objects are detected, the distance to the object should be found by
+	passing the images to rtabmap\_ros's left/image\_rect (sensor\_msgs/Image) and
+	right/image\_rect (sensor\_msgs/Image). The depth analyzed from the images
+	should be tracked using ~subscribe\_depth (bool, default: "false").
+	
+	\item \textbf{Hand off analysis:}\\
+	The object detection and depth information should be handed over to the
+	path-finding algorithm.
+	
+\end{enumerate}
 
 \section{User Interface}
 Author: Dan Stoyer\par
@@ -292,40 +297,58 @@ The user interface (UI) allows the user to issue commands and see the state of
 the vehicle. There are two UI platforms at play: the ground station and the companion computer.
 The companion computer UI is the most important to get working right away.
 
-Milestone \#1: CLI for companion computer.
-The robotics operating system (ROS) provides CLI for vehicle control. This
-interface is on the companion computer only.
+\subsection{Milestones:}
 
-Milestone \#2: See vehicle status on remote terminal.
-The companion computer's UI should be transmitted over wifi through screen-share
-software. This approach allows immediate viewing of what is happening on the
-companion computer which allows time to work on more advanced remote UI solutions.
+\begin{enumerate}
+	
+	\item \textbf{CLI for companion computer:}\\
+	\textit{This Milestone has been met.}\\
+	The robotics operating system (ROS) provides CLI for vehicle control. This
+	interface is on the companion computer only.
+	
+	\item \textbf{See vehicle status on remote terminal:}\\
+	The companion computer's UI should be transmitted over WiFi through screen-share
+	software. This approach allows immediate viewing of what is happening on the
+	companion computer which allows time to work on more advanced remote UI solutions.
+	
+	\item \textbf{See vehicle status via ground station GUI:}\\
+	To see the vehicle status, a GUI is needed on the ground station. The ground
+	station will run either a Linux distribution or Windows 7,8,10. ArduPilot runs
+	on both and should be the first GUI tested. If ArduPilot does not
+	Telemetry data should be sent with MAVLink protocol. Image data should be sent
+	to rtabmap\_ros using image\_transport (http://wiki.ros.org/image\_transport).
+	
+	\item \textbf{Enter CLI commands on the ground station:}\\
+	Research shows CLI might not be the simplest place to start. Certain
+	RC overrides are sent via GUI GCS software and the documentation is not clear
+	on how to send those overrides via command line.
+	The ground station will be running either Linux or Windows. In the case of
+	Windows, a third-party terminal (such as MinGW or Cygwin) should be used.
 
-Milestone \#3: Enter CLI commands on the ground station.
-The simplest place to start with remote commands is from the command line.
-The ground station will be running either Linux or Windows. In the case of
-Windows, a third-party terminal (such as MinGW or Cygwin) should be used.
-
-Milestone \#4: See vehicle status via ground station GUI.
-To see the vehicle status, a GUI is needed on the ground station. The ground
-station will run either a Linux distribution or Windows 7,8,10. ArduPilot runs
-on both and should be the first GUI tested. If ArduPilot does not 
-Telemetry data should be sent with MAVLink protocol. Image data should be sent
-to rtabmap\_ros using image\_transport (http://wiki.ros.org/image\_transport).
+\end{enumerate}
 
 \section{Radio Communication}
 Author: Dan Stoyer\par
 
-Milestone \#1: Send/Receive telemetry data
-The companion computer should send telemetry data by radio using the MAVLink
-protocol. The ground station should receive the telemetry data by radio using
-the MAVLink protocol.
+Radio Communication is necessary to control and assess the vehicle status over long distances (~15 km).
+We should be able to see the general attitude of the vehicle (is it moving? what direction? has it rolled over?)
+and send it commands to change its status (if we want it to return to base early, or go to a different point, etc.).
 
-Milesone \#2: Send commands
-The ground station should send commands. Testing for seding commands should
-start with simple "start" and "stop" commands and gradually increase in
-complexity up to enter waypoints for autonomous navigation.
+\subsection{Milestones}
 
+\begin{enumerate}
+	
+	\item \textbf{Send/Receive telemetry data:}\\
+	The companion computer should send telemetry data by radio using the MAVLink
+	protocol. The ground station should receive the telemetry data by radio using
+	the MAVLink protocol.
+	
+	\item \textbf{Send commands:}\\
+	The ground station should send commands. Testing for sending commands should
+	start with simple "start" and "stop" commands and gradually increase in
+	complexity up to enter way-points for autonomous navigation.
+	
+\end{enumerate}
 
 \section{Appendix}
 \subsection{Annex A  Bibliography} 
