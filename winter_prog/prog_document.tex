@@ -137,16 +137,16 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 		
 \section{Tao}
 \subsection{Current Status}
-% what is the current status of your areas of focus?
-% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
+My work was mostly on simlution of the platform on the computer. My strategies was to use as much AutoRally's code as possible. As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself. It has to be controlled by a Xbox controller. 
 
 \subsection{Left to do:}
-% What do you have left to do?
 \begin{itemize}
-	\item Something to do...
+	\item In oder to configure the simulation to accurately simulate the platform, I still edit some parameters in some confiuration and model files. 
+	\item The two sensors for vision are not working perfectly. They are outputing the right data. However, I can't visualize their outputs on Rviz.
+	\item To make the car drive atonomously with minimum obstacle avoidance. Currently, our package does not have the state estimator, the waypoint follower and the constant speed controller, which are all essential for atonomous driving. I need to integrate those components with sensor data to accomplish this task.
 \end{itemize}
 \subsection{Challenges}
-
+	Time is the issue. There are only 4 weeks left in this term. It is very hard to set a timeline for this project because we don't have a clear view of what is ahead of us. New issues arise constantly. I will try my best to complete the third item on the "Left to do" list in two weeks. 
 \begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|}
 	\hline
 	\textbf{Problems} & \textbf{Solutions}\\
