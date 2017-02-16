@@ -1,0 +1,294 @@
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+\newcommand*{\SignatureAndDate}[1]{
+    \par\noindent\makebox[2.5in]{\hrulefill} \hfill\makebox[2.0in]{\hrulefill}
+    \newline\noindent\makebox[2.5in][l]{#1}  \hfill\makebox[2.0in][l]{Date}
+}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\subsection}{}{}
+\patchcmd{\thebibliography}{\addcontentsline{toc}{section}{\refname}}{}{}{}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Daniel Stoyer, Tao Chen}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {ARC,Progress,Report, Winter,2017},
+	pdftitle = {Arc Progress Report, Winter 2017},
+	pdfsubject = {Progress Report for ARC},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\setcounter{secnumdepth}{5}
+
+\begin{document}
+
+\begin{titlepage}
+\title{
+Midterm Progress Report\\
+\LARGE
+ARC - Autonomous RC\\
+Senior Capstone Project\\
+Oregon State University\\
+Winter 2017
+}
+\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
+\maketitle
+\begin{center}
+	Version 1.0\\
+	\today
+\end{center}
+
+\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Project purpose and goals} 
+% Breifly recaps project purpose and goals
+The purpose of the Autonomous RC (ARC) project is to determine if it is possible
+to build an autonomous RC vehicle using commodity components, meaning components
+that are relatively inexpensive and can be bought at places like Radio
+Shack\textsuperscript{\textregistered}, Best Buy\textsuperscript{\textregistered}, or on Amazon. \\
+Our goal is to make an RC vehicle navigate autonomous to a given
+waypoint/location, preferably at a high rate of speed. Stretch goals are to
+make the vehicle drift around corners and parallel park.\\
+
+%\[Be sure to add graphic back in before final render!!\]
+\begin{figure}[H]
+   	\includegraphics[width=\textwidth]{autorally_platform_header}
+    \caption{Drifting example. Image from https://autorally.github.io/}
+\end{figure}
+
+While our main goal is to have a functioning autonomous RC vehicle we also hope
+that we can produce instructions that RC enthusiasts can follow to produce a
+functioning, consumer-grade autonomous RC vehicle of their own.
+
+\section{Current Status}
+% Describes where we currently are on the project.
+
+
+\section{Week-by-week summary of activities}
+
+% Intro statement
+
+\subsection{Weeks 1 - 2}
+
+
+\subsection{Week 3}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+
+
+        \item \textit{Problems}:\\
+
+
+        \item \textit{Solutions}:\\
+
+
+	\end{itemize}
+ 
+\subsection{Week 4}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+
+
+        \item \textit{Problems}:\\
+
+
+        \item \textit{Solutions}:\\
+
+
+	\end{itemize}
+   
+\subsection{Week 5}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+
+
+        \item \textit{Problems}:\\
+
+
+        \item \textit{Solutions}:\\
+
+
+
+	\end{itemize}
+   
+\subsection{Week 6}
+	\begin{itemize}
+        \item \textit{Activities}:\\
+
+
+        \item \textit{Problems}:\\
+
+
+        \item \textit{Solutions}:\\
+
+
+	\end{itemize}
+   
+%\subsection{Week 7}
+%	\begin{itemize}
+%        \item \textit{Activities}:\\
+%        This week was very similar to week 6, as we continued to research more about our topics and headway on the SRS.\\ 
+%        We managed to finish the introduction of the document and we described the general interfaces between components, even though we were unsure of what components were going to be used. 
+%        Here is a list of some of the components that were researched and their results:
+%        \begin{itemize}
+%            \item Image analysis software\\
+%    	    Found DroneKit-Python, ArduPilot, and LibrePilot.
+%    	    \item Telemetry radios \\
+%    	    Found 3DR 915 MHz Transceiver, RFD900 Radio Modem, and OpenPilot OPLink Mini Ground and Air Station 433 MHz
+%    	    \item User interfaces\\
+%    	    Found QGroundControl, DroneKit-Android, and LibrePilot
+%    	    \item Vision System \\
+%    	    Found stereo vision camera implementations, different methods for parsing stereo vision, and the benefits and challenges of LiDAR
+%    	    \item System Interfaces \\
+%    	    Found hardware specifications for Intel NUC, UPBoard, and Raspberry Pi 3, along with documentation on the PXFmini
+%    	    \item Sensors\\
+%    	    Found data specifications for GPS, IMU options, and PXFmini's onboard sensors
+%        \end{itemize}
+%        \item \textit{Problems}:\\
+%        The biggest problem we had this week were sifting through hardware documentation, that was well... lacking in the documentation aspect. 
+%        The SRS document was also conceptually difficult without having an understanding of the technology behind it, which made it feel as if in order to finish the SRS, namely the requirements section, we would need to do the tech-review first to have a better understanding of what the realistic capabilities of the technology 
+%        Another problem was trying to make progress on the SRS document without having completed the tech review first.
+%        
+%        \item \textit{Solutions}:\\
+%        We spent more of our time researching to gain a better understanding of what we would need to do. 
+%        When we found technology that seemed promising, we would add it as a component to our tech review.
+%        Stepping back to look at the broader picture also helped us be able to fill out a good portion of the first half of the document.
+%	\end{itemize}
+%   
+%\subsection{Week 8}
+%	\begin{itemize}
+%        \item \textit{Activities}:\\
+%        This week was focused on more research, primarily for the tech review. 
+%        Thursday was also thanksgiving break, so not a lot happened between Wednesday and Sunday. 
+%        \item \textit{Problems}:\\
+%        The biggest problem was sifting through a lot of research that doesn't have any examples to look at. 
+%        \item \textit{Solutions}:\\
+%        Found as many basic examples as possible.
+%	\end{itemize}
+%   
+%\subsection{Week 9}
+%	\begin{itemize}
+%        \item \textit{Activities}:\\
+%        This week we managed to finish our tech review and started making progress on filling out our SRS document.
+%        We would call this the "AHA!" week in terms of progress, as we finally
+%        started to see how our project was going to come together.\\
+%        After turning in the tech review, we were able to start filling out requirements, which was significantly easier after knowing what the realistic capabilities of our hardware. 
+%        
+%        \item \textit{Problems}:\\
+%        The biggest problem was being a week behind where we would have liked to be. 
+%        Our SRS document was still not completed, even though we were making a lot of progress. 
+%       
+%        \item \textit{Solutions}:\\
+%        Our solution was to keep on moving forward and trying not to be affected
+%        too much by the setback from the previous documents.\\ 
+%        The next step was finishing our SRS document so that progress could be made on the design document. 
+%	\end{itemize}
+%   
+%\subsection{Week 10}
+%	\begin{itemize}
+%        \item \textit{Activities}:\\
+%        We finished our SRS document, and received Kevin's seal of approval. 
+%        The feedback we received was positive, which was surprising and satisfying at the same time. 
+%        We finished the design document. This is a preliminary design for what
+%        the layout and communication methods will be, along with generally what
+%        software we will be using, and what milestones we will need to hit in
+%        order to test the viability of our solution.
+%        While doing the design document, we also successfully ran the AutoRally project on ROS. So that was a big step. We finally 
+%        had something that was relatively more tangible. 
+%        
+%        \item \textit{Problems}:\\
+%        The biggest problem comes back to being a week behind and needing to finish the design document. 
+%        As a research project, the design document specifications from the IEEE format didn't follow what we needed, so we ended up having to talk more about our process and general design, rather than specifics, since they are still unknown. 
+%        
+%        \item \textit{Solutions}:\\
+%       	We managed to finish the design document by just putting in as much time as needed, however, it wasn't quite to the level that we would have liked. 
+%	This means we will continue to develop the document to better meet the specifications, once we have tested our system viability. 
+%	If the system is not viable, we will revisit the design and see what needs to be done in order to succeed. 
+%	\end{itemize}
+   
+\section{Retrospective}
+
+    % Formatting the table:
+    % Each row must be formatted as follows:
+    % column 1 & column 2 & column 3\\
+    % \hline
+    % 
+    % Example for text in first column but not in second or third:
+    % 
+    % some text & & \\
+    % \hline
+    %
+    % Example for text in second column but not in first or third:
+	% 
+	%  & some text & \\
+	% \hline
+	%
+	% There can be more positives than deltas, but deltas and Actions need to be one-to-one.
+	% Positives should not be in the same row as deltas.
+    
+	\begin{center}
+		\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+			\hline
+			\textbf{Positives:} & \textbf{Deltas:} & \textbf{Actions:}\\
+			
+            		Anything good that happened. & Changes that need to be implemented. & Specific actions to resolve deltas.\\
+			\hline
+			
+		\end{tabular}
+	\end{center}
+
+\end{document}
