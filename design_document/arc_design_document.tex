@@ -189,20 +189,20 @@ The adaptation of the system to the vehicle is done by entering a set of paramet
 	\item Test the results on the actual vehicle with the minimum amount of hardware mounted on it.
 	\item Test the results on the actual vehicle with fully loaded hardware.
 \end{enumerate}
-The PID (proportional–integral–derivative) control model is used to make sure that the vehicle is always on track. The PID model makes sure that, when the vehicle runs over bumps and drift off paths, it converges back to the desired path without overshoot or undershoot. When operating on a bumpy surface, the PID model is extremely critical to keep the vehicle on the paths.\par
+We are using the controller from the AutoRally project as our controller. Most of the concerns that we have are taken care of by that controller. \par
 \subsection{Milestones:}
 \begin{enumerate}
-	\item Fully understand the PID control model.
-	\item Customize the model to adapt to our vehicle.
+	\item Migrate that controller to our package.
+	\item Customize the controller to adapt to our vehicle.
 	\item Simulate the model in ROS.
 	\item Test the model on a smooth surface and regularly changing the paths. The vehicle should converge to the new path every time.
 	\item Test the model on a rough surface. The vehicle should converge back to the planned path every time it drifts off paths.
 \end{enumerate}
 
-The system has to know the location of the vehicle at any given moment. After each iteration when a series of actions are taken, the uncertainty of the vehicle location increases. Thus, the system has to utilize probabilistic methods with sensor measurements to minimize the uncertainty. The inputs to this modules are the previous location of the vehicle, actions taken in the previous iteration, and the sensors measurements, such as GPS, wheel encoders, vision system. With Bayes filter, the module produces reliable results.\par
+We are using the state estimator from AutoRally as our position indicator. That state estimator passes GPS and IMU data through a Kalman filter to produce an accurate estimate of the vehicle's current position and velocity.\par
 \subsection{Milestones:}
 \begin{enumerate}
-	\item Fully understand Bayes filter so that we can modify the library according to our need.
+	\item Migrate that state estimator to our package.
 	\item Being able to gather sensor measurements and feed them to the module.
 	\item Simulate the module on ROS.
 	\item Optimize the module so that the computation can be completed within a normal iteration.
