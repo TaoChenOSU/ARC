@@ -169,17 +169,28 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 \section{Tao}
 \subsection{Current Status}
 My work was mostly on simulation of the platform on the computer. My strategies was to use as much AutoRally's code as possible. The AutoRally package contains a model description of the vehicle it uses. We are not using the same vehicle for our project. But it will be good enough for the simulation. When we get our hands on our vehicle, we can adjust some of the model parameters to best fit our vehicle. The AutoRally package also has a controller that is in Python to control the steering, which uses the Ackerman steering theory, and the forward/backward motion. \par     
-As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller. \par 
+
+As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller (See figures below). \par 
+
+\begin{figure}
+  \centering
+ \includegraphics[width=\textwidth]{arc_prog_report_Tao_3.png}
+  \caption{Simulation on a computer}
+\end{figure}
+
+My area of focus specified in the design document are: motion model, path planning, and other algorithms. What I am doing right now is related to motion model. I need to get my hands on the actual vehicle to determine the parameters for the motion model. I am not sure if our vehicle uses the Ackerman steering model. If it does, the controller provided by AutoRally is perfect. Otherwise, I will have to assume that our vehicle does use the Ackerman steering model. Luckily, our vehicle is not as big as the one that AutoRally has. The steering model will only have minor effects on the simulation. 
+
+In order to do path planning and experience on other algorithms, I have to have the simulation running first. So I have not started this part yet. Once I have the simulation ready, I will start on the planing algorithms. I will create a publisher that subscribes to data that describes surrounding environment and publishes new waypoints accordingly. This publisher assumes the map of the world is known.
 
 \subsection{Left to do:}
 \begin{itemize}
-	\item In oder to configure the simulation to accurately simulate our platform, I still edit some parameters in some confiuration and model files. For example, the size and weight of the chassis determine the innertial of the vehicle in the physical engine.  
+	\item To configure the simulation to accurately simulate our platform, I still edit some parameters in some confiuration and model files. For example, the size and weight of the chassis determine the innertial of the vehicle in the physical engine.  
 	\item The two sensors for vision are not working perfectly. They are outputing the right data. However, I can't visualize their outputs on Rviz. I could print out the lidar data on the terminal. I have not try the pointcloud data yet. Rviz keeps complaining that it cannot find the transform frame for the lidar and the camera. Strangly, I was able to visualize the output on Rviz if I used my old model file. I need to double check my model file and the launch files. 
 	\item To make the car drive atonomously with minimum obstacle avoidance. Currently, our package does not have the state estimator, the waypoint follower and the constant speed controller, which are all essential for atonomous driving. I need to integrate those components with sensor data to accomplish this task. All of these files resite in the core package, which are hardware specific. Since we are not using any of the hardware that AutoRally uses, I need to potentially take them apart as well. 
 \end{itemize}
 \subsection{Challenges}
 	\begin{itemize}
-		\item Time is the issue. There are only 4 weeks left in this term. It is very hard to set a timeline for this project because we don't have a clear view of what is ahead of us. New issues arise constantly. I will try my best to complete the third item on the "Left to do" list in two weeks.
+		\item Time is the issue. There are only 4 weeks left in this term. It is very hard to set a timeline for this project because we don't have a clear view of what is ahead of us. New issues arise constantly. I will try my best to complete the third item on the Left to do list in two weeks.
 		\item I will set up the simplist obstacle avoidance procedure at first in the simulation, which is to let the car go from one point to another in a straight line but with a block in between. The vehicle should be able to go around the block to get to its destination. This requires the state estimator to know the current position of the vehicle in a global frame, as well as a waypoint follower to follow pre-defined waypoints. Waypoints are pre-defined point in the global frame. At start, the vehicle should steer towards the first waypoint and then follow the rest. A constant speed controller is also required so that the vehicle can keep its speed even the core software runs in cycles.   
 \begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|}
 	\hline
@@ -187,7 +198,12 @@ As for right now, I still haven't written any code yet. I teared apart the AutoR
 	\hline
 	Problems that impeded progress. & Specific actions to resolve problems.\\
 	\hline
-	
+	Visualizing sensor data on Rviz. & Go through all associated files. If it still can't be resolved, I will not use Rviz for visualizing. \\
+	\hline
+	Getting the car to move without using a controller. & Chase down where the controller commands get sent to. \\
+	\hline
+	Getting a clear view of the package structure. & I need to start making documentation. \\
+	\hline
 \end{tabular}
 
 \section{Dan}
