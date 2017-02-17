@@ -158,6 +158,7 @@ After the layout is determined, cases for objects will be modeled and printed, t
 
 %%Tao
 \section{Motion Model}
+Author: Tao \par
 Each iteration, the system issues a series of commands to the actuators, which are the motor and the servos in this project. Actuators then actuate the commands for the duration of one iteration. The time taken by each iteration may vary due to the different amount of information the system has to process. A control scheme/method must be needed to avoid the inconsistency in the actuators’ behaviors caused by the inconsistent duration.\par
 The speed control package from the AutoRally project is used to satisfy the speed consistency requirement. The system controls the speed by publishing a speed message to the listener, same as the steering.\par
 \subsection{Milestones:}
@@ -188,20 +189,20 @@ The adaptation of the system to the vehicle is done by entering a set of paramet
 	\item Test the results on the actual vehicle with the minimum amount of hardware mounted on it.
 	\item Test the results on the actual vehicle with fully loaded hardware.
 \end{enumerate}
-The PID (proportional–integral–derivative) control model is used to make sure that the vehicle is always on track. The PID model makes sure that, when the vehicle runs over bumps and drift off paths, it converges back to the desired path without overshoot or undershoot. When operating on a bumpy surface, the PID model is extremely critical to keep the vehicle on the paths.\par
+We are using the controller from the AutoRally project as our controller. Most of the concerns that we have are taken care of by that controller. \par
 \subsection{Milestones:}
 \begin{enumerate}
-	\item Fully understand the PID control model.
-	\item Customize the model to adapt to our vehicle.
+	\item Migrate that controller to our package.
+	\item Customize the controller to adapt to our vehicle.
 	\item Simulate the model in ROS.
 	\item Test the model on a smooth surface and regularly changing the paths. The vehicle should converge to the new path every time.
 	\item Test the model on a rough surface. The vehicle should converge back to the planned path every time it drifts off paths.
 \end{enumerate}
 
-The system has to know the location of the vehicle at any given moment. After each iteration when a series of actions are taken, the uncertainty of the vehicle location increases. Thus, the system has to utilize probabilistic methods with sensor measurements to minimize the uncertainty. The inputs to this modules are the previous location of the vehicle, actions taken in the previous iteration, and the sensors measurements, such as GPS, wheel encoders, vision system. With Bayes filter, the module produces reliable results.\par
+We are using the state estimator from AutoRally as our position indicator. That state estimator passes GPS and IMU data through a Kalman filter to produce an accurate estimate of the vehicle's current position and velocity.\par
 \subsection{Milestones:}
 \begin{enumerate}
-	\item Fully understand Bayes filter so that we can modify the library according to our need.
+	\item Migrate that state estimator to our package.
 	\item Being able to gather sensor measurements and feed them to the module.
 	\item Simulate the module on ROS.
 	\item Optimize the module so that the computation can be completed within a normal iteration.
@@ -210,6 +211,7 @@ The system has to know the location of the vehicle at any given moment. After ea
 
 %%Tao
 \section{Path Planning}
+Author: Tao \par
 \subsection{Global path planning:}
 When operating outdoor in an open area with a pre-downloaded satellite map, a global path planning module is required for the vehicle to travel from start to destination as desired. Dijkstra's based A* algorithm is used. The inputs to the module are the start and end locations (GPS coordinates), and a satellite map. The pre-processing unit generates valid waypoints, edges and edge costs by analyzing the map. Those waypoints and edges then get passed to the algorithm, which makes sure the shortest path is found. Since the implementation of Dijkstra’s algorithm is not complicated, it is fully customized to accommodate the inputs/data types specified above. The heuristic for the algorithm is defined to be the straight-line distance from the waypoints to the destination, calculated using the GPS data.\par
 \subsubsection{Milestones:}
@@ -236,6 +238,7 @@ When operating indoor within a closed area (with pre-defined map and boundaries)
 
 %%Tao
 \section{Other Algorithms}
+Author: Tao \par
 \subsection{Obstacle avoidance:}
 Obstacle avoidance is required for both local and global operations. Obstacle avoidance module grabs data packages from the vision system and tries to generate new paths on the go. Data included in the packages is defined by the vision system. There are two situations where the module may act differently. The first situation is when the vehicle has to come to a complete stop, due to high speed and path generation delay. The second situation is when the new path generation process is completed before the system decides to come to a complete stop.\par
 \subsection{Milestones:}
@@ -249,6 +252,7 @@ Obstacle avoidance is required for both local and global operations. Obstacle av
 \end{enumerate}
 
 \subsection{Parallel Parking:}
+Author: Tao \par
 Parallel parking requires two special path planning algorithms. The first algorithm detects valid parking spots. This algorithm relies on images analysis results produced by the vision system. The second algorithm is a path planning algorithm specifically designed for parallel parking maneuvers. A similar approach to the Autonomous Parallel Parking RC Car project done at Cornell University is used. The software package provided by Cornell University is modified to use image information instead of readings from ultrasonic sensors.\par
 \subsection{Milestones:}
 \begin{enumerate}

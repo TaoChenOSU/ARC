@@ -101,7 +101,7 @@ to build an autonomous RC vehicle using commodity components, meaning components
 that are relatively inexpensive and can be bought at places like Radio
 Shack\textsuperscript{\textregistered}, Best Buy\textsuperscript{\textregistered}, or on Amazon. \\
 Our goal is to make an RC vehicle navigate autonomous to a given
-waypoint/location, preferably at a high rate of speed. Stretch goals are to
+waypoint/location, preferably at a high rate of speed and with obstacle avoidance. Stretch goals are to
 make the vehicle drift around corners and parallel park.\\
 
 %\[Be sure to add graphic back in before final render!!\]
@@ -117,9 +117,40 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 \section{Cierra}
 	\subsection{Current Status}
 		% what is the current status of your areas of focus?
-		% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
+		Over the past six weeks, my focus has been acquiring hardware, modifying and building hardware and components, and working on the vision system. 
+		Currently, I have obtained all of the hardware we will need according to our design document minus the car. 
+		In the beginning of the term I modeled a mount that is adjustable and meant to be used with the two USB cameras we were provided. 
+		It is designed to be adjustable until we know how the cameras will need to be adjusted. 
+		After having printed, acquired the baby screws required, and assembled the camera, I found the cords to be messy. 
+		I fixed that with an expandable wiring sleeve that fits into the back of the camera case and expands in such a way that it doesn't slip out the back. 
+		The next step was calibrating the cameras, which had a very steep learning curve due to learning the libraries for openCV, which is a cross-platform vision processing library. 
+		As of now I am able to receive input from both cameras and create a disparity map. 
+		The main problem is the updates slow and even after calibrating the cameras and the depth is often distorted from the cameras trying to auto-focus. 
+		Hopefully, this week we will receive the Leddar M16, which is a Multi-element sensor module that uses 16 individual solid-state sensors to do time of flight sensing. 
+		The M16 was designed for industrial applications and the company provides a "trial" kit which provides everything needed including the module, SDK, and C libraries for using the sensor.
+		Due to the ability to detect multiple objects up to 150ft and providing a 45 degree view range, the M16 will probably end up replacing the stereo vision system, which isn't working as well as I would have hoped. 
+		The RC will namely need to track objects in front of it, so the 45 degree field of view should be enough. 
+		Using the M16 would also be able to allow us to switch to using a board such as the UPboard in place of the NUC, as it is only ever tracking 16 points at once. 
+		This is significantly less complex than having to run complex algorithms for pixel matching and point cloud creation that we would need to do for stereo vision. 
+		
+		We were given a UM7, which didn't have any headers on it, which meant we had no way to communicate with the sensory. 
+		I soldered on ends to the UM7, which was a challenge due to never having soldered and not understanding how wiring diagrams work.
+		 Currently, using the software provided by RedShift Labs, I am able to visualize the data on a Windows computer. 
+		This is rather cool, as once the major motion has gone away, if you place your finger on the sensor, the UM7 sensitive enough to notice a slight change in temperature and display your heart beat. 
+		
+		
+				% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
 		
 	\subsection{Left to do:}
+		Once the Leddar unit arrives, this section could be vastly different. Most of the documentation for the unit is protected; however, it will be included when the testing package arrives. 
+		Once we have the unit in hand, I will begin testing if it will be able to replace the stereo rig. 
+		If the Leddar is able to preform to our needs, i.e. give fast enough readings at a wide enough range and we will need to see what libraries are available. 
+		In order to test whether the M16 will work, I would like to take it outside, and see if it is able to detect things such as trees, walls, curbs, and rocks. 
+			
+		On top of that, as I oversee the hardware component protection of this project, I plan on creating a case for any component that is currently exposed. 
+		As of now, that includes the Raspberry Pi 3 with the PXFmini shield, UM7, and a protective "roll" cage for the Intel Nuc, or possibly a smaller main computer if we are able to move away from the NUC, as the main challenge was being able to process vision. 
+		We will also need to ensure that we are properly able to power all of our extra hardware, which currently will mean adding an extra LiPo battery.
+		As a group, we still need to be able to fully control the servos and Electronic Speed Controller (ESC), and once we know what hardware we will finally use, I will turn our mock up into either an array of components mounted onto an acrylic/polycarbonate plate, or a complete box that all components can be contained within. 
 		% What do you have left to do?
 		\begin{itemize}
 			\item Something to do...
@@ -137,23 +168,42 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 		
 \section{Tao}
 \subsection{Current Status}
-% what is the current status of your areas of focus?
-% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
+My work was mostly on simulation of the platform on the computer. My strategies was to use as much AutoRally's code as possible. The AutoRally package contains a model description of the vehicle it uses. We are not using the same vehicle for our project. But it will be good enough for the simulation. When we get our hands on our vehicle, we can adjust some of the model parameters to best fit our vehicle. The AutoRally package also has a controller that is in Python to control the steering, which uses the Ackerman steering theory, and the forward/backward motion. \par     
+
+As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller (See figures below). \par 
+
+\begin{figure}
+  \centering
+ \includegraphics[width=\textwidth]{arc_prog_report_Tao_3.png}
+  \caption{Simulation on a computer}
+\end{figure}
+
+My area of focus specified in the design document are: motion model, path planning, and other algorithms. What I am doing right now is related to motion model. I need to get my hands on the actual vehicle to determine the parameters for the motion model. I am not sure if our vehicle uses the Ackerman steering model. If it does, the controller provided by AutoRally is perfect. Otherwise, I will have to assume that our vehicle does use the Ackerman steering model. Luckily, our vehicle is not as big as the one that AutoRally has. The steering model will only have minor effects on the simulation. 
+
+In order to do path planning and experience on other algorithms, I have to have the simulation running first. So I have not started this part yet. Once I have the simulation ready, I will start on the planing algorithms. I will create a publisher that subscribes to data that describes surrounding environment and publishes new waypoints accordingly. This publisher assumes the map of the world is known.
 
 \subsection{Left to do:}
-% What do you have left to do?
 \begin{itemize}
-	\item Something to do...
+	\item To configure the simulation to accurately simulate our platform, I still edit some parameters in some confiuration and model files. For example, the size and weight of the chassis determine the innertial of the vehicle in the physical engine.  
+	\item The two sensors for vision are not working perfectly. They are outputing the right data. However, I can't visualize their outputs on Rviz. I could print out the lidar data on the terminal. I have not try the pointcloud data yet. Rviz keeps complaining that it cannot find the transform frame for the lidar and the camera. Strangly, I was able to visualize the output on Rviz if I used my old model file. I need to double check my model file and the launch files. 
+	\item To make the car drive autonomously with minimum obstacle avoidance. Currently, our package does not have the state estimator, the waypoint follower and the constant speed controller, which are all essential for atonomous driving. I need to integrate those components with sensor data to accomplish this task. All of these files resite in the core package, which are hardware specific. Since we are not using any of the hardware that AutoRally uses, I need to potentially take them apart as well. 
 \end{itemize}
 \subsection{Challenges}
-
+	\begin{itemize}
+		\item Time is the issue. There are only 4 weeks left in this term. It is very hard to set a timeline for this project because we don't have a clear view of what is ahead of us. New issues arise constantly. I will try my best to complete the third item on the Left to do list in two weeks.
+		\item I will set up the simplist obstacle avoidance procedure at first in the simulation, which is to let the car go from one point to another in a straight line but with a block in between. The vehicle should be able to go around the block to get to its destination. This requires the state estimator to know the current position of the vehicle in a global frame, as well as a waypoint follower to follow pre-defined waypoints. Waypoints are pre-defined point in the global frame. At start, the vehicle should steer towards the first waypoint and then follow the rest. A constant speed controller is also required so that the vehicle can keep its speed even the core software runs in cycles.   
 \begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|}
 	\hline
 	\textbf{Problems} & \textbf{Solutions}\\
 	\hline
 	Problems that impeded progress. & Specific actions to resolve problems.\\
 	\hline
-	
+	Visualizing sensor data on Rviz. & Go through all associated files. If it still can't be resolved, I will not use Rviz for visualizing. \\
+	\hline
+	Getting the car to move without using a controller. & Chase down where the controller commands get sent to. \\
+	\hline
+	Getting a clear view of the package structure. & I need to start making documentation. \\
+	\hline
 \end{tabular}
 
 \section{Dan}
