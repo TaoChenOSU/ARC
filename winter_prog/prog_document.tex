@@ -117,60 +117,79 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 \section{Cierra}
 	\subsection{Current Status}
 		% what is the current status of your areas of focus?
-		Over the past six weeks, my focus has been acquiring hardware, modifying and building hardware and components, and working on the vision system. 
-		Currently, I have obtained all of the hardware we will need according to our design document minus the car. 
+		Over the past six weeks, my focus has been acquiring hardware, modifying and building hardware and components, and working on the stereo vision camera. 
+		Currently, I have obtained all of the hardware we will need according to our design document, less the car. 
+		
 		In the beginning of the term I modeled a mount that is adjustable and meant to be used with the two USB cameras we were provided. 
 		It is designed to be adjustable until we know how the cameras will need to be adjusted. 
-		After having printed, acquired the baby screws required, and assembled the camera, I found the cords to be messy. 
-		I fixed that with an expandable wiring sleeve that fits into the back of the camera case and expands in such a way that it doesn't slip out the back. 
+		After having printed, acquired the baby screws, and assembled the camera, I needed to clean up and contain the cords coming from the back of the camera. 
+		I organized the cables with an expandable wiring sleeve that fits into the back of the camera case and expands in such a way that it doesn't slip out the back. 
+		
 		The next step was calibrating the cameras, which had a very steep learning curve due to learning the libraries for openCV, which is a cross-platform vision processing library. 
-		As of now I am able to receive input from both cameras and create a disparity map. 
-		The main problem is the updates slow and even after calibrating the cameras and the depth is often distorted from the cameras trying to auto-focus. 
-		Hopefully, this week we will receive the Leddar M16, which is a Multi-element sensor module that uses 16 individual solid-state sensors to do time of flight sensing. 
+		This did not turn out to be as successful as I had hoped.
+		The updates slow and even after calibrating the cameras and the depth is often distorted from the cameras trying to auto-focus. 
+		One of the cameras has a very hard time staying in focus, which means even though one image is completely clear, the other is blurred, which makes it impossible to create the disparity map.
+		
+		Hopefully, next week we will receive the Leddar M16, which is a Multi-element sensor module that uses 16 individual solid-state sensors to do time of flight sensing. 
 		The M16 was designed for industrial applications and the company provides a "trial" kit which provides everything needed including the module, SDK, and C libraries for using the sensor.
 		Due to the ability to detect multiple objects up to 150ft and providing a 45 degree view range, the M16 will probably end up replacing the stereo vision system, which isn't working as well as I would have hoped. 
-		The RC will namely need to track objects in front of it, so the 45 degree field of view should be enough. 
-		Using the M16 would also be able to allow us to switch to using a board such as the UPboard in place of the NUC, as it is only ever tracking 16 points at once. 
-		This is significantly less complex than having to run complex algorithms for pixel matching and point cloud creation that we would need to do for stereo vision. 
+		The RC car will namely need to track objects in front of it, so the 45 degree field of view should be enough and we can use other sensors to supplement anything that might not be in view.
+		Using the M16 would also be able to allow us to switch to using a board such as the UPboard in place of the NUC.
+		The M16 has significantly less complex output, in comparison to running complex algorithms for pixel matching and point cloud creation that we would need to do for stereo vision. 
 		
-		We were given a UM7, which didn't have any headers on it, which meant we had no way to communicate with the sensory. 
+		We were given a UM7, which didn't have any headers on it, which meant we had no way to communicate with the sensor. 
 		I soldered on ends to the UM7, which was a challenge due to never having soldered and not understanding how wiring diagrams work.
-		 Currently, using the software provided by RedShift Labs, I am able to visualize the data on a Windows computer. 
+		Currently, using the software provided by RedShift Labs, I am able to visualize the data on a Windows computer. 
 		This is rather cool, as once the major motion has gone away, if you place your finger on the sensor, the UM7 sensitive enough to notice a slight change in temperature and display your heart beat. 
 		
 		
 				% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
 		
 	\subsection{Left to do:}
-		Once the Leddar unit arrives, this section could be vastly different. Most of the documentation for the unit is protected; however, it will be included when the testing package arrives. 
-		Once we have the unit in hand, I will begin testing if it will be able to replace the stereo rig. 
-		If the Leddar is able to preform to our needs, i.e. give fast enough readings at a wide enough range and we will need to see what libraries are available. 
-		In order to test whether the M16 will work, I would like to take it outside, and see if it is able to detect things such as trees, walls, curbs, and rocks. 
-			
-		On top of that, as I oversee the hardware component protection of this project, I plan on creating a case for any component that is currently exposed. 
-		As of now, that includes the Raspberry Pi 3 with the PXFmini shield, UM7, and a protective "roll" cage for the Intel Nuc, or possibly a smaller main computer if we are able to move away from the NUC, as the main challenge was being able to process vision. 
-		We will also need to ensure that we are properly able to power all of our extra hardware, which currently will mean adding an extra LiPo battery.
-		As a group, we still need to be able to fully control the servos and Electronic Speed Controller (ESC), and once we know what hardware we will finally use, I will turn our mock up into either an array of components mounted onto an acrylic/polycarbonate plate, or a complete box that all components can be contained within. 
 		% What do you have left to do?
 		\begin{itemize}
-			\item Something to do...
-		\end{itemize}
-	\subsection{Challenges}
+				\item Right now, I'm still waiting for the Leddar unit to arriveMost of the documentation for the unit is protected; however, it will be included when the testing package arrives. 
+					Once we have the unit in hand, I will begin testing if it will be able to replace the stereo rig. 
+					If the Leddar is able to preform to our needs, i.e. give fast enough readings at a wide enough range and we will need to see what libraries are available. 
+					In order to test whether the M16 will work, I would like to take it outside, and see if it is able to detect things such as trees, walls, curbs, and rocks.
+					
+					Another important piece will be ensuring that we can find a library that is able to use it for obstacle avoidance. 
+					We should be able to use any 2d point cloud library, due to the nature of the module.
+			
+				\item Next, as I oversee the hardware component protection of this project, I plan on creating a case for any component that is currently exposed. 
+					As of now, that includes the Raspberry Pi 3 with the PXFmini shield, UM7, and a protective "roll" cage for the Intel Nuc, or possibly a smaller main computer if we are able to move away from the NUC, as the main challenge was being able to process vision. 
+					If we move to the M16, then I'll need to design an enclosure that can hold it in place on the car and create a shock mount so that the cars vibrations don't cause problems with the results. 
+					Even without the shock mounts, it still should be okay, as all of the readings are done at the speed of light. 
+					
+				\item Our NUC will need to be tested running on the 3-cell LiPo. To do this, I'll wire the NUC to the voltage step-up power converter, and the power converter into the LiPo. 
+					This will be successful if we can run run a graphics bench marking test 
 		
+				\item As a group, we still need to be able to fully control the servos and Electronic Speed Controller (ESC), and once we know what hardware we will finally use, I will turn our mock up into either an array of components mounted onto an acrylic/polycarbonate plate, or a complete box that all components can be contained within. 
+		\end{itemize}
+		
+	\subsection{Challenges}
 		\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|}
 			\hline
 			\textbf{Problems} & \textbf{Solutions}\\
 			\hline
 			Problems that impeded progress. & Specific actions to resolve problems.\\
 			\hline
+			Waiting on components. & Tried to find other work on, and did more research while waiting for things to arrive (in reference to the M16 and PXFmini software).\\
+			\hline
+			Accidentally wiped a lab computer trying to install Ubuntu on an external hard drive to dual boot from. & Contacted Kevin and the engineering support said they have cloned it to it's neighbor
+			\hline
+			Cameras are not able to have synced images. & Started researching the M16 that our client offered us to use. Since the camera lag is so bad, really the only solution other than moving to a more expensive set of cameras, is to use a different type of vision system.
+			\hline
+			Couldn't get input from the IMU. & Checked to make sure that my wiring was correct. When I found out that it wasn't, I tested it with jumper wires, by swapping two of the data pins. At first I wasn't receiving any input when the pins were swapped; however, with the swapped pins, I was able to receive "garbage" to my terminal window. After I knew the solution was correct, I rewired the header and used the Windows tool from the developer to view the input.
+			\hline
 						
 		\end{tabular}
 		
 \section{Tao}
 \subsection{Current Status}
-My work was mostly on simulation of the platform on the computer. My strategies was to use as much AutoRally's code as possible. The AutoRally package contains a model description of the vehicle it uses. We are not using the same vehicle for our project. But it will be good enough for the simulation. When we get our hands on our vehicle, we can adjust some of the model parameters to best fit our vehicle. The AutoRally package also has a controller that is in Python to control the steering, which uses the Ackerman steering theory, and the forward/backward motion. \par     
+My work was mostly on simulation of the platform on the computer. My strategy was to use as much of the code from AutoRally as possible. The AutoRally package contains a model description of the vehicle it uses. We are not using the same vehicle for our project, but it will be good enough for the simulation. When we get our hands on our vehicle, we can adjust some of the model parameters to best fit our vehicle. The AutoRally package also has a controller that is in Python to control the steering, which uses the Ackerman steering theory, and the forward/backward motion. \par     
 
-As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller (See figures below). \par 
+As of right now, I still have not written any code. I tore apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package, such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller (See figures below). \par 
 
 \begin{figure}[H]
   \centering
@@ -286,15 +305,15 @@ Successfully installed ROS on both the GCS and the NUC. This gives us our comman
 	\hline	
 	Problems that impeded progress. & Specific actions to resolve problems.\\
 	\hline
-	Did not get RPi3 erle image until late (week 4/5). & Getting the image allowed us to attempt to set up the PXFmini on the RPi3.\\
+	Did not get RPi3 Erle image until late (week 4/5). & Getting the image allowed us to attempt to set up the PXFmini on the RPi3.\\
 	\hline
-	The first erle image sent was corrupted, it took about a week waiting for a new image. & Erle sent a new image.\\
+	The first Erle image sent was corrupted, it took about a week waiting for a new image. & Erle sent a new image.\\
 	\hline
-	The environment from Erle seems to be very fragile/unstable. We have run into different problems each time we have re-installed the image they gave us. Our client is have yet a different problem in a separate project where they are trying to use the PXFmini. & This has not been resolved.\\
+	The environment from Erle seems to be very fragile/unstable. We have run into different problems each time we have re-installed the image they gave us. Our client is have yet a different problem, in a separate project, where they are trying to use the PXFmini. & This has not been resolved.\\
 	\hline
 	The PXFmini instructions/tutorials were inconsistent/incorrect. This has created quite a few problems, which has further delayed getting our autopilot running. & We have been working with our client to solve some of the issues with installing and running the PXFmini autopilot.\\
 	\hline
-	The RPi3 WiFii and ethernet were not configured to connect to the internet. & Researched how to set the RPi3 to connect to the internet via ethernet. It turned out that this problem was caused by how Erle set up their OS image. Found the proper settings to connect to the internet via either WiFi or ethernet. However, if WiFi is set to connect to the internet, external computers cannot talk to the PXFmini via WiFi, same for ethernet.\\
+	The RPi3 WiFi and ethernet were not configured to connect to the internet. & Researched how to set the RPi3 to connect to the internet via ethernet. It turned out that this problem was caused by how Erle set up their OS image. Found the proper settings to connect to the internet via either WiFi or ethernet. However, if WiFi is set to connect to the internet, external computers cannot talk to the PXFmini via WiFi, same for ethernet.\\
 	\hline
 	The PXFmini does not respond to commands via MAVros. & MAVros is the ROS api to MAVLink, the protocol for commanding the PXFmini. While we are able to publish (send commands to) and subscribe (get data from) the appropriate topics, the PXFmini does not respond as would be expected. The motors do not activate.\par
 	We have found a forum posting stating that a certain variable (SYSID\_MYGCS) needs to be set to 1 in order to override the RC in control to allow computer control of the PXFmini. It looks like the variable can only be set through a GUI, such as ArduPilot. We will try installing ArduPilot on the GCS and see if we can set SYSID\_MYGCS to 1 and see if that makes any difference.\\
