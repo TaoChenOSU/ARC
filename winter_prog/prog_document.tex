@@ -106,7 +106,7 @@ make the vehicle drift around corners and parallel park.\\
 
 %\[Be sure to add graphic back in before final render!!\]
 \begin{figure}[H]
-   	\includegraphics[width=\textwidth]{autorally_platform_header}
+   	\includegraphics[width=\textwidth]{images/autorally_platform_header}
     \caption{Drifting example. Image from https://autorally.github.io/}
 \end{figure}
 
@@ -172,9 +172,9 @@ My work was mostly on simulation of the platform on the computer. My strategies 
 
 As for right now, I still haven't written any code yet. I teared apart the AutoRally package and tried to understand it. I migrated a minimum amount of code to our own package such that the simulation would still run. That being said, when we are ready to build our platform and start implementation, we will use the current package as the foundation. The simulation of the platform will not drive itself yet. It has to be controlled by a Xbox controller (See figures below). \par 
 
-\begin{figure}
+\begin{figure}[H]
   \centering
- \includegraphics[width=\textwidth]{arc_prog_report_Tao_3.png}
+  \includegraphics[width=\textwidth]{arc_prog_report_Tao_3}
   \caption{Simulation on a computer}
 \end{figure}
 
@@ -214,6 +214,15 @@ Much of the work of the first half of the term has been setting up the software 
 We have our operating systems installed and configured on our primary computers: the laptop which is the ground control station (GCS), the Raspberry Pi 3 (RPi3) and PXFmini which is the autopilot, and the NUC which is the companion computer that handles the raw calculations. We have ROS installed and running on all platforms.\par
 
 We have been working on getting the RPi3 talking with the PXFMini autopilot cape. The PXFmini autopilot is used to integrate sensor data to send to the NUC and to integrate data coming from the NUC to the vehicle controls. The autopilot also automates calibration of the vehicle and performs other convenient features. We have a system image for the RPi3, from Erle Robotics (the makers of the PXFmini) installed and are able to get the PXFmini launched and armed. This means that the autopilot is ready to take commands.\par
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/unarmed}
+	\caption{PXFmini autopilot before launch and unarmed.}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/armed}
+	\caption{PXFmini autopilot after launch and armed.}
+\end{figure}
 
 We have also been working on communicating computer-to-computer using ROS nodes. We have run successful tests over direct ethernet connections talking between ROS nodes. These tests lay the groundwork for the NUC to be able to send instructions to the autopilot.\par
 
@@ -226,11 +235,21 @@ No significant progress has been made on image analysis. We still plan to use th
 
 
 \subsubsection{Radio Communication}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/radio}
+	\caption{3DR Telemetry Radio}
+\end{figure}
 The status of radio communication is much the same as image analysis. We do not have the physical platform ready for developing and testing radio communication. The radio component of this project should prove to be fairly trivial since radio control and telemetry communication are completely standardized and there are many examples and tutorials, both in hardware and software, to follow. We will be using the MAVLink protocol for radio communication.
 
 \subsubsection{User Interface}
 We have a command line interface (CLI) up and running on the GCS, the RPi3, and the NUC. We are using ROS for the CLI. 
-Successfully installed ROS on both the GCS and the NUC. This gives us our command line interface (CLI) for issuing commands to the vehicle. We have been using the CLI to send and receive individual commands to ROS topics (a ROS topic is basically the way that ROS sends and receives commands). We are able to publish and subscribe to ROS nodes, specifically MAVros nodes, which is also part of being able to monitor and control the vehicle. We have also run python scripts that have published to ROS topics.
+Successfully installed ROS on both the GCS and the NUC. This gives us our command line interface (CLI) for issuing commands to the vehicle. We have been using the CLI to send and receive individual commands to ROS topics (a ROS topic is basically the way that ROS sends and receives commands). We are able to publish and subscribe to ROS nodes, specifically MAVros nodes, which is also part of being able to monitor and control the vehicle. We have also run python scripts that have published to ROS topics.\par
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/imu}
+	\caption{Command Line Interface example of a list of running ROS topics.}
+\end{figure}
+
 
 
 \subsection{Left to do:}
