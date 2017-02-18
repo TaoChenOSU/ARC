@@ -124,11 +124,22 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 		It is designed to be adjustable until we know how the cameras will need to be adjusted. 
 		After having printed, acquired the baby screws, and assembled the camera, I needed to clean up and contain the cords coming from the back of the camera. 
 		I organized the cables with an expandable wiring sleeve that fits into the back of the camera case and expands in such a way that it doesn't slip out the back. 
+		\begin{figure}[H]
+ 		\centering
+		\includegraphics[width=\textwidth]{stereo_camera}
+		\caption{Stereo Camera Mount}
+		\end{figure}
 		
 		The next step was calibrating the cameras, which had a very steep learning curve due to learning the libraries for openCV, which is a cross-platform vision processing library. 
 		This did not turn out to be as successful as I had hoped.
 		The updates slow and even after calibrating the cameras and the depth is often distorted from the cameras trying to auto-focus. 
 		One of the cameras has a very hard time staying in focus, which means even though one image is completely clear, the other is blurred, which makes it impossible to create the disparity map.
+		
+		\begin{figure}[H]
+ 		\centering
+		\includegraphics[width=\textwidth]{images/camera_lag}
+		\caption{Here you can see the binder is at very different locations, even though the images are taken at the "same" time}
+		\end{figure}
 		
 		Hopefully, next week we will receive the Leddar M16, which is a Multi-element sensor module that uses 16 individual solid-state sensors to do time of flight sensing. 
 		The M16 was designed for industrial applications and the company provides a "trial" kit which provides everything needed including the module, SDK, and C libraries for using the sensor.
@@ -139,9 +150,20 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 		
 		We were given a UM7, which didn't have any headers on it, which meant we had no way to communicate with the sensor. 
 		I soldered on ends to the UM7, which was a challenge due to never having soldered and not understanding how wiring diagrams work.
+		
+		\begin{figure}[H]
+ 		\centering
+		\includegraphics[width=\textwidth]{images/imu_unit}
+		\caption{Stereo Camera Mount}
+		\end{figure}
+		
 		Currently, using the software provided by RedShift Labs, I am able to visualize the data on a Windows computer. 
 		This is rather cool, as once the major motion has gone away, if you place your finger on the sensor, the UM7 sensitive enough to notice a slight change in temperature and display your heart beat. 
-		
+		\begin{figure}[H]
+ 		\centering
+		\includegraphics[width=\textwidth]{images/imu_graph}
+		\caption{Output from the IMU using the Redshift Labs software}
+		\end{figure}
 		
 				% Be sure to include descriptions of experimental design and use images, screenshots, code blocks
 		
