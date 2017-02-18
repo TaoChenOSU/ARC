@@ -126,7 +126,7 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 		I organized the cables with an expandable wiring sleeve that fits into the back of the camera case and expands in such a way that it doesn't slip out the back. 
 		\begin{figure}[H]
  		\centering
-		\includegraphics[width=\textwidth]{stereo_camera}
+		\includegraphics[width=\textwidth]{images/stereo_camera}
 		\caption{Stereo Camera Mount}
 		\end{figure}
 		
@@ -181,10 +181,10 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 				\item Next, as I oversee the hardware component protection of this project, I plan on creating a case for any component that is currently exposed. 
 					As of now, that includes the Raspberry Pi 3 with the PXFmini shield, UM7, and a protective "roll" cage for the Intel Nuc, or possibly a smaller main computer if we are able to move away from the NUC, as the main challenge was being able to process vision. 
 					If we move to the M16, then I'll need to design an enclosure that can hold it in place on the car and create a shock mount so that the cars vibrations don't cause problems with the results. 
-					Even without the shock mounts, it still should be okay, as all of the readings are done at the speed of light. 
+					Even without the shock mounts, it still should be okay, as all of the readings are done at the speed of light. \\
 					
 				\item Our NUC will need to be tested running on the 3-cell LiPo. To do this, I'll wire the NUC to the voltage step-up power converter, and the power converter into the LiPo. 
-					This will be successful if we can run run a graphics bench marking test 
+					This will be successful if we can run run a graphics bench marking test. \\
 		
 				\item As a group, we still need to be able to fully control the servos and Electronic Speed Controller (ESC), and once we know what hardware we will finally use, I will turn our mock up into either an array of components mounted onto an acrylic/polycarbonate plate, or a complete box that all components can be contained within. 
 		\end{itemize}
@@ -198,11 +198,11 @@ functioning, consumer-grade autonomous RC vehicle of their own.
 			\hline
 			Waiting on components. & Tried to find other work on, and did more research while waiting for things to arrive (in reference to the M16 and PXFmini software).\\
 			\hline
-			Accidentally wiped a lab computer trying to install Ubuntu on an external hard drive to dual boot from. & Contacted Kevin and the engineering support said they have cloned it to it's neighbor
+			Accidentally wiped a lab computer trying to install Ubuntu on an external hard drive to dual boot from. & Contacted Kevin and the engineering support said they have cloned it to it's neighbor.\\
 			\hline
-			Cameras are not able to have synced images. & Started researching the M16 that our client offered us to use. Since the camera lag is so bad, really the only solution other than moving to a more expensive set of cameras, is to use a different type of vision system.
+			Cameras are not able to have synced images. & Started researching the M16 that our client offered us to use. Since the camera lag is so bad, really the only solution other than moving to a more expensive set of cameras, is to use a different type of vision system.\\
 			\hline
-			Couldn't get input from the IMU. & Checked to make sure that my wiring was correct. When I found out that it wasn't, I tested it with jumper wires, by swapping two of the data pins. At first I wasn't receiving any input when the pins were swapped; however, with the swapped pins, I was able to receive "garbage" to my terminal window. After I knew the solution was correct, I rewired the header and used the Windows tool from the developer to view the input.
+			Couldn't get input from the IMU. & Checked to make sure that my wiring was correct. When I found out that it wasn't, I tested it with jumper wires, by swapping two of the data pins. At first I wasn't receiving any input when the pins were swapped; however, with the swapped pins, I was able to receive "garbage" to my terminal window. After I knew the solution was correct, I rewired the header and used the Windows tool from the developer to view the input.\\
 			\hline
 						
 		\end{tabular}
@@ -215,7 +215,7 @@ As of right now, I still have not written any code. I tore apart the AutoRally p
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{arc_prog_report_Tao_3}
+  \includegraphics[width=\textwidth]{images/tao}
   \caption{Simulation on a computer}
 \end{figure}
 
@@ -224,15 +224,18 @@ My area of focus specified in the design document are: motion model, path planni
 In order to do path planning and experience on other algorithms, I have to have the simulation running first. So I have not started this part yet. Once I have the simulation ready, I will start on the planing algorithms. I will create a publisher that subscribes to data that describes surrounding environment and publishes new waypoints accordingly. This publisher assumes the map of the world is known.
 
 \subsection{Left to do:}
+
 \begin{itemize}
-	\item To configure the simulation to accurately simulate our platform, I still edit some parameters in some confiuration and model files. For example, the size and weight of the chassis determine the innertial of the vehicle in the physical engine.  
-	\item The two sensors for vision are not working perfectly. They are outputing the right data. However, I can't visualize their outputs on Rviz. I could print out the lidar data on the terminal. I have not try the pointcloud data yet. Rviz keeps complaining that it cannot find the transform frame for the lidar and the camera. Strangly, I was able to visualize the output on Rviz if I used my old model file. I need to double check my model file and the launch files. 
-	\item To make the car drive autonomously with minimum obstacle avoidance. Currently, our package does not have the state estimator, the waypoint follower and the constant speed controller, which are all essential for atonomous driving. I need to integrate those components with sensor data to accomplish this task. All of these files resite in the core package, which are hardware specific. Since we are not using any of the hardware that AutoRally uses, I need to potentially take them apart as well. 
+	\item To configure the simulation to accurately simulate our platform, I still edit some parameters in some configuration and model files. For example, the size and weight of the chassis determine the inertial of the vehicle in the physical engine.  
+	\item The two sensors for vision are not working perfectly. They are outputting the right data. However, I can't visualize their outputs on Rviz. I could print out the lidar data on the terminal. I have not try the pointcloud data yet. Rviz keeps complaining that it cannot find the transform frame for the lidar and the camera. Strangely, I was able to visualize the output on Rviz if I used my old model file. I need to double check my model file and the launch files. 
+	\item To make the car drive autonomously with minimum obstacle avoidance. Currently, our package does not have the state estimator, the waypoint follower and the constant speed controller, which are all essential for autonomous driving. I need to integrate those components with sensor data to accomplish this task. All of these files reside in the core package, which are hardware specific. Since we are not using any of the hardware that AutoRally uses, I need to potentially take them apart as well. 
 \end{itemize}
+
 \subsection{Challenges}
 	\begin{itemize}
 		\item Time is the issue. There are only 4 weeks left in this term. It is very hard to set a timeline for this project because we don't have a clear view of what is ahead of us. New issues arise constantly. I will try my best to complete the third item on the Left to do list in two weeks.
-		\item I will set up the simplist obstacle avoidance procedure at first in the simulation, which is to let the car go from one point to another in a straight line but with a block in between. The vehicle should be able to go around the block to get to its destination. This requires the state estimator to know the current position of the vehicle in a global frame, as well as a waypoint follower to follow pre-defined waypoints. Waypoints are pre-defined point in the global frame. At start, the vehicle should steer towards the first waypoint and then follow the rest. A constant speed controller is also required so that the vehicle can keep its speed even the core software runs in cycles.   
+		\item I will set up the simplest obstacle avoidance procedure at first in the simulation, which is to let the car go from one point to another in a straight line but with a block in between. The vehicle should be able to go around the block to get to its destination. This requires the state estimator to know the current position of the vehicle in a global frame, as well as a waypoint follower to follow pre-defined waypoints. Waypoints are pre-defined point in the global frame. At start, the vehicle should steer towards the first waypoint and then follow the rest. A constant speed controller is also required so that the vehicle can keep its speed even the core software runs in cycles.   
+	\end{itemize}
 \begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|}
 	\hline
 	\textbf{Problems} & \textbf{Solutions}\\
