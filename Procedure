@@ -1,0 +1,21 @@
+*** Do these on every single terminal ***
+***   Under the workspace directory   ***
+1. source devel/setup.bash
+2. source src/autorally/autorally_util/setupEnvLocal.sh
+*****************************************
+3. roscore
+4. --new terminal roslaunch autorally_gazebo autoRallyTrackGazeboSim.launch
+5. --new terminal rosparam set /FixedInitialPose true
+6. roslaunch autorally_core stateEstimator.launch
+7. --new terminal roslaunch autorally_control waypointFollower.launch
+8. --new terminal roslaunch autorally_control constantSpeedController.launch
+9. --new terminal rosrun rqt_publisher rqt_publisher
+10. Publish autorally_msgs/runstop with motionEnabled set to true
+11. Publish autorally_msgs/chassisState with runstopMotionEnabled set to true
+12. Publish /constantSpeedController/speedCommand with speed set to 5 (max)
+13. --new terminal rosrun autorally_smartdriving lidarDetection
+
+***Visualization on Rviz***
+1. --new terminal rosrun rviz rviz
+2. In Rviz, select topics by clicking add.
+

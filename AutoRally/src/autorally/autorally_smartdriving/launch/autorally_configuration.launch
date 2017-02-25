@@ -1,0 +1,13 @@
+<launch>
+  <include file="$(find autorally_core)/launch/hardware.machine" />
+
+  <node pkg="autorally_smartdriving" type="lidarDetection" name="autorally_lidar" output="screen" />
+
+  <node pkg="odom_node_pkg" type="odom_node_type" name="odom_node" output="screen">
+    <param name="odom_param" value="param_value" />
+  </node>
+
+  <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+    <param name="transform_configuration_param" value="param_value" />
+  </node>
+</launch>

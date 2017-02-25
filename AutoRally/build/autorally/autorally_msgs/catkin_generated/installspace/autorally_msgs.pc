@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/install
+
+Name: autorally_msgs
+Description: Description of autorally_msgs
+Version: 0.2.4
+Cflags: -I/home/arc/Desktop/AutoRally/install/include
+Libs: -L/home/arc/Desktop/AutoRally/install/lib 
+Requires: 

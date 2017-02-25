@@ -1,0 +1,2 @@
+autorally/autorally:autorally/autorally_control:autorally/autorally_core:autorally/autorally_description:autorally/autorally_gazebo:autorally/autorally_msgs:autorally/autorally_smartdriving:autorally/autorally_util:imu_3dm_gx4
+-DCATKIN_DEVEL_PREFIX=/home/arc/Desktop/AutoRally/devel -DCMAKE_INSTALL_PREFIX=/home/arc/Desktop/AutoRally/install -G Unix Makefiles

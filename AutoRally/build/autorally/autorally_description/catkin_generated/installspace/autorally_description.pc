@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/install
+
+Name: autorally_description
+Description: Description of autorally_description
+Version: 0.2.4
+Cflags: 
+Libs: -L/home/arc/Desktop/AutoRally/install/lib 
+Requires: 

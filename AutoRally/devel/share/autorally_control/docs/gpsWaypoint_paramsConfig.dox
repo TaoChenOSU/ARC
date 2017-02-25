@@ -1,0 +1,9 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~pGain" : \b [double] Proportional gain min: -10.0, default: -2.0, max: 10.0
+- \b "~gpsHeading" : \b [bool] True to use gps heading, false for fused min: False, default: False, max: True
+- \b "~wpRadius" : \b [double] Distance from waypoint to move to next min: 0.5, default: 1.5, max: 10.0
+- \b "~wpnum" : \b [double] Distance from waypoint to move to next min: 0.5, default: 1.5, max: 10.0
+

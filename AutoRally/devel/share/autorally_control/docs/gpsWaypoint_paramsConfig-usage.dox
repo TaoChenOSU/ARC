@@ -1,0 +1,10 @@
+\subsubsection usage Usage
+\verbatim
+<node name="gpsWaypoint" pkg="autorally_control" type="gpsWaypoint">
+  <param name="pGain" type="double" value="-2.0" />
+  <param name="gpsHeading" type="bool" value="False" />
+  <param name="wpRadius" type="double" value="1.5" />
+  <param name="wpnum" type="double" value="1.5" />
+</node>
+\endverbatim
+

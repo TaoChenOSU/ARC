@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/devel
+
+Name: autorally_gazebo
+Description: Description of autorally_gazebo
+Version: 0.2.4
+Cflags: 
+Libs: -L/home/arc/Desktop/AutoRally/devel/lib 
+Requires: 

@@ -1,0 +1,6 @@
+set(autorally_gazebo_SETUP_PY_VERSION "0.2.4")
+set(autorally_gazebo_SETUP_PY_SCRIPTS "nodes/autorally_controller.py")
+set(autorally_gazebo_SETUP_PY_PACKAGES "")
+set(autorally_gazebo_SETUP_PY_PACKAGE_DIRS "")
+set(autorally_gazebo_SETUP_PY_MODULES "")
+set(autorally_gazebo_SETUP_PY_MODULE_DIRS "")

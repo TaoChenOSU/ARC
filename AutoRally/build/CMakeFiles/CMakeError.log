@@ -1,0 +1,149 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1182570630/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1182570630.dir/build.make CMakeFiles/cmTryCompileExec1182570630.dir/build
+make[1]: Entering directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1182570630.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1182570630.dir/CheckSymbolExists.c.o   -c /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1182570630
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1182570630.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1182570630.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1182570630 -rdynamic 
+CMakeFiles/cmTryCompileExec1182570630.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec1182570630] Error 1
+make[1]: Leaving directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1182570630/fast] Error 2
+
+File /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2139191796/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2139191796.dir/build.make CMakeFiles/cmTryCompileExec2139191796.dir/build
+make[1]: Entering directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2139191796.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec2139191796.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2139191796
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2139191796.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec2139191796.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2139191796 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: Leaving directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec2139191796] Error 1
+make: *** [cmTryCompileExec2139191796/fast] Error 2
+
+
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2388864550/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2388864550.dir/build.make CMakeFiles/cmTryCompileExec2388864550.dir/build
+make[1]: Entering directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2388864550.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wuninitialized -Wall -Wextra  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2388864550.dir/CheckSymbolExists.cxx.o -c /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^
+make[1]: *** [CMakeFiles/cmTryCompileExec2388864550.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec2388864550/fast] Error 2
+
+File /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1887594107/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1887594107.dir/build.make CMakeFiles/cmTryCompileExec1887594107.dir/build
+make[1]: Entering directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1887594107.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wuninitialized -Wall -Wextra  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec1887594107.dir/CheckSymbolExists.cxx.o -c /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^
+make[1]: *** [CMakeFiles/cmTryCompileExec1887594107.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1887594107/fast] Error 2
+
+File /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1762743742/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1762743742.dir/build.make CMakeFiles/cmTryCompileExec1762743742.dir/build
+make[1]: Entering directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1762743742.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++11 -Wuninitialized -Wall -Wextra  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec1762743742.dir/CheckSymbolExists.cxx.o -c /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^
+make[1]: *** [CMakeFiles/cmTryCompileExec1762743742.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory `/home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1762743742/fast] Error 2
+
+File /home/arc/Desktop/AutoRally/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

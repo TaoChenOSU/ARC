@@ -1,0 +1,7 @@
+\subsubsection usage Usage
+\verbatim
+<node name="autorally_core" pkg="autorally_core" type="autorally_core">
+  <param name="camera_trigger_frequency" type="int" value="40" />
+</node>
+\endverbatim
+

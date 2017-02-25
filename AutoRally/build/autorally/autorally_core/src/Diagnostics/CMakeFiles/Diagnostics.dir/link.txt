@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -std=c++11 -Wuninitialized -Wall -Wextra   -shared -Wl,-soname,libDiagnostics.so -o /home/arc/Desktop/AutoRally/devel/lib/libDiagnostics.so CMakeFiles/Diagnostics.dir/Diagnostics.cpp.o 
