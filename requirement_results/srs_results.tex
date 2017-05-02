@@ -1,0 +1,420 @@
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
+\usepackage[letterpaper, margin=.75in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand*{\SignatureAndDate}[1]{
+    \par\noindent\makebox[2.5in]{\hrulefill} \hfill\makebox[2.0in]{\hrulefill}
+    \newline\noindent\makebox[2.5in][l]{#1}  \hfill\makebox[2.0in][l]{Date}
+}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\subsection}{}{}
+\patchcmd{\thebibliography}{\addcontentsline{toc}{section}{\refname}}{}{}{}
+
+\usepackage{graphicx}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Tao Chen, Daniel Stoyer}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {SRS requirements, Fall 2016},
+	pdftitle = {SRS requirements},
+	pdfsubject = {Requirement document for ARCt},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.0 }
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+\setcounter{secnumdepth}{5}
+
+\begin{document}
+
+\begin{titlepage}
+\title{
+Requirement Results\\
+\LARGE
+ARC - Autonomous RC\\
+Senior Capstone Project\\
+Oregon State University\\
+Spring 2017
+}
+\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
+\maketitle
+\begin{center}
+	Version 1.0\\
+	\today
+\end{center}
+
+    
+
+\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction} % Section 1; Cierra, Done
+This document aims to provide results for the requirements from the SRS for group 44, Autonomous RC (ARC). 
+Due to not having the software not fully implemented onto the hardware, many of these results are only in simulation, not on the physical car.
+
+\section{System features}
+
+\subsection{System Feature: Image Analysis}
+	\paragraph{\textbf{Functional requirement image analysis 1}}
+		\begin{enumerate}
+			\item ID: FR-IA1
+			\item Title: Fast Image Processing.
+			\item Description: Image analysis needs to be at a rate of around 15 or more frames per second.
+			\item Rationale: In order for the vehicle to move fast, images will need to be acquired and processed very fast.
+			\item Dependencies: N/A
+			\item Completion Metric: Frames per second being processed will be displayed to the user. 
+		\end{enumerate}	
+	We no longer are using a stereo vision camera, due to it not being able to process images fast enough on our hardware. There was almost half of a second of lag between the two images via the USB cameras, due to lack of hardware syncing. 
+	Image processing is now handled through the use of a forward-facing LeddarTech M16, with a 45 degree range, that operates at up to 50 Hz, providing up to 4000 point samples per second.
+    An RPLiDAR also produces 2000 samples a second at 360 degrees. 
+    Between the two sensors, we are able to create a 360 degree point cloud 5.5 times a second, and a 45 degree point cloud 50 times a second, exceeding the expected results.
+
+	\paragraph{\textbf{Functional requirement image analysis 2}}
+		\begin{enumerate}
+			\item ID: FR-IA2
+			\item Title: Depth finding
+			\item Description: Depth finding image analysis will determine how far away objects are out to a distance of at least 6 feet.
+			\item Rationale: The proximity of objects will determine timing for speed and turning. 
+			\item Dependencies: FR-IA1
+			\item Completion Metric: Detected objects will be displayed through a GUI.
+		\end{enumerate}
+	Using the LeddarTech M16, we are able to detect objects up to 50 meters in front of the car, with a precision of 5cm. 
+	We are able to detect objects the full 360 degrees around the car using the RPLiDAR with a 1cm precision, up to 6 meters. 
+	Objects are displayed and highlighted within RVIS. 
+	
+	\paragraph{\textbf{Functional requirement image analysis 3}}
+		\begin{enumerate}
+			\item ID: FR-IA3
+			\item Title: Object height detection
+			\item Description: Objects 8 inches or taller will be detected.
+			\item Rationale: The car should be able to avoid obstacles that cannot be driven over.
+			\item Dependencies: FR-IA2
+			\item Completion Metric: The car will avoid obstacles 8 inches or taller.
+		\end{enumerate}
+		Objects up to 8", that are positioned in front of the vehicle can be detected from a distance of 0 to 24 inches, depending on the actual tilt of the car. With all of the hardware on the car, the LeddarTech M16 sits at 9", and has a 7 degree vertical viewing angle. It can detect a 4" object from six feet away.
+
+\subsection{System Feature: Sensors}
+
+	\paragraph{\textbf{Functional requirement sensor 1}}
+    		\begin{enumerate}
+    			\item ID: FR-SN1
+    			\item Title: GPS Data Collection
+    			\item Description: When outside, GPS coordinates should be able to be obtained from a GPS unit and be accurate up to 10 meters, in an open space with no trees within 50 meters. 
+    			\item Rationale: Within an open field, this accuracy should be able to be obtained in order to provide reasonable locational accuracy to be used in navigation.
+    			\item Dependencies: FR-HW1, FR-HW2
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface after FR-SN2 has been met. 
+    		\end{enumerate}
+	Using the data from FR-SN2, we were able to compare the location the GPS thought we were while outside, to the location on the map that was determined by looking up the coordinates on Google Maps and estimating how far off the GPS was. The GPS does meet this requirement; however, within a practical application, it does not seem precise enough without ensuring the goal has a 10m radius. 
+	
+	\paragraph{\textbf{Functional requirement sensor 2}}
+    		\begin{enumerate}
+    			\item ID: FR-SN2
+    			\item Title: GPS Data Processing
+    			\item Description: Data collected from the GPS unit will need to be relayed to the user through the main computational effort. 
+    			\item Rationale: A user needs to be able to view the location of the car at any time. 
+    			\item Dependencies: FR-HW1, FR-HW2, FR-SN1
+			\item Completion Metric: GPS coordinates will be displayed to the user through some sort of interface or the car will be placed on a map that is displayed. 
+    		\end{enumerate}
+	GPS coordinates can be displayed to the CLI. FR-SN1 must be met every time in order for it to work, and the user must wait 30 seconds for the car to find a GPS signal. 
+	
+	\paragraph{\textbf{Functional requirement sensor 3}}
+    		\begin{enumerate}
+    			\item ID: FR-SN3
+    			\item Title: IMU data collection and processing
+    			\item Description: Data from IMU sensors will be sent to the main computational unit at an update rate of at least 20 measurements a second. 
+    			\item Rationale: Quickly updated data is a must in order to navigate at speed.
+    			\item Dependencies: N/A
+			\item Completion Metric: Data will be displayed along with the updates per second to the user through some form of interface.
+    		\end{enumerate}
+    IMU data is able to be updated at 10Hz and can be displayed through position of the car within RVIS, or through the CLI. 
+    
+\subsection{System Feature: Navigation}
+The ARC vehicle needs to navigate a course autonomously. The following functional
+requirements describe what is required to achieve this.\par
+
+	\paragraph{\textbf{Functional requirement navigation 1}}
+		\begin{enumerate}
+			\item ID: FR-NAV1
+			\item Title: Motor Control
+			\item Description: To limit the uncertainty caused by the motor under 25\% when going forward and backward.
+			\item Rationale: Maximize the accuracy of motor control to make prediction easier.
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The RPS at which and direction in which the motor spins will be within 25\% of error with respect to the commands sent by the main computer at any instance. 
+			This metric will be confirmed visually or by output from an encoder to a display.
+		\end{enumerate}
+    We are visually confirm that the motor is able to move the wheels both forward and backwards; however, due to not having encoders, we are unable to determine how accurate our speeds are.
+    
+	\paragraph{\textbf{Functional requirement navigation 2}}
+		\begin{enumerate}
+			\item ID: FR-NAV2
+			\item Title: Servo Control
+			\item Description: To limit the uncertainty caused by the servo under 25\% when turning.
+			\item Rationale: Maximize the accuracy of servo control to make prediction easier.
+			\item Dependencies: FR-NAV3
+			\item Completion Metrics: The speed at which and direction in which the servo turns will be within 25\% of error with respect to the commands sent by the main computer at any instance. 
+			This metric will be confirmed visually or by output from an encoder to a display.
+		\end{enumerate}
+    We are able to control a servo based on position and control the speed in which it moves by modifying the step in which it moves on each itteration until a goal is reached. The servo is accurate within two degrees. 
+        
+	\paragraph{\textbf{Functional requirement navigation 3}}
+		\begin{enumerate}
+			\item ID: FR-NAV3
+			\item Title: Probabilistic Analysis for motion
+			\item Description: Use probability to estimate the current location of the vehicle with less than 25\% error.
+			\item Rationale: Tires may slip and wobble, which will cause uncertainty on the location of the vehicle.
+			\item Dependencies: FR-NAV4
+			\item Completion Metrics: The instant location of the vehicle will be filtered by the system and results of the estimated location will have higher accuracy than the pre-filtered result. Output will be confirmed visually on a display. 
+		\end{enumerate}
+    We are unable to determine how accurate the motion model is on our physical car, due to not having the software implemented onto the car. 
+    Using a general simulation of a car like object, we are able to reach our goal 90\% of the time. The estimates are typically within one meter of the actual state.
+    
+	\paragraph{\textbf{Functional requirement navigation 4}}
+		\begin{enumerate}
+			\item ID: FR-NAV4
+			\item Title: Motion Model
+			\item Description: Motion model is significant as it decides what commands should be given by the computer under various circumstances.
+			\item Rationale: This is like learning how to drive a car. Knowing the configuration of the car is critical for the computer to know how to control it. Different combinations of speed and turning angle will result in different paths. Under different surface and weight distributions, the vehicle will also act differently.
+			\item Dependencies: FR-NAV1 \& FR-NAV2
+			\item Completion Metrics: The commands sent by the main computer will be adapted to the vehicle's configurations, which are entered to the system by humans during the set up procedure. 
+			This metric will be confirmed visually when the vehicle is in operation.  
+		\end{enumerate} 
+    As our vehicle is not currently in motion, we are unable to determine whether the motion model is working correctly for the physical car. The motion=model does work within the simulation with our general car object.
+    
+	\paragraph{\textbf{Functional requirement navigation 5}}
+		\begin{enumerate}
+			\item ID: FR-NAV5
+			\item Title: Global Path Planning
+			\item Description: When operating outdoor, the vehicle needs to go from one location to another following a legal path that is determined by algorithms using sensor data.
+			\item Rationale: A legal path is a path that goes on concrete surfaces and does not run into any objects.
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with way-points will be output the the next layer of the system. 
+			Output will be confirmed visually on a display or by navigating to the objective point.  
+		\end{enumerate}
+    The global path is always a blank map. A way point can be selected in simulation, and the car is able to head towards the way-point until it reaches the goal.
+    
+	\paragraph{\textbf{Functional requirement navigation 6}}
+		\begin{enumerate}
+			\item ID: FR-NAV6
+			\item Title: Local Path Planning
+			\item Description: When operating indoor and given the map of the indoor area, the vehicle needs to go from one location to another within the area following a legal path that is determined by algorithms using sensor data.
+			\item Rationale: A legal path is a path that does not run into any objects.
+			\item Dependencies: FR-NAV7, FR-SN1, FR-SN2, FR-NAV3
+			\item Completion Metrics: A path with way-points will be output the the next layer of the system. 
+			Output will be confirmed visually on a display or by navigating to the objective point.  
+		\end{enumerate}
+    While currently only implemented in simulation, when an object is detected, an new local path is generated and the robot will change course and continue to head towards the goal. 
+    
+	\paragraph{\textbf{Functional requirement navigation 7}}
+		\begin{enumerate}
+			\item ID: FR-NAV7
+			\item Title: Obstacle Avoidance
+			\item Description: When approaching an object, the vehicle needs to decide whether to turn left or right and by how much. The algorithm can overwrite the path planned by the path planning algorithms.
+			\item Rationale: When operating both indoor and outdoor, crashing into objects needs to be avoided. 
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to avoid obstacles that the image analysis system can detect. This metrics will be confirmed visually when the vehicle is in operation.  
+		\end{enumerate}
+    Within the simulation, the car is able to avoid all obstacles, unless it senses that there is not enough room to reasonably get itself unstuck, in which case it will remain in the same position. The obstacle avoidance running in simulation should apply to the car running in real life, as the simulation accounts for the use of our LiDAR and Leddar sensors.
+    
+	\paragraph{\textbf{Functional requirement navigation 8}}
+		\begin{enumerate}
+			\item ID: FR-NAV8
+			\item Title: Parallel Parking
+			\item Description: Given sensor data and the estimate of the current location, the algorithm outputs the next optimal action (turning the front wheel a certain angle and go forward/backward at a certain speed).
+			\item Rationale: A dedicated algorithm for parallel parking is necessary because path planning algorithms do not promise the orientation of the vehicle. The parallel parking algorithm will make sure the vehicle is align with the curb/wall when finished.
+			\item Dependencies: FR-IA1, FR-IA2, FR-IA3, FR-NAV3, FR-NAV2
+			\item Completion Metrics: The vehicle will be able to parallel park itself when given a open spot. 
+			This metrics will be confirmed visually when the vehicle is in operation.  
+		\end{enumerate}		
+	Using the simulation, we are able to have the car park into a spot that is 2.5 times it's length. This is done by selecting the point, and direction, in which the user would like the car to end up. The smaller the space, the longer it will take to be in the proper position. 
+	
+\subsection{System Feature: Hardware mounting}
+	\paragraph{\textbf{Functional requirement 1}}
+		\begin{enumerate}
+			\item ID: FR-HW1
+			\item Title: Minimize Port and Hardware Exposure
+			\item Description: Seal any unused ports, encase electronic components to minimize environmental exposure.
+			\item Rationale: Minimizing dust and other elements to electronic components to reduce wear and tear.
+			\item Dependencies: N/A
+			\item Completion Metric: The car can be visually inspected to see if this requirement has been met. 
+		\end{enumerate}
+    All components are encased within a single box. Holes for mounting of components and for running wires are sealed off using electrical tape. Individual cases will be designed at a later date. 
+    
+	\paragraph{\textbf{Functional requirement 2}}
+		\begin{enumerate}
+			\item ID: FR-HW2
+			\item Title: Secure Hardware Mounting
+			\item Description: Hardware should be mounted in such a way, that in the event that the vehicle rolls over or high-speed impact, hardware remains in place and moves no more than 1 cm from its original location.
+			\item Rationale: In the event of an impact or rollover, the hardware should remain in place, and not detach from the vehicle.
+			\item Dependencies: FR-HW1
+			\item Completion Metric: The car will be picked up and turned over. No components should move out of the range specified. 
+		\end{enumerate}
+    With the exception of wires, all hardware is mounted in such a way that it will not move more than 1cm. Zip-ties and screws are used to achieve this.
+    
+\subsection{System Feature: Communications}
+
+	\paragraph{\textbf{Functional Requirement Comms 1}}
+		\begin{enumerate}
+			\item ID: FR-CM1
+			\item Title: Telemetry
+			\item Description: Telemetry will be transmitted from the vehicle to a ground station.
+			\item Rationale: Users need to see the current state of the vehicle at all times to know if it is operating normally.
+			\item Dependencies: N/A
+			\item Completion Metric: Telemetry will be visually confirmed on the ground station.
+		\end{enumerate}
+    We have sucessfully transfered files and streamed data by using a telemetry radio; however, due to only having ran the software in simulation, the radios have not been tested from a ground station to the NUC.
+    
+	\paragraph{\textbf{Functional Requirement Comms 2}}
+		\begin{enumerate}
+			\item ID: FR-CM2
+			\item Title: Vehicle Control
+			\item Description: Control signals, such as "start", "stop", "go to way-point", etc. needs to be sent to the vehicle. Signals should be received and processed in under 1 second.
+			\item Rationale: Users need to have a way to command the vehicle remotely to start, or change, an operation.
+			\item Dependencies: N/A
+			\item Completion Metric: The vehicle will respond to control signals within 1 second.
+		\end{enumerate}
+	The simulated vehicle has control implemented. Vehicle control has not been tested on the physical car. The signals are processed once they are received.
+	
+    \paragraph{\textbf{Functional Requirement Comms 3}}
+		\begin{enumerate}
+			\item ID: FR-CM3
+			\item Title: Emergency Stop
+			\item Description: When sent a signal to stop, the car needs to stop within 1 second from when the command is sent.
+			\item Rationale: A fail-safe must be in place if the car is "going rogue".
+			\item Dependencies: FR-CM2
+			\item Completion Metric: The car will stop within 1 second of command execution on the ground station.
+		\end{enumerate}
+    A fail-safe has not been implemented, due to only having a simulation of the car. Before the software can be transferred to the car, we must ensure that this fail-safe exists. In order to make this easier, we are having the telemetry radio hooked into our Raspberry Pi, which has control over the motors. The motor controller and Raspberry Pi are also hooked into a separate power circuit in the case of the battery powering our NUC runs out of power.
+    
+\subsection{System Feature: User Interface}
+
+	\paragraph{\textbf{Functional Requirement User Interface 1}}
+		\begin{enumerate}
+			\item ID: FR-UI2
+			\item Title: Graphical User Interface
+			\item Description: There will be a GUI to see real-time sensor and vehicle data.
+			\item Rationale: Seeing real-time sensor and vehicle data allows the user to determine if the sensors and vehicle are behaving as expected at the time of execution.
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: Sensor and vehicle data are displayed through to the user on the ground station.
+		\end{enumerate}
+    We are able to see the vehicles simulated position through RVIS, which should directly apply to the physical car. 
+    
+	\paragraph{\textbf{Functional Requirement User Interface 3}}
+		\begin{enumerate}
+			\item ID: FR-UI3
+			\item Title: Command Line Interface
+			\item Description: There will be a CLI to enter text commands for controlling the vehicle.
+			\item Rationale: 
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: A user is able to enter a destination, start, and stop through a CLI on the ground station.
+		\end{enumerate}
+    No command line interface has been implemented at this date. The only interface available is through RVIS; however, sensor data can be visualized through the command line.
+    
+	\paragraph{\textbf{Functional Requirement User Interface 4}}
+		\begin{enumerate}
+			\item ID: FR-UI4
+			\item Title: way-point Selection
+			\item Description: There will be an interface to enter a destination for the vehicle.
+			\item Rationale: There needs to be a way to tell the vehicle where to go.
+			\item Dependencies: FR-CM2
+			\item Completion Metric: Either CLI or GUI, or both, will be provided for entering way-point information.
+		\end{enumerate}
+    GUI is available using RVIS. It allows for way-point selection, termination of a way-point (i.e. stop), and displays the data received from our IMU and vision system. 
+    
+	\paragraph{\textbf{Functional Requirement User Interface 5}}
+		\begin{enumerate}
+			\item ID: FR-UI5
+			\item Title: Vehicle Information
+			\item Description: There will be a GUI to see real-time sensor and vehicle data.
+			\item Rationale: Seeing real-time sensor and vehicle data allows the user to determine if the sensors and vehicle are behaving as expected at the time of execution.
+			\item Dependencies: FR-CM1:3, FR-SN1,2, FR-NAV1:8
+			\item Completion Metric: Sensor and vehicle data are displayed through a GUI.
+		\end{enumerate}
+	Data can be observed through RVIS. IMU data is displayed as the orientation of the car within RVIS, vision system data is also displayed and used for creating costs maps (which can also be seen). For more specific information, the respective ROS topics can be viewed from the CLI. 
+
+
+\section{Performance Requirements}
+This section specifies numerical requirements placed on ARCS:
+\begin{itemize}
+	\item \textbf{The system only supports one user at a time.}
+	\\ Using RVIS, the system supports one user. 
+	
+	\item \textbf{The system only provides one interface for user interaction at any single moment.}
+	\\ Only one GUI interface is available at any given moment. A CLI interface can be used to display data, but not control the car. 
+	
+	\item \textbf{The system supports no more than 5 way-points as inputs.}
+	\\ The system currently supports one way-point; more functionality could be added at a later date. 
+	
+	\item \textbf{The system is capable of driving the vehicle at maximum 10 miles per hour in a straight line.}
+	\\ When motors are set to full for X seconds, the car is able to drive in a mostly straight line at over 10 MPH.
+	
+	\item \textbf{The system is capable of navigating in an indoor environment of area no larger than 500 square feet.}
+	\\ It is undetermined whether the physical car will be able to navigate a room. From tests conducted on the vision system, the walls must not be made of glass. 
+	
+	\item \textbf{The system is capable of navigating outdoors without space constraints.}
+	\\ The system is able to operate without constraints within our simulation. 
+	
+	\item \textbf{The system is capable of parallel parking in under a minute. }
+	\\ Within our simulation, the car is able to parallel park within a space that it at least 2.5 times its length, in under a minute. 
+\end{itemize}
+
+
+\section{Design constraints}
+Design constraints within ARCS:
+\begin{itemize}
+	\item \textbf{The ARC RC vehicle is guaranteed to communication with the ground station within 2km due to limitations of the telemetry radio.}
+	\\ No tests have been conducted to see the potential range of the radios. 
+	
+	\item \textbf{Autonomous navigation is guaranteed at 3 mph.}
+	\\ This has been shown to be true within the simulation. We do not know how the phsysical car will preform. 
+	
+	\item \textbf{The hardware fits, with minimal custom fabrication, onto a pre-existing RC vehicle.}
+	\\ While some fabrication is required, the majority of it can be done with minimal knowledge of soldering and with access to a 3D printer and laser cutter, or just cardboard. 
+\end{itemize}
+
+\end{document}
