@@ -1,0 +1,12 @@
+global_costmap:
+  global_frame: /map
+  robot_base_frame: /base_link
+  update_frequency: 10.0          # Hz
+  publish_frequency: 10.0         # Hz
+  static_map: true                # we are using a pre-defined map, at least for now
+
+  transform_tolerance: 0.5        # Undecided
+  plugins:
+    - {name: static_layer,      type: "costmap_2d::StaticLayer"}
+    - {name: obstacle_layer,    type: "costmap_2d::VoxelLayer"}
+    - {name: inflation_layer,   type: "costmap_2d::InflationLayer"}

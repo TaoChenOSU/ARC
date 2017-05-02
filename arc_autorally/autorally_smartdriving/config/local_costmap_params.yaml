@@ -1,0 +1,15 @@
+local_costmap:
+  global_frame: /map              # used to odom
+  robot_base_frame: base_link
+  update_frequency: 10.0          # Hz, frequency at which the map will be updated
+  publish_frequency: 10.0         # Hz, this is only for visualization info to be published
+  static_map: false               # local costmap doesn't use a pre-defined map
+  rolling_window: true            # local costmap will remain center around the vehicle as it moves around the world
+  width: 10.0                     # the size of the local costmap/grid
+  height: 10.0
+  resolution: 0.05
+  transform_tolerance: 0.5        # undecided
+
+  plugins:
+    - {name: static_layer,      type: "costmap_2d::StaticLayer"}
+    - {name: obstacle_layer,    type: "costmap_2d::ObstacleLayer"}

@@ -1,0 +1,41 @@
+=== Autorally Start Up Instructions ===
+
+NOTE: It is assumed that you have already gone through the "Autonomous Driving in Simulation" instructions at https://github.com/AutoRally/autorally
+
+These instructions are intended for AFTER initial setup and first run through.
+
+1. Whenever a new terminal window is opened, run the three following commands:
+$ source /opt/ros/<ros-version>/setup.bash
+$ source <path-to-catkin-workspace>/devel/setup.bash
+$ source <path-to-catkin-workspace>/src/autorally/autorally_utils/setupEnvLocal.sh
+
+(Optionally, the preceeding three lines can be placed in ~/.bashrc so that they don't have to be source each time the terminal window is opened
+
+2. Start up the autorally simulator in Gazebo:
+$ roslaunch autorally_gazebo autoRallyTrackGazeboSim.launch
+
+3. Open new terminal and Start rqt_publisher:
+$ rosrun rqt_publisher rqt_publisher
+
+4. Open new terminal and start the state estimator:
+** First set the initial pose of the car:
+$ rosparam set /gps_imu/FixedInitialPose true
+** Then start the state estimator:
+$ roslaunch autorally_core stateEstimator.launch
+
+5. Open a new terminal and start the way point follower:
+$ roslaunch autorally_control waypointFollower.launch
+
+6. Open a new terminal and start the constant speed controller:
+$ roslaunch autorally_control constantSpeedController.launch
+
+7. Go back to rqt_publisher and make sure the topics created during initial setup are still there:
+/runStop
+/chassisState
+/constantSpeedController/speedCommand
+
+If rqt_publisher does have those three topic in the main part of the window, go back to the setup instructions and add them.
+
+8. Check the boxes to the left of those three topics.
+
+You should now see the vehicle start to move.

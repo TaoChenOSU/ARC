@@ -1,0 +1,16 @@
+<launch>
+  <include file="$(find autorally_core)/launch/hardware.machine" />
+
+  <node pkg="gmapping" type="slam_gmapping" respawn="false" name="slam" output="screen">
+    <!-- A high score turns it into a pure mapping rather than slam-->
+    <param name="minimumScore" value="10000"/>
+    <!-- Assume that odometry is perfect-->
+    <param name="srr" value="0.0"/>
+    <param name="srt" value="0.0"/>
+    <param name="str" value="0.0"/>
+    <param name="stt" value="0.0"/>
+    <param name="particles" value="1"/>
+
+    <param name="masRange" value="8.0" />
+  </node>
+</launch>

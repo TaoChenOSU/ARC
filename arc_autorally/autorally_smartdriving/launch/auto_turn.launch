@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find autorally_core)/launch/hardware.machine" />
+
+  <node pkg="autorally_smartdriving" type="drive" name="drive" output="screen" />
+
+  <!--<node pkg="autorally_smartdriving" type="tf_nav" name="autorally_tf" output="screen" />-->
+
+</launch>

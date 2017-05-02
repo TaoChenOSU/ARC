@@ -1,0 +1,35 @@
+# footprint is like the shadow of the vehicle if the light is shining from directly above.
+# Assume that the center of the vehicle is (0, 0)
+footprint: [[-0.3, 0.15], [0.3, 0.15], [0.3, -0.15], [-0.3, -0.15]]
+
+transform_tolerance: 0.5      # undecided
+map_type: costmap
+
+obstacle_layer:
+  enabled: true
+  # Maximum range sensor reading that will result in an obstacle being put into the costmap
+  # 8.0 means the robot will only updata its map with info about obstacles that are within
+  # 8.0 meters of the base.
+  obstacle_range: 8.0
+  # 5.0 means that the robot will attemp to clear out space in front of it up to 5.0 meters
+  # away given sensor reading.
+  raytrace_range: 5.0
+  # This value determines how far the vehicle will stay away from obstacles.
+  inflation_radius: 1.0
+  # from the tutorial
+  track_unknown_space: false
+  combination_method: 1
+  # we are only using laser scan
+  observation_sources: laser_scan_sensor
+  # marking and clearing mean that the sensor data will be used to mark and clear obstacle info
+  # on the costmap
+  laser_scan_sensor: {sensor_frame: lidar, data_type: LaserScan, topic: scan, marking: true, clearing: true, expected_update_rate: 0.5}
+
+inflation_layer:
+  enabled: true
+  cost_scaling_factor: 10.0   # exponential rate at which the obstacle cost drops off
+  inflation_radius: 1.0      # max distance from an obstacle at which costs are incurred for planning paths.
+
+static_layer:
+  enabled: true
+  map_topic: "/map"
