@@ -6,7 +6,7 @@ We found that the Robotics Operating System (ROS) provides a good base to build 
 
 Two such simulation environments were Georgia Tech's AutoRally platform and the Stage simulation platform.
 
-Below are instructions for installing and running GT AutoRally and Stage.
+Below are instructions for installing and running GT AutoRally and Stage with the ARC project.
 
 ---
 
@@ -25,7 +25,7 @@ Step-by-step instructions on how to run our implementation of the [GT AutoRally]
 
 1. Navigate to the work space where you put the AutoRally package. And then go to the `src/autorally` directory.  
 
-  **NOTE**: All files/folders modified and provided by ARC are found in the arc_autorally folder.  
+  **NOTE**: All files/folders modified and provided by ARC for AutoRally are found in the arc_autorally folder.  
 
 1. Under autorally_description/urdf, replace the `autoRallyPlatform.urdf.xacro` file with file of the same name that we provide.  
 
