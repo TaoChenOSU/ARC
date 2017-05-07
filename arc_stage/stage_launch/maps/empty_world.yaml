@@ -1,0 +1,6 @@
+image: empty_world.png
+resolution: 0.1 # meter/pixel; map: 10000*10000 => 1000m * 1000m
+origin: [-100.0, -100.0, 0.0]
+negate: 0
+occupied_thresh: 0.65 # pixel with occupancy probability greater than this threshold are considered completely occupied
+free_thresh: 0.196    # Pixels with occupancy probability less than this threshold are considered completely free
