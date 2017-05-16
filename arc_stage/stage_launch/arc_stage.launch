@@ -1,0 +1,52 @@
+<launch>
+
+  <!--  ************** Global Parameters ***************  -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!--  ************** Stage Simulator ***************  -->
+  <node pkg="stage_ros" type="stageros" name="stageros" args="$(find stage_launch)/stage/empty.world">
+    <!-- <remap from="base_scan" to="scan"/> -->
+    <remap from="base_scan" to="base_scan_0"/>
+  </node>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find smart_driving)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find smart_driving)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find smart_driving)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find smart_driving)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find smart_driving)/config/base_local_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+    <param name="planner_frequency" value="1.0" />
+    <param name="planner_patience" value="5.0" />
+
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="15.0" />
+
+    <param name="clearing_rotation_allowed" value="false" />
+  </node>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find stage_launch)/maps/empty_world.yaml" output="screen">
+    <param name="frame_id" value="/map" />
+  </node>
+
+  <!--<node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <rosparam file="$(find stage_launch)/cfg/amcl_params.yaml" command="load"/>
+    <param name="initial_pose_x" value="0" />
+    <param name="initial_pose_y" value="0" />
+    <param name="initial_pose_z" value="0" />
+  </ode>-->
+
+  <!-- <include file="$(find leddar)/launch/leddar.launch">
+    <arg name="serial" value="AJ04071" />
+    <arg name="frame" value="base_laser_link_0" />
+    <arg name="fov" value="45" />
+    <arg name="range" value="50" />
+  </include> -->
+
+  <include file="$(find stage_launch)/robot_localization.launch"/>
+
+  <node name="odom" pkg="autorally_smartdriving" type="odom" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find stage_launch)/stage/rviz_navigation.rviz"/>
+</launch>
