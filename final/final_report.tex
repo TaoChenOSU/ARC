@@ -98,6 +98,7 @@ No major or minor changes were made to the requirements document. We found that 
 % \include{srs_changes}
 
 % Final gantt chart goes here.
+\include{gantt_chart}
 
 \section{Design Document}
 % original design document here.
@@ -1042,12 +1043,12 @@ appear on later blog posts.
       paths. It turned the path planning algorithm didn't generate paths for
       the car to follow. Instead, it generates commands to drive to car. That
       made things very easy. All I did was translate the commands for the
-      controller. So that's done. I have decided to use the teb_local_planner
-      as our path planning package. I integrated it into the smart_driving
+      controller. So that's done. I have decided to use the teb\_local\_planner
+      as our path planning package. I integrated it into the smart\_driving
       package and set it to work on car-like robot. According to the ros wiki
       for the car-like setup, the configuration is only experimental. Just
       something to keep in mind. It may sometimes output unpredictable behaviors.
-      Since the teb_local_planner also does obstacle avoidance, obstacle
+      Since the teb\_local\_planner also does obstacle avoidance, obstacle
       avoidance was handled.
     \end{itemize}
 
@@ -1088,7 +1089,7 @@ appear on later blog posts.
     \begin{itemize}
       \item We decided to move away from AutoRally a little bit because it was
       too complicated. We tried ROS stage, which was a 2D simulation platform.
-      It's simpler than Gazebo. We quickly got the teb_local_planning working
+      It's simpler than Gazebo. We quickly got the teb\_local\_planning working
       because we already had it working with AutoRally.
     \end{itemize}
 
