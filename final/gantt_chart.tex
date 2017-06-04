@@ -1,0 +1,310 @@
+
+%%%%%%%%%% How to use these Gantt Charts %%%%%%%%%%
+%%% IMPORTANT!!! %%%
+% Within the \ganttchart[]{} code, ONLY adjust dates
+%
+% Each Gantt chart has an area preceding it to adjust values.
+%
+% When adding a group or task, use the existing code in the SRS section as a 
+% template.
+%
+% The overall progress for a group is tracked by getting the average of all the 
+% subtasks. So, if you add a subtask, be sure to add the count variable to the
+% overall average computation and increase the denominator by one
+% Example progress average:
+%
+% \newcount\srsprogress
+% \srsprogress=\the\numexpr(
+% 	  \introprog 
+% 	+ \overalldescprog 
+% 	+ \specificreqprog 
+% 	+ \othernonfunreqprog 
+% 	+ \otherreqprog
+% 	+ \indexprog 
+% 	+ \appendixprog
+% 	)/7 % divided by number of subtasks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% Fall Term Chart Oct 14 - Dec. 09 %%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set progress and dates for groups and tasks here.
+%%%% Term Date Range %%%%
+\newcommand{\fallstart}{2016-10-14}
+\newcommand{\fallend}{2016-12-09}
+
+%%%% SRS (Due: Oct 28) %%%%
+
+%Introduction
+\newcount\introprog
+\introprog=100
+
+% Overall Description
+\newcount\overalldescprog
+\overalldescprog=100
+
+% Specific Requirements
+\newcount\specificreqprog
+\specificreqprog=100
+
+% Other Non-Functional Requirements
+\newcount\othernonfunreqprog
+\othernonfunreqprog=100
+
+% Other Requirements
+\newcount\otherreqprog
+\otherreqprog=100
+
+% Index
+\newcount\indexprog
+\indexprog=100
+
+% Apppendix
+\newcount\appendixprog
+\appendixprog=100
+
+% Overall SRS progress
+
+% NOTE
+\newcount\srsprogress
+\srsprogress=\the\numexpr(
+  \introprog 
++ \overalldescprog 
++ \specificreqprog 
++ \othernonfunreqprog 
++ \otherreqprog
++ \indexprog 
++ \appendixprog
+)/7
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Technology Review (Due: Nov. 04) %%%%
+\newcount\techprogress
+\techprogress=100
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Design Document (Due: Nov. 23) %%%%
+\newcount\designprogress
+\designprogress=100
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Fall Progress Report (Due: Dec. 09) %%%%
+\newcount\fprogress
+\fprogress=100
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\caption{ARC Fall Schedule Gantt Chart}	
+	\begin{ganttchart}[
+		y unit title=0.4cm,
+		y unit chart=0.5cm,
+		x unit=0.2665cm,
+		vgrid,
+		%	time slot format=isodate-yearmonth,
+		time slot format=isodate,
+		%	compress calendar,
+		title/.append style={fill=RoyalBlue!50!black},
+		title label font=\sffamily\bfseries\color{white},
+		title label node/.append style={below=-1.6ex},
+		title left shift=.05,
+		title right shift=-.05,
+		title height=1,
+		bar/.append style={draw=none, fill=OliveGreen!75},
+		bar height=.6,
+		bar label font=\normalsize\color{RawSienna},
+		group/.append style={draw=none, fill=MidnightBlue},
+		group incomplete/.append style={fill=YellowOrange},
+		group right shift=0,
+		group top shift=.6,
+		group height=.3,
+		group peaks height=.2,
+		bar incomplete/.append style={fill=Maroon}
+		]{\fallstart}{\fallend}
+		
+		\ganttset{
+			calendar week text={
+				\pgfcalendarmonthshortname{\startmonth}~\startday
+			}
+		}
+		\gantttitle{Fall 2016}{57}\\
+		\gantttitlecalendar{week} \\
+		\ganttset{progress label text={}, link/.style={black!63, -to}}
+		
+		%%%% SRS (Due: Oct 28) %%%%
+		\ganttgroup[progress={\srsprogress}]{Requirements Document}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\introprog}]{Introduction}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\overalldescprog}]{Overall Description}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\specificreqprog}]{Specific Requirements}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\othernonfunreqprog}]{Other Non-Functional Req.}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\otherreqprog}]{Other Req.}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\indexprog}]{Index}{2016-10-14}{2016-10-28} \\
+		\ganttbar[progress={\appendixprog}]{Appendix}{2016-10-14}{2016-10-28} \\
+		
+		
+		%%%% Technology Review (Due: Nov. 04) %%%%
+		\ganttgroup[progress={\techprogress}]{Tech Review}{2016-10-29}{2016-11-04} \\
+		
+		%%%% Design Document (Due: Nov. 23) %%%%
+		\ganttgroup[progress={\designprogress}]{Design Doc}{2016-11-05}{2016-11-23} \\
+		
+		%%%% Fall Progress Report (Due: Dec. 09) %%%%
+		\ganttgroup[progress={\fprogress}]{Fall Report}{2016-11-24}{2016-12-09} \\
+		
+		%	\ganttset{link/.style={OliveGreen}}
+	\end{ganttchart}
+\end{figure}
+
+%%%%% Winter Term Chart JAN 09 - MAR 24 %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Term Date Range %%%%
+\newcommand{\winterstart}{2017-01-09}
+\newcommand{\winterend}{2017-03-24}
+
+% Set progress and dates for groups and tasks here.
+
+%%%% Alpha level release (with demo) (Due: Feb. 24, 2017) %%%%
+\newcount\alphaprogress
+\alphaprogress=75
+
+%%%% Beta level release (with demo) (Due: Mar. 24, 2017) %%%%
+\newcount\betaprogress
+\betaprogress=0
+
+%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+\newcount\wprogress
+\wprogress=0
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\caption{ARC Winter Schedule Gantt Chart}
+	\begin{ganttchart}[
+		y unit title=0.4cm,
+		y unit chart=0.5cm,
+		x unit=0.227cm,
+		vgrid,
+		%	time slot format=isodate-yearmonth,
+		time slot format=isodate,
+		%	compress calendar,
+		title/.append style={draw=none, fill=RoyalBlue!50!black},
+		title label font=\sffamily\bfseries\color{white},
+		title label node/.append style={below=-1.6ex},
+		title left shift=.05,
+		title right shift=-.05,
+		title height=1,
+		bar/.append style={draw=none, fill=OliveGreen!75},
+		bar height=.6,
+		bar label font=\normalsize\color{RawSienna},
+		group/.append style={draw=none, fill=MidnightBlue},
+		group incomplete/.append style={fill=YellowOrange},
+		group right shift=0,
+		group top shift=.6,
+		group height=.3,
+		group peaks height=.2,
+		bar incomplete/.append style={fill=Maroon}
+		]{\winterstart}{\winterend}
+		
+		\ganttset{
+			calendar week text={
+				\pgfcalendarmonthshortname{\startmonth}~\startday
+			}
+		}
+		\gantttitle{Winter 2017}{75}\\
+		\gantttitlecalendar{week} \\
+		\ganttset{progress label text={}, link/.style={black!63, -to}}
+		
+		%%%% Alpha level release (with demo) (Due: Feb. 24, 2017) %%%%
+		\ganttgroup[progress={\alphaprogress}]{Alpha Release}{2017-01-09}{2017-02-24} \\
+		
+		%%%% Beta level release (with demo) (Due: Mar. 24, 2017) %%%%
+		\ganttgroup[progress={\betaprogress}]{Beta Release}{2017-02-25}{2017-03-24} \\
+		
+		%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+		\ganttgroup[progress={\wprogress}]{Winter Report}{2017-02-25}{2017-03-24} \\
+		
+		%	\ganttset{link/.style={OliveGreen}}
+	\end{ganttchart}
+\end{figure}
+
+%%%%%% End Winter Term %%%%%
+
+%%%%%% Spring Term Chart APR 3 - JUN 16 %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Term Date Range %%%%
+\newcommand{\springstart}{2017-04-03}
+\newcommand{\springend}{2017-06-16}
+%	% Set progress and dates for groups and tasks here.
+
+
+%%%% 1.0 level release (Due: May 15, 2017) %%%%
+\newcount\releaseprogress
+\releaseprogress=0
+
+%%%% Engineering Expo (Due: May 19) %%%%
+\newcount\expoprogress
+\expoprogress=0
+
+%%%% Final Report (Due: June 16) %%%%
+\newcount\finalrepprogress
+\finalrepprogress=0
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\caption{ARC Spring Schedule Gantt Chart}	
+	\begin{ganttchart}[
+		y unit title=0.4cm,
+		y unit chart=0.5cm,
+		x unit=0.231cm,
+		vgrid,
+		%	time slot format=isodate-yearmonth,
+		time slot format=isodate,
+		%	compress calendar,
+		title/.append style={draw=none, fill=RoyalBlue!50!black},
+		title label font=\sffamily\bfseries\color{white},
+		title label node/.append style={below=-1.6ex},
+		title left shift=.05,
+		title right shift=-.05,
+		title height=1,
+		bar/.append style={draw=none, fill=OliveGreen!75},
+		bar height=.6,
+		bar label font=\normalsize\color{RawSienna},
+		group/.append style={draw=none, fill=MidnightBlue},
+		group incomplete/.append style={fill=YellowOrange},
+		group right shift=0,
+		group top shift=.6,
+		group height=.3,
+		group peaks height=.2,
+		bar incomplete/.append style={fill=Maroon}
+		]{\springstart}{\springend}
+		
+		\ganttset{
+			calendar week text={
+				\pgfcalendarmonthshortname{\startmonth}~\startday
+			}
+		}
+		\gantttitle{Spring 2017}{75}\\
+		\gantttitlecalendar{week} \\
+		\ganttset{progress label text={}, link/.style={black!63, -to}}
+		
+		%%%% 1.0 level release (Due: May 15, 2017) %%%%
+		\ganttgroup[progress={\releaseprogress}]{1.0 Release}{2017-04-03}{2017-05-15} \\
+		
+		%%%% Engineering Expo (Due: May 19) %%%%
+		\ganttgroup[progress={\expoprogress}]{Spring Expo}{2017-05-16}{2017-05-19} \\
+		
+		%%%% Winter progress report (Due: Mar. 24, 2017) %%%%
+		\ganttgroup[progress={\finalrepprogress}]{Final Report}{2017-05-20}{2017-06-16} \\
+		
+		%	\ganttset{link/.style={OliveGreen}}
+	\end{ganttchart}
+\end{figure}
+
+%%%%%% End Spring Term %%%%%
