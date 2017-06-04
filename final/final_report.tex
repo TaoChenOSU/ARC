@@ -1,18 +1,93 @@
-\documentclass{article}
+\documentclass[compsoc,draftclsnofoot,onecolumn,10pt]{IEEEtran}
 \usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
 
-\title{Capstone Final Report}
-\author{Dan Stoyer, Cierra Shawe, Tao Chen }
-\date{June 2017}
+% \usepackage{subfiles}
+
+\usepackage{enumitem}
+
+\usepackage[letterpaper, margin=.75in]{geometry}
+
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfgantt}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Code Example} % a listing caption title.
+
+\lstset{
+	frame=single,
+	language=C,
+	columns=flexible,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\def\name{Cierra Shawe, Daniel Stoyer, Tao Chen}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = false,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {Design Document, Fall 2016},
+	pdftitle = {Design Document},
+	pdfsubject = {Design Document for ARCt},
+	pdfpagemode = UseNone
+}
+
+\def\myversion{1.1}
+\date{}
+%
+%\usepackage{titlesec}
+%
+%\usepackage{hyperref}
+
+\parindent = 0.0 in
+\parskip = 0.1 in
+
+% \title{Capstone Final Report}
+% \author{Dan Stoyer, Cierra Shawe, Tao Chen }
+% \date{June 2017}
 
 \begin{document}
+\begin{titlepage}
+	\title{Design Document\\
+	ARC - Autonomous RC}
+	\author{Tao Chen, Cierra Shawe, Daniel Stoyer}
+	\maketitle
+	\begin{center}
+		\today
+	\end{center}
 
-\maketitle
+	\thispagestyle{empty} % gets rid of the "0" page number.
+	
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
 
 \section{Introduction}
-[Who requested it?][Why was it requested?][What was its importance?][Who was your client?][Who are the members of our team?][What were their roles?][What was the role of the client? (i.e. supervision only, participate in developement, etc.)]
+Research into consumer/hobbyist, high performance RC vehicles was requested by Oregon State University via Mr. Kevin McGrath. This project was requested to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car at a cost less than four thousand dollars (USD). Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles. Our research shows that components are decreasing in cost and increasing in performance. The cost-barrier to autonomous research is decreasing dramatically. Our documentation and parts list provides would-be researchers a launching point to continue the work we started in ARC. Our client was the same person who requested the project, Mr. Kevin McGrath. Mr. McGrath is an instructor at Oregon State University. [Who are the members of our team?]The ARC team members are Tao Chen, Cierra Shawe, and Daniel Stoyer. [What were their roles?]Tao was our software and robotics expert, he worked extensively with our software package and got our car working in simulation, he was responsible for the areas of Motion Model, Path Planning, and Autonomous Algorithms (e.g. obstacle avoidance, parallel parking, etc.). Cierra was our electronics and hardware expert, she designed all the mounting hardware used to anchor the sensors to the RC car and did all the wiring/soldering, she was responsible for the ares of Vision Systems, Sensors, and Hardware. Dan was team leader, responsible for making sure the team was on track to hit milestones and Capstone deadlines on time. He was also responsible for overseeing the areas of Image Analysis, User Interfaces, and Radio Communication. [What was the role of the client? (i.e. supervision only, participate in development, etc.)]
 
 \section{Original Requirements Document}
+
+% \include{srs_document}
 
 \section{Requirements Changes}
 
@@ -1918,6 +1993,13 @@ Essential Code Listings. You don't have to include absolutely everything, but if
 
 \section{Appendix 2}
 Anything else you want to include. Photos, etc.
+
+\newpage
+\section{Original Documents}
+We did not realize that all documents would need to be combined into one giant document at the end of the course. This means that there is formatting (still within IEEETran) that does not mesh well together and we could not in-line our original documents.
+\newpage
+
+\include{srs_document}
 
 \end{document}
 
