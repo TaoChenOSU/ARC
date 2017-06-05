@@ -101,14 +101,22 @@ No major or minor changes were made to the requirements document. We found that 
 \include{gantt_chart}
 
 \section{Design Document}
-% original design document here.
-    \subsection{Changes Made}
-    \include{design_changes}
+    \subsection{Original Design Document}
+    % original design document here.
+    
+    \subsection{Changes in Design}
+    We had to make several changes to our design throughout the life of the project. We moved away from stereo vision for obstacle avoidance and went with lidar instead. This had a cascading effect on other parts of our design. Since we didn't use stereo vision, our image analysis design also changed. We didn't need to worry about communicating images over the network so our communication protocols became much more simple.
+    
+    % \include{design_changes}
 
 \section{Tech Review}
+    \subsection{Original Tech Review Document}
+    % original tech review document goes here.
 
-    \subsection{Changes Made}
-    \include{tech_changes}
+    \subsection{Changes in Tech}
+    As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project. We changed from stereo vision to lidar for depth-finding and obstacle detection. We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos. We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini. We switched to using RVIZ (visualization package for ROS) for vehicle control
+    
+    % \include{tech_changes}
 
 \section{Weekly Blogs}
 
@@ -2200,12 +2208,57 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
 
 \subsection{Dan}
 \begin{itemize}
+
     \item What technical information did you learn?
+    \begin{itemize}
+        \item How to develop for robots:\\
+        The Robotics Operating System (ROS) is an open source general-purpose software
+        platform for developers working with all manner of robots. ROS allows the developer to 
+        use its extensive libraries to implement custom code for controlling robots and provides communications and navigation libraries that are very useful for autonomous vehicle applications. We wrote some programs in C and python using Ros libraries to communicate with the vehicle.
+        \item How to set up simulators:\\
+        We used both Gazebo and Stage are simulation environments that we used on this project. I learned how to set up and run both.
+        \item RC cars and Autonomy\\
+        I had never worked with RC cars, or tried any sort of robotics, so diving into the field of autonomous vehicles really stretched me. There is \textit{so much} that goes into research and development of autonomous vehicles. The computer has to either know the exact state of the vehicle via sensor data, or be able to estimate the vehicle's state closely enough to operate.
+        \item \href{https:\\cmake.org}{CMake}\\
+        CMake is a platform for build and testing software. It is open source. ROS uses CMake as part of its package installation platform, called Catkin.        
+        \item I learned more about bash and Linux, creating a script to launch AutoRally, spawning multiple terminals and processes.
+        \item I learned about lidar and point-clouds. I had never seen lidar in action before. I learned that there are different types of lidar. We used IR and some sort of LED technology.
+    \end{itemize}
+    
     \item What non-technical information did you learn?
+    \begin{itemize}
+        \item I learned that "autonomous" has many different meanings when related to vehicles. My assumption was that it meant that cars could navigate pretty much anywhere on their own. I found out that a car can be considered "autonomous" if it performs \textit{any} operation on its own. For instance, Georgia Tech's AutoRally project claims their car is "autonomous" and the car does go around a track without a user controlling the car directly. However, the car does guide itself, it follows predetermined way-points and performs no obstacle avoidance what-so-ever. The barriers around the track were in place to merely keep the car from going completely off the rails should something go wrong. The car did self-correct steering around the turns and kept the car under control will power-sliding around corners. So, the car was autonomous, just not in the way that I had though.
+    \end{itemize}
+    
     \item What have you learned about project work?
+    \begin{itemize}
+        \item Plan for setbacks and do not be disappointed when they happen.
+        \item It's really hard to work on a complicated project part time while taking other classes.
+        \item Ten hours of trial and error will save an hour of good design planning.
+        \end{itemize}
+    
     \item What have you learned about project management?
+        \begin{itemize}
+        \item It would be very helpful to use project management software.
+        \subitem We did \textit{not} use any sort of project management software for this project, by "project management software" I mean packages such as MS Project, or Redmine. The weak attempt at project tracking using manually implemented Gantt charts with no guidance on what to use or where to go for it was appalling. But I digress...
+        \item Milestones need to be clearly identified and consistently communicated throughout the life of the project.
+    \end{itemize}
+    
     \item What have you learned about working in teams?
+        \begin{itemize}
+        \item Good communication is key to keeping a team operating smoothly.
+        \item When everyone pitches in and they are enthusiastic about the project, the work is quite fun.
+    \end{itemize}
+    
     \item If you could do it all over, what would you do differently?
+    \begin{itemize}
+        \item Identify critical points of failure. Things that could possibly set us back significantly if they were to fail.
+        \subitem Test those points early, if possible.
+        \item Be more proactive about getting help for problems. Don't struggle with a problem for more than a few days before getting help. 
+        \item Start with a rover that has an autopilot integrated into it, possibly even already has some sensors on it.
+        \subitem Our team had \textit{no} experience going into this project. Trying to start from scratch was probably a bit too much, if the goal was to implement high-speed performance. It would have been more realistic to attain if we had started with a vehicle that had some sort of autonomous capability already and then we "upgrade" it to perform at a high rate of speed.
+        \item I would use project management software.
+    \end{itemize}
 \end{itemize}
 
 \section{Appendix 1}
