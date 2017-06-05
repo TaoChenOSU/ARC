@@ -106,3 +106,5 @@ All files modified by ARC for use in the Stage simulator are found in the `arc_s
 1. Copy the `stage_launch` folder in `arc_stage` to `src/autorally`.  
 1. Open a terminal, navigate to your work space. The directory that contains devel/, src/ and build/  
 1. Use `catkin_make` to compile the package.  
+
+## [ARC Part list](parts_list.md)
