@@ -3,7 +3,7 @@
 \usepackage{color}
 \usepackage{url}
 
-% \usepackage{subfiles}
+\usepackage{pdfpages}
 
 \usepackage{enumitem}
 
@@ -84,29 +84,11 @@
 
 \section{Introduction}
 Research into consumer/hobbyist, high performance RC vehicles was requested by Oregon State University via Mr. Kevin McGrath. This project was requested to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car at a cost less than four thousand dollars (USD). Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles. Our research shows that components are decreasing in cost and increasing in performance. The cost-barrier to autonomous research is decreasing dramatically. Our documentation and parts list provides would-be researchers a launching point to continue the work we started in ARC. Our client was the same person who requested the project, Mr. Kevin McGrath. Mr. McGrath is an instructor at Oregon State University. [Who are the members of our team?]The ARC team members are Tao Chen, Cierra Shawe, and Daniel Stoyer. [What were their roles?]Tao was our software and robotics expert, he worked extensively with our software package and got our car working in simulation, he was responsible for the areas of Motion Model, Path Planning, and Autonomous Algorithms (e.g. obstacle avoidance, parallel parking, etc.). Cierra was our electronics and hardware expert, she designed all the mounting hardware used to anchor the sensors to the RC car and did all the wiring/soldering, she was responsible for the ares of Vision Systems, Sensors, and Hardware. Dan was team leader, responsible for making sure the team was on track to hit milestones and Capstone deadlines on time. He was also responsible for overseeing the areas of Image Analysis, User Interfaces, and Radio Communication. [What was the role of the client? (i.e. supervision only, participate in development, etc.)]
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+\newpage
 \section{Original Requirements Document}
 
 % SRS document goes here.
-% \include{srs_document}
-
-\newpage
+\includepdf[pages=1-17]{orig_srs_document}
 
     \subsection{Requirements Changes}
     No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed.
@@ -119,7 +101,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 \section{Design Document}
     \subsection{Original Design Document}
     % original design document here.
-    \newpage
+\includepdf[pages=1-12]{orig_arc_design_document}
     
     \subsection{Changes in Design}
     We had to make several changes to our design throughout the life of the project. We moved away from stereo vision for obstacle avoidance and went with lidar instead. This had a cascading effect on other parts of our design. Since we didn't use stereo vision, our image analysis design also changed. We didn't need to worry about communicating images over the network so our communication protocols became much more simple.
@@ -128,7 +110,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 \section{Tech Review}
     \subsection{Original Tech Review Document}
     % original tech review document goes here.
-\newpage
+\includepdf[pages=1-12]{orig_tech_review}
 
     \subsection{Changes in Tech}
     As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project. We changed from stereo vision to lidar for depth-finding and obstacle detection. We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos. We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini. We switched to using RVIZ (visualization package for ROS) for vehicle control
@@ -2233,7 +2215,7 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
         platform for developers working with all manner of robots. ROS allows the developer to 
         use its extensive libraries to implement custom code for controlling robots and provides communications and navigation libraries that are very useful for autonomous vehicle applications. We wrote some programs in C and python using Ros libraries to communicate with the vehicle.
         \item How to set up simulators:\\
-        We used both Gazebo and Stage are simulation environments that we used on this project. I learned how to set up and run both.
+        I used both Gazebo and Stage are simulation environments that we used on this project. I learned how to set up and run both.
         \item RC cars and Autonomy\\
         I had never worked with RC cars, or tried any sort of robotics, so diving into the field of autonomous vehicles really stretched me. There is \textit{so much} that goes into research and development of autonomous vehicles. The computer has to either know the exact state of the vehicle via sensor data, or be able to estimate the vehicle's state closely enough to operate.
         \item \href{https:\\cmake.org}{CMake}\\
@@ -2257,12 +2239,13 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
     \item What have you learned about project management?
         \begin{itemize}
         \item It would be very helpful to use project management software.
-        \subitem We did \textit{not} use any sort of project management software for this project, by "project management software" I mean packages such as MS Project, or Redmine. The weak attempt at project tracking using manually implemented Gantt charts with no guidance on what to use or where to go for it was appalling. But I digress...
+        \subitem My team did \textit{not} use any sort of project management software for this project, by "project management software" I mean packages such as MS Project, or Redmine. Project tracking using manually implemented Gantt charts was incredibly tedious and not really used as a practical tool.
         \item Milestones need to be clearly identified and consistently communicated throughout the life of the project.
     \end{itemize}
     
     \item What have you learned about working in teams?
         \begin{itemize}
+        \item I was the team leader. It was difficult to balance keeping the team focused on our goal and not squashing enthusiasm when attempting to redirect tangent ideas back on track.
         \item Good communication is key to keeping a team operating smoothly.
         \item When everyone pitches in and they are enthusiastic about the project, the work is quite fun.
     \end{itemize}
@@ -2275,6 +2258,7 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
         \item Start with a rover that has an autopilot integrated into it, possibly even already has some sensors on it.
         \subitem Our team had \textit{no} experience going into this project. Trying to start from scratch was probably a bit too much, if the goal was to implement high-speed performance. It would have been more realistic to attain if we had started with a vehicle that had some sort of autonomous capability already and then we "upgrade" it to perform at a high rate of speed.
         \item I would use project management software.
+        \item I would set an expectation of a required weekly meeting time at the beginning of the project. Our team agreed to do that, but I did not really follow through on it well.
     \end{itemize}
 \end{itemize}
 
