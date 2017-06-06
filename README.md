@@ -107,4 +107,41 @@ All files modified by ARC for use in the Stage simulator are found in the `arc_s
 1. Open a terminal, navigate to your work space. The directory that contains devel/, src/ and build/  
 1. Use `catkin_make` to compile the package.  
 
-## [ARC Parts list](parts_list.md)
+## ARC Parts list
+The parts list for ARC is a compilation of parts, with prices, used for this project. ARC is designed to be modular, meaning that you can choose the quality/brand component you want to use. Consider this list a minimum-components-needed list. Feel free to add to the number of components used for greater accuracy in data.  
+**Note:** The Intel NUC and the RPi3/Arduino require an external monitor, keyboard, and mouse. These would be an additional cost, should you need to purchase them.  
+  
+| Part Description                     | Price     |
+|--------------------------------------|-----------|
+| -----------------------------        |           |
+| AutoPilot                            |           |
+| [Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)                        | $45       |
+| [PXFmini](http://erlerobotics.com/blog/product/pxfmini/)                              | $77.73    |
+| OR                                   |           |
+| PWM Controller                       | $3.95     |
+| [Arduino](https://www.arduino.cc/)                              | $39.90    |
+| -----------------------------        |           |
+| [Ublox Neo-M8N GPS with Compass](https://www.u-blox.com/en/product/neo-m8-series)       | $8.85     |
+| [UM7-LT Orientation Sensor](http://www.chrobotics.com/shop/um7-lt-orientation-sensor)            | $139.95   |
+| [3DR radios](https://3dr.com/wp-content/uploads/2017/03/3DR-Radio-V2-doc1.pdf) (2)                       | $100.00   |
+| [LeddarTech Leddar Evaluation Kit](http://leddartech.com/leddar-evaluation-kit/) $299     | $299.00   |
+| [Intel NUC Skull Canyon](http://www.intel.com/content/www/us/en/nuc/nuc-kit-nuc6i7kyk-features-configurations.html)               | $$994.98   |
+| [SlamTec RPLIDAR](https://www.slamtec.com/en/Lidar)                      | $199.00   |
+|                                      |           |
+| Sub total                            | $1,741.78 |
+|                                      |           |
+|                                      | Totals    |
+| With Autopilot Uses PXFMini/RPi3     | $1,865    |
+|                                      |           |
+| Without Autopilot (Uses PWM/Arduino) | $1,785.63 |
+|                                      |           |
+| With RC Car                          |           |
+| Traxxas Summit RC car                | $549.95   |
+|                                      | Totals    |
+| With Autopilot Uses PXFMini/RPi3     | $2,414.46 |
+|                                      |           |
+| Without Autopilot (Uses PWM/Arduino) | $2,335.58 |
+|                                      |           |  
+
+The above table was generated using [Markdown Table Generators](http://www.tablesgenerator.com/markdown_tables) by copy/pasting from Google Sheets using the instructions from that site.
+
