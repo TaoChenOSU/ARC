@@ -5,6 +5,8 @@
 
 \usepackage{pdfpages}
 
+\usepackage{graphicx}
+
 \usepackage{enumitem}
 
 \usepackage[letterpaper, margin=.75in]{geometry}
@@ -114,8 +116,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 
     \subsection{Changes in Tech}
     As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project. We changed from stereo vision to lidar for depth-finding and obstacle detection. We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos. We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini. We switched to using RVIZ (visualization package for ROS) for vehicle control
-    
-    % \include{tech_changes}
+
 
 \section{Weekly Blogs}
 
@@ -2112,6 +2113,14 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
     ARC is designed to be modular. We chose the Robotics Operating System as our primary software platform because it has a large number of libraries supporting many different types of sensors. You should be able to swap the sensors we chose with another of your choosing. Consider our parts list a minimum requirement for operation. More sensors (even duplicate sensors) can be added for greater accuracy in data.
         \subsubsection{Structure}
         The structure of ARC has two parts, software and hardware. The primary software platform is ROS Indigo. We also use Gazebo and Stage for simulation. We used AutoRally as a learning tool and provide instructions for how to install and use it. We moved away from AutoRally, but feel it is still a valuable tool to learn about vehicle simulation and ROS. Hardware-wise, we have a main computational unit that handles the heavy lifting for data collection and path-planning, a secondary computer for PWM control or autopilot communication (depending on which you go with), and GPS/IMU sensor integration.\\
+        
+        % block diagram here
+        \begin{figure}[h]
+            \centering
+            \includegraphics{Block_Diagram}
+            \caption{Main Project Components}
+            \label{fig:my_label}
+        \end{figure}
 
     \subsection{Software Installation}
     \textbf{GT AutoRally Instructions}\\
@@ -2179,7 +2188,6 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
         \item MAVLink API: \href{https://github.com/mavlink}{https://github.com/mavlink}
         \item Traxxas Summit owner's manual: \href{https://traxxas.com/sites/default/files/110829-R02-5607-manual.pdf}{https://traxxas.com/sites/default/files/110829-R02-5607-manual.pdf}
         \item PXFMini documentation: \href{http://docs.erlerobotics.com/brains/pxfmini}{http://docs.erlerobotics.com/brains/pxfmini}
-        
     \end{itemize}
 
 \section{New Technology Learned}
