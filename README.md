@@ -111,7 +111,7 @@ All files modified by ARC for use in the Stage simulator are found in the `arc_s
 7. A stage simulator and Rviz should show up.
 8. The red blocks on the simulator can be moved around.
 9. Use the "2D Nav Goal" on Rviz to tell the car where to go.
-Note: 
+Note.
 1. For all these to work, the autorally_smartdriving package in AutoRally must be functional, because this simulation will launch the "odom" node from there. Also, the topic that the odom node subscribes to should change to "/base_pose_ground_truth". The source code is located in {AutoRally_workspace}/src/autorally/autorally_smartdriving/src/Odom/odom.cpp.
 2. To display rplidar lidar data, uncomment line 48 to 50 in the arc_stage.launch file. Lidar data is not currently used to decide paths, but instead just to visualize the data on Rviz. 
 3. If incorparating other external lidars to the car frame, add more "laser_scan_sensor: {}"s after line 28 in costmap_common_params.yaml, and define more rangers in arc_robot.inc. Frame names and topic names must be defined with cautions. Fram names must be unique.
