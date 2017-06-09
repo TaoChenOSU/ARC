@@ -2168,7 +2168,7 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
 
     \textbf{Stage Installation Instructions}\\
     All files modified by ARC for use in the Stage simulator are found in the arc\_stage folder provided.
-    
+
     \begin{itemize}
         \item Extract the NewArc compressed file. In it there will be two packages named "smart driving" and "stage\_launch".
         \item Create a ROS work space, and copy the two packages to the src folder inside the new work space.
@@ -2641,8 +2641,390 @@ int main(int argc, char** argv){
 </launch>
 \end{lstlisting}
 
-\begin{lstlisting}[frame=single,caption={ROS odom/transform node}]
+\begin{lstlisting}[frame=single,caption={ROS odom/transform node (not including the .h file.
+The .h file is located in our github repository)}]
+/**********************************************
+* @file odom.cpp
+* @author Tao Chen <chentao@oregonstate.edu>
+* @date Feburary 25, 2017
+* @copyright 2017 Oregon State University
+* @brief pulishes odometry data to the navigation stack
+*
+* @details This node subscribes to odometry data from /autorally_platform
+and publisher the data to the navigation stack
+***********************************************/
 
+#include "odom.h"
+
+namespace autorally_smartdriving{
+  Odom::Odom(){
+    o_odomSub = o_nh.subscribe("/base_pose_ground_truth", 1, &Odom::gatherOdomData, this);
+    o_odomPub = o_nh.advertise<nav_msgs::Odometry>("odom", 1);
+    o_PoseArrayPub = o_nh.advertise<geometry_msgs::PoseArray>("particlecloud", 1);
+    o_poseCovariancePub = o_nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("amcl_pose", 1);
+  }
+
+  Odom::~Odom(){};
+
+  void Odom::gatherOdomData(nav_msgs::Odometry data){
+    tf::TransformBroadcaster odom_broadcaster;
+    ros::Time time_stamp = ros::Time::now();
+
+    //publish transform over tf
+    geometry_msgs::TransformStamped odom_trans;
+    geometry_msgs::TransformStamped map_trans;
+
+    odom_trans.header.stamp = time_stamp;
+    odom_trans.header.frame_id = "odom";             //base_link
+    odom_trans.child_frame_id = "base_footprint";     //odom
+
+    odom_trans.transform.translation.x = 0;
+    odom_trans.transform.translation.y = 0;
+    odom_trans.transform.translation.z = 0;
+    odom_trans.transform.rotation.x = 0;
+    odom_trans.transform.rotation.y = 0;
+    odom_trans.transform.rotation.z = 0;
+    odom_trans.transform.rotation.w = 1;
+
+    /*odom_trans.transform.rotation.x = data.pose.pose.orientation.x;
+    odom_trans.transform.rotation.y = data.pose.pose.orientation.y;
+    odom_trans.transform.rotation.z = data.pose.pose.orientation.z;
+    odom_trans.transform.rotation.w = data.pose.pose.orientation.w;*/
+
+    map_trans.header.stamp = time_stamp;
+    map_trans.header.frame_id = "map";
+    map_trans.child_frame_id = "odom";        //base_link
+
+    map_trans.transform.translation.x = data.pose.pose.position.x;
+    map_trans.transform.translation.y = data.pose.pose.position.y;
+    map_trans.transform.translation.z = data.pose.pose.position.z;
+    map_trans.transform.rotation.x = data.pose.pose.orientation.x;
+    map_trans.transform.rotation.y = data.pose.pose.orientation.y;
+    map_trans.transform.rotation.z = data.pose.pose.orientation.z;
+    map_trans.transform.rotation.w = data.pose.pose.orientation.w;
+
+    /*map_trans.transform.rotation.x = 0;
+    map_trans.transform.rotation.y = 0;
+    map_trans.transform.rotation.z = 0;
+    map_trans.transform.rotation.w = -1;*/
+
+    //send the transform
+    odom_broadcaster.sendTransform(odom_trans);
+    odom_broadcaster.sendTransform(map_trans);
+
+    //Publish pose array
+    geometry_msgs::PoseArray poseArray;
+    poseArray.poses.resize(1);
+    poseArray.header.stamp = time_stamp;
+    poseArray.header.frame_id = "map";
+
+    for(int i = 0; i < 1; i++){
+      poseArray.poses[i].position.x = data.pose.pose.position.x;
+      poseArray.poses[i].position.y = data.pose.pose.position.y;
+      poseArray.poses[i].position.z = data.pose.pose.position.z;
+
+      poseArray.poses[i].orientation.x = data.pose.pose.orientation.x;
+      poseArray.poses[i].orientation.y = data.pose.pose.orientation.y;
+      poseArray.poses[i].orientation.z = data.pose.pose.orientation.z;
+      poseArray.poses[i].orientation.w = data.pose.pose.orientation.w;
+    }
+    o_PoseArrayPub.publish(poseArray);
+
+    //Publish pose with covariance
+    geometry_msgs::PoseWithCovarianceStamped PoseWithCovariance;
+    PoseWithCovariance.header.stamp = time_stamp;
+    PoseWithCovariance.header.frame_id = "map";
+    PoseWithCovariance.pose.pose.position.x = data.pose.pose.position.x;
+    PoseWithCovariance.pose.pose.position.y = data.pose.pose.position.y;
+    PoseWithCovariance.pose.pose.position.z = data.pose.pose.position.z;
+
+    PoseWithCovariance.pose.covariance = data.pose.covariance;
+    o_poseCovariancePub.publish(PoseWithCovariance);
+
+    //add frame_id and child_frame to odom message
+    data.header.stamp = time_stamp;
+    data.header.frame_id = "map";
+
+    data.child_frame_id = "odom";
+    o_odomPub.publish(data);
+  }
+};
+
+int main(int argc, char** argv){
+  ros::init(argc, argv, "OdomNav");
+  autorally_smartdriving::Odom odom;
+  ros::spin();
+}
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Example launch file}]
+<launch>
+  <include file="$(find autorally_core)/launch/hardware.machine" />
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find autorally_smartdriving)/launch/test_map_empty.yaml"/>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find autorally_smartdriving)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find autorally_smartdriving)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find autorally_smartdriving)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find autorally_smartdriving)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find autorally_smartdriving)/config/base_local_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+    <param name="planner_frequency" value="1.0" />
+    <param name="planner_patience" value="5.0" />
+
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="15.0" />
+
+    <param name="clearing_rotation_allowed" value="false" /> <!-- our vehicle can't rotate inplace -->
+  </node>
+</launch>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Example package config file}]
+<?xml version="1.0"?>
+<package>
+  <name>autorally_smartdriving</name>
+  <version>0.0.0</version>
+  <description>This package contains all the necessary files to enable the car to detect and avoid obstacle using the teb_local_planner package.</description>
+
+  <maintainer email="chentao@oregonstate.edu">Tao Chen</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/cshawe/cs46x</url>
+
+  <author email="chentao@oregonstate.edu">Tao Chen</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>autorally_msgs</build_depend>
+  <build_depend>move_base</build_depend>
+  <build_depend>my_odom_configuration_dep</build_depend>
+  <build_depend>my_sensor_configuration_dep</build_depend>
+  <build_depend>my_tf_configuration_dep</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>autorally_msgs</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>my_odom_configuration_dep</run_depend>
+  <run_depend>my_sensor_configuration_dep</run_depend>
+  <run_depend>my_tf_configuration_dep</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Example yaml (package params) file}]
+# footprint is like the shadow of the vehicle if the light is shining from directly above.
+# Assume that the center of the vehicle is (0, 0)
+footprint: [[-0.3, 0.15], [0.3, 0.15], [0.3, -0.15], [-0.3, -0.15]]
+
+transform_tolerance: 0.5      # undecided
+map_type: costmap
+
+obstacle_layer:
+  enabled: true
+  # Maximum range sensor reading that will result in an obstacle being put into the costmap
+  # 8.0 means the robot will only updata its map with info about obstacles that are within
+  # 8.0 meters of the base.
+  obstacle_range: 8.0
+  # 5.0 means that the robot will attemp to clear out space in front of it up to 5.0 meters
+  # away given sensor reading.
+  raytrace_range: 5.0
+  # This value determines how far the vehicle will stay away from obstacles.
+  inflation_radius: 1.0
+  # from the tutorial
+  track_unknown_space: false
+  combination_method: 1
+  # we are only using laser scan
+  observation_sources: laser_scan_sensor
+  # marking and clearing mean that the sensor data will be used to mark and clear obstacle info
+  # on the costmap
+  laser_scan_sensor: {sensor_frame: lidar, data_type: LaserScan, topic: scan, marking: true, clearing: true, expected_update_rate: 0.5}
+
+inflation_layer:
+  enabled: true
+  cost_scaling_factor: 10.0   # exponential rate at which the obstacle cost drops off
+  inflation_radius: 1.0      # max distance from an obstacle at which costs are incurred for planning paths.
+
+static_layer:
+  enabled: true
+map_topic: "/map"
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Example cmakelist file}]
+cmake_minimum_required(VERSION 2.8.3)
+project(autorally_smartdriving)
+
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+  nav_msgs
+  tf
+)
+
+catkin_package(
+  INCLUDE_DIRS include
+)
+
+include_directories(
+  include ${catkin_INCLUDE_DIRS}
+)
+
+add_subdirectory(src/lidarDetection)
+add_subdirectory(src/Odom)
+add_subdirectory(src/Global_Path)
+add_subdirectory(src/Drive)
+add_subdirectory(src/imu)
+
+install(DIRECTORY launch/
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+   FILES_MATCHING PATTERN "*.launch" PATTERN "*.machine"
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
+install(DIRECTORY cfg/cpp/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+   FILES_MATCHING PATTERN "*.h"
+)
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Example stage config file}]
+include "arc_robot.inc"
+include "block.inc"
+
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 0
+  gui_grid 0
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  laser_return 1
+)
+
+resolution 0.02
+interval_sim 100  # simulation timestep in milliseconds
+
+window
+(
+  size [ 600.0 700.0 ]
+  center [ 0.0 0.0 ]
+  rotate [ 0.0 0.0 ]
+  scale 60
+)
+
+floorplan
+(
+  name "empty_world"
+  bitmap "../maps/empty_world.png"
+  size [ 200.0 200.0 2.0 ]
+  pose [ 0.0 0.0 0.0 0.0 ]
+)
+
+# throw in a robot
+carlike_robot
+(
+  pose [ 0.0 0.0 0.0 0.0 ]
+  name "robot"
+)
+
+# adding blocks
+block ( pose [2.0 4.0 0.0 0.0] color "red")
+block ( pose [4.0 4.0 0.0 0.0] color "red")
+block ( pose [6.0 4.0 0.0 0.0] color "red")
+block ( pose [8.0 4.0 0.0 0.0] color "red")
+block ( pose [10.0 4.0 0.0 0.0] color "red")
+block ( pose [12.0 4.0 0.0 0.0] color "red")
+block ( pose [14.0 4.0 0.0 0.0] color "red")
+block ( pose [16.0 4.0 0.0 0.0] color "red")
+block ( pose [18.0 4.0 0.0 0.0] color "red")
+block ( pose [20.0 4.0 0.0 0.0] color "red")
+block ( pose [22.0 4.0 0.0 0.0] color "red")
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption={Car description for stage}]
+define laser ranger
+(
+  sensor
+  (
+    range_max 6
+    fov 360
+    samples 2000
+  )
+
+  color "black"
+  size [ 0.06 0.15 0.03]
+)
+
+define leddar ranger
+(
+  sensor
+  (
+    range_max 50.0
+    fov 45
+    samples 16
+  )
+  color "black"
+  size [0.06 0.15 0.03]
+)
+
+define carlike_robot position
+(
+  pose [ 0.0 0.0 0.0 0.0 ]
+
+  odom_error [ 0.03 0.03 999999 999999 999999 0.02 ]
+
+  size [ 0.56 0.46 0.4 ]
+  origin [ 0.2 0.0 0.0 0.0]
+  gui_nose 1
+  color "green"
+
+  drive "car"
+  localization "gps"
+  wheelbase 0.38
+
+  #laser(pose [-0.1 0.0 -0.11 0.0])
+  laser(pose [0.1 0.0 -0.11 0.0])
+
+  leddar(pose [0.2 0.0 -0.11 0.0])
+)
 \end{lstlisting}
 
 \section{Appendix 2}
