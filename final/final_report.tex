@@ -77,7 +77,7 @@
 	\end{center}
 
 	\thispagestyle{empty} % gets rid of the "0" page number.
-	
+
 \end{titlepage}
 
 \tableofcontents
@@ -104,10 +104,10 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
     \subsection{Original Design Document}
     % original design document here.
 \includepdf[pages=1-12]{orig_arc_design_document}
-    
+
     \subsection{Changes in Design}
     We had to make several changes to our design throughout the life of the project. We moved away from stereo vision for obstacle avoidance and went with lidar instead. This had a cascading effect on other parts of our design. Since we didn't use stereo vision, our image analysis design also changed. We didn't need to worry about communicating images over the network so our communication protocols became much more simple.
-    
+
 
 \section{Tech Review}
     \subsection{Original Tech Review Document}
@@ -2113,7 +2113,7 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
     ARC is designed to be modular. We chose the Robotics Operating System as our primary software platform because it has a large number of libraries supporting many different types of sensors. You should be able to swap the sensors we chose with another of your choosing. Consider our parts list a minimum requirement for operation. More sensors (even duplicate sensors) can be added for greater accuracy in data.
         \subsubsection{Structure}
         The structure of ARC has two parts, software and hardware. The primary software platform is ROS Indigo. We also use Gazebo and Stage for simulation. We used AutoRally as a learning tool and provide instructions for how to install and use it. We moved away from AutoRally, but feel it is still a valuable tool to learn about vehicle simulation and ROS. Hardware-wise, we have a main computational unit that handles the heavy lifting for data collection and path-planning, a secondary computer for PWM control or autopilot communication (depending on which you go with), and GPS/IMU sensor integration.\\
-        
+
         % block diagram here
         \begin{figure}[h]
             \centering
@@ -2161,7 +2161,7 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     	\item run rviz with the rviz config file. rosrun rviz rviz
     	\item Now you can set goals through Rviz and the car should go towards the goal autonomously.
     \end{itemize}
-    
+
     \textbf{ROS Indigo Installation}\\
     If you are not installing AutoRally (which links you to the ROS installation instructions), then you will need to install ROS before doing anything else with ARC.\\
     Go to \href{http://wiki.ros.org/indigo/Installation/Ubuntu}{http://wiki.ros.org/indigo/Installation/Ubuntu} and follow the official instructions for installing ROS Indigo.
@@ -2182,196 +2182,196 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
         \item ARC requires use of ROS Indigo, specifically. Newer versions of ROS might work, but have not been tested.
         \item If you go with a PXFMini, you will need to get a custom Raspberry Pi 3 image from them.
     \end{itemize}
-    
-    \subsection{User Guides, API documentation, Etc.} 
+
+    \subsection{User Guides, API documentation, Etc.}
     \begin{itemize}
         \item MAVLink API: \href{https://github.com/mavlink}{https://github.com/mavlink}
         \item Traxxas Summit owner's manual: \href{https://traxxas.com/sites/default/files/110829-R02-5607-manual.pdf}{https://traxxas.com/sites/default/files/110829-R02-5607-manual.pdf}
         \item PXFMini documentation: \href{http://docs.erlerobotics.com/brains/pxfmini}{http://docs.erlerobotics.com/brains/pxfmini}
     \end{itemize}
-    
+
     \subsection{Parts List}
     These are the final components we used for our vehicle. Note that all components in this list may be swapped out for different brands/technologies as long as the corresponding ROS packages are modified accordingly.\\
     This list does not include all components we tested during research and development it is only the components on the final version of the RC car.
-        
+
     \begin{table}[htbp]
     \resizebox{.75\linewidth}{!}{\begin{tabular}{ |p{3cm}|p{1cm}|  }
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% One row: %%%
-    % Description w/URL (if necessary) & 
+    % Description w/URL (if necessary) &
     % Price &
     %%%%%
     % example:
-    % Description 
+    % Description
     % {\tiny \href{https://www.raspberrypi.org/products/raspberry-pi-3-model-b/}{Raspberry Pi 3}} &
-    
-    % Price 
+
+    % Price
     % {\tiny \$45}
     % \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \hline
-    Description & 
+    Description &
     Price \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \hline
-    Autopilot & 
+    Autopilot &
      \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{https://www.raspberrypi.org/products/raspberry-pi-3-model-b/}{Raspberry Pi 3 (RPi3)}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$45}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{http://erlerobotics.com/blog/product/pxfmini/}{PXFmini}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$77.73}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    OR & 
+    OR &
      \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{}{PWM Controller}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$3.95}\\
     \hline
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Part Description 
-    % Description 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Part Description
+    % Description
     {\tiny \href{https://www.arduino.cc/}{Arduino}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$39.90}\\
     % extra \hline to separate the autopilot visually
     \hline
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{https://www.u-blox.com/en/product/neo-m8-series}{Ublox Neo-M8N GPS with Compass}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$8.85}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{http://www.chrobotics.com/shop/um7-lt-orientation-sensor}{UM7-LT Orientation Sensor}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$139.95}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{https://3dr.com/wp-content/uploads/2017/03/3DR-Radio-V2-doc1.pdf}{3DR radios (2)}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$100.00}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{http://leddartech.com/leddar-evaluation-kit/}{LeddarTech Leddar Evaluation Kit}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$299.99}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{http://www.intel.com/content/www/us/en/nuc/nuc-kit-nuc6i7kyk-features-configurations.html}{Intel NUC Skull Canyon \newline With 16GB DDR4 and 480GB SSD}}&
-    
-    % Price 
+
+    % Price
     {\tiny \$994.98}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny \href{https://www.slamtec.com/en/Lidar}{SlamTec RPLIDAR}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$199.00}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny Continued on next page.} &
-    
-    % Price 
+
+    % Price
      \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     \end{tabular}}
     \end{table}
-    
+
     \newpage
-    
+
     \begin{table}[htbp]
     \resizebox{.75\linewidth}{!}{\begin{tabular}{ |p{3cm}|p{1cm}|  }
-    
+
     \hline
-    % Description 
+    % Description
     Component Sub-Totals &
-    
-    % Price 
+
+    % Price
     \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny Components with PXFMini/RPi3} &
-    
-    % Price 
+
+    % Price
     {\tiny \textbf{\$1,865}}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    OR & 
+    OR &
      \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny Components with PWM/Arduino} &
-    
-    % Price 
+
+    % Price
     {\tiny \textbf{\$1,785.63}}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \hline
-    % Description 
+    % Description
     {\tiny \href{https://traxxas.com/products/models/electric/56076summit}{Traxxas Summit RC car}} &
-    
-    % Price 
+
+    % Price
     {\tiny \$549.95}\\
     \hline
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     Totals with RC car &
-    
-    % Price 
+
+    % Price
     \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny Using PXFMini/RPi3} &
-    
-    % Price 
+
+    % Price
     {\tiny \textbf{\$2,414.46}}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    OR & 
+    OR &
      \\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Description 
+    % Description
     {\tiny Using PWM/Arduino} &
-    
-    % Price 
+
+    % Price
     {\tiny \textbf{\$2,335.58}}\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+
     \end{tabular}}
     \end{table}
 
@@ -2468,49 +2468,49 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     \begin{itemize}
         \item How to develop for robots:\\
         The Robotics Operating System (ROS) is an open source general-purpose software
-        platform for developers working with all manner of robots. ROS allows the developer to 
+        platform for developers working with all manner of robots. ROS allows the developer to
         use its extensive libraries to implement custom code for controlling robots and provides communications and navigation libraries that are very useful for autonomous vehicle applications. We wrote some programs in C and python using Ros libraries to communicate with the vehicle.
         \item How to set up simulators:\\
         I used both Gazebo and Stage are simulation environments that we used on this project. I learned how to set up and run both.
         \item RC cars and Autonomy\\
         I had never worked with RC cars, or tried any sort of robotics, so diving into the field of autonomous vehicles really stretched me. There is \textit{so much} that goes into research and development of autonomous vehicles. The computer has to either know the exact state of the vehicle via sensor data, or be able to estimate the vehicle's state closely enough to operate.
         \item \href{https:\\cmake.org}{CMake}\\
-        CMake is a platform for build and testing software. It is open source. ROS uses CMake as part of its package installation platform, called Catkin.        
+        CMake is a platform for build and testing software. It is open source. ROS uses CMake as part of its package installation platform, called Catkin.
         \item I learned more about bash and Linux, creating a script to launch AutoRally, spawning multiple terminals and processes.
         \item I learned about lidar and point-clouds. I had never seen lidar in action before. I learned that there are different types of lidar. We used IR and some sort of LED technology.
     \end{itemize}
-    
+
     \item What non-technical information did you learn?
     \begin{itemize}
         \item I learned that "autonomous" has many different meanings when related to vehicles. My assumption was that it meant that cars could navigate pretty much anywhere on their own. I found out that a car can be considered "autonomous" if it performs \textit{any} operation on its own. For instance, Georgia Tech's AutoRally project claims their car is "autonomous" and the car does go around a track without a user controlling the car directly. However, the car does guide itself, it follows predetermined way-points and performs no obstacle avoidance what-so-ever. The barriers around the track were in place to merely keep the car from going completely off the rails should something go wrong. The car did self-correct steering around the turns and kept the car under control will power-sliding around corners. So, the car was autonomous, just not in the way that I had though.
     \end{itemize}
-    
+
     \item What have you learned about project work?
     \begin{itemize}
         \item Plan for setbacks and do not be disappointed when they happen.
         \item It's really hard to work on a complicated project part time while taking other classes.
         \item Ten hours of trial and error will save an hour of good design planning.
         \end{itemize}
-    
+
     \item What have you learned about project management?
         \begin{itemize}
         \item It would be very helpful to use project management software.
         \subitem My team did \textit{not} use any sort of project management software for this project, by "project management software" I mean packages such as MS Project, or Redmine. Project tracking using manually implemented Gantt charts was incredibly tedious and not really used as a practical tool.
         \item Milestones need to be clearly identified and consistently communicated throughout the life of the project.
     \end{itemize}
-    
+
     \item What have you learned about working in teams?
         \begin{itemize}
         \item I was the team leader. It was difficult to balance keeping the team focused on our goal and not squashing enthusiasm when attempting to redirect tangent ideas back on track.
         \item Good communication is key to keeping a team operating smoothly.
         \item When everyone pitches in and they are enthusiastic about the project, the work is quite fun.
     \end{itemize}
-    
+
     \item If you could do it all over, what would you do differently?
     \begin{itemize}
         \item Identify critical points of failure. Things that could possibly set us back significantly if they were to fail.
         \subitem Test those points early, if possible.
-        \item Be more proactive about getting help for problems. Don't struggle with a problem for more than a few days before getting help. 
+        \item Be more proactive about getting help for problems. Don't struggle with a problem for more than a few days before getting help.
         \item Start with a rover that has an autopilot integrated into it, possibly even already has some sensors on it.
         \subitem Our team had \textit{no} experience going into this project. Trying to start from scratch was probably a bit too much, if the goal was to implement high-speed performance. It would have been more realistic to attain if we had started with a vehicle that had some sort of autonomous capability already and then we "upgrade" it to perform at a high rate of speed.
         \item I would use project management software.
@@ -2635,8 +2635,11 @@ int main(int argc, char** argv){
 </launch>
 \end{lstlisting}
 
+\begin{lstlisting}[frame=single,caption={ROS odom/transform node}]
+
+\end{lstlisting}
+
 \section{Appendix 2}
 Anything else you want to include. Photos, etc.
 
 \end{document}
-
