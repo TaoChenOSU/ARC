@@ -2168,12 +2168,18 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
 
     \textbf{Stage Installation Instructions}\\
     All files modified by ARC for use in the Stage simulator are found in the arc\_stage folder provided.
-
+    
     \begin{itemize}
-    	\item Navigate to the work space where you put the AutoRally package. And then go to the src/autorally directory.
-    	\item Copy the stage\_launch folder in arc\_stage to src/autorally.
-    	\item Open a terminal, navigate to your work space. The directory that contains devel/, src/ and build/
-    	\item Use catkin\_make to compile the package.
+        \item Extract the NewArc compressed file. In it there will be two packages named "smart driving" and "stage\_launch".
+        \item Create a ROS work space, and copy the two packages to the src folder inside the new work space.
+        \item On the root of the new work space, run "catkin\_make".
+        \item On a new terminal, run "roscore".
+        \item On the original terminal, run "source devel/setup.bash".
+        \item On the original terminal, run "source devel/setup.bash".
+        \item Run "roslaunch stage\_launch arc\_stage.launch".
+        \item A stage simulator and Rviz should show up.
+        \item The red blocks on the simulator can be moved around.
+        \item Use the "2D Nav Goal" on Rviz to tell the car where to go.
     \end{itemize}
 
     \subsection{Special Considerations}
@@ -2433,7 +2439,7 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     \begin{itemize}
       \item Coding could be easy if the project was planed out nicely.
       \item To make a good plan, one must view the project from different
-      prospectives, and listen to others' opinions.
+      perspectives, and listen to others' opinions.
       \item Keeping track of progress is extremely important.
       \item Stick with the plan, and yet quickly switch other solutions
       when the original does not work out.
