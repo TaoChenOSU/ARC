@@ -102,10 +102,20 @@ Step-by-step instructions on how to run our implementation of the [GT AutoRally]
 ## Stage installation instructions  
 ---
 All files modified by ARC for use in the Stage simulator are found in the `arc_stage` folder provided.
-1. Navigate to the work space where you put the AutoRally package. And then go to the `src/autorally` directory.  
-1. Copy the `stage_launch` folder in `arc_stage` to `src/autorally`.  
-1. Open a terminal, navigate to your work space. The directory that contains devel/, src/ and build/  
-1. Use `catkin_make` to compile the package.  
+1. Extract the NewArc compressed file. In it there will be two packages named "smart driving" and "stage_launch".
+2. Create a ROS work space, and copy the two packages to the src folder inside the new work space.
+3. On the root of the new work space, run "catkin_make".
+4. On a new terminal, run "roscore".
+5. On the original terminal, run "source devel/setup.bash".
+6. Run "roslaunch stage_launch arc_stage.launch".
+7. A stage simulator and Rviz should show up.
+8. The red blocks on the simulator can be moved around.
+9. Use the "2D Nav Goal" on Rviz to tell the car where to go.
+---
+Note:
+1. For all these to work, the autorally_smartdriving package in AutoRally must be functional, because this simulation will launch the "odom" node from there. Also, the topic that the odom node subscribes to should change to "/base_pose_ground_truth". The source code is located in {AutoRally_workspace}/src/autorally/autorally_smartdriving/src/Odom/odom.cpp.
+2. To display rplidar lidar data, uncomment line 48 to 50 in the arc_stage.launch file. Lidar data is not currently used to decide paths, but instead just to visualize the data on Rviz. 
+3. If incorparating other external lidars to the car frame, add more "laser_scan_sensor: {}"s after line 28 in costmap_common_params.yaml, and define more rangers in arc_robot.inc. Frame names and topic names must be defined with cautions. Fram names must be unique.
 
 ## ARC Parts list
 The parts list for ARC is a compilation of parts, with prices, used for this project. ARC is designed to be modular, meaning that you can choose the quality/brand component you want to use. Consider this list a minimum-components-needed list. Feel free to add to the number of components used for greater accuracy in data.  
