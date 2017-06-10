@@ -90,7 +90,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 \section{Original Requirements Document}
 
 % SRS document goes here.
-\includepdf[pages=1-17]{orig_srs_document}
+\includepdf[pages={-}]{orig_srs_document}
 
     \subsection{Requirements Changes}
     No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed.
@@ -103,7 +103,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 \section{Design Document}
     \subsection{Original Design Document}
     % original design document here.
-\includepdf[pages=1-12]{orig_arc_design_document}
+\includepdf[pages={-}]{orig_arc_design_document}
 
     \subsection{Changes in Design}
     We had to make several changes to our design throughout the life of the project. We moved away from stereo vision for obstacle avoidance and went with lidar instead. This had a cascading effect on other parts of our design. Since we didn't use stereo vision, our image analysis design also changed. We didn't need to worry about communicating images over the network so our communication protocols became much more simple.
@@ -112,7 +112,7 @@ Research into consumer/hobbyist, high performance RC vehicles was requested by O
 \section{Tech Review}
     \subsection{Original Tech Review Document}
     % original tech review document goes here.
-\includepdf[pages=1-12]{orig_tech_review}
+\includepdf[pages={-}]{orig_tech_review}
 
     \subsection{Changes in Tech}
     As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project. We changed from stereo vision to lidar for depth-finding and obstacle detection. We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos. We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini. We switched to using RVIZ (visualization package for ROS) for vehicle control
@@ -2524,6 +2524,10 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     \end{itemize}
 \end{itemize}
 
+\section{ARC Findings and Conclusions}
+
+\includepdf[pages={-}]{write_up.pdf}
+
 \section{Appendix 1}
 Essential Code Listings. You don't have to include absolutely everything, but if someone wants to understand your project, there should be enough here to learn from. If you worked within a larger project, something like a patch file might be a good way to go.
 \begin{lstlisting}[frame=single,caption={Example Custom ROS Node}]
@@ -3031,3 +3035,4 @@ define carlike_robot position
 Anything else you want to include. Photos, etc.
 
 \end{document}
+
