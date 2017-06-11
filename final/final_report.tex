@@ -2104,9 +2104,10 @@ Got Raspberry Pi3 talking with computers over ethernet as well.
         \item Expo was a fun experience for me, overall. We gave a presentation of our project to the industry advisory board and then talked with attendees during the event. It was fun explaining what we did and why we did it. I talked to quite a few kids and it was really fun seeing them interested in the project and answering their questions.
     \end{itemize}
 \end{itemize}
-
+\newpage
 \section{Project Poster}
-
+\includepdf[pages={-}]{cs462-poster-044.pdf}
+\newpage
 \section{Project Documentation}
 
     \subsection{How project ARC works}
@@ -2162,11 +2163,26 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     	\item Now you can set goals through Rviz and the car should go towards the goal autonomously.
     \end{itemize}
 
-    \textbf{ROS Indigo Installation}\\
+    \subsubsection{ROS Indigo Installation}
     If you are not installing AutoRally (which links you to the ROS installation instructions), then you will need to install ROS before doing anything else with ARC.\\
     Go to \href{http://wiki.ros.org/indigo/Installation/Ubuntu}{http://wiki.ros.org/indigo/Installation/Ubuntu} and follow the official instructions for installing ROS Indigo.
+    
+    \subsubsection{Installing Sensor Packages}
+    ROS has pre-built packages for the sensors we used in this project. The instructions for installing those packages are below. If you use different sensors, you will need to install packages corresponding to your sensors, or write your own packages if none are available.
+    \begin{itemize}
+        \item SlamTech RPLiDAR
+        \subitem - At the terminal command prompt:
+        \subitem \$ sudo apt-get install ros-indigo-rplidar-ros
+        \item LeddarTech Evaluation Kit:
+        \subitem - Go to the ROS-Leddar GitHub repository (\href{https://github.com/mcgill-robotics/ros-leddar}{https://github.com/mcgill-robotics/ros-leddar}, download (clone) the LeddarTech package and follow the instructions on that page.
+        \item UM7 IMU:
+        \subitem - At the terminal command prompt:
+        \subitem \$ sudo apt-get install ros-indigo-um7
+        \item Ublox GPS:
+        \subitem - Clone the Ublox repository at \href{https://github.com/KumarRobotics/ublox}{https://github.com/KumarRobotics/ublox} and floow the instructions on that page.
+    \end{itemize}
 
-    \textbf{Stage Installation Instructions}\\
+    \subsubsection{Stage Installation Instructions}
     All files modified by ARC for use in the Stage simulator are found in the arc\_stage folder provided.
 
     \begin{itemize}
@@ -2371,7 +2387,7 @@ through the "Autonomous Driving in Simulation" instructions at GT AutoRally.\\
     \hline
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Description
-    {\tiny Using PWM/Arduino} &
+    {\tiny Using PWM/Arduino} & 
 
     % Price
     {\tiny \textbf{\$2,335.58}}\\
