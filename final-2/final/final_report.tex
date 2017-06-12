@@ -138,9 +138,24 @@ No major or minor changes were made to the requirements document. We found that 
 \section{Design Document}
 \subsection{Changes in Design}
 We had to make several changes to our design throughout the life of the project. 
-We moved away from stereo vision for obstacle avoidance and went with LiDAR instead. 
-This had a cascading effect on other parts of our design. Since we didn't use stereo vision, our image analysis design also changed. 
-We didn't need to worry about communicating images over the network so our communication protocols became much more simple.
+Our vision system moved away from stereo vision for obstacle avoidance and went with LiDAR instead. 
+This had the benefit of simplifying our software tool-chain and network traffic load. 
+With our vision system using LiDAR we did not need to use OpenCV, a computer vision software library, instead we used pre-built ROS packages for the rpLiDAR and the LeddarTech LiDAR units. We were able to integrate our LiDAR units in simulation very quickly using the their pre-built packages. 
+Changing the vision system had a cascading effect on other parts of our design. 
+Since we didn't use stereo vision, our image analysis design also changed. \\
+We moved away from trying to analyze images ourselves, through OpenCV or implementing our own analysis software, and used a ROS navigation stack that handled the LiDAR point cloud analysis for us. An added benefit of not using stereo vision was that it greatly reduced our network overhead. The LiDAR point cloud data stream had significantly smaller packet sizes.
+Our original hardware configuration included using a Raspberry Pi 2 and a PXFMini autopilot. 
+We abandoned both of those for a simple PWM controller to send signals to the RC car's ECS (electronic speed controller) and an Arduino to control the PWM board. 
+We ran into a road block with the PXFMini where we could not get the unit to receive commands. 
+We thought the unit to be defective, but perhaps there was some procedure we were not aware of due our lack of experience and poor documentation for the component. 
+The PXFMini integrated our IMU and GPS sensor data for us, losing it meant that we had to come up with some sort of software solution to integrate the IMU and GPS data for the vehicle state estimation.
+State estimation is needed for the computer to know the attitude of the RC vehicle in real time so that it can correct steering or speed accurately and keep the vehicle under control. 
+We tried to use a state estimator package from Georgia Tech's AutoRally project, but we could not figure out how to convert the data types we had from our sensors into the custom data types AutoRally was using.\\
+Our original design called for us to use a barometer for altitude, we eliminated that option as our GPS unit already gave us altitude data. Also planned was to use ultrasonic sensors or parallel parking and redundancy in forward collision avoidance. Ultrasonic sensors were eliminated once we started using the LiDAR units. LiDAR gave us more than enough information about the world around the car and not using ultrasonic reduced the cost of the RC car overall. With two LiDAR Units we maintained redundancy regarding forward collision detection of near objects and parallel parking was achieved in simulation.\\
+GT AutoRally was planned to be the base for our software platform. It appearred to handle speed control and steering nicely. AutoRally was replaced entirely with the ROS navigation stack after we discovered that AutoRally does not perform any sort of obstacle avoidance. We felt that trying to retro-fit such a complex platform in AutoRally with obstacle avoidance would have been time prohibitive. OpenStreetMap was an original design element intended to be used to generate waypoints. We replaced OpenStreetMap with RViz, a visualization package for ROS that allowed us to set waypoints and had the added benefit of consolidating sensor feedback and navigation in one application.\\
+The ground station was to use an application named ArduPilot to control the vehicle remotely. ArduPilot was replaced with RViz after we discovered that RViz did everything we needed it to do making ArduPilot unnecessary.\\
+Other aspects of our design staid much the same as our original design plan. Most were not tested on physical hardware, but were proven as feasible through simulation. Radio communication is one area we were not able to test in simulation and should be noted as a potential area in need of a design change.
+
 
 \subsection{Original Design Document}
 (Begins on next page).
@@ -676,11 +691,11 @@ The only thing I did not like about the project, was the lack of actual budget. 
 
 
 \textbf{If you were the client for this project, would you be satisfied with the work done?}\\
-As a whole, yes. We started from nothing and ended up creating our own "autopilot" ROS setup, we have the car working in simulation, and we are able to turn the physical wheels on the car. Also, we were waiting on hardware until week 8 of winter term, which means a lot of our actual implementation was done within 10 weeks. If we had been able to start implementing and making significant progress in week 1 of winter, then I have no doubt that we would have been abbe to get the project working. \par
-This project was aimed at reasearching the question of "is it possible," and as a whole we did determine it could be given more time. 
+As a whole, yes. We started from nothing and ended up creating our own "autopilot" ROS setup, we have the car working in simulation, and we are able to turn the physical wheels on the car. Also, we were waiting on hardware until week 8 of winter term, which means a lot of our actual implementation was done within 10 weeks. If we had been able to start implementing and making significant progress in week 1 of winter, then I have no doubt that we would have been able to get the project working. \par
+This project was aimed at researching the question of "is it possible," and as a whole we did determine it could be given more time. 
 
 \textbf{If your project were to be continued next year, what do you think needs to be worked on?}\\
-The biggest part would be to get the motors working. Now that the platform is almost completely built, another group could focus on getting it rolling and implementing the high-speed navigation. I also think it would need at least one more GPS and IMU, along with wheel encoders, in order to give the car better odemtry. I also think it would be interesting to see a group test different hardware, and see what provides the best performance for the price. 
+The biggest part would be to get the motors working. Now that the platform is almost completely built, another group could focus on getting it rolling and implementing the high-speed navigation. I also think it would need at least one more GPS and IMU, along with wheel encoders, in order to give the car better odemetry. I also think it would be interesting to see a group test different hardware, and see what provides the best performance for the price. 
 
 \textbf{Speak a little about your expo experience.}\\
 Expo was incredibly stressful for me, but not for the reasons most people would expect. I really do not mind talking with people, but I do have a hard time with loud areas. The group next to us had many people with very loud voices, the group next to them was blasting music most of the day, and the tents amplified the noise even more. These three things made it very overwhelming when trying to talk to people. It was also hard to not be inside the tents, as it was hot and the sun was beating down on us the entire day. One positive to our location was the tub with water and ice was right next to us. 
@@ -1686,7 +1701,7 @@ pkg\_search\_module(Eigen3 REQUIRED eigen3)\\
     \item None -- Spring Break
 \end{itemize}
 
-
+\subsection{Spring}
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -2903,3 +2918,4 @@ define carlike_robot position
 Anything else you want to include. Photos, etc.
 
 \end{document}
+
