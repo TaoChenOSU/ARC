@@ -71,7 +71,7 @@
 	\title{
 	Final Report\\
 	ARC - Autonomous RC	\\
-	\Large
+	\Large 
 	Computer Science Capstone \\
 	Oregon State University\\
 	Spring 2017
@@ -91,36 +91,48 @@
 \clearpage
 
 \section{Introduction}
-Research into consumer/hobbyist, high performance RC vehicles was requested by Oregon State University via Mr. Kevin McGrath.
-The project was requested to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car at a cost less than four thousand dollars (USD).
-Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles.
-Our research shows that components are decreasing in cost and increasing in performance.
-The cost-barrier to autonomous research is decreasing dramatically.
-Our documentation and parts list provides would-be researchers a launching point to continue the work we started in ARC.
-Our client was the same person who requested the project, Mr. Kevin McGrath, an instructor at Oregon State University.
+Research into consumer/hobbyist, high performance RC vehicles was requested by Oregon State University via Mr. Kevin McGrath. 
+The project was requested to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car at a cost less than four thousand dollars (USD). 
+Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles. 
+%Not true - we didn't research this. 
+Our research shows that components are decreasing in cost and increasing in performance. 
+The cost-barrier to autonomous research is decreasing dramatically. 
+Our documentation and parts list provides would-be researchers a launching point to continue the work we started in ARC. 
+Our client was the same person who requested the project, Mr. Kevin McGrath, an instructor at Oregon State University. 
 
 \subsection{Our Team Members and Their Roles}
-One of things our group is proud of, is the diversity within our group. Tao Chen is an international student from China, Cierra Shawe is one of the few female students in computer science, and Dan Stoyer is a veteran and served as a medic in the US Army.
+One of things our group is proud of, is the diversity within our group. Tao Chen is an international student from China, Cierra Shawe is one of the few female students in computer science, and Dan Stoyer is a veteran and served as a medic in the US Army. 
+
 \subsubsection*{Tao Chen}
 Tao was our software and robotics expert, he worked extensively with our software package and got our car working in simulation, he was responsible for the areas of Motion Model, Path Planning, and Autonomous Algorithms (e.g. obstacle avoidance, parallel parking, etc.).\par
-He will be receiving a bachelors degree in Computer Science - Computer Systems, in June of 2017. After graduation, he will be attending University of Southern California for graduate school, where he will be focusing on a masters degree in robotics.
+He will be receiving a bachelors degree in Computer Science - Computer Systems, in June of 2017. After graduation, he will be attending University of Southern California for graduate school, where he will be focusing on a masters degree in robotics. 
 
 \subsubsection*{Cierra Shawe}
-Cierra was our electronics and hardware expert, she designed all the mounting hardware used to anchor the sensors to the RC car and did all the wiring/soldering. She was also responsible for the Vision Systems, Sensors, and Hardware. She will be graduating in June of 2018, with a bachelors degree in Computer Science - Applied Cyber Security. Summer and Fall term of 2017, she will be working at Rockwell Collins for an engineering co-op. She will be looking to go into a robotics field after graduation.
+Cierra was our electronics and hardware expert, she designed all the mounting hardware used to anchor the sensors to the RC car and did all the wiring/soldering. She was also responsible for the Vision Systems, Sensors, and Hardware. She will be graduating in June of 2018, with a bachelors degree in Computer Science - Applied Cyber Security. Summer and Fall term of 2017, she will be working at Rockwell Collins for an engineering co-op. She will be looking to go into a robotics field after graduation. 
 
 \subsubsection*{Daniel Stoyer}
-Dan was team leader, responsible for making sure the team was on track to hit milestones and Capstone deadlines on time. He was also responsible for overseeing the areas of Image Analysis, User Interfaces, and Radio Communication. He will be graduating in December of 2017, with a bachelors degree in Computer Science - Applied Business Management, as well as a minor in business. Dan will be spending time with his newborn son (who was born during week ten of winter term) and finishing his degree, before he starts working again in tech.
+Dan was team leader, responsible for making sure the team was on track to hit milestones and Capstone deadlines on time. He was also responsible for overseeing the areas of Image Analysis, User Interfaces, and Radio Communication. He will be graduating in December of 2017, with a bachelors degree in Computer Science - Applied Business Management, as well as a minor in business. Dan will be spending time with his newborn son (who was born during week ten of winter term) and finishing his degree, before he starts working again in tech. 
 
 \subsection{Our Clients Role in the Project}
 %(i.e. supervision only, participate in development, etc.)
-Kevin gave us an awesome project and provided us with oodles of hardware.
+Our client and instructor, Kevin McGrath, provided us with general guidance and direction for the project. 
+Throughout the project, we met with him 30 minutes, once per week, and he would switch between the 'client hat' and the 'instructor hat' when we had questions. 
+As a client, when we were confused about a problem, he was able to steer us in the correct direction or give hints on what technology to look into.
+He would also clarify requirements that he was expecting when we were unsure. 
+As an instructor, he would help clarify requirements for assignments. 
+Mr. McGrath also provided us with all of the hardware required for the project. When we found out something would not work, he provided us with more hardware options. 
 
+\subsection{Original Problem Statement}
+(Begins on next page).
+
+% SRS document goes here.
+\includepdf[pages={1-3}]{problem_statement}
 
 \clearpage
 \section{Requirements Document}
 
 \subsection{Requirements Changes}
-No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed.
+No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed. All results from the requirements section can be found in section 10, in "ARC Findings and Conclusions". 
 % Final gantt chart goes here.
 \begin{figure}[h!]
 \includegraphics[scale=.5]{gantt}
@@ -140,7 +152,7 @@ No major or minor changes were made to the requirements document. We found that 
 We had to make several changes to our design throughout the life of the project.
 Our vision system moved away from stereo vision for obstacle avoidance and went with LiDAR instead.
 This had the benefit of simplifying our software tool-chain and network traffic load.
-With our vision system using LiDAR we did not need to use OpenCV, a computer vision software library, instead we used pre-built ROS packages for the rpLiDAR and the LeddarTech LiDAR units. We were able to integrate our LiDAR units in simulation very quickly using the their pre-built packages.
+With our vision system using LiDAR we did not need to use OpenCV, a computer vision software library, instead we used pre-built ROS packages for the RPLiDAR and the LeddarTech LiDAR units. We were able to integrate our LiDAR units in simulation very quickly using the their pre-built packages.
 Changing the vision system had a cascading effect on other parts of our design.
 Since we didn't use stereo vision, our image analysis design also changed. \\
 We moved away from trying to analyze images ourselves, through OpenCV or implementing our own analysis software, and used a ROS navigation stack that handled the LiDAR 2D point cloud analysis for us. An added benefit of not using stereo vision was that it greatly reduced our network overhead. The LiDAR point cloud data stream had significantly smaller packet sizes.
@@ -152,7 +164,7 @@ The PXFMini integrated our IMU and GPS sensor data for us, losing it meant that 
 State estimation is needed for the computer to know the attitude and location of the RC vehicle in real time so that it can correct steering or speed accurately and keep the vehicle under control.
 We tried to use a state estimator package from Georgia Tech's AutoRally project, but the package required specific GPS and IMU units, which we did not have.\\
 Our original design called for us to use a barometer for altitude, we eliminated that option as our GPS unit already gave us altitude data. Also planned was to use ultrasonic sensors or parallel parking and redundancy in forward collision avoidance. Ultrasonic sensors were eliminated once we started using the LiDAR units. LiDAR gave us more than enough information about the world around the car and not using ultrasonic reduced the cost of the RC car overall. With two LiDAR Units we maintained redundancy regarding forward collision detection of near objects and parallel parking was achieved in simulation.\\
-GT AutoRally was planned to be the base for our software platform. It appearred to handle speed control and steering nicely. The ROS navigation stack was added on after we discovered that AutoRally does not perform any sort of obstacle avoidance. We felt that trying to retro-fit such a complex platform in AutoRally with obstacle avoidance would have been time prohibitive. OpenStreetMap was an original design element intended to be used to generate waypoints. We replaced OpenStreetMap with RViz, a visualization package for ROS that allowed us to set waypoints and had the added benefit of consolidating sensor feedback and navigation in one application.\\
+GT AutoRally was planned to be the base for our software platform. It appeared to handle speed control and steering nicely. The ROS navigation stack was added on after we discovered that AutoRally does not perform any sort of obstacle avoidance. We felt that trying to retro-fit such a complex platform in AutoRally with obstacle avoidance would have been time prohibitive. OpenStreetMap was an original design element intended to be used to generate way-points. We replaced OpenStreetMap with RViz, a visualization package for ROS that allowed us to set way-points and had the added benefit of consolidating sensor feedback and navigation in one application.\\
 The ground station was to use an application named ArduPilot to control the vehicle remotely. ArduPilot was replaced with RViz after we discovered that RViz did everything we needed it to do making ArduPilot unnecessary.\\
 Other aspects of our design staid much the same as our original design plan. Most were not tested on physical hardware, but were proven as feasible through simulation. Radio communication is one area we were not able to test in simulation and should be noted as a potential area in need of a design change.
 
@@ -164,13 +176,13 @@ Other aspects of our design staid much the same as our original design plan. Mos
 
 
 
-\clearpage
+\clearpage 
 \section{Tech Review}
 \subsection{Changes in Tech}
-As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project.
-We changed from stereo vision to LiDAR for depth-finding and obstacle detection.
-We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos.
-We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini.
+As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we used for the project. 
+We changed from stereo vision to LiDAR for depth-finding and obstacle detection. 
+We changed from using the PXFMini autopilot with the Raspberry Pi 3 to using a PWM controller with an Arduino to control motors and servos. 
+We want to use the Q Ground Control GUI to control the vehicle remotely, but had to scratch that when we abandoned the PXFMini. 
 We switched to using RVIZ (visualization package for ROS) for vehicle control
 
 \subsection{Original Tech Review Document}
@@ -182,8 +194,8 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \section{Weekly Blogs}
 
 \subsection{Cierra's Blog Entries}
-
-\subsection{Fall}
+    
+\subsubsection{Fall}
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
 \begin{itemize}
@@ -218,7 +230,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Fall Week 6}
 \textbf{Worked On}
 \begin{itemize}
-    \item Finding out about what technology is available.
+    \item Finding out about what technology is available. 
     \item Filling out sections of the SRS (hardware spec).
     \item Got an extension for the SRS.
 \end{itemize}
@@ -230,8 +242,8 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \begin{itemize}
     \item Our main plan for next week is solidifying what our requirements are, and attempting to finish the SRS document, along with assigning "roles" or requirements of the project.
 \end{itemize}
-
-
+    
+    
 \subsubsection*{Fall Week 7}
 \textbf{Worked On}
 \begin{itemize}
@@ -285,11 +297,11 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-    \item The SRS document has been really difficult to do without the tech review and design, we really weren't able to finish the SRS. We did finally make some headway, and everything should be in by the end of the term.
+    \item The SRS document has been really difficult to do without the tech review and design, we really weren't able to finish the SRS. We did finally make some headway, and everything should be in by the end of the term. 
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
-    \item Ensure everything is turned in, and then enjoy a well needed break. Probably do some research in that time.
+    \item Ensure everything is turned in, and then enjoy a well needed break. Probably do some research in that time. 
 \end{itemize}
 
 
@@ -297,7 +309,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Fall Week 11}
 \textbf{Worked On}
 \begin{itemize}
-    \item Finals and turned in all of our documents.
+    \item Finals and turned in all of our documents. 
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
@@ -309,7 +321,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \end{itemize}
 
 
-\subsection{Winter}
+\subsubsection{Winter}
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -330,7 +342,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Winter Week 2}
 \textbf{Worked On}
 \begin{itemize}
-    \item Created a model to be 3D printed for our stereo-vision mount.
+    \item Created a model to be 3D printed for our stereo-vision mount. 
     \item Researched more about stereovision.
 \end{itemize}
 \textbf{Problems Encountered}
@@ -359,7 +371,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \textbf{Problems Encountered}
 \begin{itemize}
     \item Our original PXFmini image was corrupt and we didn't have a cord to connect it to a display.
-    \item The 3D print turned out well, but I've identified some things that will need to be changed: fix flanges on the assembly to either clip in, or have a better fit that accounts for different tolerances within 3D printing.
+    \item The 3D print turned out well, but I've identified some things that will need to be changed: fix flanges on the assembly to either clip in, or have a better fit that accounts for different tolerances within 3D printing. 
     \item I need to get a better understanding of ROS, as I'm not quite sure how to interact with it.
 \end{itemize}
 \textbf{Plans for next week}
@@ -372,9 +384,9 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Winter Week 4}
 \textbf{Worked On}
 \begin{itemize}
-    \item This week I worked on reassembling the camera enclosure and looking more into RTABmap.
-    I had the opportunity to see a friend's project while I was in Seattle that was using a ZED and RTABmap and ROS.
-    \item I also started to solder the Serial cable we needed to the IMU.
+    \item This week I worked on reassembling the camera enclosure and looking more into RTABmap. 
+    I had the opportunity to see a friend's project while I was in Seattle that was using a ZED and RTABmap and ROS. 
+    \item I also started to solder the Serial cable we needed to the IMU. 
     After setting this up, I was able to get data from the IMU on a windows computer.
 \end{itemize}
 \textbf{Problems Encountered}
@@ -394,31 +406,31 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Winter Week 5}
 \textbf{Worked On}
 \begin{itemize}
-    \item Attempted to get the stereo vision working through OpenCV.
-    \item One of the options we are now considering is the LeddarM16 for our vision system.
+    \item Attempted to get the stereo vision working through OpenCV. 
+    \item One of the options we are now considering is the LeddarM16 for our vision system. 
     This would be paired with another LiDAR unit to provide a better range of view.
     \item I found an IMU package for ROS.
-    \item I talked with Kevin, and we will try to us a LeddarM16 moving forward, to replace the stereo cameras. This will give us thousands of updates a second, in comparison to about 5. The Leddar is also really cool, because it works in direct sunlight, due to the solid state LED based system that they use.
+    \item I talked with Kevin, and we will try to us a LeddarM16 moving forward, to replace the stereo cameras. This will give us thousands of updates a second, in comparison to about 5. The Leddar is also really cool, because it works in direct sunlight, due to the solid state LED based system that they use. 
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-    \item I was able to view the two stereo images on the NUC, but the lag between them was almost half a second.
+    \item I was able to view the two stereo images on the NUC, but the lag between them was almost half a second. 
     Basically, that meant our stereo vision set up will not work for the project. If the two images are not able to be synced, then the computer will never be able to create a disparity map that is of any use to ROS. All in all, stereo vision will not work for our project with the current hardware.
-    \item Even though I was able to find a ROS package for the IMU, which is what we need, I was not able to find any C code that would have allowed us to interface with it. Also, when I tried to watch the serial port, I was only able to see gibberish, no matter what baud rate I used.
+    \item Even though I was able to find a ROS package for the IMU, which is what we need, I was not able to find any C code that would have allowed us to interface with it. Also, when I tried to watch the serial port, I was only able to see gibberish, no matter what baud rate I used. 
     \item Still blocked on hardware. Even though Kevin had ordered the Leddar unit, we don't have access to the documentation and there isn't a lot about it.
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
-    \item A lot of the week will probably be focused on getting the midterm together.
-    \item Try to get the motors moving.
+    \item A lot of the week will probably be focused on getting the midterm together. 
+    \item Try to get the motors moving. 
 \end{itemize}
 
 
 \subsubsection*{Winter Week 6}
 \textbf{Worked On}
 \begin{itemize}
-    \item Complete the midterm report and presentation.
-    \item The Leddar should be here next week.
+    \item Complete the midterm report and presentation. 
+    \item The Leddar should be here next week. 
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
@@ -500,12 +512,12 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Winter Week 10}
 \textbf{Worked On}
 \begin{itemize}
-    \item Starting to get the presentation and paper together for the end of the term.
+    \item Starting to get the presentation and paper together for the end of the term. 
     \item Worked with Tao to get the motors turning, we are also able to control it while hard wired with a joystick. We also mapped the different outputs of the PWM controller. This was using an Arduino and a PWM controller.
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-    \item Dan's wife had a baby. Bye bye, Dan. It's not really a problem, we just don't know when he'll be back, and will have to adjust the project accordingly for the rest of the year.
+    \item Dan's wife had a baby. Bye bye, Dan. It's not really a problem, we just don't know when he'll be back, and will have to adjust the project accordingly for the rest of the year. 
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
@@ -519,11 +531,11 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \textbf{Worked On}
 \begin{itemize}
     \item Recorded end of term video.
-    \item Submitted end of paper.
+    \item Submitted end of paper. 
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-    \item Still no Dan. Still not a problem, but we really have no idea how this will affect us moving forward.
+    \item Still no Dan. Still not a problem, but we really have no idea how this will affect us moving forward. 
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
@@ -531,7 +543,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \end{itemize}
 
 
-\subsection{Spring}
+\subsubsection{Spring}
 
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
@@ -563,13 +575,13 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \textbf{Problems Encountered}
 \begin{itemize}
     \item Found out the Leddar wasn't working.
-    \item Found out that there is a jumper that needs to be changed for 12v operation of the Leddar, but have no idea how to change it. We still might have killed it.
+    \item Found out that there is a jumper that needs to be changed for 12v operation of the Leddar, but have no idea how to change it. We still might have killed it. 
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
     \item Start 3D modeling cases so we can print and cut out our soon to be sweet looking car.
     \item Help with system design and integrating software to hardware.
-    \item Continue to investigate why the Leddar isn't working - follow up with support if no solution is found.
+    \item Continue to investigate why the Leddar isn't working - follow up with support if no solution is found. 
     \item Do poster.
 \end{itemize}
 
@@ -577,7 +589,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \subsubsection*{Spring Week 3}
 \textbf{Worked On}
 \begin{itemize}
-    \item Worked on hardware mounting. We now have a pretty box that I found in the hallway.
+    \item Worked on hardware mounting. We now have a pretty box that I found in the hallway. 
     \item I can now run the entire electrical system off of a LiPo battery.
     \item Performance tested the NUC. We were able to get about 1:20 minutes off of the LiPo while running the stress tests.
 \end{itemize}
@@ -634,7 +646,7 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \textbf{Problems Encountered}
 \begin{itemize}
     \item The IMU was being used as a \$180 power source.
-    \item Somehow all three of our group members misunderstood the poster submission.
+    \item Somehow all three of our group members misunderstood the poster submission. 
     We submitted the poster and are hoping for the best.
 \end{itemize}
 \textbf{Plans for next week}
@@ -658,14 +670,14 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 \textbf{Problems Encountered}
 \begin{itemize}
     \item What is sleep?
-    \item The ESC requires a very specific PWM signal pattern on start-up in order to program it.
+    \item The ESC requires a very specific PWM signal pattern on start-up in order to program it. 
     Figuring out how to do this has made it so we have been unable to get the car to be controlled via software.
-    This is the last step we need to overcome in order to get the car moving on its own.
+    This is the last step we need to overcome in order to get the car moving on its own. 
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
     \item Sleep.
-    \item Sleep some more.
+    \item Sleep some more. 
     \item Start working on final report.
     \item Get caught up on other classes that have been ignored (looks at technical writing)
 \end{itemize}
@@ -673,32 +685,32 @@ We switched to using RVIZ (visualization package for ROS) for vehicle control
 
 \subsubsection*{Spring Week 8}
 \textbf{If you were to redo the project from Fall term, what would you tell yourself?}\\
-I would tell myself to avoid stereo-vision all together, because while it might seem like a good option, it is fairly difficult to correctly implement.
-Another thing would have been to avoid using the PXFmini, as trying to get it working took up over half of a term that we could have spent implementing other features.
+I would tell myself to avoid stereo-vision all together, because while it might seem like a good option, it is fairly difficult to correctly implement. 
+Another thing would have been to avoid using the PXFmini, as trying to get it working took up over half of a term that we could have spent implementing other features. 
 Finally, I would tell myself to take any time estimates, and quadruple them. Nothing will go as planned, so you need to be able to adapt to whatever is thrown your way.
 
 \textbf{What's the biggest skill you've learned?}\\
-As a whole, I have gained a lot of knowledge on how to interface hardware and software together. As an applied computer science major, I never had to take ECE classes, so things like wiring and soldering were new to me. While I had a lot of robotics experience from high school, interfacing software and hardware was always incredibly abstracted, and made as easy as possible. It was a lot different when we were given a pile of hardware and I had to start reading technical specification sheets in order to understand how it worked.
+As a whole, I have gained a lot of knowledge on how to interface hardware and software together. As an applied computer science major, I never had to take ECE classes, so things like wiring and soldering were new to me. While I had a lot of robotics experience from high school, interfacing software and hardware was always incredibly abstracted, and made as easy as possible. It was a lot different when we were given a pile of hardware and I had to start reading technical specification sheets in order to understand how it worked. 
 
 \textbf{What skills do you see yourself using in the future?}\\
-I can't think of one skill that I will not use in the near future. Being able to understand technical specifications and documentation has made it so I will no longer have a hurdle of software-hardware interfaces. I have a few embedded projects I would like to pursue in the near future and this project has really broken down the walls of "I do not know where to even start."
+I can't think of one skill that I will not use in the near future. Being able to understand technical specifications and documentation has made it so I will no longer have a hurdle of software-hardware interfaces. I have a few embedded projects I would like to pursue in the near future and this project has really broken down the walls of "I do not know where to even start." 
 
 \textbf{What did you like about the project, and what did you not?}\\
 I feel incredibly fortunate to not only have had an awesome project, but an awesome team as well. It is hard not to enjoy working with a massive RC car, that has a ton of power. This project also made me really admire the autonomous vehicles that are currently being developed. \par
-The only thing I did not like about the project, was the lack of actual budget. I really appreciate all of the hardware that Kevin provided us (there is a lot of it), it would have just been nice to have been able to try out some other hardware options. Some examples are a Pixhawk Mini, ZED stereo-vision camera, NVidia Jetson TX1, and more than one GPS and IMU. I can by no means complain about the hardware we were given, as we have access to some incredible things; however, I can not help but wonder if our implementation fell short of the goal because of the hardware or software. I also think that in order to determine if this is possible, or what configuration works best, would require being able to compare different pieces of hardware.
+The only thing I did not like about the project, was the lack of actual budget. I really appreciate all of the hardware that Kevin provided us (there is a lot of it), it would have just been nice to have been able to try out some other hardware options. Some examples are a Pixhawk Mini, ZED stereo-vision camera, NVidia Jetson TX1, and more than one GPS and IMU. I can by no means complain about the hardware we were given, as we have access to some incredible things; however, I can not help but wonder if our implementation fell short of the goal because of the hardware or software. I also think that in order to determine if this is possible, or what configuration works best, would require being able to compare different pieces of hardware. 
 
 \textbf{What did you learn from your teammates?}\\
 
 
 \textbf{If you were the client for this project, would you be satisfied with the work done?}\\
 As a whole, yes. We started from nothing and ended up creating our own "autopilot" ROS setup, we have the car working in simulation, and we are able to turn the physical wheels on the car. Also, we were waiting on hardware until week 8 of winter term, which means a lot of our actual implementation was done within 10 weeks. If we had been able to start implementing and making significant progress in week 1 of winter, then I have no doubt that we would have been able to get the project working. \par
-This project was aimed at researching the question of "is it possible," and as a whole we did determine it could be given more time.
+This project was aimed at researching the question of "is it possible," and as a whole we did determine it could be given more time. 
 
 \textbf{If your project were to be continued next year, what do you think needs to be worked on?}\\
 The biggest part would be to get the motors working. Now that the platform is almost completely built, another group could focus on getting it rolling and implementing the high-speed navigation. I also think it would need at least one more GPS and IMU, along with wheel encoders, in order to give the car better odemetry. I also think it would be interesting to see a group test different hardware, and see what provides the best performance for the price.
 
 \textbf{Speak a little about your expo experience.}\\
-Expo was incredibly stressful for me, but not for the reasons most people would expect. I really do not mind talking with people, but I do have a hard time with loud areas. The group next to us had many people with very loud voices, the group next to them was blasting music most of the day, and the tents amplified the noise even more. These three things made it very overwhelming when trying to talk to people. It was also hard to not be inside the tents, as it was hot and the sun was beating down on us the entire day. One positive to our location was the tub with water and ice was right next to us.
+Expo was incredibly stressful for me, but not for the reasons most people would expect. I really do not mind talking with people, but I do have a hard time with loud areas. The group next to us had many people with very loud voices, the group next to them was blasting music most of the day, and the tents amplified the noise even more. These three things made it very overwhelming when trying to talk to people. It was also hard to not be inside the tents, as it was hot and the sun was beating down on us the entire day. One positive to our location was the tub with water and ice was right next to us. 
 
 Overall,  I had a lot of fun getting to show off our project and present in front of the advisory board. It was cool to see the overwhelmingly positive responses we were getting and the kids really liked the demo we put out with the 360 LiDAR. \par
 
@@ -706,7 +718,7 @@ Overall,  I had a lot of fun getting to show off our project and present in fron
 
 \subsection{Tao's Blog Entries}
 
-\subsection{Fall}
+\subsubsection{Fall}
 
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
@@ -815,8 +827,7 @@ None.
 None.
 
 
-
-\subsection{Winter}
+\subsubsection{Winter}
 
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
@@ -935,7 +946,7 @@ No entry.
 \textit{No entry} means blogs and notes were made but did not get posted and will
 appear on later blog posts.
 
-\subsection{Spring}
+\subsubsection{Spring}
 
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
@@ -1188,7 +1199,7 @@ appear on later blog posts.
 
 \subsection{Dan's Blog Entries}
 
-\subsection{Fall}
+\subsubsection{Fall}
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
 \begin{itemize}
@@ -1366,7 +1377,7 @@ appear on later blog posts.
 \end{itemize}
 
 
-\subsection{Winter}
+\subsubsection{Winter}
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -1493,7 +1504,7 @@ appear on later blog posts.
     \begin{itemize}
         \item Steps for connecting to internet using ethernet:\\
         In /etc/network/interfaces, uncomment the eth0 section.
-        \item Steps for getting WiFi internet working with home router you will need to edit two files,
+        \item Steps for getting WiFi internet working with home router you will need to edit two files, 
         interfaces and wpa\_supplicant.conf:
         \begin{itemize}
             \item Back up original /etc/network/interfaces file.
@@ -1701,7 +1712,7 @@ pkg\_search\_module(Eigen3 REQUIRED eigen3)\\
     \item None -- Spring Break
 \end{itemize}
 
-\subsection{Spring}
+
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -1947,7 +1958,7 @@ through the "Autonomous Driving in simulation" instructions at GT AutoRally.\\
 	\item Open a terminal, navigate to your work space. The directory that contains devel/, src/ and build/.
 	\item Use catkin\_make to compile the package.
 	\item Open the bashrc by typing in gedit ~/.bashrc.
-	\item At the bottom of the file, add these two lines: source workspace\_directory/devel/setup.bash source workspace\_directory/src/autorally/autorally\_util/setupEnvLocal.sh
+	\item At the bottom of the file, add these two lines: source workspace\_directory/devel/setup.bash source workspace\_directory/src/autorally/autorally\_util/setupEnvLocal.sh 
 	(Replace the workspace\_directory with your actually work space directory)
 	\item Copy the run\_autorally.sh we provide to your work space.
 	\item Open another terminal, navigate to your work space and run the run\_autorally.sh script.
@@ -1977,7 +1988,7 @@ ROS has pre-built packages for the sensors we used in this project. The instruct
  \begin{itemize}
      \item SlamTech RPLiDAR
      \subitem - At the terminal command prompt:
-     \subitem \$ sudo apt-get install ros-indigo-rplidar-ros
+     \subitem \$ sudo apt-get install ros-indigo-RPLiDAR-ros
      \item LeddarTech Evaluation Kit:
      \subitem - Go to the ROS-Leddar GitHub repository (\href{https://github.com/mcgill-robotics/ros-leddar}{https://github.com/mcgill-robotics/ros-leddar}, download (clone) the LeddarTech package and follow the instructions on that page.
      \item UM7 IMU:
@@ -2024,7 +2035,7 @@ This list does not include all components we tested during research and developm
 
 %FIXME item size
     \begin{table}[htbp]
-    \resizebox{.75\textwidth}{!}{
+    \resizebox{.75\textwidth}{!}{ 
     \begin{tabular}{|p{.66\textwidth}|p{.33\textwidth}|}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2216,41 +2227,33 @@ As a whole, every piece of technology we touched within the project was new to u
 
 \textit{What web sites were helpful?}
 \begin{itemize}
-    \item \url{http://wiki.ros.org}
-    \item \url{http://docs.ros.org}
-    \item \url{https://github.com/AutoRally/autorally}
-\end{itemize}
-\textit{wiki.ros.org:}
-The ROS wiki provides documentations and tutorials on packages.
-A documentation of a specific package includes:
-\begin{itemize}
-    \item Compatibility to different versions of ROS.
-    \item Package version and release status.
-    \item The github repository where all the source code is stored.
-    \item Installation and setup guide.
-    \item Prototypes of APIs and detailed descriptions of the APIs.
-    \item Detailed descriptions of parameters that can be used to configure the package.
-\end{itemize}
-A tutorial of a specific package includes:
-\begin{itemize}
-    \item Introduction to the package.
-    \item Different scenarios where the package can be used.
-    \item Detailed walk-through of implementation of each scenario.
-\end{itemize}
-
-\textit{docs.ros.org}
-The ROS doc has detailed descriptions of data types that messages must obey for nodes to send and receive. This is extremely useful because even though ROS uses C++ and Python, it has a large number of customized data types. We had to configure our nodes correctly to publish and subscribe messages, so that the nodes can communicate and modules can be integrated.
-
-\textit{AutoRally Github:}
-At the beginning of this project, we referred to the AutoRally project a lot to look for ideas. The project is entirely open-source, which means all the code is in the repository. There is step-by-step guides on how to set up the platform and detailed descriptions of individual components. The repository also had a breakdown list of parts (hardware) the platform used. It was the configuration to which we compared our platform, both cost-wise and power-wise.
-
-
-\textit{What, if any, reference books really helped?}\par
-We did not use any reference books.
-
-\textit{Were there any people on campus that were really helpful?}\par
-Our client was Kevin, who was also our instructor. So it was very helpful.
-He provided us with all the hardware and gave us instructions on how to use them.
+     \item \url{http://wiki.ros.org}
+     \item \url{http://docs.ros.org}
+      \item \url{https://github.com/AutoRally/autorally}
+  \end{itemize}
+ \textit{wiki.ros.org:}
+ The ROS wiki provides documentations and tutorials on packages.
+ A documentation of a specific package includes:
+ \begin{itemize}
+     \item Compatibility to different versions of ROS.
+     \item Package version and release status.
+     \item The github repository where all the source code is stored.
+     \item Installation and setup guide.
+     \item Prototypes of APIs and detailed descriptions of the APIs.
+     \item Detailed descriptions of parameters that can be used to configure the package.
+ \end{itemize}
+ A tutorial of a specific package includes:
+ \begin{itemize}
+     \item Introduction to the package.
+     \item Different scenarios where the package can be used.
+     \item Detailed walk-through of implementation of each scenario.
+ \end{itemize}
+ 
+ \textit{docs.ros.org}
+ The ROS doc has detailed descriptions of data types that messages must obey for nodes to send and receive. This is extremely useful because even though ROS uses C++ and Python, it has a large number of customized data types. We had to configure our nodes correctly to publish and subscribe messages, so that the nodes can communicate and modules can be integrated.
+ 
+ \textit{AutoRally Github:}
+ At the beginning of this project, we referred to the AutoRally project a lot to look for ideas. The project is entirely open-source, which means all the code is in the repository. There is step-by-step guides on how to set up the platform and detailed descriptions of individual components. The repository also had a breakdown list of parts (hardware) the platform used. It was the configuration to which we compared our platform, both cost-wise and power-wise.
 
 
 \section{What We Learned}
@@ -2262,9 +2265,9 @@ We got to work in a diverse team, which helped us improve our communication skil
 
 When working in a small team, the relationship between teammates became more intimate, which make us become more considerate people.
 
-We learned a lot on how to use ROS.
+We learned a lot on how to use ROS. 
 
-ROS was a big part of this project, and we only had little to no experience working with it.
+ROS was a big part of this project, and we only had little to no experience working with it.  
 
 What we were able to accomplish was incredible.
 
@@ -2275,53 +2278,54 @@ MORE TO ADD.
 \subsubsection*{What technical information did you learn?}
 
 \textit{Reading technical specifications for a product:\\}
-The first time I tried to read a product specification document, I had no idea how to even find information about it.
-Being able to read these types of documents was incredibly important throughout the project, as I needed to see how were were supposed to wire all of our components together.
+The first time I tried to read a product specification document, I had no idea how to even find information about it. 
+Being able to read these types of documents was incredibly important throughout the project, as I needed to see how were were supposed to wire all of our components together. 
 
 \textit{Reading a wiring diagram:\\}
-This was really important, as many of the things we were given did not have headers or ways of attaching the wires to our other components.
-While someone from ECE might think it was a trivial task, it took a little while to understand what the different things meant.
+This was really important, as many of the things we were given did not have headers or ways of attaching the wires to our other components. 
+While someone from ECE might think it was a trivial task, it took a little while to understand what the different things meant. 
 
 \textit{Working with ROS:\\}
-Unlike the rest of my group, I did not have quite as much exposure to ROS throughout the project, as I ended up taking a primarily hardware role.
+Unlike the rest of my group, I did not have quite as much exposure to ROS throughout the project, as I ended up taking a primarily hardware role. 
 I did learn the basics of how it is used through the tutorial and through my teammates. I hope to be able to spend more time learning the details of ROS, as it definitely is a useful tool for robotics, as most things are already implemented for you.
 
 \textit{Soldering:\\}
-The only thing I had ever soldered in my life before this project was a little light-up pin one day at the fair.
+The only thing I had ever soldered in my life before this project was a little light-up pin one day at the fair. 
 While the idea is simple, I learned a lot about how to properly splice wires, how to de-solder (and how you want to avoid this at all costs), and how to ensure soldered components will not easily come loose. I also gained a lot of respect for the ECE students, as it is really hard to make a clean looking board.
 
 \textit{Voltage conversion (and how to not fry components):\\}
-This was incredibly important, as a lot of our components required odd voltages. In order to convert from 12V to whatever else we needed, I used voltage boosters to be able to use the NUC and leddar at 19V and 24V respectively. I also learned that separating components (such as the PWM board) on to their own power system is important, as we kept dropping the Arduino and Raspberry Pi too low, so they should shut down. With each component we added, I always made sure to read the specifications of what it needed, and then ensured that it was being provided the correct voltage and current with a voltmeter. I also learned just because something says it can take either 12V or 24V, does not mean it can take both, it means that somewhere on the poorly documented board, there could be a jumper that allows you to change from 12-24v. Providing something 12V that is looking for 24V, could lead to it frying the component. This is in reference to our Leddar, which we still do not know why it broke.
+This was incredibly important, as a lot of our components required odd voltages. In order to convert from 12V to whatever else we needed, I used voltage boosters to be able to use the NUC and leddar at 19V and 24V respectively. I also learned that separating components (such as the PWM board) on to their own power system is important, as we kept dropping the Arduino and Raspberry Pi too low, so they should shut down. With each component we added, I always made sure to read the specifications of what it needed, and then ensured that it was being provided the correct voltage and current with a voltmeter. I also learned just because something says it can take either 12V or 24V, does not mean it can take both, it means that somewhere on the poorly documented board, there could be a jumper that allows you to change from 12-24v. Providing something 12V that is looking for 24V, could lead to it frying the component. This is in reference to our Leddar, which we still do not know why it broke. 
 
 \textit{How to control servos and motors with a Raspberry Pi and Arduino:\\}
-While both the Arduino and Raspberry Pi are able to directly control servos, it was a lot easier to use a motor control board. One thing I noticed, is that the was considerable lag in the system when the Arduino or Raspberry Pi power dropped too low.
+While both the Arduino and Raspberry Pi are able to directly control servos, it was a lot easier to use a motor control board. One thing I noticed, is that the was considerable lag in the system when the Arduino or Raspberry Pi power dropped too low. 
 
 \textit{Working with LiDAR systems:\\}
-Before the project, I had never actually see a point cloud created before. Now I have a much stronger understanding and appreciation for LiDAR devices, as they can do some pretty incredible things. The cool part about using ROS, is all of these implementations became trivial, as it is a built in feature of a "LaserScan" topic.
+Before the project, I had never actually see a point cloud created before. Now I have a much stronger understanding and appreciation for LiDAR devices, as they can do some pretty incredible things. The cool part about using ROS, is all of these implementations became trivial, as it is a built in feature of a "LaserScan" topic.    
 
 \subsubsection*{What non-technical information did you learn?}
-I have always struggled with trying to explain my thoughts and ideas, especially through writing.
-Before this year, writing papers always seemed dreadful.
+I have always struggled with trying to explain my thoughts and ideas, especially through writing. 
+Before this year, writing papers always seemed dreadful. 
 As much as I disliked the WIC inclusion into Capstone, I feel it has improved my ability to create documents and critically think about a problem before starting.
 It is incredibly satisfying to be able to sit down and write a paper, without it taking a million years.
-I am now able to break down a problem into more manageable pieces, instead of being overwhelmed by everything at once.
+I am now able to break down a problem into more manageable pieces, instead of being overwhelmed by everything at once. 
 Also, ten pages seems like a trivial amount of work now, which has made all of my other classes a lot easier when we had to write various project reports. \par
 
 
 \subsubsection*{What have you learned about project work?}
-Planning is essential if you expect a project to go well. I would say as a whole we did a really good job creating good guidelines, but we fell short in estimating and having back up plans for when we found out things just would not work.
+Planning is essential if you expect a project to go well. I would say as a whole we did a really good job creating good guidelines, but we fell short in estimating and having back up plans for when we found out things just would not work. 
 
-Being able to track tasks with some sort of management software would have been nice as well. We had tried to start using an agile method fall term, but it was really difficult considering everyone was also having to juggle their other classes and there were not a lot of times we could sit down and get together to break things into specific tasks. Instead, a lot of the task breakdown was done by hangouts, which often made it difficult to go back and figure out who was responsible for what parts of a paper or the project.
+Being able to track tasks with some sort of management software would have been nice as well. We had tried to start using an agile method fall term, but it was really difficult considering everyone was also having to juggle their other classes and there were not a lot of times we could sit down and get together to break things into specific tasks. Instead, a lot of the task breakdown was done by hangouts, which often made it difficult to go back and figure out who was responsible for what parts of a paper or the project. 
 
 \subsubsection*{What have you learned about project management?}
-Of of the biggest things I learned, was always assume things will take more time than what you originally expect. One of the biggest setbacks we had within the project, was not having allocated enough time in the beginning. As I was the one who submitted the majority of our work, I also learned that plenty of time should be left around a deadline to account for potential problems that may occur.
+Of of the biggest things I learned, was always assume things will take more time than what you originally expect. Our biggest setback was not having allocated enough time in the beginning. As I was the one who submitted the majority of our work, I also learned that plenty of time should be left around a deadline to account for potential problems that may occur. 
 
-Communication is also key, and I feel like I am able to take a step back and say "This is what we need to do, now how are we going to get there?" Since at the beginning of the project, we had no experience with anything we were going to be using, stepping back and trying to break the problem down into smaller pieces was key.
+Communication is also key, and I feel like I am able to take a step back and say "This is what we need to do, now how are we going to get there?" Since at the beginning of the project, we had no experience with anything we were going to be using, stepping back and trying to break the problem down into smaller pieces was key. 
 
 \subsubsection*{What have you learned about working in teams?}
+Communication is incredibly important. Take a step back and make sure everyone is on the same page before moving onto a different task.
 
 \subsubsection*{If you could do it all over, what would you do differently?}
-If I could start over, I would have made sure to not get hung up on something for too long. If we had been able to accept that the PXFmini was not going to work for our situation, we would have been able to start implementing things earlier in the term.
+If I could start over, I would have made sure to not get hung up on something for too long. If we had been able to accept that the PXFmini was not going to work for our situation, we would have been able to start implementing things earlier in the term. 
 Finally, I would take any time estimates and quadruple them. Nothing will go as planned, so you need to be able to adapt to whatever is thrown your way.
 
 
@@ -2358,7 +2362,7 @@ Finally, I would take any time estimates and quadruple them. Nothing will go as 
     \item Lists are useful for keeping track of hardware.
     \item Version control is important but be careful when using it.
 \end{itemize}
-
+  
 \subsubsection*{What have you learned about working in teams?}
 \begin{itemize}
     \item Good teammates are key. It depends on luck.
