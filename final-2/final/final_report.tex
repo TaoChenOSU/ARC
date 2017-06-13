@@ -196,6 +196,16 @@ User interface technology changed from using a GUI software package named QGroun
 As the project progressed we moved away from other technologies (such as the autopilot) that were integrated directly with QGroundControl. 
 We found that RViz handled the main features we needed to operate the vehicle remotely, namely visual feedback on the state of the vehicle and the ability to set waypoints for the vehicle to go to.\\
 
+We originally thought we would be implementing algoritms for probabilistic analysis of motion. 
+We found that trying to implement algorithms ourselves was unnecessary. 
+We used the ROS navigation stack to handle motion analysis. 
+Related, our original plan was to use an A* Heuristic search algorithm as our global path planning base. 
+We would need to implement the algorithm ourselves. 
+Instead, we used a ROS package named teb_local_planner using an algorithm named "Time-Elastic-Band" utilizing a cost-map for path planning.\\
+
+
+
+
 \subsection{Original Tech Review Document}
 (Begins on next page).
 % original tech review document goes here.
@@ -3023,4 +3033,5 @@ define carlike_robot position
 Anything else you want to include. Photos, etc.
 
 \end{document}
+
 
