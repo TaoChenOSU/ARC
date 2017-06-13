@@ -1,0 +1,67 @@
+**********************************autoRallyTrackGazeboSim.launch**********************************
+**************************************************************************************************
+To launch the AutoRally project in simulation, the autoRallyTrackGazeboSim.launch file will be
+launched:
+  This launch file will launch:
+    1. autoRallyPlatform.launch => launch robot_state_publisher.
+        - robot_state_publisher => Ros package, publishes vehicle's joint state to tf
+
+    2. autoRallyTrackWorld.launch => run Gazebo with a world using gazebo_ros
+
+    3. gazebo_ros (Ros package but a separate node) => spawn the vehicle
+
+    4. controller_manager (Ros package)
+
+    5. autorally_gazebo/autorally_controller.py => control the vehicle in simulation
+
+    6. autorally_core/autorally_core_manage.launch => launch nodelet
+        - nodelet (Ros package) => communication protocol with Ros nodes when messages
+          contain large data sets
+
+    7. autorally_control/joystickController.launch => launch joy (Ros package) and
+                                                      joystickControl.cpp
+        - joy (Ros package) => interface with the joystick, publishes (/joy) the current
+            state of each one of the joystick's buttons and axes
+        - joystickControl.cpp => subscribes to /joy and publishes /joystick/chassisCommand
+            and /runstop
+**************************************************************************************************
+**********************************autoRallyTrackGazeboSim.launch**********************************
+
+**********************************chassisCommand message type*************************************
+**************************************************************************************************
+Header header
+
+string sender
+float64 throttle
+float64 steering
+float64 frontBrake
+**************************************************************************************************
+**********************************chassisCommand message type*************************************
+
+**************************************runstop message type****************************************
+**************************************************************************************************
+Header header
+
+string sender
+bool motionEnabled
+**************************************************************************************************
+**************************************runstop message type****************************************
+
+*************************************autorally_controller.py**************************************
+This controller is for simulation ONLY! To actually control the hardware, we have to use the
+autorally_core package or write our own package (or modify exiting files).
+**************************************************************************************************
+This python script is launched individually as a node. It subscribes to /chassisCommand from
+variouscommanders, including the joystickController, constantSpeedController, waypointFollower,
+etc. (OCS & RC)
+
+The the node publishes axle states, shock states, steering states of different wheels to Gazebo to
+do the simulation.
+This node is ONLY for simulation. It doesn't interface with any of the hardware, such as motors
+and servos.
+**************************************************************************************************
+*************************************autorally_controller.py**************************************
+
+TODO:
+autorally_smartdriving/autorally_configuration.launch and move_base.launch
+navigation stack

@@ -80,6 +80,20 @@
 	\maketitle
 	\begin{center}
 		\today
+		\begin{abstract}
+            \noindent This report is a culmination of roughly nine months of work on Group 44?s Computer Science Senior Capstone project, named Autonomous RC (ARC). 
+            ARC sought to determine the feasibility of implementing high-speed autonomous performance using low-cost, consumer-grade hardware. 
+            Within this document you will find an introduction describing ARC in detail. 
+            The original problem statement, design, SRS, and technology review documents with descriptions of changes to design and technical elements of the project are included. 
+            Weekly blogs for each team member describe what the members did each term. 
+            The Engineering Expo project poster is available in color print. 
+            The \textit{Project Documentation} section describes how to use ARC by providing instructions for installing ARC's software package. 
+            \textit{How We Learned New Technology} describes our process for approaching new concepts in technology. 
+            \textit{What We Learned} has sections for each team member with detailed information about their individual journeys through the Capstone program and insights into knowledge and experience gained while working on ARC. 
+            The \textit{Findings and Conclusions} section describes the results of our research and the overall outcome of Project ARC. 
+            \textit{Appendix 1} provides important snippets of code for understanding the software implementation of ARC. Finally,
+            \textit{Appendix 2} provides photos from the project.
+		\end{abstract}
 	\end{center}
 
 	\thispagestyle{empty} % gets rid of the "0" page number.
@@ -91,16 +105,25 @@
 \clearpage
 
 \section{Introduction}
-Research into consumer/hobbyist, high performance RC vehicles was requested by Oregon State University via Mr. Kevin McGrath. 
-The project was requested to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car at a cost less than four thousand dollars (USD). 
-Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles. 
-Our research shows that components are decreasing in cost and increasing in performance. 
-The cost-barrier to autonomous research is decreasing dramatically. 
-Our documentation and parts list provides would-be researchers a launching point to continue the work we started in ARC. 
-Our client was the same person who requested the project, Mr. Kevin McGrath, an instructor at Oregon State University. 
+This project was requested by our client, D. Kevin McGrath, an instructor at Oregon State University, to determine if it is possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car, using commodity hardware. 
+Autonomous RC (ARC) sought to push the boundaries of what is possible for autonomous RC vehicles, by taking advantage of components that are decreasing in cost and increasing in performance. 
+
+\subsection{Project Overview}
+
+The goal of ARC is to have a vehicle capable of navigating from point A to point B while implementing obstacle avoidance. 
+The vehicle should also be able to parallel park itself when told where the final location of the vehicle should be. 
+ARC is also designed to cost under \$4,000 to make the platform available for education, hobby, and commercial purposes. 
+The components within the project are also designed to require minimal fabrication and electrical experience. 
+Obstacle avoidance and the low cost are what differentiate ARC from other autonomous vehicle projects, as implementations such as Georgia Tech?s AutoRally platform cost upwards of \$40,000 to build. 
+The cost of ARC, make it an order of magnitude cheaper than something such as the AutoRally platform. 
+By providing access to a low cost autonomous platform, ARC would provide a way to test different autonomous features without having to use a full scale vehicle, lowing development costs and making autonomous vehicles more accessible to a wider range of users. 
+The ARC software platform uses the Robot Operating System (ROS) in order to provide an easy interface for users to contribute to the project. 
+ROS is a standard within robotics and it provides users the ability to customize the packages being used with minimal coding experience.
+
 
 \subsection{Our Team Members and Their Roles}
 One of things our group is proud of, is the diversity within our group. Tao Chen is an international student from China, Cierra Shawe is one of the few female students in computer science, and Dan Stoyer is a veteran and served as a medic in the US Army. 
+
 \subsubsection*{Tao Chen}
 Tao was our software and robotics expert, he worked extensively with our software package and got our car working in simulation, he was responsible for the areas of Motion Model, Path Planning, and Autonomous Algorithms (e.g. obstacle avoidance, parallel parking, etc.).\par
 He will be receiving a bachelors degree in Computer Science - Computer Systems, in June of 2017. After graduation, he will be attending University of Southern California for graduate school, where he will be focusing on a masters degree in robotics. 
@@ -113,14 +136,37 @@ Dan was team leader, responsible for making sure the team was on track to hit mi
 
 \subsection{Our Clients Role in the Project}
 %(i.e. supervision only, participate in development, etc.)
-Kevin gave us an awesome project and provided us with oodles of hardware.
+Our client and instructor, Kevin McGrath, provided us with general guidance and direction for the project. 
+Throughout the project, we met with him 30 minutes, once per week, and he would switch between the 'client hat' and the 'instructor hat' when we had questions. 
+As a client, when we were confused about a problem, he was able to steer us in the correct direction or give hints on what technology to look into.
+He would also clarify requirements that he was expecting when we were unsure. 
+As an instructor, he would help clarify requirements for assignments. 
+Mr. McGrath also provided us with all of the hardware required for the project. When we found out something would not work, he provided us with more hardware options. 
+
+\subsection{Document Overview}
+The goal of our project was to determine whether it was possible to apply high-speed performance during autonomous navigation and obstacle avoidance to a modified RC car, using commodity hardware. This document includes documentation of our research and also the following documents our group produced over the course of the year:
+\begin{itemize}
+    \item Problem Statement
+    \item Requirements Document
+    \item Design Document (SRS)
+    \item Tech Review
+\end{itemize}
+Included are also team members weekly blog posts, project documentation, a description of how we learned new technology, a description of what each team member learned over the course of the year, and our findings and conclusions from our research.
 
 
+\subsection{Original Problem Statement}
+(Begins on next page).
+
+% SRS document goes here.
+\includepdf[pages={1-3}]{problem_statement}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Requirements Document}
 
 \subsection{Requirements Changes}
-No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed.
+No major or minor changes were made to the requirements document. We found that our initial assessment was accurate throughout the project and our client agreed. All results from the requirements section can be found in section 10, in "ARC Findings and Conclusions". 
 % Final gantt chart goes here.
 \begin{figure}[h!]
 \includegraphics[scale=.5]{gantt}
@@ -135,12 +181,13 @@ No major or minor changes were made to the requirements document. We found that 
 
 
 \clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Design Document}
 \subsection{Changes in Design}
 We had to make several changes to our design throughout the life of the project. 
 Our vision system moved away from stereo vision for obstacle avoidance and went with LiDAR instead. 
 This had the benefit of simplifying our software tool-chain and network traffic load. 
-With our vision system using LiDAR we did not need to use OpenCV, a computer vision software library, instead we used pre-built ROS packages for the rpLiDAR and the LeddarTech LiDAR units. We were able to integrate our LiDAR units in simulation very quickly using the their pre-built packages. 
+With our vision system using LiDAR we did not need to use OpenCV, a computer vision software library, instead we used pre-built ROS packages for the RPLiDAR and the LeddarTech LiDAR units. We were able to integrate our LiDAR units in simulation very quickly using the their pre-built packages. 
 Changing the vision system had a cascading effect on other parts of our design. 
 Since we didn't use stereo vision, our image analysis design also changed. \\
 We moved away from trying to analyze images ourselves, through OpenCV or implementing our own analysis software, and used a ROS navigation stack that handled the LiDAR point cloud analysis for us. An added benefit of not using stereo vision was that it greatly reduced our network overhead. The LiDAR point cloud data stream had significantly smaller packet sizes.
@@ -152,7 +199,7 @@ The PXFMini integrated our IMU and GPS sensor data for us, losing it meant that 
 State estimation is needed for the computer to know the attitude of the RC vehicle in real time so that it can correct steering or speed accurately and keep the vehicle under control. 
 We tried to use a state estimator package from Georgia Tech's AutoRally project, but we could not figure out how to convert the data types we had from our sensors into the custom data types AutoRally was using.\\
 Our original design called for us to use a barometer for altitude, we eliminated that option as our GPS unit already gave us altitude data. Also planned was to use ultrasonic sensors or parallel parking and redundancy in forward collision avoidance. Ultrasonic sensors were eliminated once we started using the LiDAR units. LiDAR gave us more than enough information about the world around the car and not using ultrasonic reduced the cost of the RC car overall. With two LiDAR Units we maintained redundancy regarding forward collision detection of near objects and parallel parking was achieved in simulation.\\
-GT AutoRally was planned to be the base for our software platform. It appearred to handle speed control and steering nicely. AutoRally was replaced entirely with the ROS navigation stack after we discovered that AutoRally does not perform any sort of obstacle avoidance. We felt that trying to retro-fit such a complex platform in AutoRally with obstacle avoidance would have been time prohibitive. OpenStreetMap was an original design element intended to be used to generate waypoints. We replaced OpenStreetMap with RViz, a visualization package for ROS that allowed us to set waypoints and had the added benefit of consolidating sensor feedback and navigation in one application.\\
+GT AutoRally was planned to be the base for our software platform. It appearred to handle speed control and steering nicely. AutoRally was replaced entirely with the ROS navigation stack after we discovered that AutoRally does not perform any sort of obstacle avoidance. We felt that trying to retro-fit such a complex platform in AutoRally with obstacle avoidance would have been time prohibitive. OpenStreetMap was an original design element intended to be used to generate way-points. We replaced OpenStreetMap with RViz, a visualization package for ROS that allowed us to set way-points and had the added benefit of consolidating sensor feedback and navigation in one application.\\
 The ground station was to use an application named ArduPilot to control the vehicle remotely. ArduPilot was replaced with RViz after we discovered that RViz did everything we needed it to do making ArduPilot unnecessary.\\
 Other aspects of our design staid much the same as our original design plan. Most were not tested on physical hardware, but were proven as feasible through simulation. Radio communication is one area we were not able to test in simulation and should be noted as a potential area in need of a design change.
 
@@ -165,10 +212,12 @@ Other aspects of our design staid much the same as our original design plan. Mos
 
 
 \clearpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tech Review}
 \subsection{Changes in Tech}
 As our research and development process matured, we discovered different ways of doing things and changed direction on some of the technology we thought we would use for the project. 
-Many of these changes mirror our design changes as they are closely related.\\
+Many of these changes mirror our design changes as they are closely related.
 
 A major change to technology was moving away from the PXFMini autopilot to using a simple PWM controllerfor sending commands to the RC car's motors and and servos. 
 We ran into problems getting commands to the PXFMini forcing us to go with the PWM controller. 
@@ -176,7 +225,7 @@ This created a cascading series of additions to our project.
 The PXFMini provided many nice features and libraries that made operating an autonomous rover much more pleasant. 
 The autopilot automatically calibrated the state of the sensors with the position of the vehicle and provided many other useful features. 
 Without the autopilot we had to research and replace what the autopilot gave us with individual software packages. 
-This increased the complexity of our project significantly and increased the time we needed to implement ARC on the software side of things.\\
+This increased the complexity of our project significantly and increased the time we needed to implement ARC on the software side of things.
 
 We changed from stereo vision to LiDAR for depth-finding and obstacle detection. 
 Stereo vision uses two cameras to create a 3D representation of its viewing window. 
@@ -184,27 +233,24 @@ By going to LiDAR we simplified our environment detection and analysis process b
 This change also allowed us to move away from OpenCV to exclusively using ROS packages for gathering our sensor information. 
 Our sensor choices also changed slightly from using the PXFMini internal IMU to using a separate IMU unit. 
  We eliminated the PXFMini altogether requiring us to make the change to the UM7-LT IMU sensor. 
-More on the PXFMini is discussed a litle later.\\
+More on the PXFMini is discussed a little later.
 
 Our image analysis technology changed from using a combination of Georgia Tech's Smoothing and Mapping (GTSAM) library and ROS to only using ROS. 
 We discovered that GTSAM was used by the AutoRally project in their state estimator to smooth out the data into usable information for the AutoRally system. 
 We wanted to use AutoRally as our base software package but discovered that the software does not perform any kind of obstacle avoidance. 
 Because the software did not do a core requirement for our project we replaced AutoRally with ROS for our base software platform. 
-Moving to ROS exclusively allowed us to integrate our sensors entirely within one platform and eliminated the need to translate or transform data between different data structures required by separate systems.\\
+Moving to ROS exclusively allowed us to integrate our sensors entirely within one platform and eliminated the need to translate or transform data between different data structures required by separate systems.
 
 User interface technology changed from using a GUI software package named QGroundControl to using RViz. 
 As the project progressed we moved away from other technologies (such as the autopilot) that were integrated directly with QGroundControl. 
-We found that RViz handled the main features we needed to operate the vehicle remotely, namely visual feedback on the state of the vehicle and the ability to set waypoints for the vehicle to go to.\\
+We found that RViz handled the main features we needed to operate the vehicle remotely, namely visual feedback on the state of the vehicle and the ability to set way-points for the vehicle to go to.
 
-We originally thought we would be implementing algoritms for probabilistic analysis of motion. 
+We originally thought we would be implementing algorithms for probabilistic analysis of motion. 
 We found that trying to implement algorithms ourselves was unnecessary. 
 We used the ROS navigation stack to handle motion analysis. 
 Related, our original plan was to use an A* Heuristic search algorithm as our global path planning base. 
 We would need to implement the algorithm ourselves. 
 Instead, we used a ROS package named teb\_local\_planner using an algorithm named "Time-Elastic-Band" utilizing a cost-map for path planning.\\
-
-
-
 
 \subsection{Original Tech Review Document}
 (Begins on next page).
@@ -212,11 +258,13 @@ Instead, we used a ROS package named teb\_local\_planner using an algorithm name
 \includepdf[pages={-}]{orig_tech_review}
 
 \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Weekly Blogs}
 
 \subsection{Cierra's Blog Entries}
     
-\subsection{Fall}
+\subsubsection{Fall}
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
 \begin{itemize}
@@ -342,7 +390,7 @@ Instead, we used a ROS package named teb\_local\_planner using an algorithm name
 \end{itemize}
 
 
-\subsection{Winter}
+\subsubsection{Winter}
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -364,7 +412,7 @@ Instead, we used a ROS package named teb\_local\_planner using an algorithm name
 \textbf{Worked On}
 \begin{itemize}
     \item Created a model to be 3D printed for our stereo-vision mount. 
-    \item Researched more about stereovision.
+    \item Researched more about stereo-vision.
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
@@ -412,7 +460,7 @@ Instead, we used a ROS package named teb\_local\_planner using an algorithm name
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-    \item When doing the initial wiring diagram, I was going TX to RX, which should be correct; however, ultimately I needed to have TXI go to TXO and RXI go to RX0
+    \item When doing the initial wiring diagram, I was going TX to RX, which should be correct; however, ultimately I needed to have TXI go to TXO and RXI to RXO.
     \item We're still waiting on more hardware, and once we have that, I can start trying to use the new LiDAR unit Kevin ordered from us.
     \item I'm worried that the rolling shutter cameras will cause problems in the future.
     \item I also need to find a ROS package for the IMU. While the Windows GUI is nice, it does not help us for integrating the IMU into our car.
@@ -564,7 +612,7 @@ Instead, we used a ROS package named teb\_local\_planner using an algorithm name
 \end{itemize}
 
 
-\subsection{Spring}
+\subsubsection{Spring}
 
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
@@ -721,6 +769,9 @@ I feel incredibly fortunate to not only have had an awesome project, but an awes
 The only thing I did not like about the project, was the lack of actual budget. I really appreciate all of the hardware that Kevin provided us (there is a lot of it), it would have just been nice to have been able to try out some other hardware options. Some examples are a Pixhawk Mini, ZED stereo-vision camera, NVidia Jetson TX1, and more than one GPS and IMU. I can by no means complain about the hardware we were given, as we have access to some incredible things; however, I can not help but wonder if our implementation fell short of the goal because of the hardware or software. I also think that in order to determine if this is possible, or what configuration works best, would require being able to compare different pieces of hardware. 
 
 \textbf{What did you learn from your teammates?}\\
+The biggest thing was definitely communication and collaboration. 
+Tao definitely made me start to think about the expressions we use in English (this happened a lot when Dan or I would try to be sarcastic, or used slang) and he also taught me a lot about how to use ROS throughout the year. 
+I learned to start projects earlier and divide up the work from Dan, as he is much better at time management and distributing work. 
 
 
 \textbf{If you were the client for this project, would you be satisfied with the work done?}\\
@@ -728,7 +779,7 @@ As a whole, yes. We started from nothing and ended up creating our own "autopilo
 This project was aimed at researching the question of "is it possible," and as a whole we did determine it could be given more time. 
 
 \textbf{If your project were to be continued next year, what do you think needs to be worked on?}\\
-The biggest part would be to get the motors working. Now that the platform is almost completely built, another group could focus on getting it rolling and implementing the high-speed navigation. I also think it would need at least one more GPS and IMU, along with wheel encoders, in order to give the car better odemetry. I also think it would be interesting to see a group test different hardware, and see what provides the best performance for the price. 
+The biggest part would be to get the motors working. Now that the platform is almost completely built, another group could focus on getting it rolling and implementing the high-speed navigation. I also think it would need at least one more GPS and IMU, along with wheel encoders, in order to give the car better odemetry. I also think it would be interesting to see a group test different hardware, and see what provides the best performance for the price.
 
 \textbf{Speak a little about your expo experience.}\\
 Expo was incredibly stressful for me, but not for the reasons most people would expect. I really do not mind talking with people, but I do have a hard time with loud areas. The group next to us had many people with very loud voices, the group next to them was blasting music most of the day, and the tents amplified the noise even more. These three things made it very overwhelming when trying to talk to people. It was also hard to not be inside the tents, as it was hot and the sun was beating down on us the entire day. One positive to our location was the tub with water and ice was right next to us. 
@@ -739,7 +790,7 @@ Overall,  I had a lot of fun getting to show off our project and present in fron
 
 \subsection{Tao's Blog Entries}
 
-\subsection{Fall}
+\subsubsection{Fall}
 
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
@@ -848,8 +899,7 @@ None.
 None.
 
 
-
-\subsection{Winter}
+\subsubsection{Winter}
 
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
@@ -934,6 +984,7 @@ None.
 \end{itemize}
 
 
+
 \subsubsection*{Winter Week 5}
 \textit{Worked On}
 \begin{itemize}
@@ -958,11 +1009,11 @@ None.
 \begin{itemize}
     \item Migrated notes while reading through the code.
     \item Moved the car in simulation using a joy stick.
-    \item Did a little analysis on the autoRally platform. (For details, please refer to code listing in appendix)
+    \item Did a little analysis on the AutoRally platform. (For details, please refer to code listing in appendix)
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-  \item The AutoRally car only follows preset waypoints.
+  \item The AutoRally car only follows preset way-points.
   \item I don't know how to visualize the car in Rviz.
 \end{itemize}
 \textbf{Plans for next week}
@@ -974,8 +1025,8 @@ None.
 \subsubsection*{Winter Week 7}
 \textit{Worked On}
 \begin{itemize}
-    \item Waypoints coordinates.
-    \item Thought about how to generate new waypoints based on the current environment.
+    \item Way-points coordinates.
+    \item Thought about how to generate new way-points based on the current environment.
     \item Looked other possible solutions for autonomous driving.
 \end{itemize}
 \textbf{Problems Encountered}
@@ -994,7 +1045,7 @@ None.
 \textit{Worked On}
 \begin{itemize}
     \item Worked on the navigation stack on Ros. It seems to be a promising solution we can use for our autonomous driving.
-    \item The car can follow waypoints I defined manually.
+    \item The car can follow way-points I defined manually.
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
@@ -1015,7 +1066,7 @@ None.
 \end{itemize}
 \textbf{Problems Encountered}
 \begin{itemize}
-  \item Doing slam was a very tedious process too. I used predefined waypoints so that I did not have to do it manually. But the results were not optimal.
+  \item Doing slam was a very tedious process too. I used predefined way-points so that I did not have to do it manually. But the results were not optimal.
 \end{itemize}
 \textbf{Plans for next week}
 \begin{itemize}
@@ -1044,13 +1095,12 @@ None.
 No entry.
 
 
-
 \textbf{Note:}\par
 \textit{None} indicates no blog posts were made for those weeks.\par
 \textit{No entry} means blogs and notes were made but did not get posted and will
 appear on later blog posts.
 
-\subsection{Spring}
+\subsubsection{Spring}
 
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
@@ -1075,7 +1125,7 @@ appear on later blog posts.
   movements of the car unnatural. We need to look deeper into the code
   to make sure the steering is smooth.
   \item Obstacle avoidance requires a lot of computing power. It requires
-  so much that it's undoable on this laptop. The algorithm does obstacle
+  so much that it's undo-able on this laptop. The algorithm does obstacle
   avoidance by computing the costmap each time it sees a new objects.
   (detected by laser scans) A costmap is basically a 2D grid that describes
   the environment and helps to calculate the most efficient path. On this
@@ -1303,7 +1353,7 @@ appear on later blog posts.
 
 \subsection{Dan's Blog Entries}
 
-\subsection{Fall}
+\subsubsection{Fall}
 \subsubsection*{Fall Week 4}
 \textbf{Worked On}
 \begin{itemize}
@@ -1481,7 +1531,7 @@ appear on later blog posts.
 \end{itemize}
 
 
-\subsection{Winter}
+\subsubsection{Winter}
 \subsubsection*{Winter Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -1727,16 +1777,21 @@ appear on later blog posts.
     \item The autorally softare package has a few different parts to it and odd/obscure errors can occur during installation. My goal was to find errors that arise and document how to fix/correct them so that users will have a better installation experience and get the system up and running faster.
 
     \item Found the following error:
-%FIXME line wrapping
+
 \begin{verbatim}
-CMake Error at autorally/autorally\_control/CMakeLists.txt:19 (find_package): By not providing "FindEigen3.cmake" in CMAKE_MODULE_PATH this project has asked CMake to find a package configuration file provided by "Eigen3", but CMake did not find one.
+CMake Error at autorally/autorally\_control/CMakeLists.txt:19 
+(find_package): By not providing "FindEigen3.cmake" in CMAKE_MODULE_PATH this project 
+has asked CMake to find a package configuration file provided by "Eigen3", 
+but CMake did not find one.
 
 Could not find a package configuration file provided by "Eigen3" with any of the following names:
 
 Eigen3Config.cmake
 eigen3-config.cmake
 
-Add the installation prefix of "Eigen3" to CMAKE_PREFIX_PATH or set "Eigen3_DIR" to a directory containing one of the above files. If "Eigen3" provides a separate development package or SDK, be sure it has been installed.
+Add the installation prefix of "Eigen3" to CMAKE_PREFIX_PATH or set "Eigen3_DIR" 
+to a directory containing one of the above files. If "Eigen3" provides a separate 
+development package or SDK, be sure it has been installed.
 \end{verbatim}
 
 \item This was resolved by changing the calling CMakeLists.txt file:\\
@@ -1816,7 +1871,8 @@ pkg\_search\_module(Eigen3 REQUIRED eigen3)\\
     \item None -- Spring Break
 \end{itemize}
 
-\subsection{Spring}
+
+\subsubsection{Spring}
 \subsubsection*{Spring Week 1}
 \textbf{Worked On}
 \begin{itemize}
@@ -2025,9 +2081,12 @@ Expo was a fun experience for me, overall. We gave a presentation of our project
 
 
 \clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Poster}
+(Begins on next page.)
 \includepdf[pages={-}]{project_poster.pdf}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Documentation}
 ARC is designed to be modular. We chose the Robotics Operating System as our primary software platform because it has a large number of libraries supporting many different types of sensors. You should be able to swap the sensors we chose (such as GPS, IMU, LiDAR units) with another of your choosing. Consider our parts list a minimum requirement for operation. More sensors (even duplicate sensors) can be added for greater accuracy in data.
 
@@ -2037,7 +2096,7 @@ The structure of ARC has two parts, software and hardware. The primary software 
 % block diagram here
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=.5]{Block_Diagram}
+    \includegraphics[scale=.5]{block_diagram.png}
     \caption{Main Project Components}
     \label{fig:my_label}
 \end{figure}
@@ -2092,7 +2151,7 @@ ROS has pre-built packages for the sensors we used in this project. The instruct
  \begin{itemize}
      \item SlamTech RPLiDAR
      \subitem - At the terminal command prompt:
-     \subitem \$ sudo apt-get install ros-indigo-rplidar-ros
+     \subitem \$ sudo apt-get install ros-indigo-RPLiDAR-ros
      \item LeddarTech Evaluation Kit:
      \subitem - Go to the ROS-Leddar GitHub repository (\href{https://github.com/mcgill-robotics/ros-leddar}{https://github.com/mcgill-robotics/ros-leddar}, download (clone) the LeddarTech package and follow the instructions on that page.
      \item UM7 IMU:
@@ -2320,45 +2379,60 @@ This list does not include all components we tested during research and developm
     \end{tabular}
     }
     \end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{How We Learned New Technology}
 
+As a whole, every piece of technology we touched within the project was new to us, which was one of the hardest parts of the project. 
+In order to learn about each component, we would start by searching for the documentation for the piece of hardware or software package. 
+For example, if we wanted to find out about a specific sensor, we would start by Googling the sensor's name. 
+If searching just for the component did not return what we were looking for, we would add a search term, such as 'documentation' or 'ROS package' in order to get better results.
+Searching with just the name often would provide us with the technical specification sheets, which we were able to read in order to find what we were looking for.
+For things that we could not find information related to a topic, or when we encountered problems, we would search through forums dedicated to the topic.
+Using the process of searching for what we were looking for, we were able to find out most of the pertinent information. 
 
+\subsection*{What web sites were helpful?}
 
-
-\section{New Technology Learned}
-%FIXME There is a lot more to this than just ROS and two websites...
-As a whole, every piece of technology we touched within the project was new to us, which was one of the hardest parts of the project.
-
-\textit{What web sites were helpful?}
+\textbf{ROS Wiki: \url{http://wiki.ros.org}}\par
+The ROS wiki provides documentations and tutorials on packages.\par
+Each package typically includes the following:
 \begin{itemize}
-    \item \url{http://wiki.ros.org}
-    \item \url{https://github.com/AutoRally/autorally}
+    \item Compatibility with different versions of ROS.
+    \item Package version and release status.
+    \item The github repository where all the source code is stored.
+    \item Installation and setup guides.
+    \item Prototypes of APIs and detailed descriptions of the APIs.
+    \item Detailed descriptions of parameters that can be used to configure the package.
 \end{itemize}
+A tutorial of a specific package includes:
+\begin{itemize}
+    \item Introduction to the package.
+    \item Different scenarios where the package can be used.
+    \item Detailed walk-through of implementation of each scenario.
+\end{itemize}
+    
+\textbf{ROS Documentation: \url{http://docs.ros.org}}\par
+The ROS doc has detailed descriptions of data types that messages must obey for nodes to send and receive. 
+This is extremely useful because even though ROS uses C++ and Python, it has a large number of customized data types. 
+We had to configure our nodes correctly to publish and subscribe messages, so that the nodes can communicate and modules can be integrated.
+    
+\textbf{Georgia Tech's AutoRally: \url{https://github.com/AutoRally/autorally}}\par
+At the beginning of this project, we referred to the AutoRally project a lot to look for ideas. 
+The project is entirely open-source, which means all the code is in the repository. 
+There is step-by-step guides on how to set up the platform and detailed descriptions of individual components. 
+The repository also had a breakdown list of parts (hardware) the platform used. 
+It was the configuration to which we compared our platform, both cost-wise and power-wise.
 
 \textit{What, if any, reference books really helped?}\par
-We did not use any reference books.
-      
+We did not use any reference books. We did read a lot of technical documentation though. 
+
 \textit{Were there any people on campus that were really helpful?}\par
-Our client was Kevin, who was also our instructor. So it was very helpful.
-He provided us with all the hardware and gave us instructions on how to use them.
+Our client, and instructor, Kevin, was the only other person we worked with. 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{What We Learned}
-%FIXME THIS IS NOT SUPPOSED TO BE A LIST, it needs to be reformatted into paragraph formatting.
 
-We experienced how a research project was approximately carried out.
-
-We got to work in a diverse team, which helped us improve our communication skills.
-
-When working in a small team, the relationship between teammates became more intimate, which make us become more considerate people.
-
-We learned a lot on how to use ROS. 
-
-ROS was a big part of this project, and we only had little to no experience working with it.  
-
-What we were able to accomplish was incredible.
-
-MORE TO ADD.
+Over the course of three terms, we learned the basics of how a research project is carried out and had the ability to learn about a lot of new technology. Our group was also incredibly diverse, which helped us improve our communication skills by having to overcome a minor language barrier (namely, teaching Tao about sarcasm). Having a small team was great, as we were really able to get to know one another and bond as a group, which helped us become more considerate of one another. Overall, we are incredibly proud of what we have accomplished and learned throughout the year.
 
 
 \subsection{Cierra}
@@ -2397,23 +2471,25 @@ It is incredibly satisfying to be able to sit down and write a paper, without it
 I am now able to break down a problem into more manageable pieces, instead of being overwhelmed by everything at once. 
 Also, ten pages seems like a trivial amount of work now, which has made all of my other classes a lot easier when we had to write various project reports. \par
 
-
 \subsubsection*{What have you learned about project work?}
 Planning is essential if you expect a project to go well. I would say as a whole we did a really good job creating good guidelines, but we fell short in estimating and having back up plans for when we found out things just would not work. 
 
 Being able to track tasks with some sort of management software would have been nice as well. We had tried to start using an agile method fall term, but it was really difficult considering everyone was also having to juggle their other classes and there were not a lot of times we could sit down and get together to break things into specific tasks. Instead, a lot of the task breakdown was done by hangouts, which often made it difficult to go back and figure out who was responsible for what parts of a paper or the project. 
 
 \subsubsection*{What have you learned about project management?}
-Of of the biggest things I learned, was always assume things will take more time than what you originally expect. One of the biggest setbacks we had within the project, was not having allocated enough time in the beginning. As I was the one who submitted the majority of our work, I also learned that plenty of time should be left around a deadline to account for potential problems that may occur. 
+Of of the biggest things I learned, was always assume things will take more time than what you originally expect. Our biggest setback was not having allocated enough time in the beginning. As I was the one who submitted the majority of our work, I also learned that plenty of time should be left around a deadline to account for potential problems that may occur. 
 
 Communication is also key, and I feel like I am able to take a step back and say "This is what we need to do, now how are we going to get there?" Since at the beginning of the project, we had no experience with anything we were going to be using, stepping back and trying to break the problem down into smaller pieces was key. 
 
 \subsubsection*{What have you learned about working in teams?}
+Communication is incredibly important. 
+Take a step back and make sure everyone is on the same page before moving onto a different task. 
+It is also important to immediately decide on a form of communication at the start of the project and stick to it.
+
 
 \subsubsection*{If you could do it all over, what would you do differently?}
 If I could start over, I would have made sure to not get hung up on something for too long. If we had been able to accept that the PXFmini was not going to work for our situation, we would have been able to start implementing things earlier in the term. 
 Finally, I would take any time estimates and quadruple them. Nothing will go as planned, so you need to be able to adapt to whatever is thrown your way.
-
 
 \subsection{Tao}
 
@@ -2466,7 +2542,6 @@ Finally, I would take any time estimates and quadruple them. Nothing will go as 
   But then we hit a road block that totally stalled our work on hardware from
   progressing. Other than that, I don't think I would do much different.
 \end{itemize}
-
 
 \subsection{Dan}
 \subsubsection*{What technical information did you learn?}
@@ -2521,25 +2596,28 @@ Finally, I would take any time estimates and quadruple them. Nothing will go as 
     \item I would use project management software.
     \item I would set an expectation of a required weekly meeting time at the beginning of the project. Our team agreed to do that, but I did not really follow through on it well.
 \end{itemize}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{ARC Findings and Conclusions}
+(Begins on next page.)
 \includepdf[pages={-}]{write_up.pdf}
 
-\section{Appendix 1}
-Essential Code Listings. You don't have to include absolutely everything, but if someone wants to understand your project, there should be enough here to learn from. If you worked within a larger project, something like a patch file might be a good way to go.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+
+\section{Essential Code Listings}
+\scriptsize{
 \begin{lstlisting}[frame=single,caption={Example Custom ROS Node}]
 /**********************************************
 * @file LiDARDetection.cpp
 * @author Tao Chen <chentao@oregonstate.edu>
 * @date Feburary 21, 2017
 * @copyright 2017 Oregon State University
-* @brief ROS node to generate new waypoints based on LiDAR scan
+* @brief ROS node to generate new way-points based on LiDAR scan
 *
 * @details When an obstacle is detected, it alters the original
-* set of waypoints to go around the obstacle. This node subscribes to
-* the laser_scan message and the current_list_of_waypoints message and
-* publish the new_waypoints message.
+* set of way-points to go around the obstacle. This node subscribes to
+* the laser_scan message and the current_list_of_way-points message and
+* publish the new_way-points message.
 ***********************************************/
 
 #include "LiDARDetection.h"
@@ -2548,20 +2626,15 @@ namespace autorally_smartdriving{
 	LiDARDetection::LiDARDetection(){
 		l_LiDARSub = l_nh.subscribe("/autorally_platform/laser_scan", 10, &LiDARDetection::gatherLiDARData, this);
 		l_LiDARPub = l_nh.advertise<sensor_msgs::LaserScan>("scan", 10);
-
 		samples = 2000;
 		laser_frequency = 10;
 		scan.ranges.resize(samples);
 		scan.intensities.resize(samples);
 	}
-
 	LiDARDetection::~LiDARDetection(){}
-
 	void LiDARDetection::gatherLiDARData(sensor_msgs::LaserScan data){
 		int counter = 0;
-
 		ros::Time scan_time = ros::Time::now();
-
 		scan.header.stamp = scan_time;
 		scan.header.frame_id = "LiDAR";
 		scan.angle_min = data.angle_min;
@@ -2570,17 +2643,13 @@ namespace autorally_smartdriving{
 		scan.time_increment = (1 / laser_frequency) / samples;
 		scan.range_min = data.range_min;
 		scan.range_max = data.range_max;
-
 		for(counter = 0; counter < samples; counter++){
 			scan.ranges[counter] = data.ranges[counter];
 			scan.intensities[counter] = data.intensities[counter];
 		}
-
-		// publish scan to scan topic
-		l_LiDARPub.publish(scan);
+		l_LiDARPub.publish(scan);// publish scan to scan topic
 	}
 };
-
 int main(int argc, char** argv){
 	ros::init(argc, argv, "LiDARDetection");
 	autorally_smartdriving::LiDARDetection LiDARDetection;
@@ -2588,12 +2657,11 @@ int main(int argc, char** argv){
 }
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example Custom Launch File for Stage}]
 <launch>
-
   <!--  ************** Global Parameters ***************  -->
   <param name="/use_sim_time" value="true"/>
-
   <!--  ************** Stage simulator ***************  -->
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(find stage_launch)/stage/empty.world">
     <!-- <remap from="base_scan" to="scan"/> -->
@@ -2643,6 +2711,7 @@ int main(int argc, char** argv){
 </launch>
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={ROS odom/transform node (not including the .h file.
 The .h file is located in our github repository)}]
 /**********************************************
@@ -2679,7 +2748,6 @@ namespace autorally_smartdriving{
     odom_trans.header.stamp = time_stamp;
     odom_trans.header.frame_id = "odom";             //base_link
     odom_trans.child_frame_id = "base_footprint";     //odom
-
     odom_trans.transform.translation.x = 0;
     odom_trans.transform.translation.y = 0;
     odom_trans.transform.translation.z = 0;
@@ -2687,7 +2755,6 @@ namespace autorally_smartdriving{
     odom_trans.transform.rotation.y = 0;
     odom_trans.transform.rotation.z = 0;
     odom_trans.transform.rotation.w = 1;
-
     /*odom_trans.transform.rotation.x = data.pose.pose.orientation.x;
     odom_trans.transform.rotation.y = data.pose.pose.orientation.y;
     odom_trans.transform.rotation.z = data.pose.pose.orientation.z;
@@ -2704,7 +2771,6 @@ namespace autorally_smartdriving{
     map_trans.transform.rotation.y = data.pose.pose.orientation.y;
     map_trans.transform.rotation.z = data.pose.pose.orientation.z;
     map_trans.transform.rotation.w = data.pose.pose.orientation.w;
-
     /*map_trans.transform.rotation.x = 0;
     map_trans.transform.rotation.y = 0;
     map_trans.transform.rotation.z = 0;
@@ -2739,7 +2805,6 @@ namespace autorally_smartdriving{
     PoseWithCovariance.pose.pose.position.x = data.pose.pose.position.x;
     PoseWithCovariance.pose.pose.position.y = data.pose.pose.position.y;
     PoseWithCovariance.pose.pose.position.z = data.pose.pose.position.z;
-
     PoseWithCovariance.pose.covariance = data.pose.covariance;
     o_poseCovariancePub.publish(PoseWithCovariance);
 
@@ -2759,6 +2824,7 @@ int main(int argc, char** argv){
 }
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example launch file}]
 <launch>
   <include file="$(find autorally_core)/launch/hardware.machine" />
@@ -2785,6 +2851,7 @@ int main(int argc, char** argv){
 </launch>
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example package config file}]
 <?xml version="1.0"?>
 <package>
@@ -2830,7 +2897,6 @@ int main(int argc, char** argv){
   <run_depend>my_sensor_configuration_dep</run_depend>
   <run_depend>my_tf_configuration_dep</run_depend>
 
-
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
@@ -2839,6 +2905,7 @@ int main(int argc, char** argv){
 </package>
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example yaml (package params) file}]
 # footprint is like the shadow of the vehicle if the light is shining from directly above.
 # Assume that the center of the vehicle is (0, 0)
@@ -2877,6 +2944,7 @@ static_layer:
 map_topic: "/map"
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example cmakelist file}]
 cmake_minIMUm_required(VERSION 2.8.3)
 project(autorally_smartdriving)
@@ -2920,19 +2988,16 @@ install(DIRECTORY cfg/cpp/${PROJECT_NAME}/
 )
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Example stage config file}]
 include "arc_robot.inc"
 include "block.inc"
 
-
-define floorplan model
-(
+define floorplan model(
   # sombre, sensible, artistic
   color "gray30"
-
   # most maps will need a bounding box
   boundary 1
-
   gui_nose 0
   gui_grid 0
   gui_outline 0
@@ -2944,16 +3009,14 @@ define floorplan model
 resolution 0.02
 interval_sim 100  # simulation timestep in milliseconds
 
-window
-(
+window(
   size [ 600.0 700.0 ]
   center [ 0.0 0.0 ]
   rotate [ 0.0 0.0 ]
   scale 60
 )
 
-floorplan
-(
+floorplan(
   name "empty_world"
   bitmap "../maps/empty_world.png"
   size [ 200.0 200.0 2.0 ]
@@ -2961,8 +3024,7 @@ floorplan
 )
 
 # throw in a robot
-carlike_robot
-(
+carlike_robot(
   pose [ 0.0 0.0 0.0 0.0 ]
   name "robot"
 )
@@ -2981,24 +3043,20 @@ block ( pose [20.0 4.0 0.0 0.0] color "red")
 block ( pose [22.0 4.0 0.0 0.0] color "red")
 \end{lstlisting}
 
+\clearpage
 \begin{lstlisting}[frame=single,caption={Car description for stage}]
-define laser ranger
-(
-  sensor
-  (
+define laser ranger(
+  sensor(
     range_max 6
     fov 360
     samples 2000
   )
-
   color "black"
   size [ 0.06 0.15 0.03]
 )
 
-define Leddar ranger
-(
-  sensor
-  (
+define Leddar ranger(
+  sensor(
     range_max 50.0
     fov 45
     samples 16
@@ -3007,31 +3065,97 @@ define Leddar ranger
   size [0.06 0.15 0.03]
 )
 
-define carlike_robot position
-(
+define carlike_robot position(
   pose [ 0.0 0.0 0.0 0.0 ]
-
   odom_error [ 0.03 0.03 999999 999999 999999 0.02 ]
-
   size [ 0.56 0.46 0.4 ]
   origin [ 0.2 0.0 0.0 0.0]
   gui_nose 1
   color "green"
-
   drive "car"
   localization "gps"
   wheelbase 0.38
-
   #laser(pose [-0.1 0.0 -0.11 0.0])
   laser(pose [0.1 0.0 -0.11 0.0])
-
   Leddar(pose [0.2 0.0 -0.11 0.0])
 )
 \end{lstlisting}
+\clearpage
 
-\section{Appendix 2}
+\begin{lstlisting}[frame=single,caption={Node Anatomy}]
+**********************************autoRallyTrackGazeboSim.launch**********************************
+**************************************************************************************************
+To launch the AutoRally project in simulation, the autoRallyTrackGazeboSim.launch file will be
+launched:
+  This launch file will launch:
+    1. autoRallyPlatform.launch => launch robot_state_publisher.
+        - robot_state_publisher => Ros package, publishes vehicle's joint state to tf
+
+    2. autoRallyTrackWorld.launch => run Gazebo with a world using gazebo_ros
+
+    3. gazebo_ros (Ros package but a separate node) => spawn the vehicle
+
+    4. controller_manager (Ros package)
+
+    5. autorally_gazebo/autorally_controller.py => control the vehicle in simulation
+
+    6. autorally_core/autorally_core_manage.launch => launch nodelet
+        - nodelet (Ros package) => communication protocol with Ros nodes when messages
+          contain large data sets
+
+    7. autorally_control/joystickController.launch => launch joy (Ros package) and
+                                                      joystickControl.cpp
+        - joy (Ros package) => interface with the joystick, publishes (/joy) the current
+            state of each one of the joystick's buttons and axes
+        - joystickControl.cpp => subscribes to /joy and publishes /joystick/chassisCommand
+            and /runstop
+**************************************************************************************************
+**********************************autoRallyTrackGazeboSim.launch**********************************
+
+**********************************chassisCommand message type*************************************
+**************************************************************************************************
+Header header
+
+string sender
+float64 throttle
+float64 steering
+float64 frontBrake
+**************************************************************************************************
+**********************************chassisCommand message type*************************************
+
+**************************************runstop message type****************************************
+**************************************************************************************************
+Header header
+
+string sender
+bool motionEnabled
+**************************************************************************************************
+**************************************runstop message type****************************************
+
+*************************************autorally_controller.py**************************************
+This controller is for simulation ONLY! To actually control the hardware, we have to use the
+autorally_core package or write our own package (or modify exiting files).
+**************************************************************************************************
+This python script is launched individually as a node. It subscribes to /chassisCommand from
+variouscommanders, including the joystickController, constantSpeedController, waypointFollower,
+etc. (OCS & RC)
+
+The the node publishes axle states, shock states, steering states of different wheels to Gazebo to
+do the simulation.
+This node is ONLY for simulation. It doesn't interface with any of the hardware, such as motors
+and servos.
+**************************************************************************************************
+*************************************autorally_controller.py**************************************
+
+TODO:
+autorally_smartdriving/autorally_configuration.launch and move_base.launch
+navigation stack
+
+\end{lstlisting}
+}
+\clearpage
+
+\section{Photos}
 Anything else you want to include. Photos, etc.
-
+\end{appendices}
 \end{document}
-
-
