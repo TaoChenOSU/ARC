@@ -1,0 +1,6 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~camera_trigger_frequency" : \b [int] FPS for camera triggering min: 0, default: 40, max: 150
+

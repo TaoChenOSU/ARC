@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/devel
+
+Name: autorally_smartdriving
+Description: Description of autorally_smartdriving
+Version: 0.0.0
+Cflags: -I/home/arc/Desktop/AutoRally/src/autorally/autorally_smartdriving/include
+Libs: -L/home/arc/Desktop/AutoRally/devel/lib 
+Requires: 

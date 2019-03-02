@@ -1,0 +1,13 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~roi_x_top_left" : \b [int] Top left vertex X position of ROI min: 0, default: 0, max: 1279
+- \b "~roi_y_top_left" : \b [int] Top left vertex Y position of ROI min: 0, default: 500, max: 1023
+- \b "~roi_x_bottom_right" : \b [int] Bottom right vertex X position of ROI min: 0, default: 1280, max: 1280
+- \b "~roi_y_bottom_right" : \b [int] Bottom right vertex Y position of ROI min: 0, default: 1000, max: 1024
+- \b "~msvGrayReference" : \b [double] Setpoint for exposure calibration min: 0.0, default: 120.0, max: 255.0
+- \b "~kShutter" : \b [double] Parameter that controls how fast shutter can change min: 0.0, default: 0.0005, max: 0.1
+- \b "~kGain" : \b [double] Parameter that controls how fast gain can change min: 0.0, default: 0.0005, max: 0.1
+- \b "~show_roi_and_hist" : \b [bool] Enable/Disable display of ROI and histogram of ROI min: False, default: False, max: True
+

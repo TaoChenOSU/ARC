@@ -154,4 +154,3 @@ The parts list for ARC is a compilation of parts, with prices, used for this pro
 |                                      |           |  
 
 The above table was generated using [Markdown Table Generators](http://www.tablesgenerator.com/markdown_tables) by copy/pasting from Google Sheets using the instructions from that site.
-

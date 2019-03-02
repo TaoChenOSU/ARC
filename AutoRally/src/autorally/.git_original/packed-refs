@@ -1,0 +1,21 @@
+# pack-refs with: peeled fully-peeled 
+2036a92c6f20f41b2204e361e9dadf544b82fd54 refs/remotes/origin/briansBranch
+c7581e16a7f56ff75fefa78503670868019a2032 refs/remotes/origin/controlFixes
+aa8b58cd00328fc894fb341930149cdb1620929e refs/remotes/origin/devel
+8a115c0e7ae345cb11d538fe4122eb71a8704bba refs/remotes/origin/estimatorFix
+b4005a812fd48654b17dab8002cc199718103e78 refs/remotes/origin/imuLocationFix
+cb5e5c1a8431d98a355b5e3fff4bb25fffbe3ddf refs/remotes/origin/kinetic-devel
+c62a7bb0efba9d583e86afb06a4749bd3feafad7 refs/remotes/origin/master
+175fddb8766f1d440dfac3b3aff53169ced75c94 refs/remotes/origin/model-update
+88ff683a04687d2790f38e28ed12e2495afb408b refs/remotes/origin/orlins-Branch
+4bf8c18293cfaa20044dab8395f17965c6b017f1 refs/remotes/origin/revert-42-patch-1
+876a574c76fc85e1cc78dd3b4b3ff3162395a9d6 refs/tags/0.2.0
+86094aaaf4916ebe26a41532ab15a839fc565837 refs/tags/0.2.1
+044336e26b8356c6cead99931da3993db758d648 refs/tags/0.2.2
+7d27fad00fab85ccb9cab2ccb4ac14fc2f236f63 refs/tags/0.2.3
+57e00332efcaf00652640e3f0506f2b13152210a refs/tags/0.2.4
+5f0f33b03f2c116b178dc7ff7f77b71dd6c016ef refs/tags/v0.1.0
+89c2c9c77929e6b8a6f1bc395d05c8c42a4a2a10 refs/tags/v0.2.0
+badc1344aefc91932c67a7e0d49a55ef9f4d3128 refs/tags/v0.2.1
+af48b59a348fe7e45d0115ab10c0a241aed94f27 refs/tags/v0.2.2
+961b5abfba488f363b1a620203c1def60ac8d116 refs/tags/v0.2.3

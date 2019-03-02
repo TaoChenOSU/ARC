@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/install
+
+Name: autorally_control
+Description: Description of autorally_control
+Version: 0.2.4
+Cflags: -I/home/arc/Desktop/AutoRally/install/include -I/usr/include
+Libs: -L/home/arc/Desktop/AutoRally/install/lib 
+Requires: roscpp std_msgs geometry_msgs nav_msgs nodelet dynamic_reconfigure autorally_core autorally_msgs

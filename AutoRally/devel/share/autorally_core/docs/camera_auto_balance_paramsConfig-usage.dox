@@ -1,0 +1,14 @@
+\subsubsection usage Usage
+\verbatim
+<node name="autorally_core" pkg="autorally_core" type="autorally_core">
+  <param name="roi_x_top_left" type="int" value="0" />
+  <param name="roi_y_top_left" type="int" value="500" />
+  <param name="roi_x_bottom_right" type="int" value="1280" />
+  <param name="roi_y_bottom_right" type="int" value="1000" />
+  <param name="msvGrayReference" type="double" value="120.0" />
+  <param name="kShutter" type="double" value="0.0005" />
+  <param name="kGain" type="double" value="0.0005" />
+  <param name="show_roi_and_hist" type="bool" value="False" />
+</node>
+\endverbatim
+

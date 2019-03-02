@@ -1,0 +1,19 @@
+Tao Chen
+This document records everything I have done by days.
+
+02/23/2017:
+  I have been working with the AutoRally project for a long time now. I added a lidar sensor
+  on the roof of the simulated car. Yesterday I was able to get data out of the sensor with
+  a Ros node that I wrote. However, I wasn't able to visualize the data on Rviz. But then
+  today I found out that I could change the name of the frame in my node. The name of the frame
+  contained in the messages published by the lidar unit was "autorally_platform/lidar". Rviz was
+  looking "/lidar".
+  The node I wrote subscribes to the "/autorally_platform/lidar" topic, changes the name of the
+  frame to "/lidar" and publishes the messages. So now I am able to visualize the lidar data on
+  Ros.
+  Next step, dive into obstacle avoidance. The idea I have right now is
+      1. alter the waypointfollower node such that it publishes the current stack of waypoints.
+      2. make to node that subscribes to waypoints and lidar data.
+      3. use RRT algorithm (Rapidly-exploring random tree) to analyze obstacle and generate new trajectories.
+      4. publish new trajectory to the waypointfollower.
+      

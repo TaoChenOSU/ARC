@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package>
+  <name>autorally_smartdriving</name>
+  <version>0.0.0</version>
+  <description>This package contains all the necessary files to enable the car to detect and avoid obstacle using the teb_local_planner package.</description>
+
+  <maintainer email="chentao@oregonstate.edu">Tao Chen</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/cshawe/cs46x</url>
+
+  <author email="chentao@oregonstate.edu">Tao Chen</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>autorally_msgs</build_depend>
+  <build_depend>move_base</build_depend>
+  <build_depend>my_odom_configuration_dep</build_depend>
+  <build_depend>my_sensor_configuration_dep</build_depend>
+  <build_depend>my_tf_configuration_dep</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>autorally_msgs</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>my_odom_configuration_dep</run_depend>
+  <run_depend>my_sensor_configuration_dep</run_depend>
+  <run_depend>my_tf_configuration_dep</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

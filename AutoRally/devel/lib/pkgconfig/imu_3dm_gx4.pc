@@ -1,0 +1,8 @@
+prefix=/home/arc/Desktop/AutoRally/devel
+
+Name: imu_3dm_gx4
+Description: Description of imu_3dm_gx4
+Version: 0.0.4
+Cflags: -I/home/arc/Desktop/AutoRally/devel/include
+Libs: -L/home/arc/Desktop/AutoRally/devel/lib 
+Requires: message_runtime geometry_msgs sensor_msgs
